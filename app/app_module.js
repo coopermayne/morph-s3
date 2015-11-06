@@ -2,7 +2,7 @@
 
 var angularSprout = angular.module( 'angularSprout',
 [
-	'exampleDirective',
+	'menuDirective',
 
 	'reverseFilter',
 
