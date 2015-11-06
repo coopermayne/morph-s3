@@ -5,8 +5,7 @@ var parentState2 = angular.module( 'parentState2',
 	'ui.router',
 
 	'childState1',
-	'childState2',
-	'menuDirective'
+	'childState2'
 ] );
 
 

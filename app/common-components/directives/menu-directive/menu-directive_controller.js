@@ -7,7 +7,32 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	// This is a controller.
 
-	$scope.menuItems = ['Architecture', 'Urban Design', 'Tangents', 'Research', 'Media', 'News'];
+	$scope.menuItems = [ 
+		{
+			title: 'Architecture',
+			url: 'architecture'
+		},
+		{
+			title: 'Urban Design',
+			url: 'urban-design'
+		},
+		{
+			title: 'Tangents',
+			url: 'tangents'
+		},
+		{
+			title: 'Research',
+			url: 'research'
+		},
+		{
+			title: 'Media',
+			url: 'media'
+		},
+		{
+			title: 'News',
+			url: 'news'
+		}
+	];
 
 	$scope.stateName = 'page-one';
 
