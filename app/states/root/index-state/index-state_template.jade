@@ -1,0 +1,5 @@
+.child-nav
+	.child-nav-item( ui-sref='root.index-state({indexType: "urban-design"})', ng-class='{ selected: activeChildNav === "project-state" }' )
+		| project-state
+
+.child-content( ui-view='project-content' )

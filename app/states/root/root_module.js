@@ -3,7 +3,8 @@
 var root = angular.module( 'root',
 [
 	'ui.router',
-	'parentState2'
+	
+	'indexState'
 ] );
 
 root.config( function( $stateProvider )

@@ -5,9 +5,7 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope )
 {
 
-	// This is a controller.
-
-	$scope.menuItems = [ 
+	$scope.menuItems = [
 		{
 			title: 'Architecture',
 			url: 'architecture'
