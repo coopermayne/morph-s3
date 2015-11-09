@@ -12,7 +12,7 @@ indexState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.index-state',
 	{
-		url: ':indexType',
+		url: '/:indexType',
 		views:
 		{
 			'content':
@@ -21,6 +21,7 @@ indexState.config( function( $stateProvider )
 				controller: 'IndexStateController as indexState'
 			}
 		},
-		activeTopNav: 'index-state'
+		activeTopNav: 'index-state',
+		abstract: false
 	} );
 } );

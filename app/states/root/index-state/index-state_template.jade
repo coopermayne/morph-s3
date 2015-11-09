@@ -1,5 +1,14 @@
 .child-nav
-	.child-nav-item( ui-sref='root.index-state({indexType: "urban-design"})', ng-class='{ selected: activeChildNav === "project-state" }' )
-		| project-state
+	.child-nav-item( ui-sref='root.index-state.project-state({projectId: 1234})', ng-class='{ selected: activeChildNav === "project-state" }' )
+		| index state template
+
+		| {{ stateParams }}
+
+	a(href='#' ui-sref='root.index-state.project-state({projectId: 1})')
+		| Project 1
+	a(href='#' ui-sref='root.index-state.project-state({projectId: 2})')
+		| Project 2
+	a(href='#' ui-sref='root.index-state.project-state({projectId: 3})')
+		| Project 3
 
 .child-content( ui-view='project-content' )

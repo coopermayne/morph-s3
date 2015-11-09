@@ -10,10 +10,10 @@ projectState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.index-state.project-state',
 	{
-		url: ':projectId/',
+		url: '/:projectId',
 		views:
 		{
-			'child-content':
+			'project-content':
 			{
 				templateUrl: 'states/root/index-state/project-state/project-state_template.html',
 				controller: 'ProjectStateController as projectState'

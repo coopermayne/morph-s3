@@ -11,7 +11,7 @@ root.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root',
 	{
-		url: '/',
+		url: '',
 		views:
 		{
 			'root':
