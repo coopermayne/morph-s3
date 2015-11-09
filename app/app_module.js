@@ -1,6 +1,6 @@
 'use strict';
 
-var angularSprout = angular.module( 'angularSprout',
+var morphopedia = angular.module( 'morphopedia',
 [
 	'menuDirective',
 
@@ -9,7 +9,7 @@ var angularSprout = angular.module( 'angularSprout',
 	'root'
 ] );
 
-angularSprout.config( function( $urlRouterProvider, $locationProvider )
+morphopedia.config( function( $urlRouterProvider, $locationProvider )
 {
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );
@@ -18,7 +18,7 @@ angularSprout.config( function( $urlRouterProvider, $locationProvider )
 
 
 
-angularSprout.run( [ '$rootScope', function( $rootScope )
+morphopedia.run( [ '$rootScope', function( $rootScope )
 {
 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{

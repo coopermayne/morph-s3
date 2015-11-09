@@ -32,8 +32,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}
 	];
 
-	$scope.stateName = 'page-one';
-
 	console.log( 'menuDirective Controller active!' );
 
 } );
