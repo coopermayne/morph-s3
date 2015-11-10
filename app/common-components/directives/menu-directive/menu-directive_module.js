@@ -1,7 +1,3 @@
-// take a list of menu items
-// when the user clicks one, set it to active
-	// when the active state is architecture, fetch architecture.json
-
 'use strict';
 
 var menuDirective = angular.module( 'menuDirective', [] );

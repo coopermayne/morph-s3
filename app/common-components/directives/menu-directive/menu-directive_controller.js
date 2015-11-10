@@ -32,6 +32,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}
 	];
 
-	console.log( 'menuDirective Controller active!' );
+	console.log( 'MenuDirectiveController active!' );
 
 } );

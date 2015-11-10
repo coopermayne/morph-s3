@@ -2,10 +2,12 @@
 
 var indexState = angular.module( 'indexState' );
 
-indexState.controller( 'IndexStateController', function( $rootScope, $scope, $state, $stateParams )
+indexState.controller( 'IndexStateController', function( $rootScope, $scope, $state, $stateParams, Project )
 {
 	console.log( 'IndexStateController active!' );
 	$scope.stateName = 'index-state';
+
+	$scope.projects = Project.query();
 
 	$scope.activeChildNav = $state.current.activeChildNav;
 

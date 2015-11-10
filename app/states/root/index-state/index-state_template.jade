@@ -1,14 +1,4 @@
-.child-nav
-	.child-nav-item( ui-sref='root.index-state.project-state({projectId: 1234})', ng-class='{ selected: activeChildNav === "project-state" }' )
-		| index state template
-
-		| {{ stateParams }}
-
-	a(href='#' ui-sref='root.index-state.project-state({projectId: 1})')
-		| Project 1
-	a(href='#' ui-sref='root.index-state.project-state({projectId: 2})')
-		| Project 2
-	a(href='#' ui-sref='root.index-state.project-state({projectId: 3})')
-		| Project 3
+a( href='#' ng-repeat='project in projects' ui-sref='root.index-state.project-state( { projectId: project.id } )')
+		| {{ project.title }}
 
 .child-content( ui-view='project-content' )

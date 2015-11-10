@@ -2,11 +2,14 @@
 
 var morphopedia = angular.module( 'morphopedia',
 [
+	'ngResource',
+	
 	'menuDirective',
 
 	'reverseFilter',
 
 	'root'
+
 ] );
 
 morphopedia.config( function( $urlRouterProvider, $locationProvider )

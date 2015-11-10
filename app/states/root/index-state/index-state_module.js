@@ -4,7 +4,10 @@ var indexState = angular.module( 'indexState',
 [
 	'ui.router',
 	
-	'projectState'
+	'projectState',
+
+	'projectResource'
+
 ] );
 
 
