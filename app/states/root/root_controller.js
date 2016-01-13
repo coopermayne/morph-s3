@@ -17,8 +17,4 @@ root.controller( 'RootController', function( $rootScope, $scope, $state )
 		$scope.activeTopNav = $state.current.activeTopNav;
 	} );
 
-
-
-	console.log( 'RootController active!' );
-
 } );

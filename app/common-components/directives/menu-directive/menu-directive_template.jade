@@ -1,3 +1,11 @@
 ul.menu-directive
-	li( ng-repeat='item in menuItems' ui-sref='root.index-state({indexType: item.url})')
-		{{ item.title }}
+
+	li( ng-repeat='item in menuItems' ui-sref='root.section-state({sectionType: item.url})' )
+		| {{ item.title }}
+
+		.sorting-options( ng-if='stateParams.sectionType == item.url' )
+			span( ng-repeat='option in item.sorting' ng-click='toggleSort( option.title )' )
+				| {{ option.title }}
+
+				span( ng-if='displaySorting == option.title' ng-repeat='item in option.items')
+					| {{ item }}

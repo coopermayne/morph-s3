@@ -8,18 +8,18 @@ var projectState = angular.module( 'projectState',
 
 projectState.config( function( $stateProvider )
 {
-	$stateProvider.state( 'root.index-state.project-state',
+	$stateProvider.state( 'root.section-state.project-state',
 	{
-		url: '/:projectId',
+		url: ':projectId',
 		views:
 		{
 			'project-content':
 			{
-				templateUrl: 'states/root/index-state/project-state/project-state_template.html',
+				templateUrl: 'states/root/section-state/project-state/project-state_template.html',
 				controller: 'ProjectStateController as projectState'
 			}
 		},
-		activeTopNav: 'index-state',
+		activeTopNav: 'section-state',
 		activeChildNav: 'project-state'
 	} );
 } );

@@ -4,14 +4,16 @@ var root = angular.module( 'root',
 [
 	'ui.router',
 	
-	'indexState'
+	'sectionState',
+
+	'homeState'
 ] );
 
 root.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root',
 	{
-		url: '',
+		url: '/',
 		views:
 		{
 			'root':
@@ -20,6 +22,6 @@ root.config( function( $stateProvider )
 				controller: 'RootController as root'
 			}
 		},
-		abstract: true
+		abstract: false
 	} );
 } );
