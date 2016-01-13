@@ -52,7 +52,12 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.displaySorting = false;
 
 	$scope.toggleSort = function( input ) {
-		$scope.displaySorting = input;
+		if ( $scope.displaySorting ) {
+			$scope.displaySorting = false;
+		} else {
+			$scope.displaySorting = input;
+			$stateParams.sortingType = input.toLowerCase();
+		}
 	}
 
 

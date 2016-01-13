@@ -7,5 +7,5 @@ ul.menu-directive
 			span( ng-repeat='option in item.sorting' ng-click='toggleSort( option.title )' )
 				| {{ option.title }}
 
-				span( ng-if='displaySorting == option.title' ng-repeat='item in option.items')
+				span( ng-if='displaySorting == option.title' ng-repeat='item in option.items' ng-click='$event.stopPropagation(  )' ui-sref='root.section-state({q: item.toLowerCase()})')
 					| {{ item }}
