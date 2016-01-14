@@ -1,4 +1,28 @@
-.page-one
+menu-directive
 {
-	color: #00ee00;
+	font-size: 3rem;
+}
+
+.filter-options
+{
+	flex-flow: row;
+
+	font-size: 2rem;
+}
+
+.filter-option
+{
+	flex-flow: column;
+
+	// &:not(:last-child):after
+	// {
+	// 	content: ', ';
+	// }
+}
+
+.option-list
+{
+	flex-flow: column;
+
+	font-size: 1rem;
 }
