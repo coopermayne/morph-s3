@@ -4,12 +4,12 @@ ul.menu-directive
 	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.section-state({section: bigMenuItem.url})' )
 		| {{ bigMenuItem.title }}
 	
-		//- Filter options (Alphabetical, Year, Type)
-		.filter-options( ng-if='stateParams.section == bigMenuItem.url' )
-			.filter-option( ng-repeat='filterOption in bigMenuItem.filter' ng-click='toggleFilter( filterOption.title )' )
-				| {{ filterOption.title }}, 
+		//- sorting options (Alphabetical, Year, Type)
+		.sorting-options( ng-if='stateParams.section == bigMenuItem.url' )
+			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ng-click='toggleSort( sortingOption.title )' )
+				| {{ sortingOption.title }}, 
 				
 				//- Categories (Letters, Residential, etc)
-				ul.option-list( ng-if='displayFilter == filterOption.title' ng-click='$event.stopPropagation(  )' )
-					li( ng-repeat='littleFilterOption in filterOption.items' ui-sref='root.section-state({q: littleFilterOption.toLowerCase()})' )
-						| {{ littleFilterOption }}
+				ul.option-list( ng-if='displaySorting == sortingOption.title' ng-click='$event.stopPropagation(  )' )
+					li( ng-repeat='littleSortingOption in sortingOption.items' ui-sref='root.section-state({q: littleSortingOption.toLowerCase()})' )
+						| {{ littleSortingOption }}

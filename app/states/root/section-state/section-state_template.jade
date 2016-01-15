@@ -1,4 +1,4 @@
-.project-title( ng-repeat='project in projects' ui-sref='root.section-state.project-state( { projectId: project.id } )' ng-click='toggleActive( project )' )
+.project-title( ng-repeat='project in projects | orderBy: stateParams.sortingType' ui-sref='root.section-state.project-state( { projectId: project.id } )' ng-click='toggleActive( project )' )
 		| {{ project.title }}
 
 		.child-content( ng-if='activeProject == project' ui-view='project-content')

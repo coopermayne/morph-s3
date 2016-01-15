@@ -9,7 +9,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		{
 			title: 'Architecture',
 			url: 'architecture',
-			filter: [
+			sorting: [
 				{
 					title: 'Alphabetical',
 					items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -51,13 +51,13 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	// Initialize as false
 	$scope.displayFilter = false;
 
-	$scope.toggleFilter = function( input ) {
-		if ( $scope.displayFilter ) {
-			$scope.displayFilter = false;
+	$scope.toggleSort = function( input ) {
+		if ( $scope.displaySorting ) {
+			$scope.displaySorting = false;
 			// $stateParams.q = null;
 		} else {
-			$scope.displayFilter = input;
-			$stateParams.filterType = input.toLowerCase();
+			$scope.displaySorting = input;
+			$stateParams.sortingType = input.toLowerCase();
 		}
 	}
 

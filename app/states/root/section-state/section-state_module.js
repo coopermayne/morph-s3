@@ -15,7 +15,7 @@ sectionState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state',
 	{
-		url: ':section/:filterType?q',
+		url: ':section/:sortingType?q',
 		views:
 		{
 			'section-content':
