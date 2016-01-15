@@ -14,10 +14,10 @@ menu-directive
 {
 	flex-flow: column;
 
-	// &:not(:last-child):after
-	// {
-	// 	content: ', ';
-	// }
+	&:first-of-type .option-list
+	{
+		flex-flow: row;
+	}
 }
 
 .option-list
