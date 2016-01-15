@@ -12,10 +12,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	$scope.projects = Project.query();
 
 	// Set the active project
-	$scope.toggleActive = function( project )
-	{
-		$scope.activeProject = project;
-	};
+	// $scope.toggleActive = function( project )
+	// {
+	// 	$scope.activeProject = project;
+	// };
 
 	// $scope.activeChildNav = $state.current.activeChildNav;
 

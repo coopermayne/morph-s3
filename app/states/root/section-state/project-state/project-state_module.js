@@ -10,7 +10,7 @@ projectState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state.project-state',
 	{
-		url: ':projectId/',
+		url: '/:projectId/',
 		views:
 		{
 			'project-content':

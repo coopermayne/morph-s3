@@ -14,7 +14,7 @@ sectionState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state',
 	{
-		url: ':section/:sortingType/?q',
+		url: ':section/:sortingType?q',
 		views:
 		{
 			'section-content':
@@ -22,6 +22,7 @@ sectionState.config( function( $stateProvider )
 				templateUrl: 'states/root/section-state/section-state_template.html',
 				controller: 'SectionStateController as sectionState'
 			}
-		}
+		},
+		abstract: false
 	} );
 } );
