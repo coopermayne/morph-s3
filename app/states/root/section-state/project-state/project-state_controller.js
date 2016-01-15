@@ -18,5 +18,6 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	$scope.stateName = 'section-state.project-state';
 
 	console.log( 'ProjectStateController active!' );
+	console.log($stateParams);
 
 } );

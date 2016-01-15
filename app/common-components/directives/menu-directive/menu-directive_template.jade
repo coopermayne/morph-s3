@@ -10,6 +10,6 @@ ul.menu-directive
 				| {{ sortingOption.title }}, 
 				
 				//- Categories (Letters, Residential, etc)
-				ul.option-list( ng-if='displaySorting == sortingOption.title' ng-click='$event.stopPropagation(  )' )
+				ul.option-list( ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )' ng-click='$event.stopPropagation(  )' )
 					li( ng-repeat='littleSortingOption in sortingOption.items' ui-sref='root.section-state({q: littleSortingOption.toLowerCase()})' )
 						| {{ littleSortingOption }}

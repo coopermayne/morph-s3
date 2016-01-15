@@ -49,7 +49,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.stateParams = $stateParams;
 
 	// Initialize as false
-	$scope.displayFilter = false;
+	$scope.displaySorting = $stateParams.q;
 
 	$scope.toggleSort = function( input ) {
 		if ( $scope.displaySorting ) {
