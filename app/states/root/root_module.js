@@ -3,7 +3,7 @@
 var root = angular.module( 'root',
 [
 	'ui.router',
-	
+
 	'sectionState',
 
 	'homeState'

@@ -16,11 +16,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				},
 				{
 					title: 'Year',
-					items: ['1970 - 1979', '1980 - 1989', '1990 - 1999', '2000 - 2009', '2010 - 2019']
+					items: [ '1970 - 1979', '1980 - 1989', '1990 - 1999', '2000 - 2009', '2010 - 2019' ]
 				},
 				{
 					title: 'Type',
-					items: ['Commercial', 'Office', 'Culture', 'Education & Health', 'Residential', 'Multi-Family', 'Private Residence', 'Government']
+					items: [ 'Commercial', 'Office', 'Culture', 'Education & Health', 'Residential', 'Multi-Family', 'Private Residence', 'Government' ]
 				}
 			]
 		},
@@ -59,7 +59,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			$scope.displaySorting = input;
 			$stateParams.sortingType = input.toLowerCase();
 		}
-	}
+	};
 
 
 	console.log( 'MenuDirectiveController active!' );

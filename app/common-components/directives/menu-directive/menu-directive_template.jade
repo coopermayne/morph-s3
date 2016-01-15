@@ -1,7 +1,7 @@
 ul.menu-directive
 	
 	//- Big menu item
-	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.section-state({section: bigMenuItem.url})' )
+	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.section-state( {section: bigMenuItem.url} )' )
 		| {{ bigMenuItem.title }}
 	
 		//- sorting options (Alphabetical, Year, Type)
@@ -11,5 +11,5 @@ ul.menu-directive
 				
 				//- Categories (Letters, Residential, etc)
 				ul.option-list( ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )' ng-click='$event.stopPropagation(  )' )
-					li( ng-repeat='littleSortingOption in sortingOption.items' ui-sref='root.section-state({q: littleSortingOption.toLowerCase()})' )
+					li( ng-repeat='littleSortingOption in sortingOption.items' ui-sref='root.section-state( {q: littleSortingOption.toLowerCase(  )} )' )
 						| {{ littleSortingOption }}

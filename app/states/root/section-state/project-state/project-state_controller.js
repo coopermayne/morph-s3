@@ -8,16 +8,14 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	// This is a controller.
 	$scope.stateParams = $stateParams;
 
-	// Project.get( { id: $stateParams.projectId } ).$promise.then( function( response )
-	// 	{
-	// 		// $scope.project = response;
-	// 		// console.log( $scope.project.title );
-	// 	});
-
+	Project.get( { id: $stateParams.projectId } ).$promise.then( function( response )
+		{
+			$scope.activeProject = response;
+		} );
 
 	$scope.stateName = 'section-state.project-state';
 
 	console.log( 'ProjectStateController active!' );
-	console.log($stateParams);
+	console.log( $stateParams );
 
 } );

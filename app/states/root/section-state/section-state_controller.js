@@ -5,7 +5,7 @@ var sectionState = angular.module( 'sectionState' );
 sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project )
 {
 	console.log( 'SectionStateController active!' );
-	
+
 	$scope.stateName = 'section-state';
 
 	// Fetch all projects
@@ -13,9 +13,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	// Set the active project
 	$scope.toggleActive = function( project )
-	{	
+	{
 		$scope.activeProject = project;
-	}
+	};
 
 	// $scope.activeChildNav = $state.current.activeChildNav;
 
@@ -27,6 +27,5 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	{
 		$scope.activeChildNav = $state.current.activeChildNav;
 	} );
-
 
 } );
