@@ -2,6 +2,9 @@
 
 var menuDirective = angular.module( 'menuDirective' );
 
+// menuDirective.controller('MenuDirectiveController', ['$scope','$state', function($scope, $state) {...}]);
+
+
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams )
 {
 
@@ -56,8 +59,9 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			$scope.displaySorting = false;
 			// $stateParams.q = null;
 		} else {
-			$scope.displaySorting = input;
+			// $scope.displaySorting = input;
 			$stateParams.sortingType = input.toLowerCase();
+
 		}
 	};
 

@@ -10,10 +10,10 @@ homeState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.home-state',
 	{
-		url: '',
+		url: ':section',
 		views:
 		{
-			'content':
+			'section-content':
 			{
 				templateUrl: 'states/root/home-state/home-state_template.html',
 				controller: 'HomeStateController as homeState'

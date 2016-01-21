@@ -22,7 +22,6 @@ sectionState.config( function( $stateProvider )
 				templateUrl: 'states/root/section-state/section-state_template.html',
 				controller: 'SectionStateController as sectionState'
 			}
-		},
-		abstract: false
+		}
 	} );
 } );

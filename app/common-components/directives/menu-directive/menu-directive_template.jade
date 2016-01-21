@@ -1,12 +1,12 @@
 ul.menu-directive
 	
 	//- Big menu item
-	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.section-state( {section: bigMenuItem.url} )' )
+	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.home-state( {section: bigMenuItem.url} )' )
 		| {{ bigMenuItem.title }}
 	
 		//- sorting options (Alphabetical, Year, Type)
 		.sorting-options( ng-if='stateParams.section == bigMenuItem.url' )
-			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ng-click='toggleSort( sortingOption.title )' )
+			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase()})' ng-click=' $event.stopPropagation(  ) ' )
 				| {{ sortingOption.title }}, 
 				
 				//- Categories (Letters, Residential, etc)
