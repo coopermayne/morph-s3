@@ -10,6 +10,10 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.menuItems = [
 		{
+			title: 'Morphosis',
+			url: ''
+		},
+		{
 			title: 'Architecture',
 			url: 'architecture',
 			sorting: [

@@ -43,18 +43,6 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 			}
 
 			return out;
-
-			// if( type === 'alphabetical' ){
-			// 	var out = [  ];
-			// 		items.forEach( function( item ) {
-			// 			if( item.title.charAt( 0 ).toLowerCase(  ) == input ) {
-			// 				out.push( item );
-			// 			}
-			// 		});
-			// 	return out;
-			// } else {			
-			// 	return items.slice(  ).reverse(  );
-			// }
 		}
 		else
 		{
