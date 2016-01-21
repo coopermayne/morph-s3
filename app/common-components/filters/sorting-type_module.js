@@ -30,7 +30,15 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					break;
 
 				case 'year':
-					console.log('year filter');
+					var yearArray = input.split('-');
+					var startYear = parseInt(yearArray[0]);
+					var endYear = parseInt(yearArray[1]);
+					items.forEach( function( item ) {
+						var projectYear = parseInt(item.year.split('-')[0]);
+						if ( projectYear >= startYear && projectYear <= endYear  ) {
+							out.push( item );
+						}
+					} );
 					break;
 			}
 
