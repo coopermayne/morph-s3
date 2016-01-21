@@ -6,7 +6,7 @@ ul.menu-directive
 	
 		//- sorting options (Alphabetical, Year, Type)
 		.sorting-options( ng-if='stateParams.section == bigMenuItem.url' )
-			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase()})' ng-click=' $event.stopPropagation(  ) ' )
+			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})' ng-click=' $event.stopPropagation(  ) ' )
 				| {{ sortingOption.title }}, 
 				
 				//- Categories (Letters, Residential, etc)

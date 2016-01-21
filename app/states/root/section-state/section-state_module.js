@@ -6,7 +6,9 @@ var sectionState = angular.module( 'sectionState',
 
 	'projectState',
 
-	'projectResource'
+	'projectResource',
+
+	'sortingTypeFilter'
 
 ] );
 

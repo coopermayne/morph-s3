@@ -1,5 +1,5 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 	
-.project-title( ng-repeat='project in projects | orderBy: stateParams.sortingType' ui-sref='root.section-state.project-state( { projectId: project.id } )' )
+.project-title( ng-repeat='project in projects | orderBy: stateParams.sortingType | sortingType: stateParams.sortingType:stateParams.q' ui-sref='root.section-state.project-state( { projectId: project.id } )' )
 		| {{ project.title }}

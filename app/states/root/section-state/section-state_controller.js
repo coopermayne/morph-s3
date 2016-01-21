@@ -21,7 +21,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateParams = $stateParams;
 
-	console.log( $stateParams );
+	$scope.sortingType = $stateParams.sortingType;
 
 	$rootScope.$on( '$stateChangeSuccess', function(  )
 	{
