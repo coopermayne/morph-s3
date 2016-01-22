@@ -19,7 +19,7 @@ sectionState.config( function( $stateProvider )
 		url: ':section/:sortingType?q',
 		views:
 		{
-			'section-content':
+			'section-index':
 			{
 				templateUrl: 'states/root/section-state/section-state_template.html',
 				controller: 'SectionStateController as sectionState'

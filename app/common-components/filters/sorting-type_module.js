@@ -14,32 +14,35 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'alphabetical':
 					items.forEach( function( item ) {
-						if( item.title.charAt( 0 ).toLowerCase(  ) == input ) {
+						if( item.title.charAt( 0 ).toLowerCase(  ) === input ) {
 							out.push( item );
 						}
 					} );
 					break;
 
 				case 'type':
-					var types = [ 'commercial', 'office', 'culture', 'education%20%26%20health', 'residential', 'multi-family', 'private%20residence', 'government' ]
+					var types = [ 'commercial', 'office', 'culture', 'education%20%26%20health', 'residential', 'multi-family', 'private%20residence', 'government' ];
 					items.forEach( function( item ) {
 						if ( types.indexOf( input ) === item.type ) {
 							out.push( item );
 						}
-					} )
+					} );
 					break;
 
 				case 'year':
-					var yearArray = input.split('-');
-					var startYear = parseInt(yearArray[0]);
-					var endYear = parseInt(yearArray[1]);
+					var yearArray = input.split( '-' );
+					var startYear = parseInt( yearArray[ 0 ] );
+					var endYear = parseInt( yearArray[ 1 ] );
 					items.forEach( function( item ) {
-						var projectYear = parseInt(item.year.split('-')[0]);
+						var projectYear = parseInt( item.year.split( '-' )[ 0 ] );
 						if ( projectYear >= startYear && projectYear <= endYear  ) {
 							out.push( item );
 						}
 					} );
 					break;
+
+				default:
+					return items;
 			}
 
 			return out;

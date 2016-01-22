@@ -1,0 +1,29 @@
+.tile-index
+{
+	flex-flow: row wrap;
+	align-content: stretch;
+	justify-content: flex-start;
+	flex: 2 0 0;
+
+	// max-width: 700px;
+}
+
+.index-project-wrapper
+{
+	flex-flow: column;
+
+	width: 250px;
+	height: 200px;
+}
+
+.project-image
+{
+	flex: 5 0 0;
+
+	overflow: hidden;
+}
+
+.project-title
+{
+	flex: 1 0 0;
+}
