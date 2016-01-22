@@ -47,6 +47,10 @@ module.exports =
 			main: root + '/app/app_styles.scss',
 			destination: destination
 		},
+		fonts: {
+			source: root + '/app/common-styles/fonts/*.*',
+			destination: destination + '/fonts'
+		},
 		images:
 		{
 			source: root + '/images/**/*.*',

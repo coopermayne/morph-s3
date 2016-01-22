@@ -8,6 +8,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateName = 'section-state';
 
+	// if (stateParams.section = architecture){
+	// 	$scope.projects = Project.query(architecture)
+	// }
+
 	// Fetch all projects
 	$scope.projects = Project.query();
 

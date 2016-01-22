@@ -1,7 +1,7 @@
 ul.menu-directive
 	
 	//- Big menu item
-	li( ng-repeat='bigMenuItem in menuItems' ui-sref='root.home-state( {section: bigMenuItem.url} )' )
+	li.menu-section( ng-repeat='bigMenuItem in menuItems' ui-sref='root.home-state( {section: bigMenuItem.url} )' )
 		| {{ bigMenuItem.title }}
 	
 		//- sorting options (Alphabetical, Year, Type)

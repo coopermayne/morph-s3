@@ -1,18 +1,17 @@
 .tile-index
 {
 	flex-flow: row wrap;
-	align-content: stretch;
-	justify-content: flex-start;
+	align-content: space-around;
+	justify-content: space-around;
 	flex: 2 0 0;
-
-	// max-width: 700px;
 }
 
 .index-project-wrapper
 {
 	flex-flow: column;
+	align-items: flex-end;
 
-	width: 250px;
+	width: 230px;
 	height: 200px;
 }
 
@@ -21,9 +20,16 @@
 	flex: 5 0 0;
 
 	overflow: hidden;
+
+	img
+	{
+		width: 100%;
+	}
 }
 
 .project-title
 {
 	flex: 1 0 0;
+
+	text-align: right;
 }

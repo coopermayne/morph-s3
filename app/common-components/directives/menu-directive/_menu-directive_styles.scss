@@ -2,7 +2,7 @@ menu-directive
 {
 	flex: 1 0 0;
 
-	font-size: 3rem;
+	font-size: 3.5rem;
 }
 
 .menu-directive
@@ -10,11 +10,18 @@ menu-directive
 	position: fixed;
 }
 
+.menu-section
+{
+	line-height: 1;
+	letter-spacing: -2px;
+}
+
 .sorting-options
 {
 	flex-flow: row;
 
-	font-size: 2rem;
+	font-size: 1.6rem;
+	letter-spacing: 0;
 }
 
 .sorting-option
@@ -31,5 +38,5 @@ menu-directive
 {
 	flex-flow: column;
 
-	font-size: 1rem;
+	font-size: 0.9rem;
 }
