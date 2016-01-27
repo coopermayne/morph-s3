@@ -1,15 +1,45 @@
 ul.menu-directive
 	
 	//- Big menu item
-	li.menu-section( ng-repeat='bigMenuItem in menuItems' ui-sref='root.home-state( {section: bigMenuItem.url} )' )
+	li.menu-section(
+		ng-repeat='bigMenuItem in menuItems'
+		ui-sref='root.home-state( {section: bigMenuItem.url} )'
+	)
 		| {{ bigMenuItem.title }}
 	
-		//- sorting options (Alphabetical, Year, Type)
-		.sorting-options( ng-if='stateParams.section == bigMenuItem.url' )
-			.sorting-option( ng-repeat='sortingOption in bigMenuItem.sorting' ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})' ng-click=' $event.stopPropagation(  ) ' )
-				| {{ sortingOption.title }}, 
+		//- Sorting options (Alphabetical, Year, Type)
+		.sorting-options(
+			ng-if='stateParams.section == bigMenuItem.url'
+		)
+
+			.sorting-option-wrapper(
+				ng-repeat='sortingOption in bigMenuItem.sorting'
+				ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})'
+				ng-click=' $event.stopPropagation(  ) '
+			)
+				
+
+				.sorting-option-title-wrapper(
+						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
+					)
+					.sorting-option-title
+						| {{ sortingOption.title }}
 				
 				//- Categories (Letters, Residential, etc)
-				ul.option-list( ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )' ng-click='$event.stopPropagation(  )' )
-					li( ng-repeat='littleSortingOption in sortingOption.items' ui-sref='root.section-state( {q: littleSortingOption.toLowerCase(  )} )' )
-						| {{ littleSortingOption }}
+				.option-list-wrapper
+					ul.ghost-elements(
+						ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )'
+					)
+						li.ghost-element(
+							ng-repeat='ghostElement in sortingOption.items'
+						)
+							{{ ghostElement[0] }}
+					ul.option-list(
+						ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )'
+						ng-click='$event.stopPropagation(  )'
+					)
+						li(
+							ng-repeat='littleSortingOption in sortingOption.items'
+							ui-sref='root.section-state( {q: littleSortingOption.toLowerCase(  )} )'
+						)
+							| {{ littleSortingOption }}

@@ -2,8 +2,6 @@
 
 var menuDirective = angular.module( 'menuDirective' );
 
-// menuDirective.controller('MenuDirectiveController', ['$scope','$state', function($scope, $state) {...}]);
-
 
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams )
 {

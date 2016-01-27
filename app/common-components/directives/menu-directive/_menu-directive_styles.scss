@@ -24,19 +24,87 @@ menu-directive
 	letter-spacing: 0;
 }
 
-.sorting-option
+.sorting-option-wrapper
 {
 	flex-flow: column;
 
-	&:first-of-type .option-list
+
+	&:first-of-type .option-list,
+	&:first-of-type .ghost-elements
 	{
 		flex-flow: row;
 	}
+
+	&:first-of-type .ghost-elements
+	{
+		.ghost-element
+		{
+			display: none;
+
+			&:first-of-type
+			{
+				display: block;
+			}
+		}
+	}
+
+	&:last-of-type .sorting-option-title-wrapper .sorting-option-title:after
+	{
+		content: ',';
+		visibility: hidden;
+	}
+}
+
+.sorting-option-title-wrapper
+{
+	&.selected:after
+	{
+		content: '';
+		position: absolute;
+		width: calc(100% - 9px);
+		height: 0.055em;
+		right: 0;
+		bottom: 0.05em;
+		left: 0em;
+		background: $black;
+	}
+}
+
+.sorting-option-title
+{
+	flex-flow: row;
+
+	&:after
+	{
+		content: ',';
+		top: 0;
+		right: -8px;
+	}
+}
+
+
+.option-list-wrapper
+{
+	position: relative;
+}
+
+.ghost-elements
+{
+	visibility: hidden;
+
+	font-size: 0.9rem;
 }
 
 .option-list
 {
-	flex-flow: column;
+	position: absolute;
+	top: 0;
 
 	font-size: 0.9rem;
+	white-space: nowrap;
+}
+
+.ghost-list
+{
+	visibility: hidden;
 }
