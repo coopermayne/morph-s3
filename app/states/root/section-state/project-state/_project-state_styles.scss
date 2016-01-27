@@ -1,0 +1,60 @@
+.close
+{
+	position: fixed;
+	right: 0;
+	z-index: 20;
+}
+
+.project-page-wrapper
+{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	width: 100vw;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: $white;
+}
+
+.project-page-header-image
+{
+	overflow: hidden;
+	height: 85vh;
+
+	img
+	{
+		object-fit: cover;
+	}
+}
+
+.project-page-content-wrapper
+{
+	margin: 2rem;
+}
+
+.project-page-header-text
+{
+	font-size: 3.5rem;
+}
+
+.project-page-text-wrapper
+{
+	flex-flow: row;
+}
+
+.project-page-details
+{
+	flex: 1 0 0;
+}
+
+.project-page-main-text
+{
+	flex: 3 0 0;
+}
+
+.project-overview
+{
+	font-size: $subheader-text;
+}

@@ -1,3 +1,6 @@
+//- Project Modal
+.project-modal( ui-view='project-content' )
+
 .index-project-wrapper( ng-repeat='project in projects | orderBy: stateParams.sortingType | sortingType: stateParams.sortingType:stateParams.q' ui-sref='root.section-state.project-state( { projectId: project.id } )' )
 	.project-image
 		img(src='http://fillmurray.com/g/300/200')

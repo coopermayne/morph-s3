@@ -2,7 +2,7 @@ menu-directive
 {
 	flex: 1 0 0;
 
-	font-size: 3.5rem;
+	font-size: $header-text;
 }
 
 .menu-directive
@@ -16,11 +16,23 @@ menu-directive
 	letter-spacing: -2px;
 }
 
+.section-title.selected:after
+{
+	content: '';
+	position: absolute;
+	width: calc( 100% - 25px );
+	height: 0.055em;
+	top: 0.9em;
+	right: 0;
+	left: 0;
+	background: $black;
+}
+
 .sorting-options
 {
 	flex-flow: row;
 
-	font-size: 1.6rem;
+	font-size: $subheader-text;
 	letter-spacing: 0;
 }
 
@@ -35,16 +47,13 @@ menu-directive
 		flex-flow: row;
 	}
 
-	&:first-of-type .ghost-elements
+	&:first-of-type .ghost-elements .ghost-element
 	{
-		.ghost-element
-		{
-			display: none;
+		display: none;
 
-			&:first-of-type
-			{
-				display: block;
-			}
+		&:first-of-type
+		{
+			display: block;
 		}
 	}
 
@@ -61,11 +70,11 @@ menu-directive
 	{
 		content: '';
 		position: absolute;
-		width: calc(100% - 9px);
+		width: calc( 100% - 9px );
 		height: 0.055em;
 		right: 0;
 		bottom: 0.05em;
-		left: 0em;
+		left: 0;
 		background: $black;
 	}
 }
@@ -107,4 +116,9 @@ menu-directive
 .ghost-list
 {
 	visibility: hidden;
+}
+
+.option.selected
+{
+	text-decoration: underline;
 }

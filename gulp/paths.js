@@ -43,7 +43,7 @@ module.exports =
 		},
 		sass:
 		{
-			source: root + '/app/**/*.scss',
+			source: root + '/app/**/**/*.scss',
 			main: root + '/app/app_styles.scss',
 			destination: destination
 		},
