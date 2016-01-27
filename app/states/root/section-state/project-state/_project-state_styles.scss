@@ -43,7 +43,7 @@
 {
 	flex-flow: row;
 
-	padding: 2rem;
+	padding: 2rem 0;
 }
 
 .project-page-details
@@ -61,9 +61,6 @@
 	font-size: $subheader-text;
 }
 
-// .project-description-wrapper
-// {
-// }
 
 .project-description-header
 {
@@ -75,12 +72,18 @@
 .project-description-body
 {
 	display: block;
-	// width: 300px;
-	// height: 400px;
-	// overflow: hidden;
 
 	column-count: 2;
+}
 
-	-webkit-column-count: 2;
-	-webkit-column-gap: 1rem;
+.project-page-detail-header
+{
+	font-style: italic;
+}
+
+.project-detail
+{
+	flex-flow: row;
+
+	padding: 0.5rem 0;
 }

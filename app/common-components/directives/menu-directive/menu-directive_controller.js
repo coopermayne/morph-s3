@@ -26,7 +26,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				{
 					title: 'Type',
 					items: [ 'Commercial', 'Office', 'Culture', 'Education & Health', 'Residential', 'Multi-Family', 'Private Residence', 'Government' ]
-				}
+				},
+				{
+					title: 'Location',
+					items: []
+				},
 			]
 		},
 		{
