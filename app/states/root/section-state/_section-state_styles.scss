@@ -1,30 +1,52 @@
-.tile-index
+.section-view
 {
-	flex-flow: row wrap;
-	align-content: space-around;
-	justify-content: space-around;
+	flex-flow: column wrap;
 	flex: 2 0 0;
+}
+
+.sub-sort-wrapper,
+.sub-sort
+{
+	flex-flow: row;
+}
+
+.sub-sort-wrapper
+{
+	position: fixed;
+	top: 3.5em;
+	right: -10px;
+
+	transform: rotate( 90deg );
+}
+
+.sub-sort:not( :last-child ):after
+{
+	content: '/';
 }
 
 .index-project-wrapper
 {
-	flex-flow: column;
-	align-items: flex-end;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	flex: 1;
+}
 
-	width: 230px;
-	height: 200px;
+.index-project
+{
+	flex-flow: column;
+	justify-content: space-around;
+
+	width: 240px;
+	height: 240px;
 }
 
 .project-image
 {
-	flex: 5 0 0;
-
 	overflow: hidden;
 
 	img
 	{
 		max-width: 100%;
-		// object-fit: cover;
 	}
 }
 
@@ -32,5 +54,8 @@
 {
 	flex: 1 0 0;
 
+	margin-top: 5px;
+
+	font-style: italic;
 	text-align: right;
 }

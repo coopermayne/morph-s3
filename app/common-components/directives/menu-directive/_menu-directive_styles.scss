@@ -16,16 +16,17 @@ menu-directive
 	letter-spacing: -2px;
 }
 
-.section-title.selected:after
+.section-title.selected
 {
-	content: '';
-	position: absolute;
-	width: calc( 100% - 25px );
-	height: 0.055em;
-	top: 0.9em;
-	right: 0;
-	left: 0;
-	background: $black;
+	text-decoration: underline;
+	// content: '';
+	// position: absolute;
+	// width: calc( 100% - 25px );
+	// height: 0.055em;
+	// top: 0.9em;
+	// right: 0;
+	// left: 0;
+	// background: $black;
 }
 
 .sorting-options

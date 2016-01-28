@@ -1,8 +1,20 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
-.index-project-wrapper( ng-repeat='project in projects | orderBy: stateParams.sortingType | sortingType: stateParams.sortingType:stateParams.q' ui-sref='root.section-state.project-state( { projectId: project.id } )' )
-	.project-image
-		img(src='http://fillmurray.com/g/300/200')
-	.project-title
-		| {{ project.title }}
+.sub-sort-wrapper
+	.sub-sort
+		| A-Z
+	.sub-sort
+		| Date
+
+.index-project-wrapper
+	.index-project(
+		ng-repeat='project in projects | orderBy: stateParams.sortingType | sortingType: stateParams.sortingType:stateParams.q'
+		ui-sref='root.section-state.project-state( { projectId: project.id } )'
+	)
+
+		.project-image
+			img(src='http://morphopedia.com/uploads/RH1862-0014-l.jpg')
+
+		.project-title
+			| {{ project.title }}

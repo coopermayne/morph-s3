@@ -9,7 +9,21 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.menuItems = [
 		{
 			title: 'Morphosis',
-			url: ''
+			url: '',
+			sorting: [
+				{
+					title: 'Awards',
+					items: ''
+				},
+				{
+					title: 'People',
+					items: ''
+				},
+				{
+					title: 'Media',
+					items: ['Publications', 'Bibliography', 'Exhibitions', 'Video']
+				}
+			]
 		},
 		{
 			title: 'Architecture',
