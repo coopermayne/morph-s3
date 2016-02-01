@@ -4,6 +4,8 @@ var root = angular.module( 'root',
 [
 	'ui.router',
 
+	'menuDirective',
+
 	'sectionState',
 
 	'homeState'

@@ -8,20 +8,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateName = 'section-state';
 
-	// if (stateParams.section = architecture){
-	// 	$scope.projects = Project.query(architecture)
-	// }
-
 	// Fetch all projects
 	$scope.projects = Project.query();
-
-	// Set the active project
-	// $scope.toggleActive = function( project )
-	// {
-	// 	$scope.activeProject = project;
-	// };
-
-	// $scope.activeChildNav = $state.current.activeChildNav;
 
 	$scope.stateParams = $stateParams;
 

@@ -13,7 +13,7 @@ homeState.config( function( $stateProvider )
 		url: ':section',
 		views:
 		{
-			'section-content':
+			'section-view':
 			{
 				templateUrl: 'states/root/home-state/home-state_template.html',
 				controller: 'HomeStateController as homeState'

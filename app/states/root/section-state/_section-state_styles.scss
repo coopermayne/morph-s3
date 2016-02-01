@@ -29,6 +29,8 @@
 	flex-flow: row wrap;
 	justify-content: space-between;
 	flex: 1;
+
+	transition: all 1s ease;
 }
 
 .index-project
@@ -37,7 +39,7 @@
 	justify-content: space-around;
 
 	width: 240px;
-	height: 240px;
+	height: 260px;
 }
 
 .project-image
@@ -54,8 +56,7 @@
 {
 	flex: 1 0 0;
 
-	margin-top: 5px;
+	margin-top: 0.5rem;
 
 	font-style: italic;
-	text-align: right;
 }

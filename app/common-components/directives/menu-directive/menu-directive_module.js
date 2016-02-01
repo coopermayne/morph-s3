@@ -1,6 +1,9 @@
 'use strict';
 
-var menuDirective = angular.module( 'menuDirective', [] );
+var menuDirective = angular.module( 'menuDirective',
+[
+	'menuResource'
+] );
 
 menuDirective.directive( 'menuDirective', function(  )
 {

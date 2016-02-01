@@ -12,7 +12,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 			switch( type ) {
 
-				case 'alphabetical':
+				case 'a-z':
 					items.forEach( function( item ) {
 						if( item.title.charAt( 0 ).toLowerCase(  ) === input ) {
 							out.push( item );
@@ -21,9 +21,9 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					break;
 
 				case 'type':
-					var types = [ 'commercial', 'office', 'culture', 'education%20%26%20health', 'residential', 'multi-family', 'private%20residence', 'government' ];
 					items.forEach( function( item ) {
-						if ( types.indexOf( input ) === item.type ) {
+						var encodedType = encodeURIComponent( item.types[ 0 ] ).toLowerCase(  );
+						if ( input === encodedType ) {
 							out.push( item );
 						}
 					} );
@@ -33,11 +33,16 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					var yearArray = input.split( '-' );
 					var startYear = parseInt( yearArray[ 0 ] );
 					var endYear = parseInt( yearArray[ 1 ] );
+					var projectYear;
 					items.forEach( function( item ) {
-						var projectYear = parseInt( item.year.split( '-' )[ 0 ] );
-						if ( projectYear >= startYear && projectYear <= endYear  ) {
-							out.push( item );
-						}
+						if( item.constr_edate || item.design_edate )
+						{
+							var projectYearString = item.constr_edate ? item.constr_edate : item.design_edate;
+							projectYear = parseInt( projectYearString.split( '-' )[ 0 ] );
+							if ( projectYear >= startYear && projectYear <= endYear  ) {
+								out.push( item );
+							};
+						};
 					} );
 					break;
 
