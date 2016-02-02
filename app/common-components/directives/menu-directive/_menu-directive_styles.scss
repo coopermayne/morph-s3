@@ -1,5 +1,10 @@
 menu-directive
 {
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
 	flex: 1 0 0;
 
 	font-size: $header-text;

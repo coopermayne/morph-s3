@@ -8,10 +8,33 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateName = 'section-state';
 
-	// Fetch all projects
-	$scope.projects = Project.query();
+	// // Fetch all projects
+	// $scope.projects = Project.query();
 
 	$scope.stateParams = $stateParams;
+
+	// Fetch projects
+	if ( $scope.stateParams.section != 'news' || '' )
+	{
+		$scope.indexContents = Project.query();
+	}
+	else if ( $scope.stateParams.section = 'news' )
+	{
+		// $scope.indexContents = News.query();
+	} else if ( $scope.stateParams.section = '' )
+	{
+		if ( $stateParams.sortingType = 'people' )
+		{
+			// $scope.indexContents = People.query();
+		}
+		else if ( $stateParams.sortingType = 'awards')
+		{
+			// $scope.indexContents = Awards.query();
+		} else if ( $stateParams.sortingType = 'media' )
+		{
+			// $scope.indexContents = Media.query();
+		}
+	}
 
 	$scope.sortingType = $stateParams.sortingType;
 

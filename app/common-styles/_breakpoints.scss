@@ -1,8 +1,24 @@
-@mixin breakpoint( $breakpoint-name )
+@mixin respond-to( $breakpoint )
 {
-	@if $breakpoint-name == 'iphone-portrait'
+	@if $breakpoint == 'small'
 	{
-		@media ( max-width: 320px )
+		@media ( max-width: 400px )
+		{
+			@content;
+		}
+	}
+
+	@else if $breakpoint == 'medium'
+	{
+		@media ( max-width: 768px )
+		{
+			@content;
+		}
+	}
+
+	@else if $breakpoint == 'large'
+	{
+		@media ( max-width: 1440px )
 		{
 			@content;
 		}
