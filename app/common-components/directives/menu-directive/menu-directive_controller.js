@@ -3,10 +3,15 @@
 var menuDirective = angular.module( 'menuDirective' );
 
 
-menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu )
+menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
 	$scope.menuItems = Menu.query();
+
+	$scope.isMobile = function(  )
+	{
+		return screenSize.is( 'xs', 'sm' );
+	}
 
 	$scope.stateParams = $stateParams;
 

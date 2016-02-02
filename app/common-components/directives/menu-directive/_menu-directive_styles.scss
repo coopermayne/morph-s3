@@ -2,7 +2,7 @@ menu-directive
 {
 	@include respond-to( 'small' )
 	{
-		display: none;
+		flex: 0;
 	}
 
 	flex: 1 0 0;
@@ -10,7 +10,7 @@ menu-directive
 	font-size: $header-text;
 }
 
-.menu-directive
+.menu-directive-wrapper
 {
 	position: fixed;
 }
@@ -127,4 +127,23 @@ menu-directive
 .option.selected
 {
 	text-decoration: underline;
+}
+
+// Mobile Styles
+.mobile-menu-bar
+{
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+
+	position: fixed;
+	height: 30px;
+	top: 0;
+	right: 0;
+	left: 0;
+	padding: 0 10px;
+	z-index: 5;
+	background: white;
+
+	font-size: 1rem;
 }

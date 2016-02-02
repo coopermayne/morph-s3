@@ -2,11 +2,13 @@
 
 var morphopedia = angular.module( 'morphopedia',
 [
-	'ngResource',
-
 	'reverseFilter',
 
-	'root'
+	'root',
+
+	'ngResource',
+
+	'matchMedia'
 
 ] );
 

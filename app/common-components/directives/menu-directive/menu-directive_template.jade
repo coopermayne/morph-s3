@@ -1,4 +1,10 @@
-ul.menu-directive
+.mobile-menu-bar( ng-if='isMobile(  ) && stateParams.sortingType' )
+	.mobile-bar-item
+		| Menu
+	.mobile-bar-item
+		| A-Z / Date
+
+ul.menu-directive-wrapper( ng-if='!isMobile(  ) || !stateParams.sortingType' )
 	
 	//- Big menu item
 	li.menu-section(
