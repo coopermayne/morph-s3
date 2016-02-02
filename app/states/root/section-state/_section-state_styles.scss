@@ -12,6 +12,11 @@
 
 .sub-sort-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
 	position: fixed;
 	top: 3.5em;
 	right: -10px;
@@ -35,6 +40,12 @@
 
 .index-project
 {
+	@include respond-to( 'small' )
+	{
+		width: 310px;
+		height: 310px;
+	}
+
 	flex-flow: column;
 	justify-content: space-around;
 

@@ -1,11 +1,16 @@
-.mobile-menu-bar( ng-if='isMobile(  ) && stateParams.sortingType' )
+.mobile-menu-bar(
+	ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )'
+)
 	.mobile-bar-item
 		| Menu
 	.mobile-bar-item
 		| A-Z / Date
 
-ul.menu-directive-wrapper( ng-if='!isMobile(  ) || !stateParams.sortingType' )
-	
+ul.menu-directive-wrapper(
+	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
+)
+	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
+
 	//- Big menu item
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems'

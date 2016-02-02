@@ -8,26 +8,33 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.menuItems = Menu.query();
 
+	$scope.stateParams = $stateParams;
+
 	$scope.isMobile = function(  )
 	{
 		return screenSize.is( 'xs', 'sm' );
 	}
 
-	$scope.stateParams = $stateParams;
+	$scope.showMobileMenuVar = false;
+
+	$scope.toggleMobileMenu = function(  )
+	{
+		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
+	}
 
 	// Initialize as false
-	$scope.displaySorting = $stateParams.q;
+	// $scope.displaySorting = $stateParams.q;
 
-	$scope.toggleSort = function( input ) {
-		if ( $scope.displaySorting ) {
-			$scope.displaySorting = false;
-			// $stateParams.q = null;
-		} else {
-			// $scope.displaySorting = input;
-			$stateParams.sortingType = input.toLowerCase();
+	// $scope.toggleSort = function( input ) {
+	// 	if ( $scope.displaySorting ) {
+	// 		$scope.displaySorting = false;
+	// 		// $stateParams.q = null;
+	// 	} else {
+	// 		// $scope.displaySorting = input;
+	// 		$stateParams.sortingType = input.toLowerCase();
 
-		}
-	};
+	// 	}
+	// };
 
 
 	console.log( 'MenuDirectiveController active!' );
