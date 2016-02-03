@@ -33,6 +33,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// 	}
 	// }
 
+	console.log($scope.stateParams);
+
 	$scope.sortingType = $stateParams.sortingType;
 
 	$rootScope.$on( '$stateChangeSuccess', function(  )
