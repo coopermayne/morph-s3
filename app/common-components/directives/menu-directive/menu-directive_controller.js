@@ -6,21 +6,21 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
-	$scope.menuItems = Menu.query();
+	$scope.menuItems = Menu.query(  );
 
 	$scope.stateParams = $stateParams;
 
 	$scope.isMobile = function(  )
 	{
 		return screenSize.is( 'xs', 'sm' );
-	}
+	};
 
 	$scope.showMobileMenuVar = false;
 
 	$scope.toggleMobileMenu = function(  )
 	{
 		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
-	}
+	};
 
 	// Initialize as false
 	// $scope.displaySorting = $stateParams.q;

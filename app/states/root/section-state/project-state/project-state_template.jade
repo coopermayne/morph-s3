@@ -4,7 +4,7 @@
 		| CLOSE
 
 	.project-page-header-image
-		img(src='http://morphopedia.com/uploads/MR5-ALA-REND-l.jpg')
+		img(src='{{activeProject.primary_image.name.url}}')
 
 	.project-page-content-wrapper
 
@@ -13,36 +13,50 @@
 
 		.project-page-text-wrapper
 
-			.project-page-details
-				.project-page-detail-header
+			.project-page-sidebar
+
+				//- Details
+				.project-page-sidebar-header
 					| Details
-				.project-detail
+				.project-detail-wrapper( ng-if='activeProject.city || activeProject.country' )
 					| Location: 
 					span
-						| {{ dummyProject.city }}, {{ dummyProject.country }}
-				.project-detail
+						| {{ activeProject.city + ', '}} {{ activeProject.country }}
+				.project-detail-wrapper( ng-if='activeProject.client' )
 					| Client:
 					span
-						| {{ dummyProject.client }}
-				.project-detail
-					| Site Area:
+						| {{ activeProject.client }}
+				.project-detail-wrapper( ng-if='activeProject.site_area' )
+					| Site Area: 
 					span
-						| {{ dummyProject.site_area }}
-				.project-detail
+						| {{ activeProject.site_area }}
+				.project-detail-wrapper( ng-if='activeProject.size' )
 					| Size:
 					span
-						| {{ dummyProject.size }}
+						| {{ activeProject.size }}
+				
+				//- Project Credits
+				.project-page-sidebar-header
+					| Project Credits
+
+				.project-detail-wrapper( ng-repeat='(key, value) in activeProject.people | groupBy: "role_title"' )
+					.project-detail-label
+						| {{ key + ': '}}
+					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ projectId: role.person.id })')
+						| {{ role.person.name }}
 
 			.project-page-main-text
 
-				.project-overview
-					| {{ dummyProject.overview }}
+				.project-overview(
+					ng-if='activeProject.overview'
+					ng-bind-html='activeProject.overview | htmlParse'
+				)
+					| {{ activeProject.overview }}
 
 				.project-description-wrapper
-					.project-description-header
+					.project-description-header( ng-if='activeProject.description' )
 						| Description
-					.project-description-body
-						| {{ dummyProject.description }}
+					.project-description-body( ng-bind-html='activeProject.description | htmlParse' )
 
 				.main-image-gallery
 					

@@ -2,7 +2,9 @@
 
 var projectState = angular.module( 'projectState',
 [
-	'ui.router'
+	'ui.router',
+
+	'htmlParseFilter'
 ] );
 
 

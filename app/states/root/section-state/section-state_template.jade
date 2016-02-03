@@ -10,11 +10,11 @@
 .index-project-wrapper
 	.index-project(
 		ng-repeat='item in indexContents | filter: stateParams.section | orderBy: stateParams.sortingType | sortingType: stateParams.sortingType:stateParams.q'
-		ui-sref='root.section-state.project-state( { projectId: project.id } )'
+		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image-gradient
 		.project-image
-			img(src='http://morphopedia.com/uploads/RH1862-0014-l.jpg')
+			img(src='{{item.image.name.url}}')
 
 		.project-title
 			| {{ item.title }}
