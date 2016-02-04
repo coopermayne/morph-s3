@@ -11,3 +11,8 @@
 @import 'states/root/section-state/project-state/project-state_styles';
 
 @import 'common-components/directives/menu-directive/menu-directive_styles';
+
+.no-scroll
+{
+	overflow: hidden;
+}

@@ -20,16 +20,22 @@
 
 .project-page-header-image
 {
+	@include respond-to( 'small' )
+	{
+		height: auto;
+		height: 40vh;
+	}
+
 	align-items: center;
-	// align-content: center;
-	// justify-content: center;
+	align-content: center;
+	justify-content: center;
 
 	overflow: hidden;
-	// height: 85vh;
+	height: 85vh;
 
 	img
 	{
-		height: 85vh;
+		width: 100vw;
 	}
 }
 
@@ -40,11 +46,23 @@
 
 .project-page-header-text
 {
+	@include respond-to( 'small' )
+	{
+		font-size: $mobile-menu-text;
+	}
+
 	font-size: 3.5rem;
 }
 
 .project-page-text-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		flex-flow: column wrap;
+
+		// padding: 0;
+	}
+
 	flex-flow: row;
 
 	padding: 2rem 0;
@@ -52,6 +70,12 @@
 
 .project-page-sidebar
 {
+	@include respond-to( 'small' )
+	{
+		order: 2;
+		flex: auto;
+	}
+
 	flex: 1 0 0;
 
 	padding-right: 2rem;
@@ -59,24 +83,37 @@
 
 .project-page-main-text
 {
+	@include respond-to( 'small' )
+	{
+		order: 1;
+		flex: auto;
+	}
+
 	flex: 3 0 0;
 }
 
 .project-overview
 {
+	padding-bottom: 2rem;
+
 	font-size: $subheader-text;
 }
 
 
 .project-description-header
 {
-	padding: 2rem 0 1rem 0;
+	padding-bottom: 1rem;
 
 	font-style: italic;
 }
 
 .project-description-body
 {
+	@include respond-to( 'small' )
+	{
+		column-count: auto;
+	}
+
 	display: block;
 
 	column-count: 2;
