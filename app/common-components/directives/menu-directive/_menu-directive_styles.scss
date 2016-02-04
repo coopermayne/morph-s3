@@ -12,7 +12,8 @@ menu-directive
 	font-size: $header-text;
 }
 
-.background-video
+.background-video,
+.slideshow-image
 {
 	position: fixed;
 	width: 100vw;
@@ -37,6 +38,11 @@ menu-directive
 	}
 
 	position: fixed;
+
+	&.white-menu
+	{
+		color: $white;
+	}
 }
 
 .menu-section

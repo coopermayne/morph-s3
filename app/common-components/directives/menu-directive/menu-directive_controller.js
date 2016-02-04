@@ -12,6 +12,13 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.state = $state;
 
+	$scope.slideShowImage;
+
+	$scope.changeSlideShow = function( url )
+	{
+		$scope.slideShowImage = url;
+	}
+
 	$scope.isMobile = function(  )
 	{
 		return screenSize.is( 'xs', 'sm' );

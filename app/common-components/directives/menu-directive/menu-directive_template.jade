@@ -1,5 +1,7 @@
 img.background-video( src='{{ menuItems.landing.slides[0].gif.name.url }}' ng-if='state.current.name == "root"' )
 
+img.slideshow-image( src='{{ slideShowImage || "https://morphmorph.s3.amazonaws.com/uploads/4665/hct-plaza.jpg"}}' ng-if='state.current.name == "root.home-state"' )
+
 .mobile-menu-bar(
 	ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )'
 )
@@ -10,6 +12,7 @@ img.background-video( src='{{ menuItems.landing.slides[0].gif.name.url }}' ng-if
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
+	ng-class='{ "white-menu": state.current.name == "root.home-state" }'
 )
 	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
 
@@ -20,6 +23,7 @@ ul.menu-directive-wrapper(
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url }'
+			ng-click='changeSlideShow(bigMenuItem.slides[0].image.name.url)'
 		)
 			| {{ bigMenuItem.title }}
 	
