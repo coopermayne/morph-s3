@@ -20,8 +20,6 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider )
 } );
 
 
-
-
 morphopedia.run( [ '$rootScope', function( $rootScope )
 {
 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
@@ -34,3 +32,10 @@ morphopedia.run( [ '$rootScope', function( $rootScope )
 	} );
 
 } ] );
+
+
+// morphopedia.controller('MorphopediaController', ['$state, $scope', function( $state, $scope ) {
+//   $scope.a = 1;
+//   $scope.b = 2;
+//   debugger;
+// }])

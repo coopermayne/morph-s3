@@ -8,7 +8,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state )
 
 	$scope.stateName = 'root';
 
-
+	$scope.state = $state;
 
 	$scope.activeTopNav = $state.current.activeTopNav;
 

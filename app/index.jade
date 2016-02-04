@@ -15,7 +15,7 @@ html(lang='en' )
 		// endinject 
 		// inject:js 
 		// endinject 
-	body( ng-app='morphopedia' )
+	body( ng-app='morphopedia' ng-class='{ "no-scroll": state.current.name == "root.section-state.project-state" }' ng-controller='RootController' )
 
 		//- You could put other ui-views here, like a modal.
 

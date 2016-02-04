@@ -23,6 +23,7 @@
 	@include respond-to( 'small' )
 	{
 		height: auto;
+		height: 40vh;
 	}
 
 	align-items: center;
@@ -58,6 +59,8 @@
 	@include respond-to( 'small' )
 	{
 		flex-flow: column wrap;
+
+		// padding: 0;
 	}
 
 	flex-flow: row;
@@ -91,19 +94,26 @@
 
 .project-overview
 {
+	padding-bottom: 2rem;
+
 	font-size: $subheader-text;
 }
 
 
 .project-description-header
 {
-	padding: 2rem 0 1rem 0;
+	padding-bottom: 1rem;
 
 	font-style: italic;
 }
 
 .project-description-body
 {
+	@include respond-to( 'small' )
+	{
+		column-count: auto;
+	}
+
 	display: block;
 
 	column-count: 2;
