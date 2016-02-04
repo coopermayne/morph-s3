@@ -1,3 +1,5 @@
+img.background-video( src='{{ menuItems.landing.slides[0].gif.name.url }}' ng-if='state.current.name == "root"' )
+
 .mobile-menu-bar(
 	ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )'
 )
@@ -13,7 +15,7 @@ ul.menu-directive-wrapper(
 
 	//- Big menu item
 	li.menu-section(
-		ng-repeat='bigMenuItem in menuItems'
+		ng-repeat='bigMenuItem in menuItems.sections'
 		ui-sref='root.home-state( {section: bigMenuItem.url} )'
 	)
 		.section-title(

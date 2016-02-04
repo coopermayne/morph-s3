@@ -130,3 +130,45 @@
 
 	padding: 0.5rem 0;
 }
+
+.image-gallery-wrapper
+{
+	@include respond-to( 'small' )
+	{
+		order: 3;
+	}
+
+	margin-top: 2em;
+}
+
+.image-gallery-section-wrapper
+{
+	flex-flow: column;
+
+	position: relative;
+	height: 200px;
+	margin-bottom: 1em;
+
+	h1
+	{
+		margin-bottom: 20px;
+
+		font-style: italic;
+		font-size: $body-text;
+	}
+}
+
+.image-gallery-section
+{
+	flex-flow: row nowrap;
+
+	position: absolute;
+	width: 1000px;
+	top: 37px;
+
+	img
+	{
+		height: 150px;
+		margin-right: 1em;
+	}
+}

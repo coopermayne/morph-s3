@@ -6,9 +6,11 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
-	$scope.menuItems = Menu.query(  );
+	$scope.menuItems = Menu.get(  );
 
 	$scope.stateParams = $stateParams;
+
+	$scope.state = $state;
 
 	$scope.isMobile = function(  )
 	{

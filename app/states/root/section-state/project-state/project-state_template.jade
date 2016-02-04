@@ -58,5 +58,10 @@
 						| Description
 					.project-description-body( ng-bind-html='activeProject.description | htmlParse' )
 
-				.main-image-gallery
+				.image-gallery-wrapper
+					.image-gallery-section-wrapper( ng-repeat='(key, value) in activeProject.galleries' )
+						h1
+							{{ key }}
+						.image-gallery-section
+							img( ng-repeat='image in value' src='{{image.name.url}}' )
 					
