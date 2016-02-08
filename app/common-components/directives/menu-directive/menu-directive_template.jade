@@ -12,7 +12,7 @@ img.slideshow-image( src='{{ slideShowImage || "https://morphmorph.s3.amazonaws.
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
-	ng-class='{ "white-menu": state.current.name == "root.home-state" }'
+	ng-class='{ "white-menu": state.current.name == "root.home-state" || state.current.name == "root" }'
 )
 	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
 
@@ -22,10 +22,12 @@ ul.menu-directive-wrapper(
 		ui-sref='root.home-state( {section: bigMenuItem.url} )'
 	)
 		.section-title(
-			ng-class='{ "selected": stateParams.section === bigMenuItem.url }'
+			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" }'
 			ng-click='changeSlideShow(bigMenuItem.slides[0].image.name.url)'
 		)
 			| {{ bigMenuItem.title }}
+			.news-box( ng-if='bigMenuItem.url === "news"' )
+				| NEWS BOX
 	
 		//- Sorting options (Alphabetical, Year, Type)
 		.sorting-options(
@@ -37,7 +39,6 @@ ul.menu-directive-wrapper(
 				ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})'
 				ng-click=' $event.stopPropagation(  ) '
 			)
-				
 
 				.sorting-option-title-wrapper(
 						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
@@ -61,6 +62,6 @@ ul.menu-directive-wrapper(
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state( {q: littleSortingOption.toLowerCase(  )} )'
-							ng-class='{"selected": stateParams.q === littleSortingOption.toLowerCase(  )}'
+							ng-class='{"selected": stateParams.q === littleSortingOption.toLowerCase(  ) }'
 						)
 							| {{ littleSortingOption }}
