@@ -2,7 +2,9 @@
 
 var menuDirective = angular.module( 'menuDirective',
 [
-	'menuResource'
+	'menuResource',
+	
+	'slideshowDirective'
 ] );
 
 menuDirective.directive( 'menuDirective', function(  )

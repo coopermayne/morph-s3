@@ -13,10 +13,19 @@ var morphopedia = angular.module( 'morphopedia',
 	'root'
 ] );
 
-morphopedia.config( function( $urlRouterProvider, $locationProvider )
+morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegateProvider )
 {
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );
+
+	// Whitelist AWS for asset-loading
+	$sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'https://morphmorph.s3.amazonaws.com/**'
+  ]);
+
 } );
 
 

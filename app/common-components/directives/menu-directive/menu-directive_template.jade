@@ -1,9 +1,12 @@
-img.background-video( src='{{ menuItems.landing.slides[0].gif.name.url }}' ng-if='state.current.name == "root"' )
-
-img.slideshow-image( src='{{ slideShowImage || "https://morphmorph.s3.amazonaws.com/uploads/4665/hct-plaza.jpg"}}' ng-if='state.current.name == "root.home-state"' )
+//- Video slideshow
+slideshow-directive(
+	slides='homePageSlides'
+	ng-if='state.current.name == "root"'
+)
 
 .mobile-menu-bar(
-	ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )'
+	ng-if='isMobile(  ) && stateParams.sortingType'
+	ng-click='toggleMobileMenu(  )'
 )
 	.mobile-bar-item
 		| Menu
@@ -16,7 +19,7 @@ ul.menu-directive-wrapper(
 )
 	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
 
-	//- Big menu item
+	//- Build each big menu item and subsections
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
 		ui-sref='root.home-state( { section: bigMenuItem.url } )'
@@ -73,4 +76,8 @@ ul.menu-directive-wrapper(
 
 	//- Search
 	li.menu-section.search( ng-if='stateParams.section' )
-		input( type='search' ng-model='searchText' ng-class='{"has-text": searchText.length}' )
+		input(
+			type='search'
+			ng-model='searchText'
+			ng-class='{ "has-text": searchText.length }'
+		)

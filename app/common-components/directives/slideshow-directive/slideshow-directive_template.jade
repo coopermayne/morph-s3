@@ -1,0 +1,10 @@
+.slideshow-directive-slides
+
+	.slideshow-directive-slide( ng-repeat='slide in slides' )
+
+		video.slideshow-video(
+			ng-if='slide.mp4 || slide.webm'
+			autoplay
+		)
+			source( src='{{ slide.mp4.name.url }}' )
+			source( src='{{ slide.webm.name.url }}' )

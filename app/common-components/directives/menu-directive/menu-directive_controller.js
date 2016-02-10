@@ -6,13 +6,23 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
-	$scope.menuItems = Menu.get(  );
+	Menu.get(  ).$promise.then( function( response )
+	{
+		$scope.menuItems = response;
+
+		$scope.homePageSlides = $scope.menuItems.landing.slides;
+	} );
+
 
 	$scope.stateParams = $stateParams;
 
 	$scope.state = $state;
 
 	$scope.slideShowImage;
+
+	// $scope.homePageSlides = $scope.menuItems.landing.slides;
+
+	// console.log($scope.homePageSlides);
 
 	$scope.changeSlideShow = function( url )
 	{
@@ -32,21 +42,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	};
 
 	$scope.searchText;
-
-	// Initialize as false
-	// $scope.displaySorting = $stateParams.q;
-
-	// $scope.toggleSort = function( input ) {
-	// 	if ( $scope.displaySorting ) {
-	// 		$scope.displaySorting = false;
-	// 		// $stateParams.q = null;
-	// 	} else {
-	// 		// $scope.displaySorting = input;
-	// 		$stateParams.sortingType = input.toLowerCase();
-
-	// 	}
-	// };
-
 
 	console.log( 'MenuDirectiveController active!' );
 
