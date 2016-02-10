@@ -19,15 +19,20 @@ ul.menu-directive-wrapper(
 	//- Big menu item
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
-		ui-sref='root.home-state( {section: bigMenuItem.url} )'
+		ui-sref='root.home-state( { section: bigMenuItem.url } )'
 	)
 		.section-title(
-			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.sortingType }'
+			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
 			ng-click='changeSlideShow(bigMenuItem.slides[0].image.name.url)'
 		)
 			| {{ bigMenuItem.title }}
-			.news-box( ng-if='bigMenuItem.url === "news" && !stateParams.section' )
-				| NEWS BOX
+
+			//- News box
+			.news-box(
+				ng-if='bigMenuItem.url === "news" && !stateParams.section'
+				style='background-image:url({{ bigMenuItem.items[3].image.name.url }})'
+			)
+				| {{ bigMenuItem.items[3].title }}
 	
 		//- Sorting options (Alphabetical, Year, Type)
 		.sorting-options(
@@ -65,5 +70,7 @@ ul.menu-directive-wrapper(
 							ng-class='{"selected": stateParams.q === littleSortingOption.toLowerCase(  ) }'
 						)
 							| {{ littleSortingOption }}
-	li.menu-section.search
-		input( type='search' )
+
+	//- Search
+	li.menu-section.search( ng-if='stateParams.section' )
+		input( type='search' ng-model='searchText' ng-class='{"has-text": searchText.length}' )

@@ -31,6 +31,8 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
 	};
 
+	$scope.searchText;
+
 	// Initialize as false
 	// $scope.displaySorting = $stateParams.q;
 
