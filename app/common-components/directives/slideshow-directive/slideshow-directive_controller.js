@@ -16,7 +16,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		if ( newValue !== undefined )
 		{
 
-			$interval( function(  )
+			var slideshowAuto = $interval( function(  )
 			{
 				if ( counter < $scope.slides.length - 1 )
 				{
@@ -26,16 +26,21 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 				{
 					counter = 0;
 				}
-			}, 5000 );
+
+				$scope.currentSlide = $scope.slides[counter];
+
+				return $scope.currentSlide;
+
+			}, 2000 );
 
 		}
 
-		$scope.getCurrentSlide = function(  )
+		$scope.setCurrentSlide = function( slide )
 		{
-			return $scope.slides[counter];
-		}
+			$interval.cancel(slideshowAuto);
 
-		$scope.$watch( counter );
+			$scope.currentSlide = slide;
+		}
 
 	} );
 

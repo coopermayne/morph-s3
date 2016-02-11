@@ -1,4 +1,4 @@
-.slideshow-directive-slides
+.slideshow-directive-slides-wrapper
 
 	.slideshow-directive-slide(
 		ng-repeat='slide in slides'
@@ -7,7 +7,7 @@
 		video.slideshow-video(
 			ng-if='slide.mp4 || slide.webm'
 			autoplay
-			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
+			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 			source( ng-src='{{ slide.mp4.name.url }}' )
 			source( ng-src='{{ slide.webm.name.url }}' )
@@ -15,12 +15,20 @@
 		img.slideshow-image(
 			ng-if='!slide.mp4 && !slide.webm'
 			ng-src='{{ slide.image.name.url }}'
-			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
+			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
+
 		p.slide-project-title(
-			ng-if='getCurrentSlide().project_title'
-			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
+			ng-if='currentSlide.project_title'
+			ng-class='{ "current-slide": currentSlide === slide }'
 			ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: getCurrentSlide().project_id })'
 		)
-			| {{ getCurrentSlide().project_title }}
+			| {{ currentSlide.project_title }}
+
+	.slideshow-directive-buttons-wrapper
+		.slideshow-directive-button(
+			ng-repeat='slide in slides'
+			ng-click='setCurrentSlide( slide )'
+		)
+			| +
