@@ -9,12 +9,12 @@
 			autoplay
 			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
 		)
-			source( src='{{ slide.mp4.name.url }}' )
-			source( src='{{ slide.webm.name.url }}' )
+			source( ng-src='{{ slide.mp4.name.url }}' )
+			source( ng-src='{{ slide.webm.name.url }}' )
 
 		img.slideshow-image(
 			ng-if='!slide.mp4 && !slide.webm'
-			src='{{ slide.image.name.url }}'
+			ng-src='{{ slide.image.name.url }}'
 			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
 		)
 

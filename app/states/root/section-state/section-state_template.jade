@@ -13,7 +13,7 @@
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image
-			img(src='{{item.image.name.url}}')
+			img( ng-src='{{item.image.name.url}}' )
 
 		.project-title
 			| {{ item.title }}

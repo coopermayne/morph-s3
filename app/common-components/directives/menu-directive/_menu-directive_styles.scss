@@ -12,16 +12,6 @@ menu-directive
 	font-size: $header-text;
 }
 
-.background-video,
-.slideshow-image
-{
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	left: 0;
-}
-
 .menu-directive-wrapper
 {
 	@include respond-to ( 'small' )
