@@ -4,7 +4,7 @@
 		| CLOSE
 
 	.project-page-header-image
-		img(src='{{activeProject.primary_image.name.url}}')
+		img( ng-src='{{activeProject.primary_image.name.url}}' )
 
 	.project-page-content-wrapper
 
@@ -63,5 +63,5 @@
 						h1
 							{{ key }}
 						.image-gallery-section
-							img( ng-repeat='image in value' src='{{image.name.url}}' )
+							img( ng-repeat='image in value' ng-src='{{image.name.url}}' )
 					
