@@ -1,10 +1,26 @@
 .slideshow-directive-slides
 
-	.slideshow-directive-slide( ng-repeat='slide in slides' )
+	.slideshow-directive-slide(
+		ng-repeat='slide in slides'
+	)
 
 		video.slideshow-video(
 			ng-if='slide.mp4 || slide.webm'
 			autoplay
+			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
 		)
 			source( src='{{ slide.mp4.name.url }}' )
 			source( src='{{ slide.webm.name.url }}' )
+
+		img.slideshow-image(
+			ng-if='!slide.mp4 && !slide.webm'
+			src='{{ slide.image.name.url }}'
+			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
+		)
+
+		p.slide-project-title(
+			ng-if='getCurrentSlide().project_title'
+			ng-class='{ "current-slide": getCurrentSlide(  ) === slide }'
+			ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: getCurrentSlide().project_id })'
+		)
+			| {{ getCurrentSlide().project_title }}

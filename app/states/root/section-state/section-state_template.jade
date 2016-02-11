@@ -12,7 +12,6 @@
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section.toUpperCase()} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title"'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
-		.project-image-gradient
 		.project-image
 			img(src='{{item.image.name.url}}')
 

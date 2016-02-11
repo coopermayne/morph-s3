@@ -1,9 +1,28 @@
-.slideshow-video
+.slideshow-directive-slides
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.slideshow-video,
+.slideshow-image
+{
+	display: none;
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+.slide-project-title
 {
 	display: none;
 	position: fixed;
-	min-width: 100vw;
-	min-height: 100vh;
-	top: 0;
-	left: 0;
+	bottom: 0;
+
+	color: $white;
+}
+
+.current-slide
+{
+	display: block;
 }

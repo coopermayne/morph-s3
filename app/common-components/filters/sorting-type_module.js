@@ -22,8 +22,12 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'type':
 					items.forEach( function( item ) {
-						var encodedType = encodeURIComponent( item.types[ 0 ] ).toLowerCase(  );
-						if ( input === encodedType ) {
+						var encodedTypes = item.types.map(function( type )
+						{
+							return encodeURIComponent( type ).toLowerCase(  );
+						} );
+
+						if ( encodedTypes.indexOf( input ) != -1 ) {
 							out.push( item );
 						}
 					} );

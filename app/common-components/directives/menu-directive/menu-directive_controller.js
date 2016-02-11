@@ -20,10 +20,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.slideShowImage;
 
-	// $scope.homePageSlides = $scope.menuItems.landing.slides;
-
-	// console.log($scope.homePageSlides);
-
 	$scope.changeSlideShow = function( url )
 	{
 		$scope.slideShowImage = url;
