@@ -15,6 +15,13 @@
 
 .slide-project-title
 {
+	@include respond-to( 'small' )
+	{
+		margin: 2rem;
+
+		font-size: $subheader-text;
+	}
+
 	display: none;
 	position: fixed;
 	cursor: pointer;
@@ -31,6 +38,11 @@
 
 .slideshow-directive-buttons-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
 	flex-flow: row;
 
 	position: fixed;
