@@ -37,7 +37,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 		$scope.setCurrentSlide = function( slide )
 		{
-			$interval.cancel(slideshowAuto);
+			$interval.cancel( slideshowAuto );
 
 			$scope.currentSlide = slide;
 		}

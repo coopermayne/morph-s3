@@ -39,11 +39,10 @@ ul.menu-directive-wrapper(
 
 
 			//- News box
-			.news-box(
+			slideshow-directive.news-box(
 				ng-if='bigMenuItem.url === "news" && !stateParams.section'
-				style='background-image:url({{ bigMenuItem.items[3].image.name.url }})'
+				slides='bigMenuItem.items'
 			)
-				| {{ bigMenuItem.items[3].title }}
 	
 		//- Sorting options (Alphabetical, Year, Type)
 		.sorting-options(

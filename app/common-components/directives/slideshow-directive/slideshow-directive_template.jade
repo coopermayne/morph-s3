@@ -1,34 +1,30 @@
 .slideshow-directive-slides-wrapper
 
-	.slideshow-directive-slide(
-		ng-repeat='slide in slides'
-	)
+	.slideshow-directive-slide
 
 		video.slideshow-video(
-			ng-if='slide.mp4 || slide.webm'
+			ng-if='currentSlide.mp4 || currentSlide.webm'
 			autoplay
-			ng-class='{ "current-slide": currentSlide === slide }'
 		)
-			source( ng-src='{{ slide.mp4.name.url }}' )
-			source( ng-src='{{ slide.webm.name.url }}' )
+			source( ng-src='{{ currentSlide.mp4.name.url }}' )
+			source( ng-src='{{ currentSlide.webm.name.url }}' )
 
 		.slideshow-image(
-			ng-if='!slide.mp4 && !slide.webm'
-			style='background:url("{{ slide.image.name.url }}") no-repeat center center fixed; background-size: cover;'
-			ng-class='{ "current-slide": currentSlide === slide }'
+			ng-if='!currentSlide.mp4 && !currentSlide.webm'
+			style='background:url("{{ currentSlide.image.name.url }}") no-repeat center center fixed; background-size: cover;'
 		)
 
 
-		p.slide-project-title(
-			ng-if='currentSlide.project_title'
-			ng-class='{ "current-slide": currentSlide === slide }'
-			ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: getCurrentSlide().project_id })'
-		)
-			| {{ currentSlide.project_title }}
+	p.slide-project-title(
+		ng-if='currentSlide.project_title || currentSlide.title'
+		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: getCurrentSlide().project_id })'
+		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
+	)
 
 	.slideshow-directive-buttons-wrapper
 		.slideshow-directive-button(
 			ng-repeat='slide in slides'
 			ng-click='setCurrentSlide( slide )'
+			ng-if='slide.project_title || slide.title'
 		)
 			| +

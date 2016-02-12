@@ -1,14 +1,13 @@
 .slideshow-directive-slides-wrapper
 {
-	position: fixed;
-	top: 0;
-	left: 0;
+	position: absolute;
+	top: -2rem;
+	left: -2rem;
 }
 
 .slideshow-video,
 .slideshow-image
 {
-	display: none;
 	min-width: 100vw;
 	min-height: 100vh;
 }
@@ -21,8 +20,8 @@
 
 		font-size: $subheader-text;
 	}
+	// display: none;
 
-	display: none;
 	position: fixed;
 	cursor: pointer;
 	bottom: 0;
