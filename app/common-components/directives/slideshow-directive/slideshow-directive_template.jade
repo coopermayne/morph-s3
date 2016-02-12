@@ -1,6 +1,6 @@
 .slideshow-directive-slides-wrapper
 
-	.slideshow-directive-slide
+	.slideshow-directive-slide(ng-repeat='slide in slides')
 
 		video.slideshow-video(
 			ng-if='currentSlide.mp4 || currentSlide.webm'
@@ -10,8 +10,9 @@
 			source( ng-src='{{ currentSlide.webm.name.url }}' )
 
 		.slideshow-image(
-			ng-if='!currentSlide.mp4 && !currentSlide.webm'
-			style='background:url("{{ currentSlide.image.name.url }}") no-repeat center center fixed; background-size: cover;'
+			ng-show='!currentSlide.mp4 && !currentSlide.webm'
+			preload-bg-image='{{ slide.image.name.url }}'
+			ng-class='{"current-slide": currentSlide === slide}'
 		)
 
 

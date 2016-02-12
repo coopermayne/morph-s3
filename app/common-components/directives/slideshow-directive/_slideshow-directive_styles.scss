@@ -12,6 +12,13 @@
 	min-height: 100vh;
 }
 
+.slideshow-image
+{
+	display: none;
+	background-position: center center;
+	background-size: cover;
+}
+
 .slide-project-title
 {
 	@include respond-to( 'small' )
@@ -20,7 +27,6 @@
 
 		font-size: $subheader-text;
 	}
-	// display: none;
 
 	position: fixed;
 	cursor: pointer;

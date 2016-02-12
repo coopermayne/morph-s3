@@ -6,9 +6,9 @@ var morphopedia = angular.module( 'morphopedia',
 
 	'matchMedia',
 
-	'angular.filter',
+	'angular-preload-image',
 
-	'reverseFilter',
+	'angular.filter',
 
 	'root'
 ] );
@@ -22,7 +22,7 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
 	$sceDelegateProvider.resourceUrlWhitelist([
     // Allow same origin resource loads.
     'self',
-    // Allow loading from our assets domain.  Notice the difference between * and **.
+    // Allow loading from our assets domain.
     'https://morphmorph.s3.amazonaws.com/**'
   ]);
 

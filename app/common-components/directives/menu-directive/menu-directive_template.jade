@@ -7,7 +7,7 @@ slideshow-directive(
 //- Section slideshows
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-if='state.current.name == "root.home-state" && stateParams.section === section.url'
+	ng-show='state.current.name == "root.home-state" && stateParams.section === section.url'
 	slides='section.slides'
 )
 
