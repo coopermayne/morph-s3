@@ -32,6 +32,11 @@ menu-directive
 
 	&.white-menu
 	{
+		@include respond-to( 'small' )
+		{
+			background-color: transparent;
+		}
+
 		color: $white;
 
 		.search input

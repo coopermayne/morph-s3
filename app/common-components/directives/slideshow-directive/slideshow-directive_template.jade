@@ -12,9 +12,9 @@
 			source( ng-src='{{ slide.mp4.name.url }}' )
 			source( ng-src='{{ slide.webm.name.url }}' )
 
-		img.slideshow-image(
+		.slideshow-image(
 			ng-if='!slide.mp4 && !slide.webm'
-			ng-src='{{ slide.image.name.url }}'
+			style='background:url("{{ slide.image.name.url }}") no-repeat center center fixed; background-size: cover;'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
