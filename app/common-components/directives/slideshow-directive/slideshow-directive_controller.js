@@ -25,7 +25,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 				}
 				else
 				{
-					counter = -1;
+					counter = 0;
 				}
 
 
