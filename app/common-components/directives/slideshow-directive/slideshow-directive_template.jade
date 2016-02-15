@@ -19,7 +19,7 @@
 
 	p.slide-project-title(
 		ng-if='currentSlide.project_title || currentSlide.title'
-		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: getCurrentSlide().project_id })'
+		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
 

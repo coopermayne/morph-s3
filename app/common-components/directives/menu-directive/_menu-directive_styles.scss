@@ -64,9 +64,13 @@ menu-directive
 	letter-spacing: -2px;
 }
 
-.section-title.selected
+.section-title
 {
-	text-decoration: underline;
+	&.selected,
+	&:hover
+	{
+		text-decoration: underline;
+	}
 	// content: '';
 	// position: absolute;
 	// width: calc( 100% - 25px );

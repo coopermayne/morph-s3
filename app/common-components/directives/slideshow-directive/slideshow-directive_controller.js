@@ -6,7 +6,7 @@ var slideshowDirective = angular.module( 'slideshowDirective' );
 slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootScope, $scope, $state, $stateParams, $interval )
 {
 
-	var counter = 0;
+	var counter = -1;
 
 	$scope.stateParams = $stateParams;
 	$scope.state = $state;
@@ -25,12 +25,11 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 				}
 				else
 				{
-					counter = 0;
+					counter = -1;
 				}
 
-				$scope.currentSlide = $scope.slides[counter];
 
-				return $scope.currentSlide;
+				return $scope.currentSlide = $scope.slides[counter];
 
 			}, $scope.frameRate || 2000 );
 
@@ -44,11 +43,12 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 			$scope.currentSlide = slide;
 		}
 
+
 		// Reset counter on state change
 		$rootScope.$on( '$stateChangeStart', 
 			function( event, unfoundState, fromState, fromParams )
 		{ 
-			return counter = 0;
+			return counter = -1;
 		});
 
 	} );
