@@ -9,6 +9,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	var counter = 0;
 
 	$scope.stateParams = $stateParams;
+	$scope.state = $state;
 
 	$scope.$watch( 'slides', function( newValue )
 	{
@@ -35,12 +36,20 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 		}
 
+		// Control buttons
 		$scope.setCurrentSlide = function( slide )
 		{
 			$interval.cancel( slideshowAuto );
 
 			$scope.currentSlide = slide;
 		}
+
+		// Reset counter on state change
+		$rootScope.$on( '$stateChangeSuccess', 
+			function( event, unfoundState, fromState, fromParams )
+		{ 
+			return counter = 0;
+		});
 
 	} );
 

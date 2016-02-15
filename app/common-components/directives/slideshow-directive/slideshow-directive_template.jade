@@ -3,11 +3,11 @@
 	.slideshow-directive-slide(ng-repeat='slide in slides')
 
 		video.slideshow-video(
-			ng-if='currentSlide.mp4 || currentSlide.webm'
+			ng-if='state.current.name === "root"'
 			autoplay
 		)
-			source( ng-src='{{ currentSlide.mp4.name.url }}' )
-			source( ng-src='{{ currentSlide.webm.name.url }}' )
+			source( ng-src='{{ slide.mp4.name.url }}' )
+			source( ng-src='{{ slide.webm.name.url }}' )
 
 		.slideshow-image(
 			ng-show='!currentSlide.mp4 && !currentSlide.webm'
