@@ -10,7 +10,9 @@ slideshowDirective.directive( 'slideshowDirective', function(  )
 		controller: 'SlideshowDirectiveController',
 		scope:
 		{ 
-			slides: '='
+			slides: '=',
+			frameRate: '=',
+			thumb: '='
 		},
 		templateUrl: 'common-components/directives/slideshow-directive/slideshow-directive_template.html'
 		

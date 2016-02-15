@@ -11,10 +11,10 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	$scope.stateParams = $stateParams;
 	$scope.state = $state;
 
-	$scope.$watch( 'slides', function( newValue )
+	$scope.$watch( 'slides', function( apiResponse )
 	{
 
-		if ( newValue !== undefined )
+		if ( apiResponse !== undefined )
 		{
 
 			var slideshowAuto = $interval( function(  )
@@ -32,7 +32,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 				return $scope.currentSlide;
 
-			}, 2000 );
+			}, $scope.frameRate || 2000 );
 
 		}
 
@@ -45,7 +45,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		}
 
 		// Reset counter on state change
-		$rootScope.$on( '$stateChangeSuccess', 
+		$rootScope.$on( '$stateChangeStart', 
 			function( event, unfoundState, fromState, fromParams )
 		{ 
 			return counter = 0;

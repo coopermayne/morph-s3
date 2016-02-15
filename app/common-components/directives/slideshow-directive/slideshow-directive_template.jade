@@ -3,15 +3,16 @@
 	.slideshow-directive-slide(ng-repeat='slide in slides')
 
 		video.slideshow-video(
-			ng-if='state.current.name === "root"'
+			ng-if='slide.mp4 || slide.webm'
+			ng-class='{"current-slide": currentSlide === slide}'
 			autoplay
 		)
 			source( ng-src='{{ slide.mp4.name.url }}' )
 			source( ng-src='{{ slide.webm.name.url }}' )
 
 		.slideshow-image(
-			ng-show='!currentSlide.mp4 && !currentSlide.webm'
-			preload-bg-image='{{ slide.image.name.url }}'
+			ng-show='!slide.mp4 && !slide.webm'
+			preload-bg-image='{{ thumb ? slide.image.name.thumb.url : slide.image.name.url }}'
 			ng-class='{"current-slide": currentSlide === slide}'
 		)
 
@@ -27,5 +28,5 @@
 			ng-repeat='slide in slides'
 			ng-click='setCurrentSlide( slide )'
 			ng-if='slide.project_title || slide.title'
+			ng-class='{ "current-slide": currentSlide === slide }'
 		)
-			| +

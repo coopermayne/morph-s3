@@ -8,13 +8,13 @@
 .slideshow-video,
 .slideshow-image
 {
+	display: none;
 	min-width: 100vw;
 	min-height: 100vh;
 }
 
 .slideshow-image
 {
-	display: none;
 	background-position: center center;
 	background-size: cover;
 }
@@ -51,7 +51,24 @@
 	flex-flow: row;
 
 	position: fixed;
-	bottom: 0;
+	bottom: 1rem;
+	left: 2rem;
 
 	color: $white;
+}
+
+.slideshow-directive-button
+{
+	content: '';
+	cursor: pointer;
+	width: 10px;
+	height: 10px;
+	margin-right: 10px;
+	border-radius: 50%;
+	background: rgba( $white, 0.6 );
+
+	&.current-slide
+	{
+		background: rgba( $white, 1 );
+	}
 }
