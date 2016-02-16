@@ -27,8 +27,12 @@ slideshow-directive(
 	ng-if='state.current.name === "root.home-state"'
 )
 
-.menu-about-text( ng-if='stateParams.section === "about"' )
-	| {{ menuAboutText }}
+.menu-about-text-wrapper(
+	ng-if='stateParams.section === "about"'
+)
+	.menu-about-text(
+		ng-bind-html='menuItems.sections[0].content | htmlParse'
+	)
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'

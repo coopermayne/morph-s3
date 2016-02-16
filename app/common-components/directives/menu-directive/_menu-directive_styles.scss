@@ -16,19 +16,31 @@ menu-directive
 {
 	position: fixed;
 	cursor: pointer;
+	cursor: pointer;
 	width: 50px;
 	height: 50px;
 	right: 2rem;
 	background: url('images/trigger.svg') no-repeat center center;
 }
 
-.menu-about-text
+.menu-about-text-wrapper
 {
 	position: fixed;
-	right: 2em;
+	width: 600px;
+	height: 100%;
+	top: 0;
+	right: 5rem;
 
 	color: $white;
 	font-size: $subheader-text;
+}
+
+.menu-about-text
+{
+	overflow-y: scroll;
+	position: absolute;
+	height: 100%;
+	padding: 2rem;
 }
 
 .menu-directive-wrapper
