@@ -22,6 +22,15 @@ menu-directive
 	background: url('images/trigger.svg') no-repeat center center;
 }
 
+.menu-about-text
+{
+	position: fixed;
+	right: 2em;
+
+	color: $white;
+	font-size: $subheader-text;
+}
+
 .menu-directive-wrapper
 {
 	@include respond-to ( 'small' )

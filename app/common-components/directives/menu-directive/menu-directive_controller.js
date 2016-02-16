@@ -39,6 +39,8 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.searchText;
 
+	$scope.menuAboutText = 'blahblahblashblah';
+
 	console.log( 'MenuDirectiveController active!' );
 
 } );
