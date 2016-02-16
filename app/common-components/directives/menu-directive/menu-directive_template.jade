@@ -2,7 +2,7 @@
 slideshow-directive(
 	slides='homePageSlides'
 	frame-rate='6000'
-	ng-if='state.current.name == "root"'
+	ng-show='state.current.name == "root"'
 )
 
 //- Section slideshows
@@ -21,6 +21,11 @@ slideshow-directive(
 		| Menu
 	.mobile-bar-item
 		| A-Z / Date
+
+.menu-close-button(
+	ui-sref='root'
+	ng-if='state.current.name === "root.home-state"'
+)
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
