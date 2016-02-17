@@ -2,7 +2,7 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project )
+projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval )
 {
 
 	// This is a controller.
@@ -16,5 +16,11 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	$scope.stateName = 'section-state.project-state';
 
 	console.log( 'ProjectStateController active!' );
+
+	$scope.closeProject = function(  )
+	{
+		$state.go( $rootScope.previousState.name || '^' );
+	}
+
 
 } );

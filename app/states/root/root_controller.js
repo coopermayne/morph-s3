@@ -12,9 +12,9 @@ root.controller( 'RootController', function( $rootScope, $scope, $state )
 
 	$scope.activeTopNav = $state.current.activeTopNav;
 
-	$rootScope.$on( '$stateChangeSuccess', function(  )
+	$rootScope.$on( '$stateChangeSuccess', function( event, to, toParams, from, fromParams )
 	{
-		$scope.activeTopNav = $state.current.activeTopNav;
+		$rootScope.previousState = from;
 	} );
 
 } );

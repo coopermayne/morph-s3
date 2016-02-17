@@ -1,7 +1,8 @@
 .project-page-wrapper
 
-	.close( ui-sref='^' )
-		| CLOSE
+	.project-close-button(
+		ng-click='closeProject(  )'
+	)
 
 	.project-page-header-image
 		img( ng-src='{{activeProject.primary_image.name.url}}' )
@@ -63,5 +64,5 @@
 						h1
 							{{ key }}
 						.image-gallery-section
-							img( ng-repeat='image in value' ng-src='{{image.name.url}}' )
+							img( preload-image ng-repeat='image in value' ng-src='{{ image.name.thumb.url }}' )
 					

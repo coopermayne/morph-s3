@@ -59,13 +59,15 @@
 	flex: 3 0 0;
 
 	overflow: hidden;
+	background-position: center center;
+	background-size: cover;
 
-	img
-	{
-		max-width: 100%;
+	// img
+	// {
+	// 	max-width: 100%;
 
-		object-fit: cover;
-	}
+	// 	object-fit: cover;
+	// }
 }
 
 .project-title
