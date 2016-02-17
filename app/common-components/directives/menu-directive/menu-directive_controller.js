@@ -39,7 +39,10 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.searchText;
 
-	$scope.menuAboutText = 'blahblahblashblah';
+	$scope.updateSearch = function( text )
+	{
+		$state.go( 'root.section-state', { section: "search", sortingType: '', q: text } );
+	}
 
 	console.log( 'MenuDirectiveController active!' );
 
