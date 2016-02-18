@@ -61,13 +61,6 @@
 	overflow: hidden;
 	background-position: center center;
 	background-size: cover;
-
-	// img
-	// {
-	// 	max-width: 100%;
-
-	// 	object-fit: cover;
-	// }
 }
 
 .project-title
@@ -77,4 +70,23 @@
 	margin-top: 0.5rem;
 
 	font-style: italic;
+}
+
+.alt-index-project
+{
+	flex-flow: row;
+	align-items: center;
+
+	height: 150px;
+	padding: 1rem 0;
+	border-bottom: 1px solid lighten($black, 90%);
+}
+
+.alt-project-image
+{
+	height: 100%;
+	min-width: 200px;
+	background-position: left;
+	background-size: contain;
+	background-repeat: no-repeat;
 }

@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http )
 {
 	console.log( 'SectionStateController active!' );
 
@@ -11,27 +11,22 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	$scope.stateParams = $stateParams;
 
 	// Fetch projects
-	if ( $scope.stateParams.section !== 'news' || '' )
+	if ( $scope.stateParams.section !== 'search' )
 	{
 		$scope.indexContents = Project.query();
-	};
-	// else if ( $scope.stateParams.section = 'news' )
-	// {
-	// 	// $scope.indexContents = News.query();
-	// } else if ( $scope.stateParams.section = '' )
-	// {
-	// 	if ( $stateParams.sortingType = 'people' )
-	// 	{
-	// 		// $scope.indexContents = People.query();
-	// 	}
-	// 	else if ( $stateParams.sortingType = 'awards')
-	// 	{
-	// 		// $scope.indexContents = Awards.query();
-	// 	} else if ( $stateParams.sortingType = 'media' )
-	// 	{
-	// 		// $scope.indexContents = Media.query();
-	// 	}
-	// }
+	}
+	else
+	{
+		$http( 
+		{
+			method: 'GET',
+			url: 'https://ancient-peak-41402.herokuapp.com/search',
+			params: { q: $scope.stateParams.q }
+		} ).then( function( response )
+		{
+			$scope.indexContents = response.data;
+		} );
+	}
 
 	$scope.sortingType = $stateParams.sortingType;
 

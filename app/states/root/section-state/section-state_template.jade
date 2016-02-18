@@ -7,12 +7,23 @@
 	.sub-sort
 		| Date
 
-.index-project-wrapper
+.index-project-wrapper( ng-if='stateParams.section != "search"' )
 	.index-project(
-		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section.toUpperCase()} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title"'
+		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title"'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image( preload-bg-image='{{ item.image.name.thumb.url }}' )
 
 		.project-title
+			| {{ item.title }}
+
+.alt-index-project-wrapper( ng-if='stateParams.section === "search"' )
+	.alt-index-project(
+		ng-repeat='item in indexContents | orderBy: "title"'
+	)
+		.alt-project-image(
+			ng-if='item.thumb'
+			preload-bg-image='{{ item.thumb }}'
+		)
+		.alt-project-title
 			| {{ item.title }}
