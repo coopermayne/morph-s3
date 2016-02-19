@@ -134,6 +134,8 @@ menu-directive
 		min-width: auto;
 		min-height: auto;
 		background-size: 100% !important;
+
+		filter: grayscale( 100% );
 	}
 
 	.slideshow-directive-slides-wrapper
@@ -156,6 +158,7 @@ menu-directive
 		margin: 0;
 
 		color: $yellow;
+		font-style: italic;
 		letter-spacing: 0px;
 	}
 }
@@ -171,6 +174,8 @@ menu-directive
 .sorting-option-wrapper
 {
 	flex-flow: column;
+
+	line-height: 1.2em;
 
 
 	&:first-of-type .option-list,
@@ -198,7 +203,8 @@ menu-directive
 
 .sorting-option-title-wrapper
 {
-	&.selected:after
+	&.selected:after,
+	&:hover:after
 	{
 		content: '';
 		position: absolute;
@@ -208,6 +214,11 @@ menu-directive
 		bottom: 0.05em;
 		left: 0;
 		background: $black;
+	}
+
+	&.white-menu:hover:after
+	{
+		background: $white;
 	}
 }
 
@@ -227,6 +238,7 @@ menu-directive
 .option-list-wrapper
 {
 	position: relative;
+	margin: 5px 0;
 }
 
 .ghost-elements
@@ -240,20 +252,30 @@ menu-directive
 {
 	position: absolute;
 	top: 0;
+	z-index: 1;
 
 	font-size: 0.9rem;
 	white-space: nowrap;
 }
 
+.option-list > .option,
+.ghost-element
+{
+	line-height: 1rem;
+
+	&.selected,
+	&:hover
+	{
+		text-decoration: underline;
+	}
+}
+
 .ghost-list
 {
 	visibility: hidden;
+	z-index: -1;
 }
 
-.option.selected
-{
-	text-decoration: underline;
-}
 
 // Mobile Styles
 .mobile-menu-bar
