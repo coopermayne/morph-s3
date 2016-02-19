@@ -1,12 +1,6 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
-.sub-sort-wrapper
-	.sub-sort
-		| Featured
-	.sub-sort
-		| All
-
 .index-project-wrapper( ng-if='stateParams.section != "search"' )
 	.index-project(
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title"'
