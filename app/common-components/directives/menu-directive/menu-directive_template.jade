@@ -85,17 +85,29 @@ ul.menu-directive-wrapper(
 						li.ghost-element(
 							ng-repeat='ghostElement in sortingOption.items'
 						)
-							| {{ ghostElement[ 0 ] }}
+							| Ghost
+							.ghost-element-subsection(
+								ng-if='ghostElement.children.length > 0'
+								ng-repeat='ghostChild in ghostElement.children'
+							)
+								| Ghost child
 					ul.option-list(
 						ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )'
 						ng-click='$event.stopPropagation(  )'
 					)
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
-							ui-sref='root.section-state( {q: littleSortingOption.toLowerCase(  )} )'
-							ng-class='{"selected": stateParams.q === littleSortingOption.toLowerCase(  ) }'
+							ui-sref='root.section-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
+							ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
 						)
-							| {{ littleSortingOption }}
+							| {{ littleSortingOption.title || littleSortingOption }}
+
+							//- Subsection
+							.option-list-subsection(
+								ng-if='littleSortingOption.children.length > 0'
+								ng-repeat='subSection in littleSortingOption.children'
+							)
+								| {{ subSection.title }}
 
 	//- Search
 	li.menu-section.search( ng-if='stateParams.section' )

@@ -4,7 +4,7 @@
 		
 	.section-view( ui-view='section-view' )
 
-	.sub-sort-wrapper
+	.sub-sort-wrapper( ng-if='state.current.name === "root.section-state"' )
 		.sub-sort
 			| Featured
 		.sub-sort

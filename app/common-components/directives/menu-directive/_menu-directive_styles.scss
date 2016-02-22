@@ -244,6 +244,7 @@ menu-directive
 .ghost-elements
 {
 	visibility: hidden;
+	z-index: -1;
 
 	font-size: 0.9rem;
 }
@@ -274,6 +275,11 @@ menu-directive
 {
 	visibility: hidden;
 	z-index: -1;
+}
+
+.option-list-subsection
+{
+	margin-left: 15px;
 }
 
 
