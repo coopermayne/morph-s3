@@ -22,12 +22,12 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'type':
 					items.forEach( function( item ) {
-						var encodedTypes = item.types.map(function( type )
+						var lowerCaseTypes = item.types.map(function( type )
 						{
-							return encodeURIComponent( type ).toLowerCase(  );
+							return type.toLowerCase(  );
 						} );
 
-						if ( encodedTypes.indexOf( input ) != -1 ) {
+						if ( lowerCaseTypes.indexOf( input ) != -1 ) {
 							out.push( item );
 						}
 					} );

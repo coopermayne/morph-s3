@@ -99,6 +99,7 @@ ul.menu-directive-wrapper(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
 							ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
+							ng-mouseover='$event.stopPropagation(  )'
 						)
 							| {{ littleSortingOption.title || littleSortingOption }}
 
@@ -106,6 +107,9 @@ ul.menu-directive-wrapper(
 							.option-list-subsection(
 								ng-if='littleSortingOption.children.length > 0'
 								ng-repeat='subSection in littleSortingOption.children'
+								ui-sref='root.section-state( { q: subSection.title.toLowerCase(  ) } )'
+								ng-mouseover='$event.stopPropagation(  )'
+								ng-click='$event.stopPropagation(  )'
 							)
 								| {{ subSection.title }}
 
