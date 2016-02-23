@@ -1,7 +1,7 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
-.index-project-wrapper( ng-if='stateParams.section != "search"' )
+.index-project-wrapper( ng-if='!altIndexSection(  )' )
 	.index-project(
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title"'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
@@ -9,15 +9,15 @@
 		.project-image( preload-bg-image='{{ item.image.name.thumb.url }}' )
 
 		.project-title
-			| {{ item.title }}
+			| {{ item.title || item.name }}
 
-.alt-index-project-wrapper( ng-if='stateParams.section === "search"' )
+.alt-index-project-wrapper( ng-if='altIndexSection(  )' )
 	.alt-index-project(
-		ng-repeat='item in indexContents | orderBy: "title"'
+		ng-repeat='item in indexContents'
 	)
 		.alt-project-image(
-			ng-if='item.thumb'
-			preload-bg-image='{{ item.thumb }}'
+			ng-if='item.thumb || item.image.name.thumb.url'
+			preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
 		)
 		.alt-project-title
-			| {{ item.title }}
+			| {{ item.title || item.name }}

@@ -10,7 +10,8 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 		{
 			var out = [  ];
 
-			switch( type ) {
+			switch( type )
+			{
 
 				case 'a-z':
 					items.forEach( function( item ) {
