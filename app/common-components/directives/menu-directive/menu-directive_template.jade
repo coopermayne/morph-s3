@@ -98,10 +98,11 @@ ul.menu-directive-wrapper(
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
-							ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
 							ng-mouseover='$event.stopPropagation(  )'
 						)
-							p
+							p(
+								ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
+							)
 								| {{ littleSortingOption.title || littleSortingOption }}
 
 							//- Subsection
@@ -111,6 +112,7 @@ ul.menu-directive-wrapper(
 								ui-sref='root.section-state( { q: subSection.title.toLowerCase(  ) } )'
 								ng-mouseover='$event.stopPropagation(  )'
 								ng-click='$event.stopPropagation(  )'
+								ng-class='{"selected": stateParams.q && stateParams.q === (subSection.title.toLowerCase(  ) || subSection.toLowerCase(  )) }'
 							)
 								| {{ subSection.title }}
 
