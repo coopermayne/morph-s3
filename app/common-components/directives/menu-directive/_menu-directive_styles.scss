@@ -263,7 +263,11 @@ menu-directive
 .ghost-element
 {
 	line-height: 1rem;
+}
 
+.option-list-subsection,
+.option p
+{
 	&.selected,
 	&:hover
 	{

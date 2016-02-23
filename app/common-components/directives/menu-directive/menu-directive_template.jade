@@ -101,7 +101,8 @@ ul.menu-directive-wrapper(
 							ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
 							ng-mouseover='$event.stopPropagation(  )'
 						)
-							| {{ littleSortingOption.title || littleSortingOption }}
+							p
+								| {{ littleSortingOption.title || littleSortingOption }}
 
 							//- Subsection
 							.option-list-subsection(
