@@ -55,6 +55,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					{
 						$scope.indexContents = response.data.array;
 					} );
+					break;
 
 				case 'awards':
 					$http(
@@ -65,6 +66,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					{
 						$scope.indexContents = response.data;
 					} );
+					break;
 			}
 			break;
 
@@ -78,7 +80,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			{
 				$scope.indexContents = response.data;
 			} );
-
 			break;
 
 		// Search
@@ -99,30 +100,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$scope.indexContents = Project.query();
 			break;
 	}
-
-
-	// if ( otherSections.indexOf( $scope.stateParams.section ) === -1 )
-	// {
-		
-	// }
-	// else if ( $scope.stateParams.section === 'search' )
-	// {
-	// 	$http( 
-	// 	{
-	// 		method: 'GET',
-	// 		url: 'https://ancient-peak-41402.herokuapp.com/search',
-	// 		params: { q: $scope.stateParams.q }
-	// 	} ).then( function( response )
-	// 	{
-	// 		$scope.indexContents = response.data;
-	// 	} );
-	// } else if ( $scope.stateParams.section === 'news' )
-	// {
-	// 	console.log( 'news section' );
-	// } else if ( $scope.stateParams.section === 'about' )
-	// {
-	// 	console.log( 'morphosis section' );
-	// }
 
 	$rootScope.$on( '$stateChangeSuccess', function(  )
 	{
