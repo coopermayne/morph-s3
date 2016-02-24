@@ -12,7 +12,7 @@
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
-			preload-bg-image='{{ thumb ? slide.image.name.thumb.url : slide.image.name.url }}'
+			preload-bg-image='{{ thumb ? slide.image.name.mobile.url : slide.image.name.url }}'
 			ng-class='{"current-slide": currentSlide === slide}'
 		)
 
