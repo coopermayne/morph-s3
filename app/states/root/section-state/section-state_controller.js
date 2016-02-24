@@ -8,15 +8,20 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateName = 'section-state';
 
-	$scope.stateParams = $stateParams;
-
 	$scope.sortingType = $stateParams.sortingType;
+
+	$scope.stateParams = $state.params;
+
+	$scope.$on('$locationChangeSuccess', function(event)
+	{ 
+		$scope.stateParams = $state.params;
+    });
 
 	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
 
 	$scope.altIndexSection = function(  )
 	{
-		if ( 'media, awards, search, research, news'.indexOf( $stateParams.sortingType || $stateParams.section) != -1 )
+		if ( 'media, awards, search, research, news'.indexOf( $stateParams.sortingType || $stateParams.section ) != -1 )
 		{
 			return true;
 		} else
@@ -97,7 +102,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 		// Projects
 		default:
-			$scope.indexContents = Project.query();
+			$scope.indexContents = Project.query(  );
 			break;
 	}
 

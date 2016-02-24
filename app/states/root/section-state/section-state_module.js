@@ -6,6 +6,8 @@ var sectionState = angular.module( 'sectionState',
 
 	'projectState',
 
+	'sortingState',
+
 	'projectResource',
 
 	'sortingTypeFilter'
@@ -16,7 +18,7 @@ sectionState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state',
 	{
-		url: ':section/:sortingType?q',
+		url: ':section/',
 		views:
 		{
 			'section-view':

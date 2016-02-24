@@ -6,17 +6,17 @@
 		ng-repeat='item in indexContents | filter: section ? { section: { title: stateParams.section} } : "" | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
-		.project-image( preload-bg-image='{{ item.image.name.thumb.url }}' )
+		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
 
 		.project-title
 			| {{ item.title || item.name }}
 
 .alt-index-project-wrapper( ng-if='altIndexSection(  )' )
 	.alt-index-project(
-		ng-repeat='item in indexContents'
+		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
 	)
 		.alt-project-image(
-			ng-if='item.thumb || item.image.name.thumb.url'
+			ng-if='item.thumb || item.image.name.mobile.url'
 			preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
 		)
 		.alt-project-title
