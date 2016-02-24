@@ -3,7 +3,7 @@
 
 .index-project-wrapper( ng-if='!altIndexSection(  )' )
 	.index-project(
-		ng-repeat='item in indexContents | filter: section ? { section: { title: stateParams.section} } : "" | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
+		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } : "" | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
