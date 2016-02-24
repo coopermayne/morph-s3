@@ -6,7 +6,7 @@
 		ng-repeat='item in indexContents | filter: section ? { section: { title: stateParams.section} } : "" | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
-		.project-image( preload-bg-image='{{ item.image.name.thumb.url }}' )
+		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
 
 		.project-title
 			| {{ item.title || item.name }}
@@ -16,8 +16,8 @@
 		ng-repeat='item in indexContents'
 	)
 		.alt-project-image(
-			ng-if='item.thumb || item.image.name.thumb.url'
-			preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
+			ng-if='item.mobile || item.image.name.mobile.url'
+			preload-bg-image='{{ item.mobile || item.image.mobile.thumb.url }}'
 		)
 		.alt-project-title
 			| {{ item.title || item.name }}

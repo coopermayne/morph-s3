@@ -95,6 +95,8 @@
 	}
 
 	flex: 3 0 0;
+
+	padding-right: 2rem;
 }
 
 .project-overview
@@ -121,7 +123,11 @@
 
 	display: block;
 
+	text-align: justify;
+
 	column-count: 2;
+
+	-webkit-column-gap: 1.5rem;
 }
 
 .project-page-sidebar-header
