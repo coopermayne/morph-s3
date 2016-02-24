@@ -8,7 +8,7 @@ slideshow-directive(
 //- Section slideshows
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-show='state.current.name == "root.home-state" && stateParams.section === section.url'
+	ng-show='!stateParams.sortingType && stateParams.section === section.url'
 	slides='section.slides'
 	frame-rate='2000'
 )
@@ -36,18 +36,17 @@ slideshow-directive(
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
-	ng-class='{ "white-menu": state.current.name == "root.home-state" || state.current.name == "root" }'
+	ng-class='{ "white-menu": !stateParams.sortingType || state.current.name == "root" }'
 )
 	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
 
 	//- Build each big menu item and subsections
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
-		ui-sref='root.home-state( { section: bigMenuItem.url } )'
+		ui-sref='root.section-state.sorting-state( { section: bigMenuItem.url } )'
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
-			ng-click='changeSlideShow(bigMenuItem.slides[0].image.name.url)'
 		)
 			| {{ bigMenuItem.title }}
 
@@ -67,7 +66,7 @@ ul.menu-directive-wrapper(
 
 			.sorting-option-wrapper(
 				ng-repeat='sortingOption in bigMenuItem.sorting'
-				ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})'
+				ui-sref='root.section-state.sorting-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})'
 				ng-click=' $event.stopPropagation(  ) '
 			)
 
@@ -97,7 +96,7 @@ ul.menu-directive-wrapper(
 					)
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
-							ui-sref='root.section-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
+							ui-sref='root.section-state.sorting-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
 							ng-mouseover='$event.stopPropagation(  )'
 						)
 							p(
@@ -109,7 +108,7 @@ ul.menu-directive-wrapper(
 							.option-list-subsection(
 								ng-if='littleSortingOption.children.length > 0'
 								ng-repeat='subSection in littleSortingOption.children'
-								ui-sref='root.section-state( { q: subSection.title.toLowerCase(  ) } )'
+								ui-sref='root.section-state.sorting-state( { q: subSection.title.toLowerCase(  ) } )'
 								ng-mouseover='$event.stopPropagation(  )'
 								ng-click='$event.stopPropagation(  )'
 								ng-class='{"selected": stateParams.q && stateParams.q === (subSection.title.toLowerCase(  ) || subSection.toLowerCase(  )) }'
