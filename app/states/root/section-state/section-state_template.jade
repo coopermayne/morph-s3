@@ -1,7 +1,7 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
-.index-project-wrapper( ng-if='!altIndexSection(  )' )
+.index-project-wrapper( ng-if='!altIndexSection(  ) && stateParams.sortingType' )
 	.index-project(
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } : "" | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
@@ -11,7 +11,7 @@
 		.project-title
 			| {{ item.title || item.name }}
 
-.alt-index-project-wrapper( ng-if='altIndexSection(  )' )
+.alt-index-project-wrapper( ng-if='altIndexSection(  ) && stateParams.sortingType' )
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
 	)

@@ -12,6 +12,6 @@ sortingState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state.sorting-state',
 	{
-		url: ':sortingType?q'
+		url: '/:sortingType?q'
 	} );
 } );
