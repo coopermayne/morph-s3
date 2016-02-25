@@ -16,6 +16,14 @@
 		}
 	}
 
+	@else if $breakpoint == 'medium-large'
+	{
+		@media ( max-width: 1200px )
+		{
+			@content;
+		}
+	}
+
 	@else if $breakpoint == 'large'
 	{
 		@media ( max-width: 1440px )
