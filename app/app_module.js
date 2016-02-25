@@ -23,7 +23,7 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
     // Allow same origin resource loads.
     'self',
     // Allow loading from our assets domain.
-    'https://morphmorph.s3.amazonaws.com/**'
+    'https://morphmorphupdated2.s3.amazonaws.com/**'
   ]);
 
 } );
