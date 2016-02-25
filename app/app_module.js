@@ -1,7 +1,7 @@
 'use strict';
 
 var morphopedia = angular.module( 'morphopedia',
-[
+	[
 	'ngResource',
 
 	'matchMedia',
@@ -11,12 +11,14 @@ var morphopedia = angular.module( 'morphopedia',
 	'angular.filter',
 
 	'root'
-] );
+	] );
 
 morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegateProvider )
 {
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );
+
+	$urlRouterProvider.deferIntercept();
 
 	// Whitelist AWS for asset-loading
 	$sceDelegateProvider.resourceUrlWhitelist([
@@ -24,27 +26,52 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
     'self',
     // Allow loading from our assets domain.
     'https://morphmorphupdated2.s3.amazonaws.com/**'
-  ]);
+    ]);
 
 } );
 
 
-morphopedia.run( [ '$rootScope', function( $rootScope )
+morphopedia.run(['$rootScope', '$urlRouter', '$location', '$state', function ($rootScope, $urlRouter, $location, $state)
 {
-	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
+	$rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl)
 	{
-		$rootScope.fromState = fromState;
-		$rootScope.fromParams = fromParams;
+		// Prevent $urlRouter's default handler from firing
+		// e.preventDefault();
+		$urlRouter.sync();
 
-		$rootScope.toState = toState;
-		$rootScope.toParams = toParams;
-	} );
+		// * 
+		// * provide conditions on when to 
+		// * sync change in $location.path() with state reload.
+		// * I use $location and $state as examples, but
+		// * You can do any logic
+		// * before syncing OR stop syncing all together.
+		
+
+		// if ( !$state.params.sortingType ) {
+		// 	// your stuff
+
+		// 	$urlRouter.sync();
+		// }
+		// else
+		// {
+		// 	console.log($state.params.sortingType);
+		// }
+	});
+    // Configures $urlRouter's listener *after* your custom listener
+    $urlRouter.listen();
 
 } ] );
 
+// morphopedia.run( [ '$rootScope', function( $rootScope )
+// {
+// 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
+// 	{
+// 		$rootScope.fromState = fromState;
+// 		$rootScope.fromParams = fromParams;
 
-// morphopedia.controller('MorphopediaController', ['$state, $scope', function( $state, $scope ) {
-//   $scope.a = 1;
-//   $scope.b = 2;
-//   debugger;
-// }])
+// 		$rootScope.toState = toState;
+// 		$rootScope.toParams = toParams;
+// 	} );
+
+// } ] );
+

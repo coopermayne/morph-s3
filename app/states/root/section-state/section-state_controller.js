@@ -14,6 +14,17 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
 
+	$rootScope.$on('$locationChangeStart', function( event, next, current )
+	{
+		var re = /http:\/\/[\w\.\:]*\/(\w*)\/([\w-]*)(\?q=([\w-]*))?/;
+		var reArray = next.match( re );
+
+		$scope.stateParams.q = next.split( 'q=' )[ 1 ];
+		$scope.stateParams.sortingType = reArray[ 2 ];
+		$scope.stateParams.q = reArray[ 4 ];
+
+	} );
+
 	$scope.altIndexSection = function(  )
 	{
 		if ( 'media, awards, search, research, news'.indexOf( $stateParams.sortingType || $stateParams.section) != -1 )

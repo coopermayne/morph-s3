@@ -47,7 +47,6 @@ ul.menu-directive-wrapper(
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
-			ng-click='changeSlideShow(bigMenuItem.slides[0].image.name.url)'
 		)
 			| {{ bigMenuItem.title }}
 
@@ -67,12 +66,12 @@ ul.menu-directive-wrapper(
 
 			.sorting-option-wrapper(
 				ng-repeat='sortingOption in bigMenuItem.sorting'
-				ui-sref='root.section-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null})'
-				ng-click=' $event.stopPropagation(  ) '
+				ng-click='$event.stopPropagation(  )'
 			)
 
 				.sorting-option-title-wrapper(
 						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
+						ng-click='viewSorting( sortingOption.title )'
 					)
 					.sorting-option-title
 						| {{ sortingOption.title }}
@@ -97,7 +96,7 @@ ul.menu-directive-wrapper(
 					)
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
-							ui-sref='root.section-state( {q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )} )'
+							ng-click='viewSorting( sortingOption.title, littleSortingOption.title || littleSortingOption )'
 							ng-mouseover='$event.stopPropagation(  )'
 						)
 							p(
