@@ -31,7 +31,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
 	};
 
-	$scope.searchText;
+	$scope.searchText = $stateParams.s;
 
 	// Update route with search query
 	$scope.updateSearch = function( text )

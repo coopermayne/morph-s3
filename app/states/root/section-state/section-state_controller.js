@@ -48,6 +48,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					} ).then( function( response )
 					{
 						$scope.indexContents = response.data;
+						console.log($scope.indexContents);
 					} );
 					break;
 
@@ -84,6 +85,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			} ).then( function( response )
 			{
 				$scope.indexContents = response.data;
+				console.log($scope.indexContents);
 			} );
 			break;
 
