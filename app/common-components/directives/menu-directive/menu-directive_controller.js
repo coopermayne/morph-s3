@@ -36,7 +36,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	// Update route with search query
 	$scope.updateSearch = function( text )
 	{
-		$state.go( 'root.section-state.sorting-state', { section: "search", sortingType: "", q: text } );
+		$state.go( 'root.section-state', { section: "search", s: text } );
 	}
 
 	console.log( 'MenuDirectiveController active!' );

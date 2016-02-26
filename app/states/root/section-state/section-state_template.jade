@@ -11,7 +11,7 @@
 		.project-title
 			| {{ item.title || item.name }}
 
-.alt-index-project-wrapper( ng-if='altIndexSection(  ) && (stateParams.sortingType || stateParams.q)' )
+.alt-index-project-wrapper( ng-if='altIndexSection(  ) && (stateParams.sortingType || stateParams.s)' )
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
 	)

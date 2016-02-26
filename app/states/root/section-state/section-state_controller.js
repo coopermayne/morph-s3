@@ -93,7 +93,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			{
 				method: 'GET',
 				url: apiUrl + 'search',
-				params: { q: $scope.stateParams.q }
+				params: { q: $scope.stateParams.s }
 			} ).then( function( response )
 			{
 				$scope.indexContents = response.data;

@@ -18,7 +18,7 @@ sectionState.config( function( $stateProvider )
 {
 	$stateProvider.state( 'root.section-state',
 	{
-		url: ':section',
+		url: ':section?s',
 		views:
 		{
 			'section-view':

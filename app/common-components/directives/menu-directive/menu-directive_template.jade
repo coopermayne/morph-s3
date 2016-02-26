@@ -36,7 +36,7 @@ slideshow-directive(
 
 ul.menu-directive-wrapper(
 	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
-	ng-class='{ "white-menu": !stateParams.sortingType || state.current.name == "root" }'
+	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" }'
 )
 	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
 

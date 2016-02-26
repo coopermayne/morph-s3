@@ -19,7 +19,16 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.closeProject = function(  )
 	{
-		$state.go( $rootScope.previousState.name || '^' );
+		var fromParams = $rootScope.fromParams;
+
+		if ( fromParams.section )
+		{
+			$state.go( $rootScope.previousState.name, { sortingType: fromParams.sortingType, q: fromParams.q } );
+		}
+		else
+		{
+			$state.go( '^' );
+		}
 	}
 
 
