@@ -37,43 +37,53 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Morphosis
 		case 'about':
 
-			// Populate with different content based on sortingType parameter
-			switch( $scope.stateParams.sortingType )
+			$http(
 			{
-				case 'media':
-					$http(
-					{
-						method: 'GET',
-						url: apiUrl + 'media.json'
-					} ).then( function( response )
-					{
-						$scope.indexContents = response.data;
-						console.log($scope.indexContents);
-					} );
-					break;
+				method: 'GET',
+				url: apiUrl + 'media.json'
+			} ).then( function( response )
+			{
+				$scope.indexContents = response.data;
+				console.log($scope.indexContents);
+			} );
 
-				case 'people':
-					$http(
-					{
-						method: 'GET',
-						url: apiUrl + 'people.json'
-					} ).then( function( response )
-					{
-						$scope.indexContents = response.data.array;
-					} );
-					break;
+			// Populate with different content based on sortingType parameter
+			// switch( $scope.stateParams.sortingType )
+			// {
+			// 	case 'media':
+			// 		$http(
+			// 		{
+			// 			method: 'GET',
+			// 			url: apiUrl + 'media.json'
+			// 		} ).then( function( response )
+			// 		{
+			// 			$scope.indexContents = response.data;
+			// 			console.log($scope.indexContents);
+			// 		} );
+			// 		break;
 
-				case 'awards':
-					$http(
-					{
-						method: 'GET',
-						url: apiUrl + 'awards.json'
-					} ).then( function( response )
-					{
-						$scope.indexContents = response.data;
-					} );
-					break;
-			}
+			// 	case 'people':
+			// 		$http(
+			// 		{
+			// 			method: 'GET',
+			// 			url: apiUrl + 'people.json'
+			// 		} ).then( function( response )
+			// 		{
+			// 			$scope.indexContents = response.data.array;
+			// 		} );
+			// 		break;
+
+			// 	case 'awards':
+			// 		$http(
+			// 		{
+			// 			method: 'GET',
+			// 			url: apiUrl + 'awards.json'
+			// 		} ).then( function( response )
+			// 		{
+			// 			$scope.indexContents = response.data;
+			// 		} );
+			// 		break;
+			// }
 			break;
 
 		// News
