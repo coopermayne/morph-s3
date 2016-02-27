@@ -96,7 +96,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Update stateParams
 		$scope.stateParams = $state.params;
 
-		if ( $scope.stateParams.section === 'about' )
+		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q )
 		{			
 
 			// Clear indexContents

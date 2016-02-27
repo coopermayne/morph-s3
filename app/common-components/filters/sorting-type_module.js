@@ -22,6 +22,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					break;
 
 				case 'type':
+				case 'media':
 					items.forEach( function( item ) {
 						var lowerCaseTypes = item.types.map(function( type )
 						{
