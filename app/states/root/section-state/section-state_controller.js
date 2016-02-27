@@ -12,116 +12,111 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateParams = $state.params;
 
-	$scope.$on('$locationChangeSuccess', function(event)
-	{ 
-		$scope.stateParams = $state.params;
-    });
+	$scope.altIndexSection = false;
 
-	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
-
-	$scope.altIndexSection = function(  )
+	$scope.setAltIndex = function( input )
 	{
-		if ( 'media, awards, search, research, news'.indexOf( $stateParams.sortingType || $stateParams.section ) != -1 )
+		if ( 'media, awards, search, research, news'.indexOf( input ) != -1 )
 		{
-			return true;
-		} else
+			$scope.altIndexSection = true;
+		}
+		else
 		{
-			return false;
+			$scope.altIndexSection = false;
 		}
 	}
 
+	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
 
-	// Fetch index contents based on section parameter
+	$scope.getResource = function( sectionTitle )
+	{
+		$scope.setAltIndex( sectionTitle );
+
+		$http(
+		{
+			method: 'GET',
+			url: apiUrl + sectionTitle + '.json'
+		} ).then( function( response )
+		{
+			$scope.indexContents = response.data;
+		} );
+	}
+
+	// Fetch index contents on controller load, based on section parameter
 	switch( $scope.stateParams.section )
 	{
 		// Morphosis
 		case 'about':
 
-			$http(
-			{
-				method: 'GET',
-				url: apiUrl + 'media.json'
-			} ).then( function( response )
-			{
-				$scope.indexContents = response.data;
-				console.log($scope.indexContents);
-			} );
-
 			// Populate with different content based on sortingType parameter
-			// switch( $scope.stateParams.sortingType )
-			// {
-			// 	case 'media':
-			// 		$http(
-			// 		{
-			// 			method: 'GET',
-			// 			url: apiUrl + 'media.json'
-			// 		} ).then( function( response )
-			// 		{
-			// 			$scope.indexContents = response.data;
-			// 			console.log($scope.indexContents);
-			// 		} );
-			// 		break;
+			switch( $scope.stateParams.sortingType )
+			{
+				case 'media':
+				$scope.getResource( 'media' )
+				break;
 
-			// 	case 'people':
-			// 		$http(
-			// 		{
-			// 			method: 'GET',
-			// 			url: apiUrl + 'people.json'
-			// 		} ).then( function( response )
-			// 		{
-			// 			$scope.indexContents = response.data.array;
-			// 		} );
-			// 		break;
+				case 'people':
+				$scope.getResource( 'people' );
+				break;
 
-			// 	case 'awards':
-			// 		$http(
-			// 		{
-			// 			method: 'GET',
-			// 			url: apiUrl + 'awards.json'
-			// 		} ).then( function( response )
-			// 		{
-			// 			$scope.indexContents = response.data;
-			// 		} );
-			// 		break;
-			// }
+				case 'awards':
+				$scope.getResource( 'awards' );
+				break;
+			}
 			break;
 
 		// News
 		case 'news':
-			$http( 
-			{
-				method: 'GET',
-				url: apiUrl + 'news_items.json'
-			} ).then( function( response )
-			{
-				$scope.indexContents = response.data;
-				console.log($scope.indexContents);
-			} );
-			break;
+		$scope.getResource( 'news' );
+		break;
 
 		// Search
 		case 'search':
-			$http( 
-			{
-				method: 'GET',
-				url: apiUrl + 'search',
-				params: { q: $scope.stateParams.s }
-			} ).then( function( response )
-			{
-				$scope.indexContents = response.data;
-				console.log($scope.indexContents);
-			} );
-			break;
+		$scope.altIndexSection = true;
+		$http( 
+		{
+			method: 'GET',
+			url: apiUrl + 'search',
+			params: { q: $scope.stateParams.s }
+		} ).then( function( response )
+		{
+			$scope.indexContents = response.data;
+		} );
+		break;
 
 		// Projects
 		default:
-			$scope.indexContents = Project.query(  );
-			break;
+		$scope.indexContents = Project.query(  );
+		break;
 	}
 
-	$rootScope.$on( '$stateChangeSuccess', function(  )
-	{
-		$scope.activeChildNav = $state.current.activeChildNav;
-	} );
+	// Fire API calls for separate 'about' section resources
+	$scope.$on('$locationChangeSuccess', function(event)
+	{ 
+		// Update stateParams
+		$scope.stateParams = $state.params;
+
+		if ( $scope.stateParams.section === 'about' )
+		{			
+
+			// Clear indexContents
+			$scope.indexContents = [  ];
+
+			switch ( $scope.stateParams.sortingType )
+			{
+				case 'awards':
+				$scope.getResource( 'awards' );
+				break;
+
+				case 'people':
+				$scope.getResource( 'people' );
+				break;
+
+				case 'media':
+				$scope.getResource( 'media' );
+				break;
+			}
+		}
+	});
 
 } );
