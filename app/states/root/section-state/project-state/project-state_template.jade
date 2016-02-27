@@ -60,9 +60,17 @@
 					.project-description-body( ng-bind-html='activeProject.description | htmlParse' )
 
 				.image-gallery-wrapper
-					.image-gallery-section-wrapper( ng-repeat='(key, value) in activeProject.galleries' )
+					.image-gallery-section-wrapper(
+						ng-repeat='(key, value) in activeProject.galleries'
+						ng-mouseenter='startScroll( $event )'
+						ng-mousemove='updateScroll( $event )'
+						ng-mouseleave='stopScroll(  )'
+					)
 						h1
-							{{ key }}
+							{{ key }} ({{ value.length }})
 						.image-gallery-section
-							img( preload-image ng-repeat='image in value' ng-src='{{ image.name.thumb.url }}' )
-					
+							img(
+								preload-image ng-repeat='image in value'
+								ng-src='{{ image.name.thumb.url }}'
+							)
+

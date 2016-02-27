@@ -1,0 +1,74 @@
+/**
+ * Slidebox default styles
+ * 
+ * http://github.com/keithjgrant/slidebox
+ * Version 0.9
+ */
+
+.slidebox-container
+{
+	position: relative;
+}
+
+.slidebox
+{
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: 100%;
+	padding: 10px;
+
+	-webkit-overflow-scrolling: touch;
+}
+
+
+
+.slidebox-controls
+{
+	opacity: 0.5;
+	position: absolute;
+	width: 10%;
+	top: 0;
+	bottom: 15px; /* don't cover scrollbar */
+	border: #ffffff 1px solid;
+	border-radius: 3px;
+}
+
+.slidebox-left
+{
+	cursor: w-resize;
+	left: 0;
+	background: rgba(128, 128, 128, 0.5) url(https://raw.github.com/keithjgrant/slidebox/master/images/left-arrow.png) center center no-repeat;
+}
+
+.slidebox-right
+{
+	cursor: e-resize;
+	right: 0;
+	background: rgba(128, 128, 128, 0.5) url(https://raw.github.com/keithjgrant/slidebox/master/images/right-arrow.png) center center no-repeat;
+}
+
+.box
+{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: #eeeeff;
+}
+
+/* page styles */
+
+.my-slidebox
+{
+	background-color: #ccccff;
+}
+
+.my-slidebox-content
+{
+	column-count: 5;
+	column-gap: 15px;
+
+	-webkit-column-count: 5;
+	-webkit-column-gap: 15px;
+	-moz-column-count: 5;
+	-moz-column-gap: 15px;
+}

@@ -24,7 +24,7 @@ slideshow-directive(
 
 .menu-close-button(
 	ui-sref='root'
-	ng-if='state.current.name === "root.home-state"'
+	ng-if='state.current.name == "root.section-state"'
 )
 
 .menu-about-text-wrapper(
@@ -43,7 +43,7 @@ ul.menu-directive-wrapper(
 	//- Build each big menu item and subsections
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
-		ui-sref='root.section-state.sorting-state( { section: bigMenuItem.url, sortingType: "", q: null, s: null } )'
+		ui-sref='root.section-state( { section: bigMenuItem.url, s: null, q: null } )'
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'

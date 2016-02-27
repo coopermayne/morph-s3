@@ -4,7 +4,9 @@ var projectState = angular.module( 'projectState',
 [
 	'ui.router',
 
-	'htmlParseFilter'
+	'htmlParseFilter',
+
+	'Slidebox'
 ] );
 
 

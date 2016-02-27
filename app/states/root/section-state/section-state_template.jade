@@ -19,5 +19,4 @@
 			ng-if='item.thumb || item.image.name.mobile.url'
 			preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
 		)
-		.alt-project-title
-			| {{ item.title || item.name }}
+		.alt-project-title( ng-bind-html='item.title || item.name | htmlParse' )

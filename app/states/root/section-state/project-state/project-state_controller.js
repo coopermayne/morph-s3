@@ -31,5 +31,48 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	}
 
+	var isLeft;
+	var velocity;
+
+	$scope.startScroll = function( event )
+	{		
+		var imageGalleryWrapper = document.getElementsByClassName( 'image-gallery-section-wrapper' )[ 0 ];
+
+		var imageWrapperX = imageGalleryWrapper.getBoundingClientRect(  ).left;
+		var imageWrapperMiddle = imageGalleryWrapper.offsetWidth / 2;
+		var mouseX = event.pageX;
+		var posX = mouseX - imageWrapperX;
+		var imageGallery = event.currentTarget.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+
+		isLeft = posX < imageWrapperMiddle;
+
+		if ( isLeft )
+		{
+			console.log( 'left part' );
+			velocity = 50 / -2
+		}
+		else
+		{
+			console.log( 'right part' );
+			velocity = 50 / 2
+		}
+
+		$scope.scrollInterval = $interval( function(  )
+		{
+			imageGallery.scrollLeft += velocity;
+		}, 50 );
+	}
+
+	$scope.updateScroll = function( event )
+	{
+		$interval.cancel( $scope.scrollInterval );
+		$scope.startScroll( event );
+	}
+
+	$scope.stopScroll = function(  )
+	{
+		$interval.cancel( $scope.scrollInterval );
+	}
+
 
 } );
