@@ -29,7 +29,7 @@ menu-directive
 	width: 600px;
 	height: 100%;
 	top: 0;
-	right: 5rem;
+	right: 10rem;
 
 	color: $white;
 	font-size: $subheader-text;
@@ -40,7 +40,7 @@ menu-directive
 	overflow-y: scroll;
 	position: absolute;
 	height: 100%;
-	padding: 2rem;
+	padding: 2rem 0;
 }
 
 .menu-directive-wrapper
