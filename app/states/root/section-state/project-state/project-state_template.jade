@@ -5,63 +5,64 @@
 	)
 
 	.project-page-header-image
-		img( ng-src='{{activeProject.primary_image.name.url}}' )
+		img( ng-src='{{ activeItem.primary_image.name.url }}' )
 
 	.project-page-content-wrapper
 
 		.project-page-header-text
-			| {{ activeProject.title }}
-
-		.project-page-text-wrapper
+			| {{ activeItem.title || activeItem.name }}
+		
+		//- PROJECT PAGE
+		.project-page-text-wrapper( ng-if='stateParams.section != "about"' )
 
 			.project-page-sidebar
 
 				//- Details
 				.project-page-sidebar-header
 					| Details
-				.project-detail-wrapper( ng-if='activeProject.city || activeProject.country' )
+				.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
 					| Location: 
 					span
-						| {{ activeProject.city + ', '}} {{ activeProject.country }}
-				.project-detail-wrapper( ng-if='activeProject.client' )
+						| {{ activeItem.city + ', '}} {{ activeItem.country }}
+				.project-detail-wrapper( ng-if='activeItem.client' )
 					| Client:
 					span
-						| {{ activeProject.client }}
-				.project-detail-wrapper( ng-if='activeProject.site_area' )
+						| {{ activeItem.client }}
+				.project-detail-wrapper( ng-if='activeItem.site_area' )
 					| Site Area: 
 					span
-						| {{ activeProject.site_area }}
-				.project-detail-wrapper( ng-if='activeProject.size' )
+						| {{ activeItem.site_area }}
+				.project-detail-wrapper( ng-if='activeItem.size' )
 					| Size:
 					span
-						| {{ activeProject.size }}
+						| {{ activeItem.size }}
 				
 				//- Project Credits
 				.project-page-sidebar-header
 					| Project Credits
 
-				.project-detail-wrapper( ng-repeat='(key, value) in activeProject.people | groupBy: "role_title"' )
+				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.people | groupBy: "role_title"' )
 					.project-detail-label
 						| {{ key + ': '}}
-					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ projectId: role.person.id })')
+					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })')
 						| {{ role.person.name }}
 
 			.project-page-main-text
 
 				.project-overview(
-					ng-if='activeProject.overview'
-					ng-bind-html='activeProject.overview | htmlParse'
+					ng-if='activeItem.overview'
+					ng-bind-html='activeItem.overview | htmlParse'
 				)
-					| {{ activeProject.overview }}
+					| {{ activeItem.overview }}
 
 				.project-description-wrapper
-					.project-description-header( ng-if='activeProject.description' )
+					.project-description-header( ng-if='activeItem.description' )
 						| Description
-					.project-description-body( ng-bind-html='activeProject.description | htmlParse' )
+					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
 				.image-gallery-wrapper
 					.image-gallery-section-wrapper(
-						ng-repeat='(key, value) in activeProject.galleries'
+						ng-repeat='(key, value) in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
 						ng-mousemove='updateScroll( $event )'
 						ng-mouseleave='stopScroll(  )'
@@ -74,3 +75,33 @@
 								ng-src='{{ image.name.thumb.url }}'
 							)
 
+		//- PEOPLE PAGE
+		.project-page-text-wrapper( ng-if='stateParams.section == "about"' )
+
+			.project-page-sidebar
+				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
+					| Education
+				.project-detail-wrapper( ng-repeat='education in activeItem.educations' )
+					{{ education.title }}
+
+				.project-page-sidebar-header( ng-if='activeItem.email' )
+					| Contact
+				.project-detail-wrapper
+					a( href='mailto:{{ activeItem.email }}' )
+						| {{ activeItem.email }}
+				
+
+			.project-page-main-text
+				.project-overview(
+					ng-if='activeItem.location'
+					ng-bind-html='activeItem.location | htmlParse'
+				)
+
+				.project-description-header
+					| Related Projects
+
+				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.roles | groupBy: "title"' )
+					.project-detail-label
+						| {{ key + ': '}}
+					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id })')
+						| {{ role.project.title }}

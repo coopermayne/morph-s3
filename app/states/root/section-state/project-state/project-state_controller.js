@@ -2,16 +2,33 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval )
+projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http )
 {
 
 	// This is a controller.
 	$scope.stateParams = $stateParams;
 
-	Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
+
+	switch( $scope.stateParams.section )
 	{
-		$scope.activeProject = response.result;
-	} );
+		case 'about':
+			$http(
+			{
+				method: 'GET',
+				url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
+			} ).then( function( response )
+			{
+				$scope.activeItem = response.data;
+			} );
+		break;
+
+		default:
+			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
+			{
+				$scope.activeItem = response.result;
+			} );
+		break;
+	}
 
 	$scope.stateName = 'section-state.project-state';
 

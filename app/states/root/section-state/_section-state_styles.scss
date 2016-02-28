@@ -33,11 +33,9 @@
 .index-project-wrapper
 {
 	flex-flow: row wrap;
-	justify-content: flex-start;
+	justify-content: flex-end;
 
-	width: 850px;
-
-	transition: all 1s ease;
+	padding-right: 2rem;
 }
 
 .index-project
