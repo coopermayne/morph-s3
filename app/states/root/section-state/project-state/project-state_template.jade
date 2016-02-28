@@ -21,21 +21,40 @@
 				.project-page-sidebar-header
 					| Details
 				.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
-					| Location: 
-					span
+					.project-detail-label
+						| Location: 
+					.project-detail-text
 						| {{ activeItem.city + ', '}} {{ activeItem.country }}
 				.project-detail-wrapper( ng-if='activeItem.client' )
-					| Client:
-					span
+					.project-detail-label
+						| Client:
+					.project-detail-text
 						| {{ activeItem.client }}
 				.project-detail-wrapper( ng-if='activeItem.site_area' )
-					| Site Area: 
-					span
+					.project-detail-label
+						| Site Area: 
+					.project-detail-text
 						| {{ activeItem.site_area }}
 				.project-detail-wrapper( ng-if='activeItem.size' )
-					| Size:
-					span
+					.project-detail-label
+						| Size:
+					.project-detail-text
 						| {{ activeItem.size }}
+				.project-detail-wrapper( ng-if='activeItem.program' )
+					.project-detail-label
+						| Program:
+					.project-detail-text
+						| {{ activeItem.program }}
+				.project-detail-wrapper( ng-if='activeItem.design_sdate && activeItem.design_edate' )
+					.project-detail-label
+						| Design:
+					.project-detail-text
+						| {{ activeItem.design_sdate }} - {{ activeItem.design_edate }}
+				.project-detail-wrapper( ng-if='activeItem.constr_sdate || activeItem.constr_edate' )
+					.project-detail-label
+						| Construction:
+					.project-detail-text
+						| {{ activeItem.constr_sdate }} - {{ activeItem.constr_edate }}
 				
 				//- Project Credits
 				.project-page-sidebar-header
@@ -45,7 +64,32 @@
 					.project-detail-label
 						| {{ key + ': '}}
 					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })')
-						| {{ role.person.name }}
+						| {{ role.person.name }} 
+
+				//- Design recognition
+				.project-page-sidebar-header( ng-if='activeItem.awards.length' )
+					| Design Recognition
+
+				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
+					.project-detail-label
+						| {{ key }}
+					.project-detail-text( ng-repeat='award in value' )
+						| {{ award.title }}
+
+				//- Bibliography
+				.project-page-sidebar-header( ng-if='activeItem.bibliography_items.length' )
+					| Bibliography
+				.project-detail-wrapper.bibliography-item( ng-repeat='item in activeItem.bibliography_items' )
+					.bibliography-image(
+						ng-if='item.primary_image'
+						preload-bg-image='{{ item.primary_image.name.thumb.url }}'
+					)
+					| {{ item.author}}
+					| "{{ item.article_name }}"
+					| {{ item.title }}.
+					| {{ item.publisher }}
+					| ({{ item.pub_date }}).
+					| {{ item.pages }}.
 
 			.project-page-main-text
 

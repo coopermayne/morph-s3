@@ -127,14 +127,56 @@
 
 .project-page-sidebar-header
 {
+	margin-bottom: 1rem;
+	padding-top: 2rem;
+
 	font-style: italic;
+
+	&:first-child
+	{
+		padding-top: 0;
+	}
 }
 
 .project-detail-wrapper
 {
-	flex-flow: column;
+	flex-flow: row wrap;
 
 	padding: 0.5rem 0;
+
+	span,
+	.project-detail-text,
+	.project-detail-label
+	{
+		max-width: 100%;
+	}
+}
+
+.project-detail-label
+{
+	align-self: center;
+
+	margin-right: 5px;
+	// text-transform: uppercase;
+
+	font-style: italic;
+	font-size: 0.8rem;
+}
+
+.project-detail-text
+{
+	flex-flow: row nowrap;
+
+	&:after
+	{
+		content: ', ';
+		margin-right: 3px;
+	}
+
+	&:last-child:after
+	{
+		content: '';
+	}
 }
 
 .image-gallery-wrapper
@@ -186,4 +228,25 @@
 		height: 150px;
 		margin-right: 1em;
 	}
+}
+
+.bibliography-item
+{
+	flex-flow: row;
+}
+
+.bibliography-title
+{
+	flex-flow: row;
+}
+
+.bibliography-image
+{
+	align-self: center;
+
+	width: 100px;
+	height: 100px;
+	background-position: left center;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
