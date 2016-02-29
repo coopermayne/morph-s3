@@ -77,6 +77,8 @@
 {
 	overflow-x: hidden;
 	margin: 0 2rem;
+
+	font-size: $little-sorting-option;
 }
 
 .alt-index-project
@@ -94,6 +96,7 @@
 .alt-project-title-and-image
 {
 	flex-flow: row nowrap;
+	align-items: center;
 
 	max-width: 100%;
 	// flex: 1 0 0;

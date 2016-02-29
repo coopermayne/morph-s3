@@ -82,7 +82,7 @@
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
 					.project-detail-label
 						| {{ key }}
-					.project-detail-text( ng-repeat='award in value' )
+					.project-detail-text.project-page-award( ng-repeat='award in value' )
 						| {{ award.title }}
 
 				//- Bibliography
