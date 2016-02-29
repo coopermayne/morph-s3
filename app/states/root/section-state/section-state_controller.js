@@ -13,6 +13,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	$scope.stateParams = $state.params;
 
 	$scope.altIndexSection = false;
+	$scope.locIndex = false;
 
 	$scope.setAltIndex = function( input )
 	{
@@ -24,6 +25,15 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		{
 			$scope.altIndexSection = false;
 		}
+
+    if ( 'location'.indexOf( input ) !== -1 )
+    {
+      $scope.locIndex = true;
+    }
+    else
+    {
+      $scope.locIndex = false
+    }
 	}
 
 	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
