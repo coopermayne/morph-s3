@@ -62,7 +62,7 @@
 						| {{ type }}
 				
 				//- Project Credits
-				.project-page-sidebar-header
+				.project-page-sidebar-header( ng-if='activeItem.people.length' )
 					| Project Credits
 
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.people | groupBy: "role_title"' )
