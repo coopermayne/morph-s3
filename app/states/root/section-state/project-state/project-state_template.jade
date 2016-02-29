@@ -68,8 +68,12 @@
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.people | groupBy: "role_title"' )
 					.project-detail-label
 						| {{ key + ': '}}
-					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })')
-						| {{ role.person.name }} 
+					.project-detail-text(
+						ng-repeat='role in value'
+						ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
+						ng-bind-html='role.person.name | htmlParse'
+					)
+						//- | {{ role.person.name }} 
 
 				//- Design recognition
 				.project-page-sidebar-header( ng-if='activeItem.awards.length' )
