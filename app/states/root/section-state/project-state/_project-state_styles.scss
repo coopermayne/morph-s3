@@ -119,10 +119,16 @@
 	{
 		column-count: auto;
 	}
+	// column-count: 2;
+
+	flex-flow: row;
 
 	display: block;
 
-	column-count: 2;
+	em
+	{
+		flex-flow: row;
+	}
 }
 
 .project-page-sidebar-header

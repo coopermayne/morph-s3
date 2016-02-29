@@ -81,9 +81,10 @@
 
 .alt-index-project
 {
-	flex-flow: row;
-	align-items: center;
-	justify-content: space-between;
+	flex-flow: column;
+	// align-items: center;
+	// justify-content: space-between;
+	justify-content: center;
 
 	height: 150px;
 	padding: 1rem 0;
@@ -94,7 +95,21 @@
 {
 	flex-flow: row nowrap;
 
-	max-width: 80%;
+	max-width: 100%;
+	// flex: 1 0 0;
+	margin-bottom: 0.5rem;
+}
+
+.alt-project-metadata
+{
+	// flex: 1 0 0;
+}
+
+.alt-project-title
+{
+	max-width: 100%;
+
+	font-style: italic;
 }
 
 .alt-project-image
@@ -111,5 +126,23 @@
 
 .alt-project-awarded
 {
-	align-items: flex-end;
+	// align-items: flex-end;
+	flex-flow: row;
+	align-items: center;
+}
+
+.alt-project-awarded-project
+{
+	flex-flow: row nowrap;
+
+	&:after
+	{
+		content: ',';
+		margin-right: 3px;
+	}
+
+	&:last-child:after
+	{
+		content: ' ';
+	}
 }

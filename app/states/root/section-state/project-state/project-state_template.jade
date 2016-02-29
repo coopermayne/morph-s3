@@ -111,7 +111,7 @@
 				.project-description-wrapper
 					.project-description-header( ng-if='activeItem.description' )
 						| Description
-					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
+					p.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
 				.image-gallery-wrapper
 					.image-gallery-section-wrapper(
