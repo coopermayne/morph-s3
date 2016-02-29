@@ -140,7 +140,7 @@
 
 .project-detail-wrapper
 {
-	flex-flow: row wrap;
+	flex-flow: column wrap;
 
 	padding: 0.5rem 0;
 
@@ -154,28 +154,21 @@
 
 .project-detail-label
 {
-	align-self: center;
-
 	margin-right: 5px;
-	// text-transform: uppercase;
 
-	font-style: italic;
-	font-size: 0.8rem;
+	font-size: 0.7rem;
+	text-transform: uppercase;
 }
 
 .project-detail-text
 {
 	flex-flow: row nowrap;
 
-	&:after
-	{
-		content: ', ';
-		margin-right: 3px;
-	}
+	cursor: pointer;
 
-	&:last-child:after
+	&:hover
 	{
-		content: '';
+		text-decoration: underline;
 	}
 }
 
@@ -225,6 +218,7 @@
 
 	img
 	{
+		cursor: pointer;
 		height: 150px;
 		margin-right: 1em;
 	}

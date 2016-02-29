@@ -28,7 +28,7 @@ slideshow-directive(
 )
 
 .menu-about-text-wrapper(
-	ng-if='stateParams.section === "about"'
+	ng-if='stateParams.section === "about" && !stateParams.sortingType'
 )
 	.menu-about-text(
 		ng-bind-html='menuItems.sections[0].content | htmlParse'

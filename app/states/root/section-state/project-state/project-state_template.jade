@@ -34,12 +34,12 @@
 					.project-detail-label
 						| Site Area: 
 					.project-detail-text
-						| {{ activeItem.site_area }}
+						| {{ activeItem.site_area }} acres / {{ activeItem.site_area * 0.404686 | number:2 }} hectares
 				.project-detail-wrapper( ng-if='activeItem.size' )
 					.project-detail-label
 						| Size:
 					.project-detail-text
-						| {{ activeItem.size }}
+						| {{ activeItem.size | number }}  ft² / {{ activeItem.size * 0.09290304 | number : 0 }} m²
 				.project-detail-wrapper( ng-if='activeItem.program' )
 					.project-detail-label
 						| Program:
@@ -49,12 +49,17 @@
 					.project-detail-label
 						| Design:
 					.project-detail-text
-						| {{ activeItem.design_sdate }} - {{ activeItem.design_edate }}
+						| {{ activeItem.design_sdate | date: "yyyy" }} - {{ activeItem.design_edate | date: "yyyy" }}
 				.project-detail-wrapper( ng-if='activeItem.constr_sdate || activeItem.constr_edate' )
 					.project-detail-label
 						| Construction:
 					.project-detail-text
-						| {{ activeItem.constr_sdate }} - {{ activeItem.constr_edate }}
+						| {{ activeItem.constr_sdate | date: "yyyy" }} - {{ activeItem.constr_edate | date: "yyyy" }}
+				.project-detail-wrapper( ng-if='activeItem.types.length' )
+					.project-detail-label
+						| {{ activeItem.types.length > 1 ? "Types":"Type" }}:
+					.project-detail-text( ng-repeat='type in activeItem.types' )
+						| {{ type }}
 				
 				//- Project Credits
 				.project-page-sidebar-header
@@ -86,7 +91,7 @@
 					)
 					| {{ item.author}}
 					| "{{ item.article_name }}"
-					| {{ item.title }}.
+					| {{ item.publication }}.
 					| {{ item.publisher }}
 					| ({{ item.pub_date }}).
 					| {{ item.pages }}.
