@@ -49,8 +49,8 @@
 
 .whatwhat( ng-if='stateParams.sortingType=="location"' )
 	ui-gmap-google-map(center='map.center', zoom='map.zoom', draggable="true", options="options")
-		ui-gmap-markers(events="theEvents" models='randomMarkers' coords="'self'" icon="'icon'")
-			ui-gmap-windows(options='windowOptions', closeclick='closeClick()')
-				.popup(ng-non-bindable)
+		ui-gmap-markers(icon="'icon'" models="markers", coords="'self'", doCluster="true", events="myEvents", clusteroptions="map.clusteroptions")
+			ui-gmap-windows(show="'showWindow'", closeClick="'closeClick'", ng-cloak)
+				.popup(ng-non-bindable="")
 					h1 {{title}}
-					img(src='{{image}}')
+					div(src='{{image}}', style="height: 180px; width: 150px; background-image: url('http://www.fillmurray.com/100/200')")
