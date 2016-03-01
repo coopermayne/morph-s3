@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll )
 {
 	console.log( 'SectionStateController active!' );
 
@@ -13,6 +13,14 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	$scope.stateParams = $state.params;
 
 	$scope.altIndexSection = false;
+
+	$scope.goToItem = function( itemId )
+	{
+		$location.hash( itemId );
+		$anchorScroll(  );
+	}
+
+	$anchorScroll(  );
 
 	$scope.setAltIndex = function( input )
 	{
@@ -52,7 +60,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			switch( $scope.stateParams.sortingType )
 			{
 				case 'media':
-				$scope.getResource( 'media' )
+				$scope.getResource( 'media' );
 				break;
 
 				case 'people':

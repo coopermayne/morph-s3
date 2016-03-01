@@ -29,10 +29,11 @@
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
+		id='{{item.id}}'
 	)
 		.alt-index-expand(
 			ng-if='item.overview || item.description'
-			ui-sref='root.section-state.sorting-state({ e: item.id })'
+			ng-click='goToItem( item.id )'
 		)
 			| {{ item.id == stateParams.e ? "-":"+" }}
 		.alt-project-title-and-image

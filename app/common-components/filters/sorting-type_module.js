@@ -6,7 +6,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 {
 	return function( items, type, input )
 	{
-		if( input )
+		if( input && items )
 		{
 			var out = [  ];
 
