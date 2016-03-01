@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout )
 {
 	console.log( 'SectionStateController active!' );
 
@@ -14,13 +14,31 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.altIndexSection = false;
 
-	$scope.goToItem = function( itemId )
+	$scope.expandedItem = function( itemId )
 	{
-		$location.hash( itemId );
-		$anchorScroll(  );
+		return $location.hash(  ) == itemId ? true : false;
 	}
 
-	$anchorScroll(  );
+	$scope.openItem = function( itemId )
+	{	if ( $scope.expandedItem( itemId ) )
+		{
+			$location.hash( null );
+		}
+		else
+		{
+			var el = document.getElementById( itemId )
+			console.log( el.scrollTop );
+			$location.hash( itemId );
+			console.log( el.scrollTop );
+		}
+	}
+
+	$timeout( function(  )
+	{
+		var expandable = document.getElementById( $location.hash() );
+		var hash = $location.hash(  );
+		$anchorScroll( hash );
+	}, 500 );
 
 	$scope.setAltIndex = function( input )
 	{
@@ -104,7 +122,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Update stateParams
 		$scope.stateParams = $state.params;
 		
-		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
+		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$location.hash() )
 		{			
 
 			// Clear indexContents

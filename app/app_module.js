@@ -29,7 +29,7 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
 } );
 
 
-morphopedia.run( [ '$rootScope', function( $rootScope )
+morphopedia.run( [ '$rootScope', function( $rootScope, $location, $anchorScroll )
 {
 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
@@ -39,5 +39,14 @@ morphopedia.run( [ '$rootScope', function( $rootScope )
 		$rootScope.toState = toState;
 		$rootScope.toParams = toParams;
 	} );
+
+	$rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+
+		if( $location.hash() )
+		{
+			debugger;
+			$anchorScroll();  
+		}
+	});
 
 } ] );

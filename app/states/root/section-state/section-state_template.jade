@@ -33,9 +33,9 @@
 	)
 		.alt-index-expand(
 			ng-if='item.overview || item.description'
-			ng-click='goToItem( item.id )'
+			ng-click='openItem( item.id )'
 		)
-			| {{ item.id == stateParams.e ? "-":"+" }}
+			| {{ expandedItem( item.id ) ? "-":"+" }}
 		.alt-project-title-and-image
 			.alt-project-image(
 				ng-if='item.thumb || item.image.name.mobile.url'
@@ -47,7 +47,7 @@
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 				.alt-project-expanded(
-					ng-if='stateParams.e == item.id && ( item.overview || item.description )'
+					ng-if='expandedItem( item.id ) && ( item.overview || item.description )'
 					ng-bind-html='item.overview | htmlParse'
 				)
 			
