@@ -14,31 +14,48 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.altIndexSection = false;
 
-	$scope.expandedItem = function( itemId )
+	$scope.scrollToExpanded = function(  )
 	{
-		return $location.hash(  ) == itemId ? true : false;
-	}
-
-	$scope.openItem = function( itemId )
-	{	if ( $scope.expandedItem( itemId ) )
-		{
-			$location.hash( null );
-		}
-		else
-		{
-			var el = document.getElementById( itemId )
-			console.log( el.scrollTop );
-			$location.hash( itemId );
-			console.log( el.scrollTop );
-		}
+		var el = document.getElementById( $scope.stateParams.e );
+		var elScr = el.getBoundingClientRect().top;
+		document.body.scrollTop = elScr;
 	}
 
 	$timeout( function(  )
 	{
-		var expandable = document.getElementById( $location.hash() );
-		var hash = $location.hash(  );
-		$anchorScroll( hash );
-	}, 500 );
+		$scope.scrollToExpanded();
+	}, 2000 )
+
+
+	// Check if item is expanded
+	// $scope.expandedItem = function( itemId )
+	// {
+	// 	return $location.hash(  ) == itemId ? true : false;
+	// }
+
+	// Toggle expandable item
+	// $scope.toggleItem = function( itemId )
+	// {
+	// 	if ( $scope.expandedItem( itemId ) )
+	// 	{
+	// 		$location.hash( null );
+	// 	}
+	// 	else
+	// 	{
+	// 		$location.hash( itemId );
+	// 	}
+	// }
+
+	// $scope.$on('$locationChangeStart', function(ev) {
+	// 	ev.preventDefault();
+	// });
+
+	// Scroll to appropriate item on page load
+	// $timeout( function(  )
+	// {
+	// 	var hash = $location.hash(  );
+	// 	$anchorScroll( hash );
+	// }, 2000 );
 
 	$scope.setAltIndex = function( input )
 	{

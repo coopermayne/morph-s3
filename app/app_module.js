@@ -1,7 +1,7 @@
 'use strict';
 
 var morphopedia = angular.module( 'morphopedia',
-[
+	[
 	'ngResource',
 
 	'matchMedia',
@@ -11,7 +11,7 @@ var morphopedia = angular.module( 'morphopedia',
 	'angular.filter',
 
 	'root'
-] );
+	] );
 
 morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegateProvider )
 {
@@ -20,16 +20,16 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
 
 	// Whitelist AWS for asset-loading
 	$sceDelegateProvider.resourceUrlWhitelist([
-    // Allow same origin resource loads.
-    'self',
-    // Allow loading from our assets domain.
-    'https://morphmorphupdated2.s3.amazonaws.com/**'
-  ]);
+		// Allow same origin resource loads.
+		'self',
+		// Allow loading from our assets domain.
+		'https://morphmorphupdated2.s3.amazonaws.com/**'
+	]);
 
 } );
 
 
-morphopedia.run( [ '$rootScope', function( $rootScope, $location, $anchorScroll )
+morphopedia.run( [ '$rootScope', function( $rootScope )
 {
 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
@@ -39,14 +39,5 @@ morphopedia.run( [ '$rootScope', function( $rootScope, $location, $anchorScroll 
 		$rootScope.toState = toState;
 		$rootScope.toParams = toParams;
 	} );
-
-	$rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-
-		if( $location.hash() )
-		{
-			debugger;
-			$anchorScroll();  
-		}
-	});
 
 } ] );
