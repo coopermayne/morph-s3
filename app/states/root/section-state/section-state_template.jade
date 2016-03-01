@@ -32,23 +32,24 @@
 		id='{{item.id}}'
 	)
 		.alt-index-expand(
-			ng-if='item.overview || item.description'
+			ng-if='item.description.length > 0'
 			ui-sref='root.section-state.sorting-state({ e: item.id })'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
-		.alt-project-title-and-image
+		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e == item.id }' )
 			.alt-project-image(
 				ng-if='item.thumb || item.image.name.mobile.url'
-				preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
+				preload-bg-image='{{ item.thumb || item.image.name.mobile.url }}'
 			)
 			.alt-title-and-expanded-wrapper
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
+				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
 				.alt-project-expanded(
-					ng-if='stateParams.e == item.id && ( item.overview || item.description )'
-					ng-bind-html='item.overview | htmlParse'
+					ng-if='stateParams.e == item.id && ( item.description.length > 0 )'
+					ng-bind-html='item.description | htmlParse'
 				)
 			
 		.alt-project-metadata

@@ -12,8 +12,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateParams = $state.params;
 
+	// Default to tile index
 	$scope.altIndexSection = false;
 
+	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
 	{
 		var el = document.getElementById( $scope.stateParams.e );
@@ -21,42 +23,16 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		document.body.scrollTop = elScr;
 	}
 
+	// Wait for DOM to load before scrolling to expanded item
 	$timeout( function(  )
 	{
-		$scope.scrollToExpanded();
-	}, 2000 )
+		if( $scope.stateParams.e )
+		{
+			$scope.scrollToExpanded(  );
+		}
+	}, 1000 );
 
-
-	// Check if item is expanded
-	// $scope.expandedItem = function( itemId )
-	// {
-	// 	return $location.hash(  ) == itemId ? true : false;
-	// }
-
-	// Toggle expandable item
-	// $scope.toggleItem = function( itemId )
-	// {
-	// 	if ( $scope.expandedItem( itemId ) )
-	// 	{
-	// 		$location.hash( null );
-	// 	}
-	// 	else
-	// 	{
-	// 		$location.hash( itemId );
-	// 	}
-	// }
-
-	// $scope.$on('$locationChangeStart', function(ev) {
-	// 	ev.preventDefault();
-	// });
-
-	// Scroll to appropriate item on page load
-	// $timeout( function(  )
-	// {
-	// 	var hash = $location.hash(  );
-	// 	$anchorScroll( hash );
-	// }, 2000 );
-
+	// Check which index layout to load
 	$scope.setAltIndex = function( input )
 	{
 		if ( 'media, awards, search, research, news'.indexOf( input ) != -1 )
@@ -71,6 +47,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
 
+	// Function for fetching non-project resources from API
 	$scope.getResource = function( sectionTitle )
 	{
 		$scope.setAltIndex( sectionTitle );
@@ -139,7 +116,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Update stateParams
 		$scope.stateParams = $state.params;
 		
-		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$location.hash() )
+		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
 		{			
 
 			// Clear indexContents
