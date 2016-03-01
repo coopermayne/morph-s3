@@ -47,23 +47,10 @@
 				)
 					| {{ project.title }}
 
-.alt-index-project-wrapper( ng-if='stateParams.sortingType=="location"' )
-	.alt-index-project(
-		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
-	)
-		.alt-project-title-and-image
-			.alt-project-image(
-				ng-if='item.thumb || item.image.name.mobile.url'
-				preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
-			)
-			.alt-project-title hi
-		
-		.alt-project-metadata
-			.alt-project-awarded( ng-if='stateParams.sortingType == "awards" && item.projects.length' )
-				.alt-project-awarded-label.project-detail-label
-					| {{ item.projects.length > 1 ? "Projects Awarded":"Project Awarded" }}:
-				.alt-project-awarded-project(
-					ng-repeat='project in item.projects'
-					ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
-				)
-					| {{ project.title }}
+.whatwhat( ng-if='stateParams.sortingType=="location"' )
+	ui-gmap-google-map(center='map.center', zoom='map.zoom', draggable="true", options="options")
+		ui-gmap-markers(events="theEvents" models='randomMarkers' coords="'self'" icon="'icon'")
+			ui-gmap-windows(options='windowOptions', closeclick='closeClick()')
+				.popup(ng-non-bindable)
+					h1 {{title}}
+					img(src='{{image}}')
