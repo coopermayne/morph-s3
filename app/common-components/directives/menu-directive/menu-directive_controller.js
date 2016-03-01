@@ -39,6 +39,26 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$state.go( 'root.section-state', { section: "search", s: text } );
 	}
 
+	$scope.viewSorting = function( sortingType, q )
+	{
+
+		sortingType = sortingType.toLowerCase(  );
+
+		q = q || null;
+
+		if ( q ) { q = q.toLowerCase() };
+
+		$state.transitionTo( 'root.section-state',
+			{
+				section: $state.params.section,
+				sortingType: sortingType,
+				q: q
+			},
+			{
+				notify: true
+			} );
+	}
+
 	console.log( 'MenuDirectiveController active!' );
 
 } );

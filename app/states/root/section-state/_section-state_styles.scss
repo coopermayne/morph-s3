@@ -32,6 +32,17 @@
 
 .index-project-wrapper
 {
+	@include respond-to( 'medium-large' )
+	{
+		width: 600px;
+	}
+	@include respond-to( 'medium' )
+	{
+		justify-content: center;
+
+		width: 500px;
+	}
+
 	flex-flow: row wrap;
 	justify-content: center;
 
