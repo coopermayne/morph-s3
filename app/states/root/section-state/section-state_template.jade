@@ -30,13 +30,26 @@
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
 	)
+		.alt-index-expand(
+			ng-if='item.overview || item.description'
+			ui-sref='root.section-state.sorting-state({ e: item.id })'
+		)
+			| {{ item.id == stateParams.e ? "-":"+" }}
 		.alt-project-title-and-image
 			.alt-project-image(
 				ng-if='item.thumb || item.image.name.mobile.url'
 				preload-bg-image='{{ item.thumb || item.image.name.thumb.url }}'
 			)
-			.alt-project-title( ng-bind-html='item.title || item.name | htmlParse' )
-		
+			.alt-title-and-expanded-wrapper
+				.alt-project-title(
+					ng-bind-html='item.title || item.name | htmlParse'
+					ui-sref='root.section-state.sorting-state({ e: item.id })'
+				)
+				.alt-project-expanded(
+					ng-if='stateParams.e == item.id && ( item.overview || item.description )'
+					ng-bind-html='item.overview | htmlParse'
+				)
+			
 		.alt-project-metadata
 			.alt-project-awarded( ng-if='stateParams.sortingType == "awards" && item.projects.length' )
 				.alt-project-awarded-label.project-detail-label
@@ -46,4 +59,3 @@
 					ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
 				)
 					| {{ project.title }}
-		//- .alt-project-expanded( ng-if='item.overview || item.description || ' )
