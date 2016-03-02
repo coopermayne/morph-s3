@@ -11,6 +11,8 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	console.log('RootController active!');
 
 	$scope.state = $state;
+
+	$scope.stateParams = $state.params;
 	
 	$scope.activeTopNav = $state.current.activeTopNav;
 

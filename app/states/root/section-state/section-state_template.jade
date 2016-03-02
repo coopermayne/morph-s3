@@ -26,33 +26,45 @@
 		.project-title
 			| {{ item.title || item.name }}
 
+//- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
 		id='{{item.id}}'
 	)
+		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
 			ng-if='item.description.length > 0'
 			ui-sref='root.section-state.sorting-state({ e: item.id })'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
+
+		//- Project title and image
 		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e == item.id }' )
+
+			//- Image
 			.alt-project-image(
 				ng-if='item.thumb || item.image.name.mobile.url'
 				preload-bg-image='{{ item.thumb || item.image.name.mobile.url }}'
 			)
+
+			//- Title + expanded sections
 			.alt-title-and-expanded-wrapper
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
+
+				//- Overview attribute
 				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
+
+				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
-					| {{ item.author}}
-					| {{ item.publication }}.
+					| {{ item.author }}
+					| {{ item.publication ? item.publication + '.' : '' }}
 					| {{ item.publisher }}
-					| ({{ item.pub_date }}).
-					| {{ item.pages }}.
+					| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
+					| {{ item.pages ? item.pages + '.' : '' }}
 					.pdf-attachment(
 						ng-repeat='document in item.documents'
 						ng-if='item.documents.length != 0'
@@ -62,11 +74,14 @@
 							target='new'
 						)
 							| PDF
+
+				//- Description attribute
 				.alt-project-expanded(
 					ng-if='stateParams.e == item.id && ( item.description.length > 0 )'
 					ng-bind-html='item.description | htmlParse'
 				)
-			
+
+		//- Awards metadata
 		.alt-project-metadata
 			.alt-project-awarded( ng-if='stateParams.sortingType == "awards" && item.projects.length' )
 				.alt-project-awarded-label.project-detail-label

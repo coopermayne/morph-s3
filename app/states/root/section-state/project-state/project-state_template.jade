@@ -90,18 +90,17 @@
 					| Bibliography
 				.project-detail-wrapper.bibliography-item(
 					ng-repeat='item in activeItem.bibliography_items'
-					ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", e: item.id })'
+					ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.id })'
 				)
 					.bibliography-image(
 						ng-if='item.primary_image'
 						preload-bg-image='{{ item.primary_image.name.thumb.url }}'
 					)
-					| {{ item.author}}
-					| "{{ item.article_name }}"
-					| {{ item.publication }}.
+					| {{ item.author }}
+					| {{ item.publication ? item.publication + '.' : '' }}
 					| {{ item.publisher }}
-					| ({{ item.pub_date }}).
-					| {{ item.pages }}.
+					| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
+					| {{ item.pages ? item.pages + '.' : '' }}
 
 			.project-page-main-text
 

@@ -12,6 +12,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.stateParams = $state.params;
 
+	$scope.indexContents = [  ];
+
 	// Default to tile index
 	$scope.altIndexSection = false;
 
@@ -23,14 +25,20 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		document.body.scrollTop = elScr;
 	}
 
-	// Wait for DOM to load before scrolling to expanded item
-	$timeout( function(  )
+	// Wait for API response (and DOM to load) before scrolling to expanded item
+	$scope.$watchCollection( 'indexContents', function(  )
 	{
-		if( $scope.stateParams.e )
+		if( $scope.indexContents.length != 0 && $scope.stateParams.e )
 		{
-			$scope.scrollToExpanded(  );
+			$timeout( function(  )
+			{
+				if( $scope.stateParams.e )
+				{
+					$scope.scrollToExpanded(  );
+				}
+			}, 0 );
 		}
-	}, 2000 );
+	} );
 
 	// Check which index layout to load
 	$scope.setAltIndex = function( input )
