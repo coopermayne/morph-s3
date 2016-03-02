@@ -207,3 +207,22 @@
 
 	max-width: 100%;
 }
+
+.pdf-attachment
+{
+	flex-flow: row wrap;
+
+	a
+	{
+		flex-flow: row wrap;
+
+		&:before
+		{
+			content: '';
+			width: 1rem;
+			height: 1rem;
+			background: url( 'images/file.svg' ) no-repeat center center;
+			background-size: contain;
+		}
+	}
+}

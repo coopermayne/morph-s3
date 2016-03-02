@@ -47,6 +47,21 @@
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
+				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
+					| {{ item.author}}
+					| {{ item.publication }}.
+					| {{ item.publisher }}
+					| ({{ item.pub_date }}).
+					| {{ item.pages }}.
+					.pdf-attachment(
+						ng-repeat='document in item.documents'
+						ng-if='item.documents.length != 0'
+					)
+						a(
+							href='{{ document.name.url }}'
+							target='new'
+						)
+							| PDF
 				.alt-project-expanded(
 					ng-if='stateParams.e == item.id && ( item.description.length > 0 )'
 					ng-bind-html='item.description | htmlParse'
