@@ -88,7 +88,10 @@
 				//- Bibliography
 				.project-page-sidebar-header( ng-if='activeItem.bibliography_items.length' )
 					| Bibliography
-				.project-detail-wrapper.bibliography-item( ng-repeat='item in activeItem.bibliography_items' )
+				.project-detail-wrapper.bibliography-item(
+					ng-repeat='item in activeItem.bibliography_items'
+					ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", e: item.id })'
+				)
 					.bibliography-image(
 						ng-if='item.primary_image'
 						preload-bg-image='{{ item.primary_image.name.thumb.url }}'

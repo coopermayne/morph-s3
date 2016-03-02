@@ -30,7 +30,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		{
 			$scope.scrollToExpanded(  );
 		}
-	}, 1000 );
+	}, 2000 );
 
 	// Check which index layout to load
 	$scope.setAltIndex = function( input )
@@ -101,6 +101,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		} ).then( function( response )
 		{
 			$scope.indexContents = response.data;
+			console.log( $scope.indexContents );
 		} );
 		break;
 
@@ -116,7 +117,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Update stateParams
 		$scope.stateParams = $state.params;
 		
-		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
+		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.s && !$scope.stateParams.e )
 		{			
 
 			// Clear indexContents
