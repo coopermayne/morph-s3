@@ -12,12 +12,22 @@ $scope.center = {
 	zoom: 3
 }
 
+var iconSettings = {
+	iconUrl: 'images/circle.svg',
+	//shadowUrl: 'img/leaf-shadow.png',
+	//iconSize:     [38, 95],
+	//shadowSize:   [50, 64],
+	//iconAnchor:   [22, 94],
+	//shadowAnchor: [4, 62]
+}
+
 $scope.markers = []
 
 var placeMarkers = function(){
 	angular.forEach($scope.indexContents, function(item, key){
 		if(item.lat){
 			$scope.markers.push({
+				icon: iconSettings,
 				lat: parseFloat(item.lat),
 				lng:parseFloat( item.lon ),
 				getMessageScope: function(){return $scope},
