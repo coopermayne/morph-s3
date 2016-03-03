@@ -1,12 +1,24 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
+.sub-sort-wrapper( ng-if='"awards, media, type".indexOf( stateParams.sortingType ) != -1' )
+	.sub-sort(
+		ng-click='switchSubSort( "title" )'
+		ng-class='subSort === "title"?"active-sort":""'
+	)
+		| A-Z
+	.sub-sort(
+		ng-click='switchSubSort( "date" )'
+		ng-class='{"active-sort":"year, superdate, pub_date".indexOf( subSort ) != -1}'
+	)
+		| Date
+
 .index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType' )
 
 	//- Items with 'section' attribute
 	.index-project(
-		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: "title" '
-		ng-if='item.section'
+		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort: reverseVar'
+		ng-if='item.section && item[subSort]'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
@@ -29,7 +41,7 @@
 //- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
 	.alt-index-project(
-		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q'
+		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{item.id}}'
 	)
 		//- 'Expand'/'Contract' buttons (+/-)
@@ -54,6 +66,9 @@
 					ng-bind-html='item.title || item.name | htmlParse'
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
+
+				.item-year( ng-if='item.year' )
+					| ({{ item.year }})
 
 				//- Overview attribute
 				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )

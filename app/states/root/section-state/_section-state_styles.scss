@@ -5,10 +5,22 @@
 	flex: 3 0 0;
 }
 
+.sub-sort:not( :last-child ):after
+{
+	content: '/';
+}
+
 .sub-sort-wrapper,
 .sub-sort
 {
 	flex-flow: row;
+
+	cursor: pointer;
+
+	&:hover
+	{
+		text-decoration: underline;
+	}
 }
 
 .sub-sort-wrapper
@@ -21,13 +33,16 @@
 	position: fixed;
 	top: 4.5rem;
 	right: 0;
+	z-index: 999;
+
+	font-size: $body-text;
 
 	transform: rotate( 90deg );
 }
 
-.sub-sort:not( :last-child ):after
+.active-sort
 {
-	content: '/';
+	text-decoration: underline;
 }
 
 .index-project-wrapper
@@ -46,7 +61,7 @@
 	flex-flow: row wrap;
 	justify-content: center;
 
-	padding-right: 2rem;
+	margin-right: 2rem;
 }
 
 .index-project

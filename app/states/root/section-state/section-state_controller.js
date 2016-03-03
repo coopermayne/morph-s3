@@ -25,6 +25,47 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		document.body.scrollTop = elScr;
 	}
 
+	$scope.switchSubSort = function( sort )
+	{
+		if ( sort == 'date' )
+		{
+			$scope.reverseVar = true;
+
+			switch( $scope.stateParams.sortingType )
+			{
+				case 'awards':
+				$scope.subSort = 'year';
+				break;
+
+				case 'media':
+				$scope.subSort = 'pub_date';
+				break;
+
+				case 'type':
+				case 'year':
+				$scope.subSort = 'superdate';
+				break;
+
+				case 'a-z':
+				$scope.subSort = 'title';
+				$scope.reverseVar = false;
+				break;
+
+				default:
+				if( $scope.stateParams.section == "news" )
+				{
+					$scope.subSort = "created_at";
+				}
+			}
+		}
+		else
+		{
+			$scope.subSort = sort;
+			$scope.reverseVar = false;
+		}
+		console.log( $scope.subSort );
+	}
+
 	// Wait for API response (and DOM to load) before scrolling to expanded item
 	$scope.$watchCollection( 'indexContents', function(  )
 	{
@@ -37,6 +78,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					$scope.scrollToExpanded(  );
 				}
 			}, 0 );
+		}
+		else
+		{
+			$scope.switchSubSort( 'date' );
 		}
 	} );
 
@@ -146,6 +191,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				break;
 			}
 		}
+
+		$scope.switchSubSort( 'date' );
 	});
 
 } );
