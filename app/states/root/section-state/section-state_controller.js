@@ -37,6 +37,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 				case 'type':
 				case 'year':
+				case 'now institute':
 				$scope.subSort = 'superdate';
 				break;
 
