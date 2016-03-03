@@ -81,6 +81,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 		else
 		{
+			// Sort items by date on indexContents load
 			$scope.switchSubSort( 'date' );
 		}
 	} );
@@ -176,6 +177,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			// Clear indexContents
 			$scope.indexContents = [  ];
 
+			// Update indexContents
 			switch ( $scope.stateParams.sortingType )
 			{
 				case 'awards':
@@ -192,6 +194,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			}
 		}
 
+		// Update subSort on section and sortingType change
 		$scope.switchSubSort( 'date' );
 	});
 
