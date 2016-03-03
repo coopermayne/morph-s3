@@ -16,11 +16,6 @@
 	flex-flow: row;
 
 	cursor: pointer;
-
-	&:hover
-	{
-		text-decoration: underline;
-	}
 }
 
 .sub-sort-wrapper
@@ -38,6 +33,11 @@
 	font-size: $body-text;
 
 	transform: rotate( 90deg );
+}
+
+.sub-sort:hover
+{
+	text-decoration: underline;
 }
 
 .active-sort

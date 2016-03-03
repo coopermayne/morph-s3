@@ -1,7 +1,7 @@
 //- Project Modal
 .project-modal( ui-view='project-content' )
 
-.sub-sort-wrapper( ng-if='"awards, media, type".indexOf( stateParams.sortingType ) != -1' )
+.sub-sort-wrapper( ng-if='stateParams.sortingType && "awards, media, type".indexOf( stateParams.sortingType ) != -1' )
 	.sub-sort(
 		ng-click='switchSubSort( "title" )'
 		ng-class='subSort === "title"?"active-sort":""'
@@ -43,11 +43,11 @@
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{item.id}}'
-		ng-if='item[subSort] || stateParams.section == "search"'
+		ng-if='item[subSort] || stateParams.section === "search"'
 	)
 		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
-			ng-if='item.description.length > 0 && stateParams.section != "search"'
+			ng-if='item.description.length > 0 && stateParams.section !== "search"'
 			ui-sref='root.section-state.sorting-state({ e: item.id })'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
@@ -67,14 +67,14 @@
 				//- NOT search section (different ui-sref behavior)
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
-					ng-if='stateParams.section != "search"'
+					ng-if='stateParams.section !== "search"'
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 
 				//- Search section click routing
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
-					ng-if='stateParams.section = "search"'
+					ng-if='stateParams.section === "search"'
 					ng-click='resolveSearchClick( item )'
 				)
 

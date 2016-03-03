@@ -32,7 +32,6 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				} ).then( function( response )
 				{
 					$scope.activeItem = response.data;
-					console.log( $scope.activeItem );
 				} );
 			}
 			else

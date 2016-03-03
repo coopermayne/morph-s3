@@ -84,7 +84,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Search project page routing
 	$scope.resolveSearchClick = function( item )
 	{
-		item.searchable_type === "Project" || "Person" ? $state.go( 'root.section-state.project-state', { projectId: item.searchable_id } ) : $state.go( 'root.section-state.sorting-state', { section: item.section, e: item.id, s: null } )
+		"Project, Person".indexOf( item.searchable_type ) != -1 ? $state.go( 'root.section-state.project-state', { projectId: item.searchable_id } ) : $state.go( 'root.section-state.sorting-state', { section: item.section, e: item.id, s: null } )
 		$rootScope.searchItem = item;
 	}
 
