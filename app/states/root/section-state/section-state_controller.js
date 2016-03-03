@@ -234,52 +234,52 @@ $scope.layers = {
 }
 
 $scope.markers = []
-$scope.markers=
-	{
-		stoke: {
-			group: 'london',
-			lat: 51.5615,
-			lng: -0.0731,
-		},
 
-		dalston: {
-			group: 'london',
-			lat: 51.545,
-			lng: -0.070,
-		},
+//$scope.markers = {
+	//stoke: {
+		//group: 'london',
+		//lat: 51.5615,
+		//lng: -0.0731,
+	//},
 
-		wandsworth: {
-			group: 'london',
-			lat: 51.4644,
-			lng:-0.1924,
-		},
+	//dalston: {
+		//group: 'london',
+		//lat: 51.545,
+		//lng: -0.070,
+	//},
 
-		battersea: {
-			group: 'london',
-			lat: 51.4638,
-			lng: -0.1677,
-		}
-	}
+	//wandsworth: {
+		//group: 'london',
+		//lat: 51.4644,
+		//lng:-0.1924,
+	//},
 
-//var placeMarkers = function(){
-	//angular.forEach($scope.indexContents, function(item, key){
-		//if(item.lat){
-			//$scope.markers.push({
-				//icon: iconSettings,
-				//lat: parseFloat(item.lat),
-				//lng:parseFloat( item.lon ),
-				//getMessageScope: function(){return $scope},
-				//focus: false,
-				//message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
-				//compileMessage: true
-			//})
-		//}
-	//})
+	//battersea: {
+		//group: 'london',
+		//lat: 51.4638,
+		//lng: -0.1677,
+	//}
 //}
 
-//setTimeout(function(){
-	//placeMarkers()
-//}, 2000)
+var placeMarkers = function(){
+	angular.forEach($scope.indexContents, function(item, key){
+		if(item.lat){
+			$scope.markers.push({
+				icon: iconSettings,
+				lat: parseFloat(item.lat),
+				lng:parseFloat( item.lon ),
+				getMessageScope: function(){return $scope},
+				focus: false,
+				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
+				compileMessage: true
+			})
+		}
+	})
+}
+
+setTimeout(function(){
+	placeMarkers()
+}, 2000)
 
 //----------------------------------------  end map
 	console.log( 'SectionStateController active!' );
