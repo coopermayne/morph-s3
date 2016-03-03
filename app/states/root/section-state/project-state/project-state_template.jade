@@ -13,7 +13,7 @@
 			| {{ activeItem.title || activeItem.name }}
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section != "about"' )
+		.project-page-text-wrapper( ng-if='stateParams.section != "about" && stateParams.section != "search"' )
 
 			.project-page-sidebar
 
@@ -73,7 +73,6 @@
 						ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
 						ng-bind-html='role.person.name | htmlParse'
 					)
-						//- | {{ role.person.name }} 
 
 				//- Design recognition
 				.project-page-sidebar-header( ng-if='activeItem.awards.length' )
@@ -131,7 +130,7 @@
 							)
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section == "about"' )
+		.project-page-text-wrapper( ng-if='stateParams.section == "about" || stateParams.section == "search"' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )

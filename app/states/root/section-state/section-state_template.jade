@@ -47,7 +47,7 @@
 	)
 		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
-			ng-if='item.description.length > 0'
+			ng-if='item.description.length > 0 && stateParams.section != "search"'
 			ui-sref='root.section-state.sorting-state({ e: item.id })'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
@@ -63,9 +63,19 @@
 
 			//- Title + expanded sections
 			.alt-title-and-expanded-wrapper
+
+				//- NOT search section (different ui-sref behavior)
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
+					ng-if='stateParams.section != "search"'
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
+				)
+
+				//- Search section click routing
+				.alt-project-title(
+					ng-bind-html='item.title || item.name | htmlParse'
+					ng-if='stateParams.section = "search"'
+					ng-click='resolveSearchClick( item )'
 				)
 
 				.item-year( ng-if='item.year' )

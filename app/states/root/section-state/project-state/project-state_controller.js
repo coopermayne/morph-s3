@@ -22,6 +22,28 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 			} );
 		break;
 
+		case 'search':
+			if( $rootScope.searchItem.searchable_type === "Person" )
+			{
+				$http(
+				{
+					method: 'GET',
+					url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
+				} ).then( function( response )
+				{
+					$scope.activeItem = response.data;
+					console.log( $scope.activeItem );
+				} );
+			}
+			else
+			{
+				Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
+				{
+					$scope.activeItem = response.result;
+				} );
+			}
+		break;
+
 		default:
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{

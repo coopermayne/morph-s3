@@ -4,7 +4,9 @@ var menuDirective = angular.module( 'menuDirective',
 [
 	'menuResource',
 	
-	'slideshowDirective'
+	'slideshowDirective',
+
+	'ngEnter'
 ] );
 
 menuDirective.directive( 'menuDirective', function(  )
