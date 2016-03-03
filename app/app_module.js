@@ -6,22 +6,17 @@ var morphopedia = angular.module( 'morphopedia',
 
 	'matchMedia',
 
-	'uiGmapgoogle-maps',
-
 	'angular-preload-image',
+
+  'leaflet-directive',
 
 	'angular.filter',
 
 	'root'
 ] );
 
-morphopedia.config( function( uiGmapGoogleMapApiProvider, $urlRouterProvider, $locationProvider, $sceDelegateProvider )
+morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelegateProvider )
 {
-  uiGmapGoogleMapApiProvider.configure({
-    key: 'AIzaSyAiQruCxCWU7L42ksmExtvJ10b3QkowUjY',
-    v: '3.20', //defaults to latest 3.X anyhow
-    libraries: 'weather,geometry,visualization'
-  });
 
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );

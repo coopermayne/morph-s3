@@ -147,13 +147,23 @@
 	}
 }
 
-.angular-google-map-container
+.whatwhat
 {
-	width: 700px;
-	height: 700px;
+	position: fixed;
+	width: 100%;
+	top: 0;
 }
 
-.popup
+.angular-leaflet-map
 {
-	background: grey;
+	height: 100vh;
+}
+.map-image
+{
+	width: 200px;
+	height: 100px;
+	margin-right: 10px;
+	background-position: left;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
