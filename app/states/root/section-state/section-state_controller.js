@@ -14,34 +14,272 @@ $scope.center = {
 
 var iconSettings = {
 	iconUrl: 'images/circle.svg',
-	//shadowUrl: 'img/leaf-shadow.png',
 	//iconSize:     [38, 95],
-	//shadowSize:   [50, 64],
-	//iconAnchor:   [22, 94],
-	//shadowAnchor: [4, 62]
+	iconAnchor:   [9, 10],
+}
+
+var mapStyles = [
+	{
+		"featureType": "all",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}, {
+			"lightness": "-100"
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.fill",
+		"stylers": [{
+			"saturation": 36
+		}, {
+			"color": "#000000"
+		}, {
+			"lightness": 40
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.stroke",
+		"stylers": [{
+			"visibility": "on"
+		}, {
+			"color": "#000000"
+		}, {
+			"lightness": 16
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.icon",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "geometry.fill",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 20
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 17
+		}, {
+			"weight": 1.2
+		}, {
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "simplified"
+		}, {
+			"color": "#ffffff"
+		}]
+	}, {
+		"featureType": "administrative.country",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.province",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "simplified"
+		}, {
+			"weight": "1.83"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "labels.icon",
+		"stylers": [{
+			"visibility": "simplified"
+		}]
+	}, {
+		"featureType": "administrative.neighborhood",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.land_parcel",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "landscape",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": "-100"
+		}]
+	}, {
+		"featureType": "poi",
+		"elementType": "all",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "poi",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 21
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "geometry",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "road.highway",
+		"elementType": "geometry.fill",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 17
+		}]
+	}, {
+		"featureType": "road.highway",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 29
+		}, {
+			"weight": 0.2
+		}]
+	}, {
+		"featureType": "road.arterial",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 18
+		}]
+	}, {
+		"featureType": "road.local",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 16
+		}]
+	}, {
+		"featureType": "transit",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
+		}, {
+			"lightness": 19
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	},{
+		"featureType": "water",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#ffffff"
+		}, {
+			"lightness": 17
+		}]
+	}
+]
+
+$scope.layers = {
+	baselayers: {
+		googleRoadmap: {
+			name: 'Google Streets',
+			layerType: 'ROADMAP',
+			type: 'google',
+			layerOptions: {
+				mapOptions:{
+					styles: mapStyles
+				}
+			}
+		}
+	}
 }
 
 $scope.markers = []
+$scope.markers=
+	{
+		stoke: {
+			group: 'london',
+			lat: 51.5615,
+			lng: -0.0731,
+		},
 
-var placeMarkers = function(){
-	angular.forEach($scope.indexContents, function(item, key){
-		if(item.lat){
-			$scope.markers.push({
-				icon: iconSettings,
-				lat: parseFloat(item.lat),
-				lng:parseFloat( item.lon ),
-				getMessageScope: function(){return $scope},
-				focus: false,
-				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><div class='map-image' preload-bg-image='http://www.fillmurray.com/1800/600'></div</div>",
-				compileMessage: true
-			})
+		dalston: {
+			group: 'london',
+			lat: 51.545,
+			lng: -0.070,
+		},
+
+		wandsworth: {
+			group: 'london',
+			lat: 51.4644,
+			lng:-0.1924,
+		},
+
+		battersea: {
+			group: 'london',
+			lat: 51.4638,
+			lng: -0.1677,
 		}
-	})
-}
+	}
 
-setTimeout(function(){
-	placeMarkers()
-}, 2000)
+//var placeMarkers = function(){
+	//angular.forEach($scope.indexContents, function(item, key){
+		//if(item.lat){
+			//$scope.markers.push({
+				//icon: iconSettings,
+				//lat: parseFloat(item.lat),
+				//lng:parseFloat( item.lon ),
+				//getMessageScope: function(){return $scope},
+				//focus: false,
+				//message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
+				//compileMessage: true
+			//})
+		//}
+	//})
+//}
+
+//setTimeout(function(){
+	//placeMarkers()
+//}, 2000)
 
 //----------------------------------------  end map
 	console.log( 'SectionStateController active!' );
