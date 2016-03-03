@@ -241,3 +241,44 @@
 		}
 	}
 }
+
+.whatwhat
+{
+	position: fixed;
+	width: 100%;
+	top: 0;
+}
+
+.angular-leaflet-map
+{
+	height: 100vh;
+}
+.map-image
+{
+	width: 200px;
+	height: 100px;
+	margin-right: 10px;
+	background-position: left;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+a[href^='http://maps.google.com/maps']
+{
+	display: none !important;
+}
+a[href^='https://maps.google.com/maps']
+{
+	display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc
+{
+	display: none;
+}
+.gmnoprint div
+{
+	background: none !important;
+}

@@ -13,7 +13,7 @@
 	)
 		| Date
 
-.index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType' )
+.index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType && stateParams.sortingType !== "location"' )
 
 	//- Items with 'section' attribute
 	.index-project(
@@ -107,3 +107,6 @@
 					ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
 				)
 					| {{ project.title }}
+
+.whatwhat( ng-if='stateParams.sortingType=="location"' )
+	leaflet( lf-center="center" markers="markers" layers="layers")

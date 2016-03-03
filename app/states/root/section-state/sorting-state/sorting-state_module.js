@@ -3,9 +3,8 @@
 var sortingState = angular.module( 'sortingState',
 [
 	'ui.router',
-
-	'projectState'
-
+	'projectState',
+  //'uiGmapgoogle-maps'
 ] );
 
 sortingState.config( function( $stateProvider )

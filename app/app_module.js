@@ -1,20 +1,23 @@
 'use strict';
 
 var morphopedia = angular.module( 'morphopedia',
-	[
+[
 	'ngResource',
 
 	'matchMedia',
 
 	'angular-preload-image',
 
+	'leaflet-directive',
+
 	'angular.filter',
 
 	'root'
-	] );
+] );
 
-morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegateProvider )
+morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelegateProvider )
 {
+
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );
 
@@ -24,7 +27,7 @@ morphopedia.config( function( $urlRouterProvider, $locationProvider, $sceDelegat
 		'self',
 		// Allow loading from our assets domain.
 		'https://morphmorphupdated2.s3.amazonaws.com/**'
-	]);
+		]);
 
 } );
 

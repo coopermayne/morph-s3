@@ -3,8 +3,16 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 	head
 		base( href='/' )
 		meta( name='viewport', content='width=device-width, height=device-height, initial-scale=1')
-		link( href='http://fonts.googleapis.com/css?family=Muli|Anonymous+Pro:400,400italic', rel='stylesheet', type='text/css' )
 		link( rel='icon', type='image/png', href='favicon.png' )
+		link( rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css")
+		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css")
+		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css")
+
+		script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js")
+		script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js")
+		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js')
+		script( src='/images/Google.js')
+
 		// min:js 
 		// endinject 
 		// min:css 

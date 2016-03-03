@@ -29,7 +29,6 @@ gulp.task( 'build-css', function(  )
 		// Select all bower styles.
 
 		gulp.src( mainBowerFiles( {
-
 			paths:
 			{
 				bowerDirectory: path.to.bower.source,

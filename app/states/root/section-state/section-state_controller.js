@@ -4,13 +4,7 @@ var sectionState = angular.module( 'sectionState' );
 
 sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout )
 {
-	console.log( 'SectionStateController active!' );
 
-	$scope.stateName = 'section-state';
-
-	$scope.sortingType = $stateParams.sortingType;
-
-	$scope.stateParams = $state.params;
 
 	$scope.indexContents = [  ];
 
@@ -86,35 +80,307 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 	} );
 
-	// Check which index layout to load
-	$scope.setAltIndex = function( input )
-	{
-		if ( 'media, awards, search, research, news'.indexOf( input ) != -1 )
-		{
-			$scope.altIndexSection = true;
-		}
-		else
-		{
-			$scope.altIndexSection = false;
+
+// BEGIN MAP
+$scope.center = {
+	lat: 52,
+	lng: 13,
+	zoom: 3
+}
+
+var iconSettings = {
+	iconUrl: 'images/circle.svg',
+	//iconSize:     [38, 95],
+	iconAnchor:   [9, 10],
+}
+
+var mapStyles = [
+{
+	"featureType": "all",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}, {
+		"lightness": "-100"
+	}]
+}, {
+	"featureType": "all",
+	"elementType": "labels.text.fill",
+	"stylers": [{
+		"saturation": 36
+	}, {
+		"color": "#000000"
+	}, {
+		"lightness": 40
+	}]
+}, {
+	"featureType": "all",
+	"elementType": "labels.text.stroke",
+	"stylers": [{
+		"visibility": "on"
+	}, {
+		"color": "#000000"
+	}, {
+		"lightness": 16
+	}]
+}, {
+	"featureType": "all",
+	"elementType": "labels.icon",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative",
+	"elementType": "geometry.fill",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 20
+	}]
+}, {
+	"featureType": "administrative",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 17
+	}, {
+		"weight": 1.2
+	}, {
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "simplified"
+	}, {
+		"color": "#ffffff"
+	}]
+}, {
+	"featureType": "administrative.country",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative.province",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative.locality",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative.locality",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "simplified"
+	}, {
+		"weight": "1.83"
+	}]
+}, {
+	"featureType": "administrative.locality",
+	"elementType": "labels.icon",
+	"stylers": [{
+		"visibility": "simplified"
+	}]
+}, {
+	"featureType": "administrative.neighborhood",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative.land_parcel",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "landscape",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": "-100"
+	}]
+}, {
+	"featureType": "poi",
+	"elementType": "all",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "poi",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 21
+	}]
+}, {
+	"featureType": "road",
+	"elementType": "geometry",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "road",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "road.highway",
+	"elementType": "geometry.fill",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 17
+	}]
+}, {
+	"featureType": "road.highway",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 29
+	}, {
+		"weight": 0.2
+	}]
+}, {
+	"featureType": "road.arterial",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 18
+	}]
+}, {
+	"featureType": "road.local",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 16
+	}]
+}, {
+	"featureType": "transit",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"lightness": 19
+	}]
+}, {
+	"featureType": "road",
+	"elementType": "labels",
+	"stylers": [{
+		"visibility": "off"
+	}]
+},{
+	"featureType": "water",
+	"elementType": "geometry",
+	"stylers": [{
+		"color": "#ffffff"
+	}, {
+		"lightness": 17
+	}]
+}
+]
+
+$scope.layers = {
+	baselayers: {
+		googleRoadmap: {
+			name: 'Google Streets',
+			layerType: 'ROADMAP',
+			type: 'google',
+			layerOptions: {
+				mapOptions:{
+					styles: mapStyles
+				}
+			}
 		}
 	}
+}
 
-	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
+$scope.markers = []
 
-	// Function for fetching non-project resources from API
-	$scope.getResource = function( sectionTitle )
+var placeMarkers = function(){
+	angular.forEach($scope.indexContents, function(item, key){
+		if(item.lat){
+			$scope.markers.push({
+				icon: iconSettings,
+				lat: parseFloat(item.lat),
+				lng:parseFloat( item.lon ),
+				getMessageScope: function(){return $scope},
+				focus: false,
+				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
+				compileMessage: true
+			})
+		}
+	})
+}
+
+setTimeout(function(){
+	placeMarkers()
+}, 2000)
+
+//----------------------------------------  end map
+
+console.log( 'SectionStateController active!' );
+
+$scope.stateName = 'section-state';
+
+$scope.sortingType = $stateParams.sortingType;
+
+$scope.stateParams = $state.params;
+
+$scope.altIndexSection = false;
+$scope.locIndex = false;
+
+$scope.setAltIndex = function( input )
+{
+	if ( 'media, awards, search, research, news'.indexOf( input ) != -1 )
 	{
-		$scope.setAltIndex( sectionTitle );
-
-		$http(
-		{
-			method: 'GET',
-			url: apiUrl + sectionTitle + '.json'
-		} ).then( function( response )
-		{
-			$scope.indexContents = response.data;
-		} );
+		$scope.altIndexSection = true;
 	}
+	else
+	{
+		$scope.altIndexSection = false;
+	}
+
+	if ( 'location'.indexOf( input ) !== -1 )
+	{
+		$scope.locIndex = true;
+	}
+	else
+	{
+		$scope.locIndex = false;
+	}
+}
+
+var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
+
+  // Function for fetching non-project resources from API
+  $scope.getResource = function( sectionTitle )
+  {
+  	$scope.setAltIndex( sectionTitle );
+
+  	$http(
+  	{
+  		method: 'GET',
+  		url: apiUrl + sectionTitle + '.json'
+  	} ).then( function( response )
+  	{
+  		$scope.indexContents = response.data;
+  	} );
+  }
 
 	// Fetch index contents on controller load, based on section parameter
 	switch( $scope.stateParams.section )
