@@ -19,18 +19,22 @@
 		background: url('images/trigger.svg') no-repeat center center;
 	}
 
-	&#previous-button
+	&#previous-button,
+	&#next-button
 	{
 		width: 80px;
 		height: 80px;
+		top: calc( 50% - 50px );
+	}
+
+	&#previous-button
+	{
 		background: url('images/angle-left.svg') no-repeat center center;
 		background-size: contain;
 	}
 
 	&#next-button
 	{
-		width: 80px;
-		height: 80px;
 		background: url('images/angle-right.svg') no-repeat center center;
 		background-size: contain;
 	}
