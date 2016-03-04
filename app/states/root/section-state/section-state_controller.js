@@ -364,7 +364,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 						return $scope;
 					},
 					focus: false,
-					message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
+					message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><img class='map-image' src='"+item.image.name.mobile.url+"'></img><div class='project-title'>"+item.title+"</div></div>",
 					compileMessage: true
 				} );
 			}

@@ -239,13 +239,14 @@
 {
 	height: 100vh;
 }
+
 .map-image
 {
 	width: 200px;
-	height: 100px;
-	margin-right: 10px;
+	height: 200px;
+	border-radius: 50%;
 	background-position: left;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 
@@ -267,4 +268,47 @@ a[href^='https://maps.google.com/maps']
 .gmnoprint div
 {
 	background: none !important;
+}
+
+.leaflet-popup
+{
+	width: 200px !important;
+	height: 200px !important;
+	bottom: -100px !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip
+{
+	width: 200px !important;
+	height: 200px !important;
+	padding: none;
+	border-radius: initial;
+	background: transparent;
+	box-shadow: none;
+}
+
+.leaflet-popup-content
+{
+	width: initial;
+	margin: 0;
+}
+
+.leaflet-popup-content
+{
+	margin: 0;
+
+	.project-title
+	{
+		flex: none;
+
+		width: 150px;
+		top: -170px;
+		left: -5px;
+		margin-top: 0;
+		background-color: $yellow;
+
+		font-size: $body-text;
+		font-family: $executive-reg;
+	}
 }
