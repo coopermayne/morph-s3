@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter )
 {
 
 
@@ -107,7 +107,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	}
 
 
-	// BEGIN MAP
+//BEGIN MAP------------------------------------------------------
 	$scope.center = {
 		lat: 52,
 		lng: 13,
@@ -116,11 +116,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	var iconSettings = {
 		iconUrl: 'images/circle.svg',
-		//iconSize:     [38, 95],
 		iconAnchor:   [9, 10],
 	}
 
-	var mapStyles = [
+	var mapStyles =
+[
 	{
 		"featureType": "all",
 		"elementType": "labels",
@@ -335,29 +335,48 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 	}
 
-	$scope.markers = []
+	$scope.markers = [  ];
 
-	var placeMarkers = function(){
-		angular.forEach($scope.indexContents, function(item, key){
-			if(item.lat){
-				$scope.markers.push({
+	var placeMarkers = function(  )
+	{
+		switch( $scope.stateParams.section )
+		{
+			case 'architecture':
+				$scope.indexContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
+			break;
+
+			case 'urban':
+				$scope.indexContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'urban' } } );
+			break;
+		}
+
+		angular.forEach( $scope.indexContents, function( item, key )
+		{
+			if( item.lat )
+			{
+				$scope.markers.push(
+				{
 					icon: iconSettings,
-					lat: parseFloat(item.lat),
+					lat: parseFloat( item.lat ),
 					lng:parseFloat( item.lon ),
-					getMessageScope: function(){return $scope},
+					getMessageScope: function(  )
+					{ 
+						return $scope;
+					},
 					focus: false,
 					message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><h1>"+item.title+"</h1><img class='map-image' src='"+item.image.name.mobile.url+"'></img</div>",
 					compileMessage: true
-				})
+				} );
 			}
-		})
+		} );
 	}
 
-	setTimeout(function(){
-		placeMarkers()
-	}, 2000)
+	$timeout( function(  )
+	{
+		placeMarkers(  )
+	}, 2000 );
 
-	//----------------------------------------  end map
+//------------------------------------------------------------  end map
 
 	console.log( 'SectionStateController active!' );
 

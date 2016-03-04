@@ -119,5 +119,9 @@
 				)
 					| {{ project.title }}
 
-.whatwhat( ng-if='stateParams.sortingType=="location"' )
-	leaflet( lf-center="center" markers="markers" layers="layers")
+.location-index-wrapper( ng-if='stateParams.sortingType === "location"' )
+	leaflet(
+		lf-center='center'
+		markers='markers'
+		layers='layers'
+	)
