@@ -12,7 +12,12 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 
 			$timeout( function(  )
 			{
-				baguetteBox.run( '.gallery' );
+				baguetteBox.run( '.gallery',
+				{
+					fullScreen: true,
+					noScrollBars: true,
+					animation: 'fadeIn'
+				} );
 			}, 2000 );
 		}
 	};

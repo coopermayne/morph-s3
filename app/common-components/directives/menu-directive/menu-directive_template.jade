@@ -119,7 +119,6 @@ ul.menu-directive-wrapper(
 	//- Search
 	li.menu-section.search( ng-if='stateParams.section' )
 		input(
-			type='search'
 			ng-model='searchText'
 			ng-class='{ "has-text": searchText.length }'
 			ng-change='updateSearch( searchText )'
