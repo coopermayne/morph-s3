@@ -13,6 +13,7 @@ var morphopedia = angular.module( 'morphopedia',
 	'angular.filter',
 
 	'root'
+
 ] );
 
 morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelegateProvider )

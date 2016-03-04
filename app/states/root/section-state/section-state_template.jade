@@ -40,25 +40,27 @@
 
 //- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
+
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{item.id}}'
 		ng-if='item[subSort] || stateParams.section === "search"'
+		ng-click='stateParams.section === "search" ? resolveSearchClick( item ) : expandProject( item.id )'
 	)
+
 		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
 			ng-if='item.description.length > 0 && stateParams.section !== "search"'
-			ui-sref='root.section-state.sorting-state({ e: item.id })'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
 
 		//- Project title and image
-		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e == item.id }' )
+		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e && stateParams.e == item.id }' )
 
 			//- Image
 			.alt-project-image(
-				ng-if='item.thumb || item.image.name.mobile.url'
-				preload-bg-image='{{ item.thumb || item.image.name.mobile.url }}'
+				ng-if='item.image.name.mobile.url || item.image'
+				preload-bg-image='{{item.image.name.mobile.url || item.image }}'
 			)
 
 			//- Title + expanded sections
@@ -75,7 +77,6 @@
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ng-if='stateParams.section === "search"'
-					ng-click='resolveSearchClick( item )'
 				)
 
 				.item-year( ng-if='item.year' )
@@ -103,7 +104,7 @@
 
 				//- Description attribute
 				.alt-project-expanded(
-					ng-if='stateParams.e == item.id && ( item.description.length > 0 )'
+					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 )'
 					ng-bind-html='item.description | htmlParse'
 				)
 

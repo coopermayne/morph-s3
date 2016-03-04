@@ -13,7 +13,7 @@
 			| {{ activeItem.title || activeItem.name }}
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section != "about" && stateParams.section != "search"' )
+		.project-page-text-wrapper( ng-if='( stateParams.section == "search" && stateParams.m == "project" ) || stateParams.section != "about"' )
 
 			.project-page-sidebar
 
@@ -114,7 +114,7 @@
 						| Description
 					p.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
-				.image-gallery-wrapper
+				.image-gallery-wrapper.ng-baguette
 					.image-gallery-section-wrapper(
 						ng-repeat='(key, value) in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
@@ -123,14 +123,18 @@
 					)
 						h1
 							{{ key }} ({{ value.length }})
-						.image-gallery-section
-							img(
-								preload-image ng-repeat='image in value'
-								ng-src='{{ image.name.thumb.url }}'
+
+						.image-gallery-section.gallery
+							a(
+								ng-repeat='image in value'
+								href='{{ image.name.url }}'
 							)
+								img(
+									ng-src='{{ image.name.thumb.url }}'
+								)
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section == "about" || stateParams.section == "search"' )
+		.project-page-text-wrapper( ng-if='stateParams.section == "about" || ( stateParams.section == "search" && stateParams.m == "people" )' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )

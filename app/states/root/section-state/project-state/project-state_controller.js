@@ -23,7 +23,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		break;
 
 		case 'search':
-			if( $rootScope.searchItem.searchable_type === "Person" )
+			if( $scope.stateParams.m === "person" )
 			{
 				$http(
 				{
@@ -61,7 +61,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 		if ( fromParams.section )
 		{
-			$state.go( $rootScope.previousState.name, { sortingType: fromParams.sortingType, q: fromParams.q } );
+			$state.go( $rootScope.previousState.name, { section: fromParams.section, sortingType: fromParams.sortingType, projectId: fromParams.projectId, q: fromParams.q } );
 		}
 		else
 		{
@@ -72,45 +72,43 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	var isLeft;
 	var velocity;
 
-	$scope.startScroll = function( event )
-	{		
-		var imageGalleryWrapper = document.getElementsByClassName( 'image-gallery-section-wrapper' )[ 0 ];
+	// $scope.startScroll = function( event )
+	// {		
+	// 	var imageGalleryWrapper = document.getElementsByClassName( 'image-gallery-section-wrapper' )[ 0 ];
 
-		var imageWrapperX = imageGalleryWrapper.getBoundingClientRect(  ).left;
-		var imageWrapperMiddle = imageGalleryWrapper.offsetWidth / 2;
-		var mouseX = event.pageX;
-		var posX = mouseX - imageWrapperX;
-		var imageGallery = event.currentTarget.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+	// 	var imageWrapperX = imageGalleryWrapper.getBoundingClientRect(  ).left;
+	// 	var imageWrapperMiddle = imageGalleryWrapper.offsetWidth / 2;
+	// 	var mouseX = event.pageX;
+	// 	var posX = mouseX - imageWrapperX;
+	// 	var imageGallery = event.currentTarget.getElementsByClassName( 'image-gallery-section' )[ 0 ];
 
-		isLeft = posX < imageWrapperMiddle;
+	// 	isLeft = posX < imageWrapperMiddle;
 
-		if ( isLeft )
-		{
-			console.log( 'left part' );
-			velocity = 50 / -2
-		}
-		else
-		{
-			console.log( 'right part' );
-			velocity = 50 / 2
-		}
+	// 	if ( isLeft )
+	// 	{
+	// 		velocity = 50 / -2
+	// 	}
+	// 	else
+	// 	{
+	// 		velocity = 50 / 2
+	// 	}
 
-		$scope.scrollInterval = $interval( function(  )
-		{
-			imageGallery.scrollLeft += velocity;
-		}, 50 );
-	}
+	// 	$scope.scrollInterval = $interval( function(  )
+	// 	{
+	// 		imageGallery.scrollLeft += velocity;
+	// 	}, 50 );
+	// }
 
-	$scope.updateScroll = function( event )
-	{
-		$interval.cancel( $scope.scrollInterval );
-		$scope.startScroll( event );
-	}
+	// $scope.updateScroll = function( event )
+	// {
+	// 	$interval.cancel( $scope.scrollInterval );
+	// 	$scope.startScroll( event );
+	// }
 
-	$scope.stopScroll = function(  )
-	{
-		$interval.cancel( $scope.scrollInterval );
-	}
+	// $scope.stopScroll = function(  )
+	// {
+	// 	$interval.cancel( $scope.scrollInterval );
+	// }
 
 
 } );

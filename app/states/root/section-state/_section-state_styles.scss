@@ -47,21 +47,8 @@
 
 .index-project-wrapper
 {
-	@include respond-to( 'medium-large' )
-	{
-		width: 600px;
-	}
-	@include respond-to( 'medium' )
-	{
-		justify-content: center;
-
-		width: 500px;
-	}
-
 	flex-flow: row wrap;
-	justify-content: center;
-
-	margin-right: 2rem;
+	justify-content: flex-start;
 }
 
 .index-project
@@ -78,7 +65,7 @@
 	cursor: pointer;
 	width: 250px;
 	height: 280px;
-	margin: 0 1rem;
+	margin-right: 2rem;
 }
 
 .project-image
@@ -103,7 +90,7 @@
 {
 	overflow-x: hidden;
 	min-width: 100%;
-	padding: 0 4rem;
+	padding: $page-margin;
 
 	font-size: $little-sorting-option;
 }
@@ -111,12 +98,11 @@
 .alt-index-project
 {
 	flex-flow: column;
-	// align-items: center;
-	// justify-content: space-between;
 	justify-content: center;
 
 	overflow: visible;
 	position: relative;
+	cursor: pointer;
 	min-height: 150px;
 	padding: 1rem 0;
 	border-bottom: 1px solid lighten($black, 90%);

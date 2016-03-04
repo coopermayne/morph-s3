@@ -11,6 +11,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Default to tile index
 	$scope.altIndexSection = false;
 
+	$scope.expandProject = function( id )
+	{
+		$state.go( 'root.section-state.sorting-state', { e: id } );
+	}
+
 	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
 	{
@@ -51,6 +56,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				{
 					$scope.subSort = "created_at";
 				}
+				else if ( $scope.stateParams.section == "search" )
+				{
+					$scope.subSort = "rank";
+					$scope.reverseVar = false;
+				}
 			}
 		}
 		else
@@ -58,7 +68,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$scope.subSort = sort;
 			$scope.reverseVar = false;
 		}
-		console.log( $scope.subSort );
 	}
 
 	// Wait for API response (and DOM to load) before scrolling to expanded item
@@ -84,8 +93,17 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Search project page routing
 	$scope.resolveSearchClick = function( item )
 	{
-		"Project, Person".indexOf( item.searchable_type ) != -1 ? $state.go( 'root.section-state.project-state', { projectId: item.searchable_id } ) : $state.go( 'root.section-state.sorting-state', { section: item.section, e: item.id, s: null } )
-		$rootScope.searchItem = item;
+		switch( item.searchable_type )
+		{
+			case 'Person':
+			case 'Project':
+			$state.go( 'root.section-state.project-state', { projectId: item.searchable_id, m: item.searchable_type.toLowerCase(  ) } );
+			break;
+
+			default:
+			$state.go( 'root.section-state.sorting-state', { section: item.section, sortingType: item.sorting_type, e: item.uid, s: null, m: null } );
+			break;
+		}
 	}
 
 
@@ -103,203 +121,203 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	}
 
 	var mapStyles = [
-		{
-			"featureType": "all",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}, {
-				"lightness": "-100"
-			}]
+	{
+		"featureType": "all",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
 		}, {
-			"featureType": "all",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"saturation": 36
-			}, {
-				"color": "#000000"
-			}, {
-				"lightness": 40
-			}]
+			"lightness": "-100"
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.fill",
+		"stylers": [{
+			"saturation": 36
 		}, {
-			"featureType": "all",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}, {
-				"color": "#000000"
-			}, {
-				"lightness": 16
-			}]
+			"color": "#000000"
 		}, {
-			"featureType": "all",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 40
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.stroke",
+		"stylers": [{
+			"visibility": "on"
 		}, {
-			"featureType": "administrative",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 20
-			}]
+			"color": "#000000"
 		}, {
-			"featureType": "administrative",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 17
-			}, {
-				"weight": 1.2
-			}, {
-				"visibility": "off"
-			}]
+			"lightness": 16
+		}]
+	}, {
+		"featureType": "all",
+		"elementType": "labels.icon",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "geometry.fill",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "administrative",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "simplified"
-			}, {
-				"color": "#ffffff"
-			}]
+			"lightness": 20
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "administrative.country",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 17
 		}, {
-			"featureType": "administrative.province",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"weight": 1.2
 		}, {
-			"featureType": "administrative.locality",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "simplified"
 		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "simplified"
-			}, {
-				"weight": "1.83"
-			}]
+			"color": "#ffffff"
+		}]
+	}, {
+		"featureType": "administrative.country",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.province",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "simplified"
 		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "simplified"
-			}]
+			"weight": "1.83"
+		}]
+	}, {
+		"featureType": "administrative.locality",
+		"elementType": "labels.icon",
+		"stylers": [{
+			"visibility": "simplified"
+		}]
+	}, {
+		"featureType": "administrative.neighborhood",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "administrative.land_parcel",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "landscape",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": "-100"
+		}]
+	}, {
+		"featureType": "poi",
+		"elementType": "all",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "poi",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 21
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "geometry",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	}, {
+		"featureType": "road.highway",
+		"elementType": "geometry.fill",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "landscape",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": "-100"
-			}]
+			"lightness": 17
+		}]
+	}, {
+		"featureType": "road.highway",
+		"elementType": "geometry.stroke",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "poi",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 29
 		}, {
-			"featureType": "poi",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 21
-			}]
+			"weight": 0.2
+		}]
+	}, {
+		"featureType": "road.arterial",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "road",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 18
+		}]
+	}, {
+		"featureType": "road.local",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "road",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
+			"lightness": 16
+		}]
+	}, {
+		"featureType": "transit",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#000000"
 		}, {
-			"featureType": "road.highway",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 17
-			}]
+			"lightness": 19
+		}]
+	}, {
+		"featureType": "road",
+		"elementType": "labels",
+		"stylers": [{
+			"visibility": "off"
+		}]
+	},{
+		"featureType": "water",
+		"elementType": "geometry",
+		"stylers": [{
+			"color": "#ffffff"
 		}, {
-			"featureType": "road.highway",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 29
-			}, {
-				"weight": 0.2
-			}]
-		}, {
-			"featureType": "road.arterial",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 18
-			}]
-		}, {
-			"featureType": "road.local",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 16
-			}]
-		}, {
-			"featureType": "transit",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#000000"
-			}, {
-				"lightness": 19
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		},{
-			"featureType": "water",
-			"elementType": "geometry",
-			"stylers": [{
-				"color": "#ffffff"
-			}, {
-				"lightness": 17
-			}]
-		}
+			"lightness": 17
+		}]
+	}
 	]
 
 	$scope.layers = {
@@ -424,7 +442,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		$http( 
 		{
 			method: 'GET',
-			url: apiUrl + 'search',
+			url: apiUrl + 'search.json',
 			params: { q: $scope.stateParams.s }
 		} ).then( function( response )
 		{

@@ -8,17 +8,16 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 		restrict: 'AC',
 		link: function ( $scope, $elm )
 		{
-			console.log( 'ngBaguette here!' );
+			console.log( 'ngBaguette active!' );
 
 			$timeout( function(  )
 			{
 				baguetteBox.run( '.gallery',
 				{
-					fullScreen: true,
 					noScrollBars: true,
 					animation: 'fadeIn'
 				} );
-			}, 2000 );
+			}, 3000 );
 		}
 	};
 } );

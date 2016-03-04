@@ -6,7 +6,7 @@ var projectState = angular.module( 'projectState',
 
 	'htmlParseFilter',
 
-	'Slidebox'
+	'ngBaguette'
 ] );
 
 
