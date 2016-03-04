@@ -44,7 +44,7 @@ ul.menu-directive-wrapper(
 	//- Build each big menu item and subsections
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
-		ui-sref='root.section-state( { section: bigMenuItem.url, s: null, q: null, e: null } )'
+		ui-sref='root.section-state( { section: bigMenuItem.url, s: null, q: null, e: null, m: null } )'
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
