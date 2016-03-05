@@ -5,9 +5,19 @@ var projectState = angular.module( 'projectState' );
 projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http )
 {
 
-	// This is a controller.
-	$scope.stateParams = $stateParams;
+	$scope.stateParams = $state.params;
 
+	$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
+	{
+		if (fromState.name === 'root.section-state.sorting-state')
+		{ 
+			$rootScope.originalIndex = {
+				section: fromParams.section,
+				sortingType: fromParams.sortingType,
+				q: fromParams.q
+			}
+		}
+	});
 
 	switch( $scope.stateParams.section )
 	{
@@ -57,11 +67,12 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.closeProject = function(  )
 	{
-		var fromParams = $rootScope.fromParams;
-
-		if ( fromParams.section )
+		if ( $rootScope.originalIndex )
 		{
-			$state.go( $rootScope.previousState.name, { section: fromParams.section, sortingType: fromParams.sortingType, projectId: fromParams.projectId, q: fromParams.q } );
+			$state.go( 'root.section-state.sorting-state', { section: $rootScope.originalIndex.section, sortingType: $rootScope.originalIndex.sortingType } );
+
+			// Clear originalIndex
+			$rootScope.originalIndex = null;
 		}
 		else
 		{
@@ -69,8 +80,8 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	}
 
-	var isLeft;
-	var velocity;
+	// var isLeft;
+	// var velocity;
 
 	// $scope.startScroll = function( event )
 	// {		
