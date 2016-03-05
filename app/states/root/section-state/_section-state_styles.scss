@@ -306,9 +306,11 @@ a[href^='https://maps.google.com/maps']
 		top: -170px;
 		left: -5px;
 		margin-top: 0;
+		padding: 3px;
 		background-color: $yellow;
 
 		font-size: $body-text;
 		font-family: $executive-reg;
+		line-height: 1;
 	}
 }
