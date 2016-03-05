@@ -1,11 +1,20 @@
 .root-view
 {
 	flex-flow: column;
+
+	height: 100%;
 }
 
 .menu-and-index-wrapper
 {
 	flex-flow: row;
 
-	margin: $page-margin;
+	padding: $page-margin;
+}
+
+
+.black-background
+{
+	height: 100%;
+	background-color: #000000;
 }

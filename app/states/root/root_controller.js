@@ -6,7 +6,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 {
 	// This is a controller.
 
-	$scope.stateName = 'root';
+	// $scope.stateName = 'root';
 
 	console.log('RootController active!');
 
@@ -19,6 +19,11 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	$rootScope.$on( '$stateChangeSuccess', function( event, to, toParams, from, fromParams )
 	{
 		$rootScope.previousState = from;
+	} );
+
+	$rootScope.$on( '$stateChangeStart', function( event, to, toParams, from, fromParams )
+	{
+		$scope.stateName = to.name;
 	} );
 
 } );
