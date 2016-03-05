@@ -23,8 +23,7 @@
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
 
-		.project-title
-			| {{ item.title || item.name }}
+		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
 	//- Items without 'section' attribute
 	.index-project(
@@ -35,8 +34,7 @@
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
 
-		.project-title
-			| {{ item.title || item.name }}
+		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
 //- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )

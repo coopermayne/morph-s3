@@ -9,8 +9,7 @@
 
 	.project-page-content-wrapper
 
-		.project-page-header-text
-			| {{ activeItem.title || activeItem.name }}
+		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
 		//- PROJECT PAGE
 		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" )' )

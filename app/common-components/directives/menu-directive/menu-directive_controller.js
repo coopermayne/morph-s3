@@ -24,7 +24,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		return screenSize.is( 'xs', 'sm' );
 	};
 
-	$scope.showMobileMenuVar = false;
+	$scope.showMobileMenuVar = true;
 
 	$scope.toggleMobileMenu = function(  )
 	{

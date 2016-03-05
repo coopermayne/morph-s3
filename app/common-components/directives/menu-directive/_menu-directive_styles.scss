@@ -4,6 +4,9 @@ menu-directive
 	{
 		flex: 0;
 
+		width: auto;
+		margin-right: 0;
+
 		font-size: $mobile-menu-text;
 	}
 
@@ -43,6 +46,13 @@ menu-directive
 	position: absolute;
 	height: 100%;
 	padding: 2rem 0;
+}
+
+.mobile-about-text
+{
+	flex-order: 2;
+
+	position: relative;
 }
 
 .menu-directive-wrapper

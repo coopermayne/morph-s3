@@ -15,7 +15,7 @@ slideshow-directive(
 
 
 .mobile-menu-bar(
-	ng-if='isMobile(  ) && stateParams.sortingType'
+	ng-if='isMobile(  ) && state.current.name === "root.section-state.sorting-state"'
 	ng-click='toggleMobileMenu(  )'
 )
 	.mobile-bar-item
@@ -30,16 +30,20 @@ slideshow-directive(
 
 .menu-about-text-wrapper(
 	ng-if='stateParams.section === "about" && !stateParams.sortingType'
+	ng-class='{ "mobile-about-text": isMobile(  ) }'
 )
 	.menu-about-text(
 		ng-bind-html='menuItems.sections[0].content | htmlParse'
 	)
 
 ul.menu-directive-wrapper(
-	ng-show='!isMobile(  ) || !stateParams.sortingType || showMobileMenuVar'
+	ng-show='!isMobile(  ) || showMobileMenuVar'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news" }'
 )
-	.mobile-menu-close( ng-if='isMobile(  ) && stateParams.sortingType' ng-click='toggleMobileMenu(  )' )
+	.mobile-menu-close(
+		ng-if='showMobileMenuVar && ( state.current.name === "root.section-state.sorting-state" )'
+		ng-click='toggleMobileMenu(  )'
+	)
 
 	//- Build each big menu item and subsections
 	li.menu-section(
@@ -67,14 +71,14 @@ ul.menu-directive-wrapper(
 
 			.sorting-option-wrapper(
 				ng-repeat='sortingOption in bigMenuItem.sorting'
-				ui-sref='root.section-state.sorting-state({section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null, e: null })'
+				ui-sref='root.section-state.sorting-state({ section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null, e: null })'
 				ng-click=' $event.stopPropagation(  ) '
 			)
 
 				.sorting-option-title-wrapper(
 						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
 					)
-					.sorting-option-title
+					.sorting-option-title( ng-click='toggleMobileMenu(  )' )
 						| {{ sortingOption.title }}
 				
 				//- Categories (Letters, Residential, etc)
@@ -102,6 +106,7 @@ ul.menu-directive-wrapper(
 						)
 							p(
 								ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
+								ng-click='toggleMobileMenu(  )'
 							)
 								| {{ littleSortingOption.title || littleSortingOption }}
 
