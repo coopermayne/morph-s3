@@ -9,7 +9,7 @@
 		| A-Z
 	.sub-sort(
 		ng-click='switchSubSort( "date" )'
-		ng-class='{"active-sort":"year, superdate, pub_date".indexOf( subSort ) != -1}'
+		ng-class='{ "active-sort": "year, superdate, pub_date".indexOf( subSort ) != -1 }'
 	)
 		| Date
 
@@ -74,6 +74,8 @@
 				)
 
 				//- Search section click routing
+				.project-detail-label( ng-if='stateParams.section === "search"' )
+					| {{ item.section }} {{ item.sorting_type ? ' / ' + item.sorting_type : ''}}
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ng-if='stateParams.section === "search"'

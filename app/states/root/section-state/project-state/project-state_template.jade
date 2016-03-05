@@ -13,7 +13,7 @@
 			| {{ activeItem.title || activeItem.name }}
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section == "search" && stateParams.m == "project" ) || stateParams.section != "about"' )
+		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" )' )
 
 			.project-page-sidebar
 
@@ -139,7 +139,7 @@
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section == "about" || ( stateParams.section === "search" && stateParams.m == "people" )' )
+		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "person" ) || stateParams.section == "about"' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
@@ -159,6 +159,11 @@
 					ng-if='activeItem.location'
 					ng-bind-html='activeItem.location | htmlParse'
 				)
+
+				.project-description-wrapper
+					.project-description-header( ng-if='activeItem.description' )
+						| Description
+					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
 				.project-description-header
 					| Related Projects
