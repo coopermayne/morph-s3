@@ -9,7 +9,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
-		if (fromState.name === 'root.section-state.sorting-state')
+		if ( fromState.name === 'root.section-state.sorting-state' )
 		{ 
 			$rootScope.originalIndex = {
 				section: fromParams.section,

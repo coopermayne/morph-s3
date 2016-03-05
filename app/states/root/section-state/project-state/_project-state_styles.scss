@@ -108,6 +108,10 @@
 	font-size: $subheader-text;
 }
 
+.component .project-description-body
+{
+	margin-bottom: 2rem;
+}
 
 .project-description-header
 {
@@ -188,7 +192,7 @@
 		order: 3;
 	}
 
-	margin-top: 2em;
+	margin: 2em 0;
 }
 
 .image-gallery-section-wrapper
@@ -198,6 +202,11 @@
 	position: relative;
 	height: 200px;
 	margin-bottom: 1em;
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
 
 	h1
 	{

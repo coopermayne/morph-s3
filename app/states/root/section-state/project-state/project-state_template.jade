@@ -112,7 +112,7 @@
 				.project-description-wrapper
 					.project-description-header( ng-if='activeItem.description' )
 						| Description
-					p.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
+					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
 				.image-gallery-wrapper.ng-baguette
 					.image-gallery-section-wrapper(
@@ -132,9 +132,14 @@
 								img(
 									ng-src='{{ image.name.thumb.url }}'
 								)
+				//- Components
+				.project-description-wrapper.component( ng-repeat='component in activeItem.components | orderBy: "rank"' )
+					.project-description-header
+						| {{ component.title }}
+					.project-description-body( ng-bind-html='component.content | htmlParse' )
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='stateParams.section == "about" || ( stateParams.section == "search" && stateParams.m == "people" )' )
+		.project-page-text-wrapper( ng-if='stateParams.section == "about" || ( stateParams.section === "search" && stateParams.m == "people" )' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
