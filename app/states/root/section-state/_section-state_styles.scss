@@ -233,6 +233,8 @@
 	position: fixed;
 	width: 100%;
 	top: 0;
+	// Firefox positioning fix
+	left: 345px;
 }
 
 .angular-leaflet-map
