@@ -6,9 +6,8 @@ var root = angular.module( 'root',
 
 	'menuDirective',
 
-	'sectionState',
+	'sectionState'
 
-	'homeState'
 ] );
 
 root.config( function( $stateProvider )

@@ -1,5 +1,11 @@
 .project-close-button
 {
+	@include respond-to( 'small' )
+	{
+		width: 40px;
+		height: 40px;
+	}
+
 	position: fixed;
 	cursor: pointer;
 	width: 50px;
@@ -21,6 +27,8 @@
 	left: 0;
 	z-index: 10;
 	background: $white;
+
+	-webkit-overflow-scrolling: touch;
 }
 
 .project-page-header-image
@@ -40,7 +48,7 @@
 
 	img
 	{
-		min-width: 100vw;
+		width: 100vw;
 
 		object-fit: contain;
 	}
@@ -100,7 +108,7 @@
 
 	flex: 3 0 0;
 
-	padding-right: 2rem;
+	padding-right: 1rem;
 }
 
 .project-overview

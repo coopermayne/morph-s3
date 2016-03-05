@@ -1,5 +1,5 @@
 //- Project Modal
-.project-modal( ui-view='project-content' )
+.project-modal.scrollable( ui-view='project-content' )
 
 .sub-sort-wrapper( ng-if='stateParams.sortingType && "awards, media, type".indexOf( stateParams.sortingType ) != -1' )
 	.sub-sort(
@@ -56,13 +56,14 @@
 		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e && stateParams.e == item.id }' )
 
 			//- Image
-			.alt-project-image(
+			img.alt-project-image(
+				preload-image
 				ng-if='item.image.name.mobile.url || item.image'
-				preload-bg-image='{{item.image.name.mobile.url || item.image }}'
+				ng-src='{{item.image.name.mobile.url || item.image }}'
 			)
 
 			//- Title + expanded sections
-			.alt-title-and-expanded-wrapper
+			.alt-title-and-expanded-wrapper( ng-class='{ "with-image": item.image.name.mobile.url || item.image }' )
 
 				//- NOT search section (different ui-sref behavior)
 				.alt-project-title(

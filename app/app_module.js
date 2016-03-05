@@ -12,7 +12,9 @@ var morphopedia = angular.module( 'morphopedia',
 
 	'angular.filter',
 
-	'root'
+	'root',
+
+	'mobile-angular-ui'
 
 ] );
 
@@ -35,6 +37,11 @@ morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelega
 
 morphopedia.run( [ '$rootScope', function( $rootScope )
 {
+	// For Mobile Angular UI compatibility
+	$rootScope.$on('$stateChangeStart', function(){
+		$rootScope.broadcast('$routeChangeStart');
+	});
+
 	$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
 		$rootScope.fromState = fromState;

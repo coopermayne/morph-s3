@@ -4,6 +4,8 @@ body
 	height: 100%;
 
 	font-family: 'Executive';
+
+	-webkit-tap-highlight-color: rgba( 0,0,0,0 );
 }
 
 
@@ -17,4 +19,11 @@ a
 	margin-left: 3px;
 
 	color: $black;
+}
+
+input
+{
+	margin-left: 0;
+	padding-left: 0;
+	border-radius: 0;
 }

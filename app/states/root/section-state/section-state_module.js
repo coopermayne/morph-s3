@@ -1,7 +1,7 @@
 'use strict';
 
 var sectionState = angular.module( 'sectionState',
-	[
+[
 	'ui.router',
 
 	'projectState',
@@ -12,7 +12,7 @@ var sectionState = angular.module( 'sectionState',
 
 	'sortingTypeFilter'
 
-	] );
+] );
 
 sectionState.config( function( $stateProvider )
 {

@@ -47,6 +47,11 @@
 
 .index-project-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		justify-content: center;
+	}
+
 	flex-flow: row wrap;
 	justify-content: flex-start;
 }
@@ -57,6 +62,7 @@
 	{
 		width: 310px;
 		height: 310px;
+		margin-right: 0;
 	}
 
 	flex-flow: column;
@@ -89,11 +95,21 @@
 
 .alt-index-project-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		padding: 0;
+	}
+
 	overflow-x: hidden;
 	min-width: 100%;
 	padding: 0 $page-margin;
 
 	font-size: $little-sorting-option;
+}
+
+.with-image
+{
+	max-width: calc( 100% - 100px ) !important;
 }
 
 .alt-index-project
@@ -133,15 +149,19 @@
 
 	&.expanded
 	{
+		@include respond-to( 'small' )
+		{
+			flex-flow: column wrap;
+		}
+
 		align-items: flex-start;
 
 		.alt-project-image
 		{
 			flex: 1 0 0;
 
-			min-width: 200px;
-			min-height: 200px;
-			background-position: top left;
+			max-width: 200px;
+			max-height: 200px;
 		}
 
 		.alt-title-and-expanded-wrapper
@@ -161,8 +181,15 @@
 
 .alt-project-image
 {
-	height: 150px;
-	min-width: 150px;
+	@include respond-to( 'small' )
+	{
+		max-width: 100px;
+		max-height: 100px;
+		margin-right: 10px;
+	}
+
+	max-width: 150px;
+	max-height: 150px;
 	margin-right: 10px;
 	background-position: center left;
 	background-size: contain;
@@ -205,7 +232,7 @@
 
 .alt-title-and-expanded-wrapper
 {
-	max-width: calc( 100% - 100px);
+	max-width: 100%;
 }
 
 .alt-project-expanded
