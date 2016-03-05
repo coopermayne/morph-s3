@@ -9,12 +9,13 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
-		if ( fromState.name === 'root.section-state.sorting-state' )
+		if ( fromState.name === 'root.section-state.sorting-state' || fromParams.section === 'search' )
 		{ 
 			$rootScope.originalIndex = {
 				section: fromParams.section,
 				sortingType: fromParams.sortingType,
-				q: fromParams.q
+				q: fromParams.q, 
+				s: fromParams.s
 			}
 		}
 	});
