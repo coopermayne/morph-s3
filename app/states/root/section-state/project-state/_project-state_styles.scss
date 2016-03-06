@@ -309,19 +309,18 @@
 	margin-bottom: 10px;
 }
 
-// .big-details-wrapper
-// {
-// 	@include respond-to( 'small' )
-// 	{
-// 		overflow-y: hidden;
-// 		max-height: 210px;
-// 	}
-// }
-
 .contracted
 {
 	@include respond-to( 'small' )
 	{
+		&:before
+		{
+			content: '+';
+			position: absolute;
+			top: -2px;
+			left: -20px;
+		}
+
 		.project-detail-wrapper
 		{
 			display: none;
