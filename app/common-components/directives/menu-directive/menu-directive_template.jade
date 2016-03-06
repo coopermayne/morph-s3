@@ -53,7 +53,7 @@ ul.menu-directive-wrapper(
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
 		)
-			| {{ bigMenuItem.title }}
+			span.section-title-inner {{ bigMenuItem.title }}
 
 
 			//- News box

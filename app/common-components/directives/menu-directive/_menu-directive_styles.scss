@@ -113,13 +113,22 @@ menu-directive
 	letter-spacing: -2px;
 }
 
+.section-title-inner
+{
+	@include respond-to('small')
+	{
+		border-bottom: 2px solid transparent;
+
+		line-height: 2.4rem;
+	}
+
+	border-bottom: 3px solid transparent;
+
+	line-height: 3.125rem;
+}
+
 .section-title
 {
-	&.selected,
-	&:hover
-	{
-		text-decoration: underline;
-	}
 	// content: '';
 	// position: absolute;
 	// width: calc( 100% - 25px );
@@ -128,6 +137,16 @@ menu-directive
 	// right: 0;
 	// left: 0;
 	// background: $black;
+	flex-flow: row;
+	&.selected .section-title-inner,
+	&:hover .section-title-inner
+	{
+		border-color: $black;
+		.white-menu &
+		{
+			border-color: $white;
+		}
+	}
 }
 
 .news-highlight
