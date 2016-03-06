@@ -75,9 +75,23 @@ menu-directive
 
 		font-size: scale( $header-text, 50% );
 	}
+	@include respond-to ('medium')
+	{
+		&.hidden
+		{
+			opacity: 1;
+		}
+	}
 
+	opacity: 1;
 	position: fixed;
 	width: 300px;
+
+	transition: opacity 1s ease;
+	&.hidden
+	{
+		opacity: 0;
+	}
 }
 
 .white-menu
