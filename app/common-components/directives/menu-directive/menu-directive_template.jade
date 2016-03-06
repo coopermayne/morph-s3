@@ -127,5 +127,5 @@ ul.menu-directive-wrapper(
 			ng-model='searchText'
 			ng-class='{ "has-text": searchText.length }'
 			ng-change='updateSearch( searchText )'
-			ng-enter='updateSearch( searchText )'
+			ng-enter='toggleMobileMenu( )'
 	)

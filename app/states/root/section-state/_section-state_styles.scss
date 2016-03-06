@@ -149,11 +149,6 @@
 
 	&.expanded
 	{
-		@include respond-to( 'small' )
-		{
-			flex-flow: column wrap;
-		}
-
 		align-items: flex-start;
 
 		.alt-project-image
