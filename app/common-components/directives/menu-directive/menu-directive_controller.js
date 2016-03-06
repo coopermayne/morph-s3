@@ -24,7 +24,33 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		return screenSize.is( 'xs', 'sm' );
 	};
 
-	$scope.showMobileMenuVar = true;
+	$scope.setMobileMenuVar = function(  )
+	{
+		switch( $scope.state.current.name )
+		{
+			case 'root':
+			case 'root.section-state':
+			$scope.showMobileMenuVar = true;
+			break;
+
+			default:
+			$scope.showMobileMenuVar = false;
+			break;
+		}	
+	}
+
+	if( $scope.isMobile(  ) )
+	{
+		// Set showMobileMenuVar
+		$scope.setMobileMenuVar(  );
+		
+		// Update mobileMenuVar
+		$scope.$on( '$stateChangeSuccess', function(  )
+		{
+			$scope.setMobileMenuVar(  );
+		} )
+	}
+
 
 	$scope.toggleMobileMenu = function(  )
 	{

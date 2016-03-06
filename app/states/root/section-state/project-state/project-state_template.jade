@@ -1,13 +1,14 @@
+.project-close-button.scrollable-header(
+	ng-click='closeProject(  )'
+)
+
 .project-page-wrapper.scrollable-content
 
-	.project-close-button(
-		ng-click='closeProject(  )'
-	)
 
 	.project-page-header-image
 		img(
 			ng-src='{{ activeItem.primary_image.name.url }}'
-			ng-class='{ "project-image":  stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" ) }'
+			ng-class='{ "project-image": ( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" ) }'
 		)
 
 	.project-page-content-wrapper

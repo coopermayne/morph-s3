@@ -15,7 +15,7 @@ slideshow-directive(
 
 
 .mobile-menu-bar.scrollable-header(
-	ng-if='isMobile(  ) && state.current.name === "root.section-state.sorting-state" || stateParams.section === "search" '
+	ng-if='isMobile(  ) && state.current.name === "root.section-state.sorting-state" || isMobile(  ) && stateParams.section === "search" '
 	ng-click='toggleMobileMenu(  )'
 )
 	.mobile-bar-item
