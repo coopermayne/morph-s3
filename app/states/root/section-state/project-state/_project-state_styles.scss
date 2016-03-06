@@ -126,6 +126,15 @@
 	padding-bottom: 2rem;
 
 	font-size: $subheader-text;
+	& *
+	{
+		display: inline;
+	}
+
+	& p {
+		display: block;
+		margin-bottom: 1.0rem;
+	}
 }
 
 .component .project-description-body
@@ -155,6 +164,16 @@
 	em
 	{
 		flex-flow: row;
+	}
+
+	& *
+	{
+		display: inline;
+	}
+
+	& p {
+		display: block;
+		margin-bottom: 1.0rem;
 	}
 }
 
