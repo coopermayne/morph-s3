@@ -6,7 +6,9 @@ var projectState = angular.module( 'projectState',
 
 	'htmlParseFilter',
 
-	'ngBaguette'
+	'ngBaguette',
+	
+	'ngToggleClass'
 ] );
 
 
