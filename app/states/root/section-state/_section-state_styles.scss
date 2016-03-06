@@ -287,8 +287,8 @@
 
 .map-image
 {
-	width: 100px;
-	height: 100px;
+	width: $location-globe-size;
+	height: $location-globe-size;
 	border-radius: 50%;
 	background-position: left;
 	background-size: cover;
@@ -317,16 +317,16 @@ a[href^='https://maps.google.com/maps']
 
 .leaflet-popup
 {
-	width: 100px !important;
-	height: 100px !important;
-	bottom: -50px !important;
+	width: $location-globe-size !important;
+	height: $location-globe-size !important;
+	bottom: -100px !important;
 }
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip
 {
-	width: 100px !important;
-	height: 100px !important;
+	width: $location-globe-size !important;
+	height: $location-globe-size !important;
 	padding: none;
 	border-radius: initial;
 	background: transparent;
