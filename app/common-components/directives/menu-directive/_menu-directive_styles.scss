@@ -111,6 +111,10 @@ menu-directive
 
 	line-height: 1.03;
 	letter-spacing: -2px;
+	& + &
+	{
+		margin-top: 10px;
+	}
 }
 
 .section-title-inner
@@ -151,6 +155,8 @@ menu-directive
 
 .news-highlight
 {
+	flex-wrap: wrap;
+
 	color: $yellow;
 }
 
