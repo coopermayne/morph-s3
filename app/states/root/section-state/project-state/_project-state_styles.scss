@@ -331,16 +331,19 @@
 			overflow-y: hidden;
 			max-height: 97px;
 		}
+	}
+}
 
-		&.project-page-sidebar
+.open
+{
+	@include respond-to( 'small' )
+	{
+		&:before
 		{
-			overflow-y: hidden;
-			max-height: 210px;
-
-			.project-detail-wrapper
-			{
-				display: flex !important;
-			}
+			content: '-';
+			position: absolute;
+			top: -2px;
+			left: -20px;
 		}
 	}
 }

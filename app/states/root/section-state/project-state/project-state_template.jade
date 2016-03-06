@@ -14,7 +14,7 @@
 		//- PROJECT PAGE
 		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" )' )
 
-			.project-page-sidebar.contracted( ng-toggle-class='contracted' )
+			.project-page-sidebar.contracted( ng-toggle-class='contracted open' )
 
 				//- Details
 				.project-page-sidebar-section
@@ -62,7 +62,7 @@
 							| {{ type }}
 				
 				//- Project Credits
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted' )
+				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
 					.project-page-sidebar-header( ng-if='activeItem.people.length' )
 						| Project Credits
 
@@ -76,7 +76,7 @@
 						)
 
 				//- Design recognition
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted' )
+				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
 					.project-page-sidebar-header( ng-if='activeItem.awards.length' )
 						| Design Recognition
 
@@ -87,7 +87,7 @@
 							| {{ award.title }}
 
 				//- Bibliography
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted' )
+				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
@@ -115,7 +115,7 @@
 				)
 					| {{ activeItem.overview }}
 
-				.project-description-wrapper.contracted( ng-toggle-class='contracted' )
+				.project-description-wrapper.contracted( ng-toggle-class='contracted open' )
 					.project-description-header( ng-if='activeItem.description' )
 						| Description
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
