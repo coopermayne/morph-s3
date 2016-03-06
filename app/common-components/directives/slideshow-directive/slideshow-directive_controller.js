@@ -3,13 +3,18 @@
 var slideshowDirective = angular.module( 'slideshowDirective' );
 
 
-slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootScope, $scope, $state, $stateParams, $interval )
+slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootScope, $scope, $state, $stateParams, $interval, screenSize )
 {
 
 	var counter = -1;
 
 	$scope.stateParams = $stateParams;
 	$scope.state = $state;
+
+	// Check for desktop/mobile
+	$scope.mobile = screenSize.on( 'xs, sm', function( match ){
+		$scope.mobile = match;
+	});
 
 	$scope.$watch( 'slides', function( apiResponse )
 	{

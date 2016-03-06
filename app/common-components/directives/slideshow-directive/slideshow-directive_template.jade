@@ -3,12 +3,14 @@
 	.slideshow-directive-slide(ng-repeat='slide in slides')
 
 		video.slideshow-video(
-			ng-if='slide.mp4 || slide.webm'
-			ng-class='{"current-slide": currentSlide === slide}'
+			ng-if='!mobile && ( slide.mp4 || slide.webm )'
+			ng-class='{ "current-slide": currentSlide === slide }'
 			autoplay
 		)
 			source( ng-src='{{ slide.mp4.name.url }}' )
 			source( ng-src='{{ slide.webm.name.url }}' )
+
+		.mobile-video( ng-if='mobile && state.current.name === "root"' preload-bg-image='{{ slide.gif.name.url }}')
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
@@ -27,6 +29,6 @@
 		.slideshow-directive-button(
 			ng-repeat='slide in slides'
 			ng-click='setCurrentSlide( slide )'
-			ng-if='slide.project_title || slide.title'
+			ng-if='( state.current.name !== "root" ) && ( currentSlide.project_title || currentSlide.title )'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)

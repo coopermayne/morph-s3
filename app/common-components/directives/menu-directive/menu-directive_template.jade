@@ -15,7 +15,7 @@ slideshow-directive(
 
 
 .mobile-menu-bar.scrollable-header(
-	ng-if='( isMobile(  ) && state.current.name === "root.section-state.sorting-state" ) || ( isMobile(  ) && "search, news".indexOf( stateParams.section ) !== -1 )'
+	ng-if='( mobile && state.current.name === "root.section-state.sorting-state" ) || ( mobile && "search, news".indexOf( stateParams.section ) !== -1 )'
 	ng-click='toggleMobileMenu(  )'
 )
 	.mobile-bar-item
@@ -29,15 +29,15 @@ slideshow-directive(
 )
 
 .menu-about-text-wrapper(
-	ng-if='!isMobile && stateParams.section === "about" && !stateParams.sortingType'
-	ng-class='{ "mobile-about-text": isMobile(  ) }'
+	ng-if='!mobile && stateParams.section === "about" && !stateParams.sortingType'
+	ng-class='{ "mobile-about-text": mobile }'
 )
 	.menu-about-text(
 		ng-bind-html='menuItems.sections[0].content | htmlParse'
 	)
 
 ul.menu-directive-wrapper(
-	ng-show='!isMobile(  ) || showMobileMenuVar'
+	ng-show='!mobile || showMobileMenuVar'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news" }'
 	ng-fade-menu
 )

@@ -19,10 +19,10 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.state = $state;
 
-	$scope.isMobile = function(  )
+	$scope.mobile = screenSize.on( 'xs, sm', function( match )
 	{
-		return screenSize.is( 'xs', 'sm' );
-	};
+		$scope.mobile = match;
+	});
 
 	$scope.setMobileMenuVar = function(  )
 	{
@@ -44,7 +44,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}
 	}
 
-	if( $scope.isMobile(  ) )
+	if( $scope.mobile )
 	{
 		// Set showMobileMenuVar
 		$scope.setMobileMenuVar(  );

@@ -12,12 +12,12 @@
 		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" )' )
+		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === "architecture" || "research" || "tangents" || "urban"' )
 
 			.project-page-sidebar.contracted( ng-toggle-class='contracted open' )
 
 				//- Details
-				.project-page-sidebar-section
+				.project-page-sidebar-section.mobile-details
 					.project-page-sidebar-header
 						| Details
 					.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
@@ -95,7 +95,7 @@
 						| Bibliography
 					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
-						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.id })'
+						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.id, m: null, s: null })'
 					)
 						.bibliography-image(
 							ng-if='item.primary_image'
@@ -121,16 +121,17 @@
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
 				.image-gallery-wrapper.ng-baguette
-					.image-gallery-section-wrapper(
+					.image-gallery-section-wrapper.open(
 						ng-repeat='(key, value) in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
 						ng-mousemove='updateScroll( $event )'
 						ng-mouseleave='stopScroll(  )'
+						ng-toggle-class='contracted open'
 					)
 						h1
 							{{ key }} ({{ value.length }})
 
-						.image-gallery-section.gallery
+						.image-gallery-section.gallery( ng-click='$event.stopPropagation(  );' )
 							a(
 								ng-repeat='image in value'
 								href='{{ image.name.url }}'

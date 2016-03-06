@@ -7,6 +7,11 @@
 
 .menu-and-index-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		padding: 1rem;
+	}
+
 	flex-flow: row;
 
 	padding: $page-margin;

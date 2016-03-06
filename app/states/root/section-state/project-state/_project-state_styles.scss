@@ -70,6 +70,11 @@
 
 .project-page-content-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		margin: 1rem 1rem 1rem $page-margin;
+	}
+
 	margin: 2rem;
 }
 
@@ -118,6 +123,8 @@
 	{
 		order: 2;
 		flex: auto;
+
+		padding-right: 0;
 	}
 
 	flex: 3 0 0;
@@ -318,7 +325,18 @@
 			content: '+';
 			position: absolute;
 			top: -2px;
-			left: -20px;
+			left: -15px;
+		}
+
+		.mobile-details
+		{
+			overflow-y: hidden;
+			height: 190px;
+
+			.project-detail-wrapper
+			{
+				display: flex !important;
+			}
 		}
 
 		.project-detail-wrapper
@@ -330,6 +348,16 @@
 		{
 			overflow-y: hidden;
 			max-height: 97px;
+		}
+
+		&.image-gallery-section-wrapper
+		{
+			height: 1rem !important;
+		}
+
+		.image-gallery-section
+		{
+			display: none;
 		}
 	}
 }
@@ -343,7 +371,17 @@
 			content: '-';
 			position: absolute;
 			top: -2px;
-			left: -20px;
+			left: -15px;
+		}
+
+		.project-page-sidebar-section
+		{
+			margin-bottom: 1rem;
+		}
+
+		.project-page-sidebar-header
+		{
+			margin-bottom: 0.5rem;
 		}
 	}
 }
