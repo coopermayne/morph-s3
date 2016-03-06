@@ -51,10 +51,14 @@
 	{
 		@include respond-to( 'small' )
 		{
+			object-fit: contain;
+
 			&.project-image
 			{
 				position: absolute;
 				top: 0;
+
+				object-fit: cover;
 			}
 		}
 

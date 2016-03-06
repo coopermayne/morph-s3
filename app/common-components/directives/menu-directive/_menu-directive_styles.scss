@@ -18,6 +18,12 @@ menu-directive
 
 .menu-close-button
 {
+	@include respond-to( 'small' )
+	{
+		width: 40px;
+		height: 40px;
+	}
+
 	position: fixed;
 	cursor: pointer;
 	cursor: pointer;
@@ -310,7 +316,8 @@ menu-directive
 		position: absolute;
 		width: 40px;
 		height: 40px;
-		right: 0;
+		top: $page-margin;
+		right: $page-margin;
 		background: url( 'images/trigger_black.svg' ) no-repeat center center;
 		background-color: $white;
 	}
