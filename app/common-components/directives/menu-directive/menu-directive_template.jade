@@ -123,9 +123,12 @@ ul.menu-directive-wrapper(
 
 	//- Search
 	li.menu-section.search( ng-if='stateParams.section' )
-		input(
-			ng-model='searchText'
-			ng-class='{ "has-text": searchText.length }'
-			ng-change='updateSearch( searchText )'
-			ng-enter='toggleMobileMenu( ); updateSearch( searchText )'
-	)
+		form(action="")
+			input(
+				type='text'
+				ng-model='searchText'
+				ng-class='{ "has-text": searchText.length }'
+				ng-change='updateSearch( searchText )'
+				ng-enter='toggleMobileMenu( ); updateSearch( searchText )'
+			)
+
