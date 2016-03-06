@@ -5,11 +5,11 @@
 .project-page-wrapper.scrollable-content
 
 
-	.project-page-header-image( ng-if='activeItem.primary_image' )
-		img(
-			ng-src='{{ activeItem.primary_image.name.url }}'
-			ng-class='{ "project-image": ( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" ) }'
-		)
+	.project-page-header-image(style='background: url({{ activeItem.primary_image.name.url }}) no-repeat center center; background-size:cover;')
+		//- img(
+		//- 	ng-src='{{ activeItem.primary_image.name.url }}'
+		//- 	ng-class='{ "project-image": ( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === ( "architecture" || "research" || "tangents" || "urban" ) }'
+		//- )
 
 	.project-page-content-wrapper
 
