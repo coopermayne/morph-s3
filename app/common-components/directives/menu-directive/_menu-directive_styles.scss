@@ -74,8 +74,13 @@ menu-directive
 		background-color: $white;
 
 		font-size: scale( $header-text, 50% );
+
+		&.hidden
+		{
+			opacity: 1;
+		}
 	}
-	@include respond-to ('medium')
+	@include respond-to ( 'medium' )
 	{
 		&.hidden
 		{
