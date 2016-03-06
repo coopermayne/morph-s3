@@ -114,7 +114,6 @@
 
 .alt-index-project
 {
-	flex-flow: column;
 	justify-content: center;
 
 	overflow: visible;
@@ -149,25 +148,29 @@
 
 	&.expanded
 	{
-		align-items: flex-start;
+		// align-items: flex-start;
+		display: inline-block;
 
 		.alt-project-image
 		{
-			flex: 1 0 0;
-
-			max-width: 200px;
+			// flex: 1 0 0;
+			// max-width: 200px;
+			float: left;
+			max-width: 50%;
 			max-height: 200px;
 		}
 
 		.alt-title-and-expanded-wrapper
 		{
-			flex: 4 0 0;
+			// flex: 4 0 0;
+			display: inline;
 		}
 	}
 }
 
 .alt-project-title
 {
+	display: inline;
 	max-width: 100%;
 
 	font-style: italic;
@@ -232,12 +235,16 @@
 
 .alt-project-expanded
 {
-	flex-flow: column wrap;
-	align-items: flex-start;
-	align-self: flex-start;
-	align-content: flex-start;
-
+	display: inline;
+	// flex-flow: column wrap;
+	// align-items: flex-start;
+	// align-self: flex-start;
+	// align-content: flex-start;
 	max-width: 100%;
+	& *
+	{
+		display: inline;
+	}
 }
 
 .pdf-attachment
