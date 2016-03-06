@@ -12,28 +12,26 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, screenSize )
 				scope.mobile = match;
 			});
 
-			scope.$watch( 'mobile' );
+			var timeoutPromise;
+			// resetFadeTimeout();
+			element.parent(  ).parent(  ).parent(  ).parent(  ).parent(  ).bind( 'mousemove', function( e )
+			{
+				resetFadeTimeout(  );
+			} );
 
-			if ( !scope.mobile )
-			{	
-				var timeoutPromise;
-				// resetFadeTimeout();
-				element.parent(  ).parent(  ).parent(  ).parent(  ).parent(  ).bind( 'mousemove', function( e )
-				{
-					resetFadeTimeout(  );
-				} );
+			scope.$watch( 'stateName', function( newValue, oldValue )
+			{
+				resetFadeTimeout(  );
+			} );
 
-				scope.$watch( 'stateName', function( newValue, oldValue )
-				{
-					resetFadeTimeout(  );
-				} );
+			scope.$watch( 'stateParams.section', function( newValue, oldValue )
+			{
+				resetFadeTimeout(  );
+			} );
 
-				scope.$watch( 'stateParams.section', function( newValue, oldValue )
-				{
-					resetFadeTimeout(  );
-				} );
-
-				function resetFadeTimeout(  )
+			function resetFadeTimeout(  )
+			{
+				if( !scope.mobile )
 				{
 					element.removeClass( 'hidden' );
 					$timeout.cancel( timeoutPromise );
@@ -45,9 +43,7 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, screenSize )
 						}, 3000 );
 					}
 				}
-			}
-
-			
+			}		
 		}
 	}
 });
