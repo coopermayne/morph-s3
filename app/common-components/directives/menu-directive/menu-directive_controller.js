@@ -36,14 +36,19 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			default:
 			$scope.showMobileMenuVar = false;
 			break;
-		}	
+		}
+
+		if( $scope.stateParams.section === "news" )
+		{
+			$scope.showMobileMenuVar = false;
+		}
 	}
 
 	if( $scope.isMobile(  ) )
 	{
 		// Set showMobileMenuVar
 		$scope.setMobileMenuVar(  );
-		
+
 		// Update mobileMenuVar
 		$scope.$on( '$stateChangeSuccess', function(  )
 		{
