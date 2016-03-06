@@ -1,5 +1,11 @@
-.menu-and-index-wrapper(ng-class='{"black-background": stateName ==="root"}')
+slideshow-directive(
+	slides='homePageSlides'
+	frame-rate='6000'
+	ng-if='state.current.name == "root"'
+)
 
-	menu-directive
+.menu-and-index-wrapper
+
+	menu-directive( ng-class='{ "black-background": stateName === "root" }' )
 		
 	.section-view( ui-view='section-view' )

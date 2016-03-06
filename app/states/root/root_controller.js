@@ -2,7 +2,7 @@
 
 var root = angular.module( 'root' );
 
-root.controller( 'RootController', function( $rootScope, $scope, $state, $stateParams )
+root.controller( 'RootController', function( $rootScope, $scope, $state, $stateParams, $http )
 {
 	// This is a controller.
 
@@ -15,6 +15,16 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	$scope.stateParams = $state.params;
 	
 	$scope.activeTopNav = $state.current.activeTopNav;
+
+	// Get video slides
+	$http(
+	{
+		method: 'GET',
+		url: 'https://ancient-peak-41402.herokuapp.com/video_slides.json'
+	} ).then( function( response )
+	{
+		$scope.homePageSlides = response.data;
+	} );
 
 	$rootScope.$on( '$stateChangeSuccess', function( event, to, toParams, from, fromParams )
 	{
