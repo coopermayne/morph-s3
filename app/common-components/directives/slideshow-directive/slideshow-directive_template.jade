@@ -8,7 +8,7 @@
 			autoplay
 		)
 			source( ng-src='{{ slide.mp4.name.url }}' )
-			//- source( ng-src='{{ slide.webm.name.url }}' )
+			source( ng-src='{{ slide.webm.name.url }}' )
 
 		.mobile-video( ng-if='mobile && state.current.name === "root"' preload-bg-image='{{ slide.gif.name.url }}')
 

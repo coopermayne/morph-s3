@@ -1,5 +1,5 @@
 doctype html
-html(lang='en' ng-app='morphopedia' )
+html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === "root" }' )
 	head
 		base( href='/' )
 		meta( name='viewport', content='width=device-width, height=device-height, initial-scale=1')
