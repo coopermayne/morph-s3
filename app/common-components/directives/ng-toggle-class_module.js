@@ -2,7 +2,7 @@
 
 var ngToggleClassDirective = angular.module( 'ngToggleClass', [  ] );
 
-ngToggleClassDirective.directive('ngToggleClass', function( $timeout )
+ngToggleClassDirective.directive( 'ngToggleClass', function( $timeout )
 {
 	return {
 		restrict: 'A',

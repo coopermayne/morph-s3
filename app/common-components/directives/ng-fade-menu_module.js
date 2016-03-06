@@ -12,7 +12,7 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, screenSize )
 				scope.mobile = match;
 			});
 
-			scope.$watch( 'scope.mobile' );
+			scope.$watch( 'mobile' );
 
 			if ( !scope.mobile )
 			{	
