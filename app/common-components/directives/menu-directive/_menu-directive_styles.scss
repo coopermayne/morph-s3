@@ -93,7 +93,6 @@ menu-directive
 	}
 
 	opacity: 1;
-	overflow-y: scroll;
 	position: fixed;
 	width: 300px;
 
@@ -106,6 +105,7 @@ menu-directive
 
 .white-menu
 {
+	overflow-y: scroll;
 	background-color: transparent;
 
 	color: $white;
