@@ -17,7 +17,7 @@
 		//- PROJECT PAGE
 		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1' )
 
-			.project-page-sidebar.contracted( ng-toggle-class='contracted open' )
+			.project-page-sidebar( ng-toggle-class='contracted open' )
 
 				//- Details
 				.project-page-sidebar-section.mobile-details
@@ -134,7 +134,9 @@
 						h1
 							{{ key }} ({{ value.length }})
 
-						.image-gallery-section.gallery( ng-click='$event.stopPropagation(  );' )
+						.image-gallery-section.gallery(
+							ng-click='$event.stopPropagation(  );'
+						)
 							a(
 								ng-repeat='image in value'
 								href='{{ image.name.url }}'

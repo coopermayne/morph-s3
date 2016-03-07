@@ -20,7 +20,7 @@
 		ng-bind-html='menuItems.sections[0].content | htmlParse'
 	)
 
-ul.menu-directive-wrapper(
+ul.menu-directive-wrapper.scrollable-content(
 	ng-show='!mobile || showMobileMenuVar'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news" }'
 )
