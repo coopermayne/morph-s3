@@ -53,8 +53,9 @@
 	}
 
 	flex-flow: row wrap;
-	justify-content: flex-start;
-	flex-basis: 100%;
+	justify-content: center;
+
+	max-width: 1000px;
 }
 
 .index-project
@@ -92,7 +93,7 @@
 .project-title
 {
 	flex-flow: row wrap;
-	flex: 1 0 0;
+	flex: 1 0 0%;
 
 	margin-top: 0.5rem;
 
@@ -107,7 +108,7 @@
 	}
 
 	overflow-x: hidden;
-	min-width: 100%;
+	max-width: 100%;
 	padding: 0 $page-margin;
 
 	font-size: $little-sorting-option;
