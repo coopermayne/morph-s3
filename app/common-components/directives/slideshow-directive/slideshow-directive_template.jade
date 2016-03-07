@@ -5,7 +5,7 @@
 		video.slideshow-video(
 			ng-if='!mobile && ( slide.mp4 || slide.webm )'
 			ng-class='{ "current-slide": currentSlide === slide }'
-			preload='auto'
+			preload='none'
 			data-video-id='{{ $index }}'
 		)
 			source( ng-src='{{ slide.mp4.name.url }}' )
