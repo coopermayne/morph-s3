@@ -36,7 +36,23 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 					{
 						for ( var i = 0; i < videoElements.length; i++ )
 						{
+							// Load next video when current video starts playing
+							angular.element( videoElements[ i ] ).bind( 'playing', function(  )
+							{
+								var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
 
+								if( videoIndex + 1 < videoElements.length )
+								{
+									videoElements[ videoIndex + 1 ].load(  );
+								}
+								else
+								{
+									videoElements[ 0 ].load(  );
+								}
+								console.log( 'playing video: ', videoIndex, 'loading video: ', videoIndex + 1 );
+							} )
+
+							// Switch to next video when current video finished playing
 							angular.element( videoElements[ i ] ).bind( 'ended', function(  )
 							{
 								var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
@@ -56,8 +72,10 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 								console.log( 'switching video' );
 							} );
 						}
-						videoElements[ 0 ].play(  );
 					}
+					
+					videoElements[ 0 ].load(  );
+					videoElements[ 0 ].play(  );
 				}, 0 );
 			}
 			else
@@ -97,5 +115,5 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	});
 
 	console.log( 'SlideShowDirectiveController active!' );
-	
+
 } );
