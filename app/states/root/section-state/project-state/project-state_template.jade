@@ -15,7 +15,7 @@
 		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || stateParams.section === "architecture" || "research" || "tangents" || "urban"' )
+    .project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section != -1' )
 
 			.project-page-sidebar.contracted( ng-toggle-class='contracted open' )
 
