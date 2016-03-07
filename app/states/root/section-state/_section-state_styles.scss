@@ -2,7 +2,7 @@
 {
 	flex-flow: column wrap;
 	align-items: center;
-	flex: 3 0 0;
+	flex: 3 0 0%;
 }
 
 .sub-sort:not( :last-child ):after
@@ -54,6 +54,7 @@
 
 	flex-flow: row wrap;
 	justify-content: flex-start;
+	flex-basis: 100%;
 }
 
 .index-project
@@ -78,10 +79,10 @@
 {
 	@include respond-to( 'small' )
 	{
-		flex: 4 0 0;
+		flex: 4 0 0%;
 	}
 
-	flex: 3 0 0;
+	flex: 3 0 0%;
 
 	overflow: hidden;
 	background-position: center center;

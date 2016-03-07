@@ -5,7 +5,9 @@
 .project-page-wrapper.scrollable-content
 
 
-	.project-page-header-image(style='background: url({{ activeItem.primary_image.name.url }}) no-repeat center center; background-size:cover;')
+	.project-page-header-image( 
+		preload-bg-image='{{ activeItem.primary_image.name.url }}'
+	)
 
 	.project-page-content-wrapper
 
