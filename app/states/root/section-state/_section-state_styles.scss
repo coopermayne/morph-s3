@@ -124,6 +124,16 @@
 	max-width: calc( 100% - 100px ) !important;
 }
 
+.project-title
+{
+	cursor: pointer;
+}
+
+.leaflet-popup-close-button
+{
+	display: none;
+}
+
 .alt-index-project
 {
 	justify-content: center;

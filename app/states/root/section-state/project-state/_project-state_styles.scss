@@ -231,7 +231,10 @@
 .project-detail-text
 {
 	flex-flow: row nowrap;
+}
 
+.details-clickable
+{
 	cursor: pointer;
 
 	&:hover

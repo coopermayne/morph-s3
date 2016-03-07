@@ -41,9 +41,9 @@
 
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
-		id='{{item.id}}'
+		id='{{ item.uid }}'
 		ng-if='item[subSort] || stateParams.section === "search"'
-		ng-click='stateParams.section === "search" ? resolveSearchClick( item ) : expandProject( item.id )'
+		ng-click='stateParams.section === "search" ? resolveSearchClick( item ) : expandProject( item.uid )'
 	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
