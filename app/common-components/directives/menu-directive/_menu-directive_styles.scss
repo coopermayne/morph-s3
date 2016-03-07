@@ -349,6 +349,7 @@ menu-directive
 		height: 40px;
 		top: $page-margin;
 		right: $page-margin;
+		z-index: 9999999;
 		background: url( 'images/trigger_black.svg' ) no-repeat center center;
 		background-color: $white;
 	}
