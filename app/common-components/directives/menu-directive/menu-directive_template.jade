@@ -126,4 +126,12 @@ ul.menu-directive-wrapper(
 				ng-change='updateSearch( searchText )'
 				ng-enter='toggleMobileMenu( ); updateSearch( searchText )'
 			)
+	.mobile-about-text-wrapper(
+		ng-if='mobile && stateParams.section === "about" && !stateParams.sortingType'
+		ng-class='{ "mobile-about-text": mobile }'
+		ng-bind-html='menuItems.sections[0].content | htmlParse'
+	)
+	//- .mobile-about-text(
+	//- 	ng-bind-html='menuItems.sections[0].content | htmlParse'
+	//- )
 

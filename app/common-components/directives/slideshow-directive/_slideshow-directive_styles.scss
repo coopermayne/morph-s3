@@ -97,6 +97,8 @@
 {
 	@include respond-to( 'small' )
 	{
+		height: 100px;
+
 		.slideshow-image
 		{
 			display: none;

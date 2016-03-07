@@ -60,6 +60,9 @@ menu-directive
 	flex-order: 2;
 
 	position: relative;
+	padding-top: $page-margin;
+
+	font-size: $subheader-text;
 }
 
 .menu-directive-wrapper
@@ -90,6 +93,7 @@ menu-directive
 	}
 
 	opacity: 1;
+	overflow-y: scroll;
 	position: fixed;
 	width: 300px;
 
