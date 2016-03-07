@@ -165,10 +165,8 @@
 
 		.alt-project-image
 		{
-			// flex: 1 0 0;
-			// max-width: 200px;
 			float: left;
-			max-width: 50%;
+			width: 150px;
 			max-height: 200px;
 		}
 
@@ -198,8 +196,7 @@
 		margin-right: 10px;
 	}
 
-	max-width: 150px;
-	max-height: 150px;
+	width: 100px;
 	margin-right: 10px;
 	background-position: center left;
 	background-size: contain;
