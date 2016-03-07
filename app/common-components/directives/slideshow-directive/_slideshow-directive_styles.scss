@@ -105,6 +105,7 @@
 		}
 	}
 
+	opacity: 0;
 	overflow: hidden;
 	position: relative !important;
 	width: 100%;
@@ -114,6 +115,20 @@
 	background-size: cover;
 
 	font-size: $subheader-text;
+
+	animation: fadeIn 1s ease;
+	animation-delay: 1s;
+
+	animation-fill-mode: forwards;
+
+	/* IE 10+ */
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	{
+		.slideshow-image
+		{
+			display: none;
+		}
+	}
 
 	.slideshow-image
 	{

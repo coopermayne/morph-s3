@@ -55,7 +55,12 @@
 	flex-flow: row wrap;
 	justify-content: center;
 
-	max-width: 1000px;
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	{
+		justify-content: center;
+
+		max-width: 1000px;
+	}
 }
 
 .index-project

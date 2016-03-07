@@ -24,7 +24,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		{
 			$scope.currentSlide = $scope.slides[ 0 ];
 
-			if ( $scope.vid )
+			if ( $scope.vid && !$scope.mobile )
 			{
 				$timeout( function(  )
 				{

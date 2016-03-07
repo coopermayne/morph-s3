@@ -32,6 +32,7 @@ menu-directive
 	height: 50px;
 	top: $page-margin;
 	right: $page-margin;
+	z-index: 9999;
 	background: url('images/trigger.svg') no-repeat center center;
 }
 
@@ -95,6 +96,7 @@ menu-directive
 	opacity: 1;
 	position: fixed;
 	width: 300px;
+	z-index: 10;
 
 	transition: opacity 1s ease;
 	&.hidden
@@ -110,7 +112,6 @@ menu-directive
 		overflow-y: scroll;
 	}
 
-	overflow-y: scroll;
 	background-color: transparent;
 
 	color: $white;

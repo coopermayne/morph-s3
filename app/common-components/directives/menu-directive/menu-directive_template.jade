@@ -1,12 +1,3 @@
-//- Section slideshows
-slideshow-directive(
-	ng-repeat='section in menuItems.sections'
-	ng-show='!stateParams.sortingType && stateParams.section === section.url'
-	slides='section.slides'
-	frame-rate='2000'
-)
-
-
 .mobile-menu-bar.scrollable-header(
 	ng-if='( mobile && state.current.name === "root.section-state.sorting-state" ) || ( mobile && "search, news".indexOf( stateParams.section ) !== -1 )'
 	ng-click='toggleMobileMenu(  )'
@@ -54,7 +45,6 @@ ul.menu-directive-wrapper(
 			slideshow-directive.news-box(
 				ng-if='bigMenuItem.url === "news" && !stateParams.section'
 				slides='bigMenuItem.items'
-				frame-rate='2000'
 				thumb='true'
 				ng-click='toggleMobileMenu(  )'
 			)
@@ -131,7 +121,11 @@ ul.menu-directive-wrapper(
 		ng-class='{ "mobile-about-text": mobile }'
 		ng-bind-html='menuItems.sections[0].content | htmlParse'
 	)
-	//- .mobile-about-text(
-	//- 	ng-bind-html='menuItems.sections[0].content | htmlParse'
-	//- )
 
+//- Section slideshows
+slideshow-directive(
+	ng-repeat='section in menuItems.sections'
+	ng-show='!stateParams.sortingType && stateParams.section === section.url'
+	slides='section.slides'
+	frame-rate='2000'
+)
