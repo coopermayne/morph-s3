@@ -15,7 +15,7 @@
 		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section != -1' )
+		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1' )
 
 			.project-page-sidebar.contracted( ng-toggle-class='contracted open' )
 
@@ -72,7 +72,7 @@
 					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.people | groupBy: "role_title"' )
 						.project-detail-label
 							| {{ key + ': '}}
-						.project-detail-text(
+						.project-detail-text.details-clickable(
 							ng-repeat='role in value'
 							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
 							ng-bind-html='role.person.name | htmlParse'
@@ -96,7 +96,7 @@
 						ng-if='activeItem.bibliography_items.length'
 					)
 						| Bibliography
-					.project-detail-wrapper.bibliography-item(
+					.project-detail-wrapper.bibliography-item.details-clickable(
 						ng-repeat='item in activeItem.bibliography_items'
 						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.id, m: null, s: null })'
 					)
@@ -181,5 +181,5 @@
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.roles | groupBy: "title"' )
 					.project-detail-label
 						| {{ key + ': '}}
-					.project-detail-text( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id })')
+					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id })')
 						| {{ role.project.title }}
