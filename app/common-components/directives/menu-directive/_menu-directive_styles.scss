@@ -105,6 +105,11 @@ menu-directive
 
 .white-menu
 {
+	@include respond-to( 'small' )
+	{
+		overflow-y: scroll;
+	}
+
 	overflow-y: scroll;
 	background-color: transparent;
 
