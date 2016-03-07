@@ -120,6 +120,16 @@
 	padding-right: 2rem;
 }
 
+.project-page-sidebar-section
+{
+	margin-top: 2rem;
+
+	&:first-child
+	{
+		margin-top: 0;
+	}
+}
+
 .project-page-main-text
 {
 	@include respond-to( 'small' )
