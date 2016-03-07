@@ -113,10 +113,15 @@
 	}
 
 	overflow-x: hidden;
-	max-width: 100%;
+	width: 100%;
 	padding: 0 $page-margin;
 
 	font-size: $little-sorting-option;
+
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	{
+		max-width: 100%;
+	}
 }
 
 .with-image
