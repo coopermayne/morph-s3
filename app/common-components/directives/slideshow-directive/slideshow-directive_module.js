@@ -12,7 +12,8 @@ slideshowDirective.directive( 'slideshowDirective', function(  )
 		{ 
 			slides: '=',
 			frameRate: '=',
-			thumb: '='
+			thumb: '=',
+			vid: '='
 		},
 		templateUrl: 'common-components/directives/slideshow-directive/slideshow-directive_template.html'
 		
