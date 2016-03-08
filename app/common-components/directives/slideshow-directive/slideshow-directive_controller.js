@@ -81,7 +81,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 			else
 			{
 				console.log( 'image slideshow' )
-				var playSlideShow = $interval( function(  )
+				$scope.playSlideShow = $interval( function(  )
 				{
 					if ( counter < $scope.slides.length - 1 )
 					{
@@ -102,7 +102,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	// Control buttons
 	$scope.setCurrentSlide = function( slide )
 	{
-		$interval.cancel( playSlideShow );
+		$interval.cancel( $scope.playSlideShow );
 
 		$scope.currentSlide = slide;
 	}

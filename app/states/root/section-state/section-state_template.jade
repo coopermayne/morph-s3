@@ -29,7 +29,7 @@
 	.index-project(
 		ng-repeat='item in indexContents'
 		ng-if='!item.section'
-		ui-sref='root.section-state.project-state( { projectId: item.id } )'
+		ui-sref='root.section-state.project-state( { projectId: item.id, m: "person" } )'
 
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )

@@ -202,5 +202,5 @@
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.roles | groupBy: "title"' )
 					.project-detail-label
 						| {{ key + ': '}}
-					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id, m: "project" })')
+					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id, m: "project", s: null, e: null })')
 						| {{ role.project.title }}

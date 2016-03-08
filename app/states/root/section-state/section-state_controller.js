@@ -101,7 +101,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			break;
 
 			default:
-			$state.go( 'root.section-state.sorting-state', { section: item.section, sortingType: item.sorting_type, e: item.uid, s: null, m: null } );
+			$state.go( 'root.section-state.sorting-state', { section: item.section, sortingType: item.sorting_type, e: item.searchable_id, s: null, m: null } );
 			break;
 		}
 	}
