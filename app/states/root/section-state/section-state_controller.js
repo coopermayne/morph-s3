@@ -345,7 +345,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		iconAnchor:   [9, 10],
 	}
 
-  $scope.maxBounds = leafletBoundsHelpers.createBoundsFromArray([[-540, -160], [540, 260]]);
+  $scope.maxBounds = leafletBoundsHelpers.createBoundsFromArray([[-540, -145], [540, 260]]);
 
 	$scope.layers = {
 		baselayers: {
