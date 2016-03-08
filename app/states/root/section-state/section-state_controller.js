@@ -107,12 +107,36 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 
 //BEGIN MAP------------------------------------------------------
-  
-	$scope.center = {
-		lat: 0,
-		lng: 0,
-		zoom: 3,
-	}
+
+
+  var default_place = {
+    zoom: 2,
+    lat: 0,
+    lng: 0
+  }
+  var place_d = {
+    asia: {
+      zoom: 3,
+      lat: 36,
+      lng: 131
+    }, 
+    europe: {
+      zoom: 3,
+      lat: 49,
+      lng: 16
+    }, 
+    america: {
+      zoom: 3,
+      lat: 29,
+      lng: -84
+    }
+  }
+
+  $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
+
+	$scope.$on('$locationChangeSuccess', function(event) {
+    $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
+  });
 
   $scope.defaults = {
     minZoom: 2,
