@@ -341,6 +341,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		},
     overlays: {
       london: {
+        layerOptions: {
+          showCoverageOnHover: false,
+        },
         name: "adf",
         type: "markercluster",
         visible: true
