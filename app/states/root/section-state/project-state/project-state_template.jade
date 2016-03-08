@@ -15,7 +15,7 @@
 		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
 		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1' )
+		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" )' )
 
 			.project-page-sidebar( ng-toggle-class='contracted open' )
 
@@ -82,7 +82,7 @@
 							| {{ key }}
 						.project-detail-text.details-clickable(
 							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
 							ng-bind-html='role.person.name | htmlParse'
 						)
 					.project-detail-wrapper( ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"' )
@@ -90,7 +90,7 @@
 							| {{ key }}
 						.project-detail-text.details-clickable(
 							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
 							ng-bind-html='role.person.name | htmlParse'
 						)
 
@@ -151,7 +151,7 @@
 						ng-toggle-class='contracted open'
 					)
 						h1
-							{{ key }}
+							| {{ key }}
 
 						.image-gallery-section.gallery(
 							ng-click='$event.stopPropagation(  );'
@@ -170,7 +170,7 @@
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "person" ) || stateParams.section == "about"' )
+		.project-page-text-wrapper( ng-if='stateParams.m == "person"' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
@@ -202,5 +202,5 @@
 				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.roles | groupBy: "title"' )
 					.project-detail-label
 						| {{ key + ': '}}
-					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id })')
+					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id, m: "project" })')
 						| {{ role.project.title }}

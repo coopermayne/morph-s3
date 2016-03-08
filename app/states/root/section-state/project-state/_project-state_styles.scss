@@ -159,6 +159,11 @@
 	{
 		display: block;
 		margin-bottom: 1.0rem;
+
+		&:last-child
+		{
+			margin-bottom: 0;
+		}
 	}
 }
 
