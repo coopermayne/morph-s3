@@ -190,19 +190,16 @@
 
 	&.expanded
 	{
-		// align-items: flex-start;
 		display: inline-block;
 
 		.alt-project-image
 		{
 			float: left;
 			width: 150px;
-			max-height: 200px;
 		}
 
 		.alt-title-and-expanded-wrapper
 		{
-			// flex: 4 0 0;
 			display: inline;
 		}
 	}
@@ -210,7 +207,7 @@
 
 .alt-project-title
 {
-	display: inline;
+	display: block;
 	max-width: 100%;
 
 	font-style: italic;

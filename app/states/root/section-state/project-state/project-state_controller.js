@@ -29,17 +29,6 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	// 'People' or 'Project' layout?
 	switch( $scope.stateParams.section )
 	{
-		// case 'about':
-		// 	$http(
-		// 	{
-		// 		method: 'GET',
-		// 		url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
-		// 	} ).then( function( response )
-		// 	{
-		// 		$scope.activeItem = response.data;
-		// 	} );
-		// break;
-
 		case 'search':
 		case 'about':
 			if( $scope.stateParams.m === "person" )

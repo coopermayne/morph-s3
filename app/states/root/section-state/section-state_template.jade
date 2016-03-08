@@ -49,7 +49,7 @@
 
 		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
-			ng-if='item.description.length > 0 && stateParams.section !== "search"'
+			ng-if='item.description.length > 0 && !item.searchable_type'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
 
