@@ -133,7 +133,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
     }
   }
 
-  $scope.center = place_d[$state.params.q] ? place_d[$state.params.q] : default_place
+  $scope.center = place_d[$state.params.q] ? angular.copy(place_d[$state.params.q]) : angular.copy(default_place)
 
   $scope.defaults = {
     minZoom: 2,
@@ -522,7 +522,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
     //update map center
     if($scope.stateParams.sortingType == "location")
     {
-      $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
+      $scope.center = place_d[$state.params.q] ? angular.copy(place_d[$state.params.q]) : angular.copy(default_place)
     }
 		
 		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
