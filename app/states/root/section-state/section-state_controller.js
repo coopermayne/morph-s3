@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter, leafletBoundsHelpers)
 {
 
 	$scope.indexContents = [  ];
@@ -107,11 +107,16 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 
 //BEGIN MAP------------------------------------------------------
+  
 	$scope.center = {
 		lat: 0,
 		lng: 0,
-		zoom: 2,
+		zoom: 3,
 	}
+
+  $scope.defaults = {
+    minZoom: 2,
+  }
 
  var mapStyles =
     [
@@ -318,6 +323,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		iconUrl: 'images/circle.svg',
 		iconAnchor:   [9, 10],
 	}
+
+  $scope.maxBounds = leafletBoundsHelpers.createBoundsFromArray([[-540, -160], [540, 260]]);
 
 	$scope.layers = {
 		baselayers: {
