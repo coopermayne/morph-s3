@@ -109,6 +109,7 @@
 {
 	@include respond-to( 'small' )
 	{
+		margin-top: 44px;
 		padding: 0;
 	}
 
@@ -120,13 +121,18 @@
 
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
 	{
-		max-width: 100%;
+		max-width: 75%;
 	}
 }
 
 .with-image
 {
-	max-width: calc( 100% - 100px ) !important;
+	@include respond-to( 'small' )
+	{
+		max-width: 70% !important;
+	}
+
+	max-width: 75% !important;
 }
 
 .project-title
@@ -141,6 +147,11 @@
 
 .alt-index-project
 {
+	@include respond-to ( 'small' )
+	{
+		min-height: 100px;
+	}
+
 	justify-content: center;
 
 	overflow: visible;
@@ -206,8 +217,7 @@
 {
 	@include respond-to( 'small' )
 	{
-		max-width: 100px;
-		max-height: 100px;
+		width: 75px;
 		margin-right: 10px;
 	}
 
@@ -254,7 +264,12 @@
 
 .alt-title-and-expanded-wrapper
 {
-	max-width: 100%;
+	@include respond-to( 'small' )
+	{
+		max-width: calc( 65% + 100px);
+	}
+
+	max-width: calc( 75% + 100px );
 }
 
 .alt-project-expanded

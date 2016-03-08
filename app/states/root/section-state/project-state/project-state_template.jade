@@ -79,8 +79,11 @@
 						)
 
 				//- Design recognition
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
-					.project-page-sidebar-header( ng-if='activeItem.awards.length' )
+				.project-page-sidebar-section.contracted(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.awards.length'
+				)
+					.project-page-sidebar-header
 						| Design Recognition
 
 					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
@@ -98,7 +101,7 @@
 						| Bibliography
 					.project-detail-wrapper.bibliography-item.details-clickable(
 						ng-repeat='item in activeItem.bibliography_items'
-						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.id, m: null, s: null })'
+						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.uid, m: null, s: null })'
 					)
 						.bibliography-image(
 							ng-if='item.primary_image'
