@@ -5,7 +5,6 @@ var sectionState = angular.module( 'sectionState' );
 sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter )
 {
 
-
 	$scope.indexContents = [  ];
 
 	// Default to tile index
@@ -109,216 +108,216 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 //BEGIN MAP------------------------------------------------------
 	$scope.center = {
-		lat: 52,
-		lng: 13,
-		zoom: 3
+		lat: 0,
+		lng: 0,
+		zoom: 2,
 	}
+
+ var mapStyles =
+    [
+      {
+        "featureType": "all",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }, {
+          "lightness": "-100"
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+          "saturation": 36
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 40
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+          "visibility": "on"
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 20
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }, {
+          "weight": 1.2
+        }, {
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "simplified"
+        }, {
+          "color": "#ffffff"
+        }]
+      }, {
+        "featureType": "administrative.country",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.province",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "simplified"
+        }, {
+          "weight": "1.83"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "simplified"
+        }]
+      }, {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": "-100"
+        }]
+      }, {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 21
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 29
+        }, {
+          "weight": 0.2
+        }]
+      }, {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 18
+        }]
+      }, {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 19
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },{
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#ffffff"
+        }, {
+          "lightness": 17
+        }]
+      }
+    ]
 
 	var iconSettings = {
 		iconUrl: 'images/circle.svg',
 		iconAnchor:   [9, 10],
 	}
-
-	var mapStyles =
-[
-	{
-		"featureType": "all",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}, {
-			"lightness": "-100"
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.text.fill",
-		"stylers": [{
-			"saturation": 36
-		}, {
-			"color": "#000000"
-		}, {
-			"lightness": 40
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.text.stroke",
-		"stylers": [{
-			"visibility": "on"
-		}, {
-			"color": "#000000"
-		}, {
-			"lightness": 16
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.icon",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "geometry.fill",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 20
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 17
-		}, {
-			"weight": 1.2
-		}, {
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "simplified"
-		}, {
-			"color": "#ffffff"
-		}]
-	}, {
-		"featureType": "administrative.country",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.province",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "simplified"
-		}, {
-			"weight": "1.83"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "labels.icon",
-		"stylers": [{
-			"visibility": "simplified"
-		}]
-	}, {
-		"featureType": "administrative.neighborhood",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.land_parcel",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "landscape",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": "-100"
-		}]
-	}, {
-		"featureType": "poi",
-		"elementType": "all",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "poi",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 21
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "geometry",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "road.highway",
-		"elementType": "geometry.fill",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 17
-		}]
-	}, {
-		"featureType": "road.highway",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 29
-		}, {
-			"weight": 0.2
-		}]
-	}, {
-		"featureType": "road.arterial",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 18
-		}]
-	}, {
-		"featureType": "road.local",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 16
-		}]
-	}, {
-		"featureType": "transit",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 19
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	},{
-		"featureType": "water",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#ffffff"
-		}, {
-			"lightness": 17
-		}]
-	}
-	]
 
 	$scope.layers = {
 		baselayers: {
@@ -332,7 +331,14 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					}
 				}
 			}
-		}
+		},
+    overlays: {
+      london: {
+        name: "adf",
+        type: "markercluster",
+        visible: true
+      }
+    }
 	}
 
 	$scope.markers = [  ];
@@ -356,6 +362,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			{
 				$scope.markers.push(
 				{
+          layer: 'london',
 					icon: iconSettings,
 					lat: parseFloat( item.lat ),
 					lng:parseFloat( item.lon ),
@@ -373,7 +380,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$timeout( function(  )
 	{
-		placeMarkers(  )
+    placeMarkers(  )
 	}, 2000 );
 
 //------------------------------------------------------------  end map
