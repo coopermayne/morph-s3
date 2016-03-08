@@ -114,29 +114,26 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
     lat: 0,
     lng: 0
   }
+
   var place_d = {
     asia: {
-      zoom: 3,
+      zoom: 4,
       lat: 36,
       lng: 131
     }, 
     europe: {
-      zoom: 3,
+      zoom: 4,
       lat: 49,
       lng: 16
     }, 
     america: {
-      zoom: 3,
+      zoom: 4,
       lat: 29,
       lng: -84
     }
   }
 
-  $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
-
-	$scope.$on('$locationChangeSuccess', function(event) {
-    $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
-  });
+  $scope.center = place_d[$state.params.q] ? place_d[$state.params.q] : default_place
 
   $scope.defaults = {
     minZoom: 2,
@@ -521,6 +518,12 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	{ 
 		// Update stateParams
 		$scope.stateParams = $state.params;
+
+    //update map center
+    if($scope.stateParams.sortingType == "location")
+    {
+      $scope.center = place_d[$scope.stateParams.q] ? place_d[$scope.stateParams.q] : default_place
+    }
 		
 		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
 		{			
@@ -548,5 +551,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Update subSort on section and sortingType change
 		$scope.switchSubSort( 'date' );
 	});
+
+	$scope.$on('$locationChangeSuccess', function(event) {
+  });
 
 } );
