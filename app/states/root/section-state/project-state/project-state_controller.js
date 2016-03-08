@@ -7,6 +7,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.stateParams = $state.params;
 
+	// Save original index for modal 'close' button purposes
 	$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
 		if ( fromState.name === 'root.section-state.sorting-state' || fromParams.section === 'search' )
@@ -15,25 +16,32 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				section: fromParams.section,
 				sortingType: fromParams.sortingType,
 				q: fromParams.q, 
-				s: fromParams.s
+				s: fromParams.s,
+				e: fromParams.e,
+				m: null
 			}
 		}
 	});
 
+	// Zipped-up Morphosis team (project credits)
+	$scope.showMorphTeam = false;
+
+	// 'People' or 'Project' layout?
 	switch( $scope.stateParams.section )
 	{
-		case 'about':
-			$http(
-			{
-				method: 'GET',
-				url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
-			} ).then( function( response )
-			{
-				$scope.activeItem = response.data;
-			} );
-		break;
+		// case 'about':
+		// 	$http(
+		// 	{
+		// 		method: 'GET',
+		// 		url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
+		// 	} ).then( function( response )
+		// 	{
+		// 		$scope.activeItem = response.data;
+		// 	} );
+		// break;
 
 		case 'search':
+		case 'about':
 			if( $scope.stateParams.m === "person" )
 			{
 				$http(
@@ -70,7 +78,8 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	{
 		if ( $rootScope.originalIndex )
 		{
-			$state.go( 'root.section-state.sorting-state', { section: $rootScope.originalIndex.section, sortingType: $rootScope.originalIndex.sortingType } );
+			var originalIndex = $rootScope.originalIndex;
+			$state.go( 'root.section-state.sorting-state', originalIndex );
 
 			// Clear originalIndex
 			$rootScope.originalIndex = null;

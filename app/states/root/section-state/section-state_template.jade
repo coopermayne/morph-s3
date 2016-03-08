@@ -38,12 +38,13 @@
 
 //- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
-
+	
+	//- Click routing - in-page vs modal
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
-		id='{{ item.uid }}'
-		ng-if='item[subSort] || stateParams.section === "search"'
-		ng-click='stateParams.section === "search" ? resolveSearchClick( item ) : expandProject( item.uid )'
+		id='{{ item.id }}'
+		ng-if='item[ subSort ] || stateParams.section === "search"'
+		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
 	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
@@ -59,7 +60,7 @@
 			img.alt-project-image(
 				preload-image
 				ng-if='item.image.name.mobile.url || item.image'
-				ng-src='{{item.image.name.mobile.url || item.image }}'
+				ng-src='{{ item.image.name.mobile.url || item.image }}'
 			)
 
 			//- Title + expanded sections
@@ -72,7 +73,7 @@
 					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 
-				//- Search section click routing
+				//- Search section context labels
 				.project-detail-label( ng-if='stateParams.section === "search"' )
 					| {{ item.section }} {{ item.sorting_type ? ' / ' + item.sorting_type : ''}}
 				.alt-project-title(

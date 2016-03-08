@@ -90,14 +90,14 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 	} );
 
-	// Search project page routing
-	$scope.resolveSearchClick = function( item )
+	// Search + Media project page routing
+	$scope.resolveClick = function( item )
 	{
 		switch( item.searchable_type )
 		{
 			case 'Person':
 			case 'Project':
-			$state.go( 'root.section-state.project-state', { projectId: item.searchable_id, m: item.searchable_type.toLowerCase(  ) } );
+			$state.go( 'root.section-state.project-state', { section: $scope.stateParams.section, projectId: item.searchable_id, m: item.searchable_type.toLowerCase(  ) } );
 			break;
 
 			default:

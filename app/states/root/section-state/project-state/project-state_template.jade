@@ -68,10 +68,26 @@
 				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
 					.project-page-sidebar-header( ng-if='activeItem.people.length' )
 						| Project Credits
-
-					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.people | groupBy: "role_title"' )
+					
+					.show-morph-team.details-clickable.contracted(
+						ng-click='showMorphTeam = !showMorphTeam'
+						ng-class='{ "contracted": !showMorphTeam }'
+					)
+						| Morphosis Team
+					.project-detail-wrapper(
+						ng-repeat='(key, value) in activeItem.people | filter: { is_morphosis: true } | groupBy: "role_title"'
+						ng-show='showMorphTeam'
+					)
 						.project-detail-label
-							| {{ key + ': '}}
+							| {{ key }}
+						.project-detail-text.details-clickable(
+							ng-repeat='role in value'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'
+							ng-bind-html='role.person.name | htmlParse'
+						)
+					.project-detail-wrapper( ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"' )
+						.project-detail-label
+							| {{ key }}
 						.project-detail-text.details-clickable(
 							ng-repeat='role in value'
 							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id })'

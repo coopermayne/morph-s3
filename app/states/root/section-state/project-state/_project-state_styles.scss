@@ -349,6 +349,11 @@
 .project-page-award
 {
 	margin-bottom: 10px;
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
 }
 
 .contracted
@@ -418,5 +423,36 @@
 		{
 			margin-bottom: 0.5rem;
 		}
+	}
+}
+
+.show-morph-team
+{
+	transition: all 1s ease;
+
+	*
+	{
+		margin-left: 0.5rem;
+
+		&:hover
+		{
+			text-decoration: none !important;
+		}
+	}
+
+	&:before
+	{
+		content: '-';
+		position: absolute;
+		top: -2px;
+		left: -15px;
+	}
+
+	&.contracted:before
+	{
+		content: '+';
+		position: absolute;
+		top: -2px;
+		left: -15px;
 	}
 }

@@ -171,17 +171,21 @@
 {
 	position: absolute;
 	cursor: pointer;
-	top: 50px;
+	top: 40%;
 	left: -20px;
 }
 
 .alt-project-title-and-image
 {
+	@include respond-to( 'small' )
+	{
+		max-width: 100%;
+	}
+
 	flex-flow: row nowrap;
 	align-items: center;
 
-	max-width: 100%;
-	// flex: 1 0 0;
+	max-width: 90%;
 	margin-bottom: 0.5rem;
 
 	&.expanded
