@@ -169,7 +169,10 @@
 									ng-src='{{ image.name.thumb.url }}'
 								)
 				//- Components
-				.project-description-wrapper.component.contracted( ng-repeat='component in activeItem.components | orderBy: "rank"' )
+				.project-description-wrapper.component.contracted(
+					ng-repeat='component in activeItem.components | orderBy: "rank"'
+					ng-toggle-class='contracted open'
+				)
 					.project-description-header
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
@@ -213,6 +216,7 @@
 				//- Design recognition
 				.project-page-sidebar-section.contracted(
 					ng-if='activeItem.awards.length'
+					ng-toggle-class='open contracted'
 				)
 					.project-page-sidebar-header
 						| Design Recognition
@@ -224,7 +228,7 @@
 							| {{ award.title }}
 
 				//- Bibliography
-				.project-page-sidebar-section
+				.project-page-sidebar-section.contracted( ng-toggle-class='open contracted' )
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
