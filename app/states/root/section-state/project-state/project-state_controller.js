@@ -2,8 +2,10 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http )
+projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, $timeout )
 {
+
+	$scope.pageLoaded = false
 
 	$scope.stateParams = $state.params;
 
@@ -49,6 +51,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 			{
 				Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 				{
+
 					$scope.activeItem = response.result;
 				} );
 			}
@@ -58,6 +61,9 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{
 				$scope.activeItem = response.result;
+				$timeout(function(){
+					$scope.throbberOn = false;
+				}, 500)
 			} );
 		break;
 	}
