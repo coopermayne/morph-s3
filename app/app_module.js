@@ -18,8 +18,10 @@ var morphopedia = angular.module( 'morphopedia',
 
 ] );
 
-morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelegateProvider )
+morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelegateProvider, $logProvider )
 {
+
+	$logProvider.debugEnabled(false);
 
 	$urlRouterProvider.otherwise( '/' );
 	$locationProvider.html5Mode( true );

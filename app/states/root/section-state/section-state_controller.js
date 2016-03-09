@@ -2,9 +2,8 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter )
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter, leafletBoundsHelpers)
 {
-
 
 	$scope.indexContents = [  ];
 
@@ -112,217 +111,245 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 
 //BEGIN MAP------------------------------------------------------
-	$scope.center = {
-		lat: 52,
-		lng: 13,
-		zoom: 3
-	}
+
+
+  var default_place = {
+    zoom: 2,
+    lat: 0,
+    lng: 0
+  }
+
+  var place_d = {
+    asia: {
+      zoom: 4,
+      lat: 36,
+      lng: 131
+    }, 
+    europe: {
+      zoom: 4,
+      lat: 49,
+      lng: 16
+    }, 
+    america: {
+      zoom: 4,
+      lat: 29,
+      lng: -84
+    }
+  }
+
+  $scope.center = place_d[$state.params.q] ? angular.copy(place_d[$state.params.q]) : angular.copy(default_place)
+
+  $scope.defaults = {
+    minZoom: 2,
+  }
+
+ var mapStyles =
+    [
+      {
+        "featureType": "all",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }, {
+          "lightness": "-100"
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+          "saturation": 36
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 40
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+          "visibility": "on"
+        }, {
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 20
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }, {
+          "weight": 1.2
+        }, {
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "simplified"
+        }, {
+          "color": "#ffffff"
+        }]
+      }, {
+        "featureType": "administrative.country",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.province",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "simplified"
+        }, {
+          "weight": "1.83"
+        }]
+      }, {
+        "featureType": "administrative.locality",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "simplified"
+        }]
+      }, {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": "-100"
+        }]
+      }, {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 21
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 17
+        }]
+      }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 29
+        }, {
+          "weight": 0.2
+        }]
+      }, {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 18
+        }]
+      }, {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 16
+        }]
+      }, {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#000000"
+        }, {
+          "lightness": 19
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },{
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#ffffff"
+        }, {
+          "lightness": 17
+        }]
+      }
+    ]
 
 	var iconSettings = {
 		iconUrl: 'images/circle.svg',
 		iconAnchor:   [9, 10],
 	}
 
-	var mapStyles =
-[
-	{
-		"featureType": "all",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}, {
-			"lightness": "-100"
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.text.fill",
-		"stylers": [{
-			"saturation": 36
-		}, {
-			"color": "#000000"
-		}, {
-			"lightness": 40
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.text.stroke",
-		"stylers": [{
-			"visibility": "on"
-		}, {
-			"color": "#000000"
-		}, {
-			"lightness": 16
-		}]
-	}, {
-		"featureType": "all",
-		"elementType": "labels.icon",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "geometry.fill",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 20
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 17
-		}, {
-			"weight": 1.2
-		}, {
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "simplified"
-		}, {
-			"color": "#ffffff"
-		}]
-	}, {
-		"featureType": "administrative.country",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.province",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "simplified"
-		}, {
-			"weight": "1.83"
-		}]
-	}, {
-		"featureType": "administrative.locality",
-		"elementType": "labels.icon",
-		"stylers": [{
-			"visibility": "simplified"
-		}]
-	}, {
-		"featureType": "administrative.neighborhood",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "administrative.land_parcel",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "landscape",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": "-100"
-		}]
-	}, {
-		"featureType": "poi",
-		"elementType": "all",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "poi",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 21
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "geometry",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	}, {
-		"featureType": "road.highway",
-		"elementType": "geometry.fill",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 17
-		}]
-	}, {
-		"featureType": "road.highway",
-		"elementType": "geometry.stroke",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 29
-		}, {
-			"weight": 0.2
-		}]
-	}, {
-		"featureType": "road.arterial",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 18
-		}]
-	}, {
-		"featureType": "road.local",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 16
-		}]
-	}, {
-		"featureType": "transit",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#000000"
-		}, {
-			"lightness": 19
-		}]
-	}, {
-		"featureType": "road",
-		"elementType": "labels",
-		"stylers": [{
-			"visibility": "off"
-		}]
-	},{
-		"featureType": "water",
-		"elementType": "geometry",
-		"stylers": [{
-			"color": "#ffffff"
-		}, {
-			"lightness": 17
-		}]
-	}
-	]
+  $scope.maxBounds = leafletBoundsHelpers.createBoundsFromArray([[-540, -145], [540, 260]]);
 
 	$scope.layers = {
 		baselayers: {
@@ -336,7 +363,17 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 					}
 				}
 			}
-		}
+		},
+    overlays: {
+      london: {
+        layerOptions: {
+          showCoverageOnHover: false,
+        },
+        name: "adf",
+        type: "markercluster",
+        visible: true
+      }
+    }
 	}
 
 	$scope.markers = [  ];
@@ -360,6 +397,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			{
 				$scope.markers.push(
 				{
+          layer: 'london',
 					icon: iconSettings,
 					lat: parseFloat( item.lat ),
 					lng:parseFloat( item.lon ),
@@ -377,7 +415,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$timeout( function(  )
 	{
-		placeMarkers(  )
+    placeMarkers(  )
 	}, 2000 );
 
 //------------------------------------------------------------  end map
@@ -421,6 +459,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	{
 		$scope.setAltIndex( sectionTitle );
 
+		$scope.throbberOn = true;
+
 		$http(
 		{
 			method: 'GET',
@@ -428,6 +468,23 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		} ).then( function( response )
 		{
 			$scope.indexContents = response.data;
+			$timeout( function(  )
+			{
+				$scope.throbberOn = false;
+			}, 500 )
+		} );
+	}
+
+	$scope.getMediaResource = function( sortingType, page, subSort )
+	{
+		$http(
+		{
+			method: 'GET',
+			url: apiUrl + 'media.json',
+			params: { p: page, type: sortingType, sub: subSort }
+		} ).then( function( response )
+		{
+			console.log( response );
 		} );
 	}
 
@@ -442,6 +499,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			{
 				case 'media':
 				$scope.getResource( 'media' );
+				$scope.getMediaResource( 'bibliography', 2, 'pub_date' );
 				break;
 
 				case 'people':
@@ -475,16 +533,30 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 		// Projects
 		default:
+    	$scope.throbberOn = true;
 		$scope.indexContents = Project.query(  );
+		$scope.indexContents.$promise.then( function( results )
+		{
+			$timeout( function(  )
+			{
+				$scope.throbberOn = false;
+			}, 500 );
+		})
 		break;
 	}
 
 	// Fire API calls for separate 'about' section resources
-	$scope.$on('$locationChangeSuccess', function(event)
+	$scope.$on( '$locationChangeSuccess', function( event )
 	{ 
 		// Update stateParams
 		$scope.stateParams = $state.params;
-		
+
+	    //update map center
+	    if( $scope.stateParams.sortingType === "location" )
+	    {
+	      $scope.center = place_d[ $state.params.q ] ? angular.copy( place_d[$state.params.q ] ) : angular.copy( default_place );
+	    }
+			
 		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
 		{			
 
@@ -510,6 +582,15 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 		// Update subSort on section and sortingType change
 		$scope.switchSubSort( 'date' );
-	});
+	} );
+
+	$scope.$on( '$stateChangeSuccess', function( event )
+	{
+
+		if ( $scope.previousState.name === 'root.section-state.project-state' && !$scope.toParams.projectId && $rootScope.originalIndex )
+		{
+			$state.transitionTo( 'root.section-state.sorting-state', $rootScope.originalIndex, { reload: true, inherit: false, notify: true } );
+		}
+	} )
 
 } );

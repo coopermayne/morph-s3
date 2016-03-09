@@ -2,8 +2,10 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize )
+projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
 {
+
+	$scope.pageLoaded = false
 
 	$scope.stateParams = $state.params;
 
@@ -20,6 +22,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				e: fromParams.e,
 				m: null
 			}
+			console.log( 'originalIndex:', $rootScope.originalIndex );
 		}
 	});
 
@@ -51,15 +54,20 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 			{
 				Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 				{
+
 					$scope.activeItem = response.result;
 				} );
 			}
 		break;
 
 		default:
+			$scope.throbberOn = true;
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{
 				$scope.activeItem = response.result;
+				$timeout(function(){
+					$scope.throbberOn = false;
+				}, 500)
 			} );
 		break;
 	}
@@ -70,10 +78,10 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
 	$scope.closeProject = function(  )
 	{
-		if ( $rootScope.originalIndex )
+		var originalIndex = $rootScope.originalIndex;
+		if ( originalIndex )
 		{
-			var originalIndex = $rootScope.originalIndex;
-			$state.go( 'root.section-state.sorting-state', originalIndex );
+			$state.transitionTo( 'root.section-state.sorting-state', originalIndex, { reload: true, inherit: false, notify: true } );
 
 			// Clear originalIndex
 			$rootScope.originalIndex = null;
