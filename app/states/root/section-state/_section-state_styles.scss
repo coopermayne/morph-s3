@@ -390,3 +390,18 @@ a[href^='https://maps.google.com/maps']
 		line-height: 1;
 	}
 }
+
+.marker-cluster
+{
+	background-color: $yellow !important;
+
+	div
+	{
+		background-color: $yellow !important;
+
+		span
+		{
+			font-family: $executive-reg;
+		}
+	}
+}
