@@ -14,6 +14,7 @@
 		| Date
 
 .index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType && stateParams.sortingType !== "location"' )
+	throbber-directive
 
 	//- Items with 'section' attribute (projects)
 	.index-project(
@@ -38,8 +39,8 @@
 
 //- Alternate index
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
-	
-	//- Click routing - in-page vs modal
+	throbber-directive
+
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{ item.id }}'
