@@ -12,13 +12,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.menuItems = response;
 
 		$scope.homePageSlides = $scope.menuItems.landing.slides;
-
-		// var subSectionArray = [  ];
-
-		// angular.forEach( $scope.menuItems.sections, function( item )
-		// {
-		// 	if( item.sorting. )
-		// } );
 	} );
 
 

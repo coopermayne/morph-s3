@@ -2,7 +2,7 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http )
+projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize )
 {
 
 	$scope.stateParams = $state.params;
@@ -21,6 +21,11 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				m: null
 			}
 		}
+	});
+
+	$scope.mobile = screenSize.on( 'xs, sm', function( match )
+	{
+		$scope.mobile = match;
 	});
 
 	// Zipped-up Morphosis team (project credits)

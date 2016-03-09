@@ -17,10 +17,10 @@
 		//- PROJECT PAGE
 		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" )' )
 
-			.project-page-sidebar( ng-toggle-class='contracted open' )
+			.project-page-sidebar
 
 				//- Details
-				.project-page-sidebar-section.mobile-details
+				.project-page-sidebar-section
 					.project-page-sidebar-header
 						| Details
 					.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
@@ -65,9 +65,9 @@
 							| {{ type }}
 				
 				//- Project Credits
-				.project-page-sidebar-section.contracted(
+				.project-page-sidebar-section(
 					ng-toggle-class='contracted open'
-					ng-if='activeItem.people.length'
+					ng-if='activeItem.people.length && !mobile'
 				)
 					.project-page-sidebar-header
 						| Project Credits
@@ -100,9 +100,8 @@
 						)
 
 				//- Design recognition
-				.project-page-sidebar-section.contracted(
-					ng-toggle-class='contracted open'
-					ng-if='activeItem.awards.length'
+				.project-page-sidebar-section(
+					ng-if='activeItem.awards.length && !mobile'
 				)
 					.project-page-sidebar-header
 						| Design Recognition
@@ -114,7 +113,7 @@
 							| {{ award.title }}
 
 				//- Bibliography
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
+				.project-page-sidebar-section( ng-if='!mobile' )
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
@@ -136,9 +135,10 @@
 
 			.project-page-main-text
 
-				.project-overview(
+				.project-overview.contracted(
 					ng-if='activeItem.overview'
 					ng-bind-html='activeItem.overview | htmlParse'
+					ng-toggle-class='contracted open'
 				)
 					| {{ activeItem.overview }}
 
@@ -173,6 +173,76 @@
 					.project-description-header
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
+
+			//- The remaining sidebar items for MOBILE (project credits + bibliography)
+			.project-page-second-sidebar( ng-if='mobile' )
+				.project-page-sidebar-section.project-credits.contracted(
+					ng-if='activeItem.people.length'
+					ng-toggle-class='contracted open'
+				)
+					.project-page-sidebar-header
+						| Project Credits
+					
+					.show-morph-team.details-clickable.contracted(
+						ng-click='showMorphTeam = !showMorphTeam; $event.stopPropagation(  )'
+						ng-class='{ "morph-contracted": !showMorphTeam }'
+					)
+						| Morphosis Team
+					.project-detail-wrapper(
+						ng-repeat='(key, value) in activeItem.people | filter: { is_morphosis: true } | groupBy: "role_title"'
+						ng-show='showMorphTeam'
+					)
+						.project-detail-label
+							| {{ key }}
+						.project-detail-text.details-clickable(
+							ng-repeat='role in value'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
+							ng-bind-html='role.person.name | htmlParse'
+						)
+					.project-detail-wrapper(
+						ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"'
+					)
+						.project-detail-label
+							| {{ key }}
+						.project-detail-text.details-clickable(
+							ng-repeat='role in value'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
+							ng-bind-html='role.person.name | htmlParse'
+						)
+
+				//- Design recognition
+				.project-page-sidebar-section.contracted(
+					ng-if='activeItem.awards.length'
+				)
+					.project-page-sidebar-header
+						| Design Recognition
+
+					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
+						.project-detail-label
+							| {{ key }}
+						.project-detail-text.project-page-award( ng-repeat='award in value' )
+							| {{ award.title }}
+
+				//- Bibliography
+				.project-page-sidebar-section
+
+					.project-page-sidebar-header(
+						ng-if='activeItem.bibliography_items.length'
+					)
+						| Bibliography
+					.project-detail-wrapper.bibliography-item.details-clickable(
+						ng-repeat='item in activeItem.bibliography_items'
+						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.uid, m: null, s: null })'
+					)
+						.bibliography-image(
+							ng-if='item.primary_image'
+							preload-bg-image='{{ item.primary_image.name.thumb.url }}'
+						)
+						| {{ item.author ? item.author : '' }}
+						| {{ item.publication ? item.publication + '.' : '' }}
+						| {{ item.publisher ? item.publisher : '' }}
+						| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
+						| {{ item.pages ? item.pages + '.' : '' }}
 
 		//- PEOPLE PAGE
 		.project-page-text-wrapper( ng-if='stateParams.m == "person"' )
