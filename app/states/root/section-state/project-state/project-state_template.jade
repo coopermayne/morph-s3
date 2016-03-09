@@ -179,6 +179,20 @@
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
 
+				.project-description-wrapper.component.contracted(
+					ng-toggle-class='contracted open'
+				)
+					| Documents
+					.pdf-attachment(
+						ng-repeat='document in activeItem.documents'
+						ng-if='item.documents.length != 0'
+					)
+						a(
+							href='{{ document.name.url }}'
+							target='new'
+						)
+							| {{ document.name.url.split('/').reverse()[0] }}
+
 			//- The remaining sidebar items for MOBILE (project credits + bibliography)
 			.project-page-second-sidebar( ng-if='mobile' )
 				.project-page-sidebar-section.project-credits.contracted(
