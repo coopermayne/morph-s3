@@ -181,6 +181,7 @@
 
 				.project-description-wrapper.component.contracted(
 					ng-toggle-class='contracted open'
+					ng-if='activeItem.documents.length > 0'
 				)
 					| Documents
 					.pdf-attachment(
