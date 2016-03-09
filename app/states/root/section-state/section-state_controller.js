@@ -51,6 +51,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$scope.reverseVar = false;
 				break;
 
+				case 'people':
+				$scope.subSort = 'name';
+				$scope.reverseVar = false;
+
 				default:
 				if( $scope.stateParams.section == "news" )
 				{

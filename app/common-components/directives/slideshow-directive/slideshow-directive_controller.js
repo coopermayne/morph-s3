@@ -24,6 +24,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		{
 			$scope.currentSlide = $scope.slides[ 0 ];
 
+			// Video queue
 			if ( $scope.vid && !$scope.mobile )
 			{
 				$timeout( function(  )
@@ -74,13 +75,14 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 						}
 					}
 					
+					// Initialize first video
 					videoElements[ 0 ].load(  );
 					videoElements[ 0 ].play(  );
 				}, 0 );
 			}
 			else
+			// Image slideshow
 			{
-				console.log( 'image slideshow' )
 				$scope.playSlideShow = $interval( function(  )
 				{
 					if ( counter < $scope.slides.length - 1 )

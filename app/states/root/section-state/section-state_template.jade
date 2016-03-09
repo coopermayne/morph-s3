@@ -15,7 +15,7 @@
 
 .index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType && stateParams.sortingType !== "location"' )
 
-	//- Items with 'section' attribute
+	//- Items with 'section' attribute (projects)
 	.index-project(
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort: reverseVar'
 		ng-if='item.section && item[subSort]'
@@ -25,9 +25,9 @@
 
 		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
-	//- Items without 'section' attribute
+	//- Items without 'section' attribute (people)
 	.index-project(
-		ng-repeat='item in indexContents'
+		ng-repeat='item in indexContents | orderBy: subSort: reverseVar'
 		ng-if='!item.section'
 		ui-sref='root.section-state.project-state( { projectId: item.id, m: "person" } )'
 
@@ -49,7 +49,7 @@
 
 		//- 'Expand'/'Contract' buttons (+/-)
 		.alt-index-expand(
-			ng-if='item.description.length > 0 && !item.searchable_type'
+			ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
 		)
 			| {{ stateParams.e == item.id ? "-":"+" }}
 
@@ -67,6 +67,15 @@
 			.alt-title-and-expanded-wrapper( ng-class='{ "with-image": item.image.name.mobile.url || item.image }' )
 
 				//- NOT search section (different ui-sref behavior)
+
+				//- News item date
+				.project-detail-label( ng-if='stateParams.section === "news" || stateParams.sortingType === "awards"' )
+					| {{ item.created_at | date : fullDate }}
+
+				//- Awards year
+				.project-detail-label( ng-if='stateParams.sortingType === "awards"' )
+					| {{ item.year }}
+
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ng-if='stateParams.section !== "search"'
@@ -81,8 +90,8 @@
 					ng-if='stateParams.section === "search"'
 				)
 
-				.item-year( ng-if='item.year' )
-					| ({{ item.year }})
+				//- .item-year( ng-if='item.year' )
+				//- 	| ({{ item.year }})
 
 				//- Overview attribute
 				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
@@ -106,7 +115,7 @@
 
 				//- Description attribute
 				.alt-project-expanded(
-					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 )'
+					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 ) || stateParams.section === "news"'
 					ng-bind-html='item.description | htmlParse'
 				)
 

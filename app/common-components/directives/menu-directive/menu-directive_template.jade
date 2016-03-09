@@ -9,7 +9,7 @@
 
 .menu-close-button(
 	ui-sref='root'
-	ng-if='state.current.name == "root.section-state"'
+	ng-if='state.current.name == "root.section-state" && stateParams.section !== "news" && stateParams.section !== "search"'
 )
 
 .menu-about-text-wrapper(

@@ -65,8 +65,11 @@
 							| {{ type }}
 				
 				//- Project Credits
-				.project-page-sidebar-section.contracted( ng-toggle-class='contracted open' )
-					.project-page-sidebar-header( ng-if='activeItem.people.length' )
+				.project-page-sidebar-section.contracted(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.people.length'
+				)
+					.project-page-sidebar-header
 						| Project Credits
 					
 					.show-morph-team.details-clickable.contracted(
@@ -85,7 +88,9 @@
 							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
 							ng-bind-html='role.person.name | htmlParse'
 						)
-					.project-detail-wrapper( ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"' )
+					.project-detail-wrapper(
+						ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"'
+					)
 						.project-detail-label
 							| {{ key }}
 						.project-detail-text.details-clickable(
@@ -123,9 +128,9 @@
 							ng-if='item.primary_image'
 							preload-bg-image='{{ item.primary_image.name.thumb.url }}'
 						)
-						| {{ item.author }}
+						| {{ item.author ? item.author : '' }}
 						| {{ item.publication ? item.publication + '.' : '' }}
-						| {{ item.publisher }}
+						| {{ item.publisher ? item.publisher : '' }}
 						| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
 						| {{ item.pages ? item.pages + '.' : '' }}
 
