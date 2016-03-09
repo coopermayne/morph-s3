@@ -3,8 +3,4 @@
 var throbberDirective = angular.module( 'throbberDirective' );
 
 
-throbberDirective.controller( 'ThrobberDirectiveController', function( $rootScope, $scope, $state, $stateParams, screenSize )
-{
-  //always default to on
-  $scope.throbberOn = true
-} );
+throbberDirective.controller( 'ThrobberDirectiveController', function( $rootScope, $scope, $state, $stateParams, screenSize ) { } );

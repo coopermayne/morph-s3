@@ -58,6 +58,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		break;
 
 		default:
+			$scope.throbberOn = true;
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{
 				$scope.activeItem = response.result;

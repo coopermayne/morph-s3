@@ -417,6 +417,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	{
 		$scope.setAltIndex( sectionTitle );
 
+    $scope.throbberOn = true
+
 		$http(
 		{
 			method: 'GET',
@@ -424,6 +426,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		} ).then( function( response )
 		{
 			$scope.indexContents = response.data;
+      $timeout(function(){
+        $scope.throbberOn = false
+      }, 500)
 		} );
 	}
 
@@ -471,7 +476,13 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 		// Projects
 		default:
+    $scope.throbberOn = true
 		$scope.indexContents = Project.query(  );
+		$scope.indexContents.$promise.then(function(results){
+			$timeout(function(){
+			$scope.throbberOn = false;
+			}, 500)
+		})
 		break;
 	}
 
