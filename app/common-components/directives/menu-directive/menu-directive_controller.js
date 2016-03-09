@@ -12,6 +12,13 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.menuItems = response;
 
 		$scope.homePageSlides = $scope.menuItems.landing.slides;
+
+		// var subSectionArray = [  ];
+
+		// angular.forEach( $scope.menuItems.sections, function( item )
+		// {
+		// 	if( item.sorting. )
+		// } );
 	} );
 
 
@@ -23,6 +30,38 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	{
 		$scope.mobile = match;
 	});
+
+	$scope.showSubSections = function( title, children )
+	{
+		var returnVar;
+
+		if ( title.toLowerCase(  ) === $scope.stateParams.q )
+		{
+			returnVar = true;
+		}
+
+		angular.forEach( children, function( child )
+		{
+			if ( child.title.toLowerCase(  ) === $scope.stateParams.q )
+			{
+				returnVar = true;
+			}
+		} );
+
+		return returnVar;
+	}
+
+	// $scope.showSubSection = fuction(  )
+	// {
+	// 	stateParams.q === littleSortingOption.title.toLowerCase(  ) || stateParams.q === subSection.title.toLowerCase(  );
+
+	// $scope.toggleSubSection = function( section )
+	// {
+	// 	if ( section.children.length )
+	// 	{
+	// 		$scope.showSubSection = !$scope.showSubSection;
+	// 	}
+	// }
 
 	$scope.setMobileMenuVar = function(  )
 	{

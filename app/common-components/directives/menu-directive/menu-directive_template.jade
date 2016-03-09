@@ -76,8 +76,8 @@ ul.menu-directive-wrapper.scrollable-content(
 						)
 							| Ghost
 							.ghost-element-subsection(
-								ng-if='ghostElement.children.length > 0'
 								ng-repeat='ghostChild in ghostElement.children'
+								ng-if='showSubSections( ghostElement.title, ghostElement.children )'
 							)
 								| Ghost
 					ul.option-list(
@@ -97,7 +97,7 @@ ul.menu-directive-wrapper.scrollable-content(
 
 							//- Subsection
 							.option-list-subsection(
-								ng-if='littleSortingOption.children.length > 0'
+								ng-if='showSubSections( littleSortingOption.title, littleSortingOption.children )'
 								ng-repeat='subSection in littleSortingOption.children'
 								ui-sref='root.section-state.sorting-state( { q: subSection.title.toLowerCase(  ) } )'
 								ng-mouseover='$event.stopPropagation(  )'
