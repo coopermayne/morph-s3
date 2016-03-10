@@ -249,7 +249,10 @@
 							| {{ award.title }}
 
 				//- Bibliography
-				.project-page-sidebar-section.contracted( ng-toggle-class='open contracted' )
+				.project-page-sidebar-section.contracted(
+					ng-toggle-class='open contracted'
+					ng-if='activeItem.bibliography_items.length'
+				)
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'

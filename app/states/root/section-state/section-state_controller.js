@@ -579,6 +579,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		// Search
 		case 'search':
 		$scope.altIndexSection = true;
+		$scope.throbberOn = true;
 		$http( 
 		{
 			method: 'GET',
@@ -587,6 +588,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		} ).then( function( response )
 		{
 			$scope.indexContents = response.data;
+			$scope.throbberOn = false;
 		} );
 		break;
 
@@ -596,10 +598,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		$scope.indexContents = Project.query(  );
 		$scope.indexContents.$promise.then( function( results )
 		{
-			$timeout( function(  )
-			{
-				$scope.throbberOn = false;
-			}, 500 );
+			$scope.throbberOn = false;
 		})
 		break;
 	}

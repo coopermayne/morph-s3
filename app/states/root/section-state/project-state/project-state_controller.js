@@ -74,9 +74,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{
 				$scope.activeItem = response.result;
-				$timeout(function(){
-					$scope.throbberOn = false;
-				}, 500)
+				$scope.throbberOn = false;
 			} );
 		break;
 	}

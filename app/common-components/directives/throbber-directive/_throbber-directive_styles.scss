@@ -1,5 +1,32 @@
 .index-project-wrapper .throbber-wrapper
 {
+	.ball-pulse-double .loader
+	{
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.alt-index-project-wrapper .throbber-wrapper
+{
+	.ball-pulse-double .loader
+	{
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.project-page-wrapper .throbber-wrapper
+{
+	.ball-pulse-double .loader
+	{
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.throbber-wrapper
+{
 	align-items: center;
 	align-content: center;
 	justify-content: center;
@@ -10,55 +37,9 @@
 	height: 100vh;
 	top: 0;
 	left: 0;
-
-	.ball-pulse-double .loader
-	{
-		width: 100px;
-		height: 100px;
-	}
-}
-
-.alt-index-project-wrapper .throbber-wrapper
-{
-	width: 100%;
-	height: 100vh;
-
-	.ball-pulse-double .loader
-	{
-		@include respond-to('small')
-		{
-			top: 10vh;
-			left: 15%;
-		}
-
-		width: 100px;
-		height: 100px;
-	}
-}
-
-.project-page-wrapper .throbber-wrapper
-{
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	.ball-pulse-double .loader
-	{
-		@include respond-to('small')
-		{
-			left: 20%;
-		}
-
-		width: 100px;
-		height: 100px;
-	}
-}
-
-.throbber-wrapper
-{
-	z-index: 5;
+	z-index: -1;
 	background: $white;
+
 
 	.ball-pulse-double .ball-1,
 	.ball-pulse-double .ball-2
@@ -67,8 +48,6 @@
 		position: absolute;
 		width: 50%;
 		height: 50%;
-		top: 25%;
-		left: 25%;
 		border-radius: 50%;
 		background-color: $black;
 
