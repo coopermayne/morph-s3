@@ -1,3 +1,17 @@
+#baguetteBox-overlay .full-image figcaption
+{
+	position: relative;
+	width: auto;
+	right: 0;
+	bottom: $page-margin;
+	background-color: transparent;
+
+	color: transparentize( $white, 0.5 );
+	font-family: $executive-reg;
+	text-align: right;
+	white-space: normal;
+}
+
 #baguetteBox-slider
 {
 	flex-flow: row nowrap;

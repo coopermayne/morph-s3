@@ -15,7 +15,8 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 				baguetteBox.run( '.gallery',
 				{
 					noScrollBars: true,
-					animation: 'fadeIn'
+					animation: 'fadeIn',
+					captions: true
 				} );
 			}, 2000 );
 		}

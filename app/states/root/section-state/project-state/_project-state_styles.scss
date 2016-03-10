@@ -490,6 +490,11 @@
 			margin: 0;
 		}
 	}
+
+	&.show-morph-team:before
+	{
+		content: '+';
+	}
 }
 
 .open
@@ -516,6 +521,11 @@
 			margin-bottom: 0.5rem;
 		}
 	}
+
+	&.show-morph-team:before
+	{
+		content: '-';
+	}
 }
 
 .show-morph-team
@@ -533,14 +543,6 @@
 	}
 
 	&:before
-	{
-		content: '-';
-		position: absolute;
-		top: -2px;
-		left: -15px;
-	}
-
-	&.morph-contracted:before
 	{
 		content: '+';
 		position: absolute;
