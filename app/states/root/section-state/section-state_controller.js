@@ -359,6 +359,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				type: 'google',
 				layerOptions: {
 					mapOptions:{
+            backgroundColor: '#ffffff',
 						styles: mapStyles
 					}
 				}
