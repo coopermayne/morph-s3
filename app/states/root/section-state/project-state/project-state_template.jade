@@ -29,7 +29,7 @@
 						.project-detail-label
 							| Location: 
 						.project-detail-text
-							| {{ activeItem.city + ', '}} {{ activeItem.country }}
+							| {{ printAddress(activeItem) }}
 					.project-detail-wrapper( ng-if='activeItem.client' )
 						.project-detail-label
 							| Client:
@@ -178,6 +178,21 @@
 					.project-description-header
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
+
+				.project-description-wrapper.component.contracted(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.documents.length > 0'
+				)
+					| Documents
+					.pdf-attachment(
+						ng-repeat='document in activeItem.documents'
+						ng-if='item.documents.length != 0'
+					)
+						a(
+							href='{{ document.name.url }}'
+							target='new'
+						)
+							| {{ document.name.url.split('/').reverse()[0] }}
 
 			//- The remaining sidebar items for MOBILE (project credits + bibliography)
 			.project-page-second-sidebar( ng-if='mobile' )

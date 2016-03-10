@@ -5,6 +5,15 @@ var projectState = angular.module( 'projectState' );
 projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
 {
 
+	//helper method
+	$scope.printAddress = function(it){
+		if(it.address){
+			return it.address
+		} else {
+			return [it.city, it.state, it.country].join(", ")
+		}
+	}
+
 	$scope.pageLoaded = false
 
 	$scope.stateParams = $state.params;
