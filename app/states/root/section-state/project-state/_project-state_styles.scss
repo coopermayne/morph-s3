@@ -325,7 +325,6 @@
 
 .image-gallery-section
 {
-  -ms-overflow-style: none;
 	@include respond-to( 'small' )
 	{
 		&:before,
@@ -341,6 +340,9 @@
 	position: absolute;
 	width: 100%;
 	top: 37px;
+
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
 
 	img
 	{
