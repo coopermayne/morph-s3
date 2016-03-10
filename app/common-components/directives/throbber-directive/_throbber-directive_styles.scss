@@ -20,6 +20,12 @@
 	height: 100vh;
 	.ball-pulse-double .loader
 	{
+		@include respond-to('small')
+		{
+			top: 10vh;
+			left: 15%;
+		}
+
 		width: 200px;
 		height: 200px;
 		top: 25vh;
@@ -36,6 +42,11 @@
 	left: 0;
 	.ball-pulse-double .loader
 	{
+		@include respond-to('small')
+		{
+			left: 20%;
+		}
+
 		width: 200px;
 		height: 200px;
 		top: 25vh;
