@@ -19,7 +19,7 @@
 	//- Items with 'section' attribute (projects)
 	.index-project(
 		ng-repeat='item in indexContents | filter: { section: { title: stateParams.section} } | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort: reverseVar'
-		ng-if='item.section && item[subSort]'
+		ng-if='item.section && item[ subSort ]'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
 		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
@@ -41,10 +41,70 @@
 .alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
 	throbber-directive
 
+	//- Media section
+	.alt-index-project(
+		ng-repeat='item in indexContents'
+		id='{{ item.id }}'
+		ng-if='stateParams.sortingType === "media"'
+		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )')
+
+		//- 'Expand'/'Contract' buttons (+/-)
+		.alt-index-expand(
+			ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
+		)
+			| {{ stateParams.e == item.id ? "-":"+" }}
+
+		//- Project title and image
+		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e && stateParams.e == item.id }' )
+
+			//- Image
+			img.alt-project-image(
+				preload-image
+				ng-if='item.image.name.mobile.url || item.image'
+				ng-src='{{ item.image.name.mobile.url || item.image }}'
+			)
+
+			//- Title + expanded sections
+			.alt-title-and-expanded-wrapper( ng-class='{ "with-image": item.image.name.mobile.url || item.image }' )
+
+				//- NOT search section (different ui-sref behavior)
+				.alt-project-title(
+					ng-bind-html='item.title || item.name | htmlParse'
+					ng-if='stateParams.section !== "search"'
+					ui-sref='root.section-state.sorting-state({ e: item.id })'
+				)
+
+				//- Overview attribute
+				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
+
+				//- Bibliography citations + PDF
+				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
+					| {{ item.author }}
+					| {{ item.publication ? item.publication + '.' : '' }}
+					| {{ item.publisher }}
+					| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
+					| {{ item.pages ? item.pages + '.' : '' }}
+					.pdf-attachment(
+						ng-repeat='document in item.documents'
+						ng-if='item.documents.length != 0'
+					)
+						a(
+							href='{{ document.name.url }}'
+							target='new'
+						)
+							| PDF
+
+				//- Description attribute
+				.alt-project-expanded(
+					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 ) || stateParams.section === "news"'
+					ng-bind-html='item.description | htmlParse'
+				)
+
+	//- NOT media section
 	.alt-index-project(
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{ item.id }}'
-		ng-if='item[ subSort ] || stateParams.section === "search"'
+		ng-if='item[subSort] || stateParams.section === "search"'
 		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
 	)
 
@@ -91,9 +151,6 @@
 					ng-if='stateParams.section === "search"'
 				)
 
-				//- .item-year( ng-if='item.year' )
-				//- 	| ({{ item.year }})
-
 				//- Overview attribute
 				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
 
@@ -139,3 +196,9 @@
 		defaults='defaults'
 		layers='layers'
 	)
+
+.prev-and-next-wrapper
+	.previous( ng-if='isPrev' ng-click='getPage( "prev" )' )
+		| Previous page
+	.next( ng-if='isNext' ng-click='getPage( "next" )' )
+		| Next page

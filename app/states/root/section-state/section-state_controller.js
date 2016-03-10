@@ -23,6 +23,35 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		document.body.scrollTop = elScr;
 	}
 
+	$scope.getPage = function( dir )
+	{
+		if ( !$scope.stateParams.p )
+		{
+			$scope.stateParams.p = 0;
+		}
+
+		switch( dir )
+		{
+
+			case 'prev':
+			if( $scope.stateParams.p > 0 )
+			{
+				$scope.stateParams.p--;
+			}
+			else
+			{
+				$scope.stateParams.p = 0;
+			}
+			$state.go( $state.current.name, $scope.stateParams );
+			break;
+
+			case 'next':
+			$scope.stateParams.p++;
+			$state.go( $state.current.name, $scope.stateParams );
+			break;
+		}
+	}
+
 	$scope.switchSubSort = function( sort )
 	{
 		if ( sort == 'date' )
@@ -36,7 +65,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				break;
 
 				case 'media':
-				$scope.subSort = 'pub_date';
+				$scope.subSort = null;
+				$scope.stateParams.sub = 'pub_date';
+				$scope.stateParams.p = null;
+				console.log( 'media switching to date' );
+				$state.go( $state.current.name, $scope.stateParams );
 				break;
 
 				case 'type':
@@ -66,10 +99,21 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				}
 			}
 		}
-		else
+		else if ( sort === 'title' )
 		{
-			$scope.subSort = sort;
-			$scope.reverseVar = false;
+			if ( $scope.stateParams.sortingType === 'media' )
+			{
+				$scope.subSort = null;
+				$scope.stateParams.sub = 'title';
+				$scope.stateParams.p = null;
+				$state.go( $state.current.name, $scope.stateParams );
+				console.log( 'media switching to alphabetical' );
+			}
+			else
+			{			
+				$scope.subSort = sort;
+				$scope.reverseVar = false;
+			}
 		}
 	}
 
@@ -88,8 +132,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 		else
 		{
-			// Sort items by date on indexContents load
-			$scope.switchSubSort( 'date' );
+			if( $scope.stateParams.sortingType !== 'media' )
+			{
+				// Sort items by date on indexContents load
+				$scope.switchSubSort( 'date' );
+			}
 		}
 	} );
 
@@ -475,16 +522,28 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		} );
 	}
 
-	$scope.getMediaResource = function( sortingType, page, subSort )
+	$scope.getMediaResource = function( params )
 	{
+		$scope.setAltIndex( params.sortingType );
+		$scope.throbberOn = true
+
 		$http(
 		{
 			method: 'GET',
 			url: apiUrl + 'media.json',
-			params: { p: page, type: sortingType, sub: subSort }
+			params:
+			{
+				p: params.p,
+				q: params.q, 
+				sub: params.sub
+			}
 		} ).then( function( response )
 		{
-			console.log( response );
+			$scope.isPrev = !(response.data.currentPage === 0)
+			$scope.isNext = response.data.totalPages > response.data.currentPage
+			$scope.indexContents = response.data.results;
+			$scope.throbberOn = false
+
 		} );
 	}
 
@@ -498,8 +557,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			switch( $scope.stateParams.sortingType )
 			{
 				case 'media':
-				$scope.getResource( 'media' );
-				$scope.getMediaResource( 'bibliography', 2, 'pub_date' );
+				$scope.getMediaResource( $scope.stateParams );
 				break;
 
 				case 'people':
@@ -557,7 +615,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	      $scope.center = place_d[ $state.params.q ] ? angular.copy( place_d[$state.params.q ] ) : angular.copy( default_place );
 	    }
 			
-		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.q && !$scope.stateParams.e )
+		if ( $scope.stateParams.section === 'about' )
 		{			
 
 			// Clear indexContents
@@ -575,22 +633,24 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				break;
 
 				case 'media':
-				$scope.getResource( 'media' );
+				$scope.getMediaResource( $scope.stateParams );
 				break;
 			}
 		}
 
-		// Update subSort on section and sortingType change
-		$scope.switchSubSort( 'date' );
+		if ( $scope.stateParams.sortingType !== 'media' )
+		{		
+			// Update subSort on section and sortingType change
+			$scope.switchSubSort( 'date' );
+		}
 	} );
 
 	$scope.$on( '$stateChangeSuccess', function( event )
 	{
-
 		if ( $scope.previousState.name === 'root.section-state.project-state' && !$scope.toParams.projectId && $rootScope.originalIndex )
 		{
 			$state.transitionTo( 'root.section-state.sorting-state', $rootScope.originalIndex, { reload: true, inherit: false, notify: true } );
 		}
-	} )
+	} );
 
 } );
