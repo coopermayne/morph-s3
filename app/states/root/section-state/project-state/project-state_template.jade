@@ -166,7 +166,7 @@
 							a(
 								ng-repeat='image in gallery.images'
 								href='{{ image.name.name.url }}'
-								data-caption='{{ image.title }}'
+								data-caption='{{ image.credit }}'
 							)
 								img(
 									ng-src='{{ image.name.name.thumb.url }}'
@@ -196,7 +196,7 @@
 							| {{ document.name.url.split('/').reverse()[0] }}
 
 			//- The remaining sidebar items for MOBILE (project credits + bibliography)
-			.project-page-second-sidebar( ng-if='mobile' )
+			.project-page-second-sidebar( ng-if='mobile && ( activeItem.people.length || activeItem.awards.length || activeItem.bibliography_items.length' )
 				.project-page-sidebar-section.project-credits.contracted(
 					ng-if='activeItem.people.length'
 					ng-toggle-class='contracted open'
