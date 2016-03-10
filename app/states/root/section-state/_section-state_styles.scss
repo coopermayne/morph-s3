@@ -5,6 +5,52 @@
 	flex: 3 0 0%;
 }
 
+.prev-and-next-wrapper
+{
+	flex-flow: row;
+	justify-content: space-between;
+
+	width: 100%;
+	padding: $page-margin;
+
+	font-size: 0.7rem;
+	text-transform: uppercase;
+
+	*
+	{
+		flex-flow: row;
+		align-items: center;
+
+		cursor: pointer;
+
+		&:first-child:before
+		{
+			content: '';
+			display: block;
+			width: 20px;
+			height: 20px;
+			left: -20px;
+			background: url('images/angle-left_black.svg');
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		&:last-child:after
+		{
+			content: '';
+			display: block;
+			width: 20px;
+			height: 20px;
+			right: -20px;
+			background: url('images/angle-right_black.svg');
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	}
+}
+
 .sub-sort:not( :last-child ):after
 {
 	content: '/';
