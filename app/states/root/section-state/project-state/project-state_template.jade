@@ -29,7 +29,7 @@
 						.project-detail-label
 							| Location: 
 						.project-detail-text
-							| {{ activeItem.city + ', '}} {{ activeItem.country }}
+							| {{ printAddress(activeItem) }}
 					.project-detail-wrapper( ng-if='activeItem.client' )
 						.project-detail-label
 							| Client:
