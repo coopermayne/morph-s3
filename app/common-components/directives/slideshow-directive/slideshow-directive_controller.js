@@ -12,7 +12,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	$scope.state = $state;
 
 	// Check for desktop/mobile
-	$scope.mobile = screenSize.on( 'xs, sm', function( match )
+	$scope.mobile = screenSize.on( 'xs', function( match )
 	{
 		$scope.mobile = match;
 	});

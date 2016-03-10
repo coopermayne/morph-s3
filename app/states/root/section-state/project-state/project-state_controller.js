@@ -35,7 +35,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	});
 
-	$scope.mobile = screenSize.on( 'xs, sm', function( match )
+	$scope.mobile = screenSize.on( 'xs', function( match )
 	{
 		$scope.mobile = match;
 	});

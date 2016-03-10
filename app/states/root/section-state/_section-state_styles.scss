@@ -5,6 +5,69 @@
 	flex: 3 0 0%;
 }
 
+.prev-and-next-wrapper
+{
+	@include respond-to( 'small' )
+	{
+		padding: 0;
+		padding-top: 1rem;
+	}
+
+	flex-flow: row;
+	justify-content: space-between;
+
+	width: 100%;
+	padding: $page-margin;
+
+	font-size: 0.7rem;
+	text-transform: uppercase;
+
+	*
+	{
+		flex-flow: row;
+		align-items: center;
+
+		cursor: pointer;
+
+		&:first-child:before
+		{
+			content: '';
+			display: block;
+			width: 20px;
+			height: 20px;
+			left: -20px;
+			background: url('images/angle-left_black.svg');
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		&:last-child
+		{
+			@include respond-to( 'small' )
+			{
+				right: 0;
+			}
+
+			position: absolute;
+			right: $page-margin;
+
+			&:after
+			{
+				content: '';
+				display: block;
+				width: 20px;
+				height: 20px;
+				right: -20px;
+				background: url('images/angle-right_black.svg');
+				background-position: center center;
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}
+
 .sub-sort:not( :last-child ):after
 {
 	content: '/';
@@ -21,6 +84,10 @@
 .sub-sort-wrapper
 {
 	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+	@include respond-to( 'medium' )
 	{
 		display: none;
 	}
@@ -51,6 +118,10 @@
 	{
 		justify-content: center;
 	}
+	@include respond-to( 'medium' )
+	{
+		justify-content: center;
+	}
 
 	flex-flow: row wrap;
 	align-self: flex-start;
@@ -71,6 +142,11 @@
 		width: 90vw;
 		height: 50vh;
 		margin-right: 0;
+	}
+	@include respond-to( 'medium' )
+	{
+		width: 310px;
+		height: 300px;
 	}
 
 	flex-flow: column;
@@ -240,7 +316,7 @@
 
 .alt-project-awarded
 {
-	flex-flow: row;
+	flex-flow: row wrap;
 	align-items: center;
 }
 
@@ -306,6 +382,10 @@
 .location-index-wrapper
 {
 	@include respond-to( 'small' )
+	{
+		left: 0;
+	}
+	@include respond-to( 'medium' )
 	{
 		left: 0;
 	}

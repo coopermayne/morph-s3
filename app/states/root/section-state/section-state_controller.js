@@ -540,10 +540,10 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			}
 		} ).then( function( response )
 		{
-			$scope.isPrev = !(response.data.currentPage === 0)
-			$scope.isNext = response.data.totalPages > response.data.currentPage
+			$scope.isPrev = !( response.data.currentPage == 0 );
+			$scope.isNext = response.data.totalPages > response.data.currentPage;
 			$scope.indexContents = response.data.results;
-			$scope.throbberOn = false
+			$scope.throbberOn = false;
 
 		} );
 	}
@@ -616,7 +616,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	      $scope.center = place_d[ $state.params.q ] ? angular.copy( place_d[$state.params.q ] ) : angular.copy( default_place );
 	    }
 			
-		if ( $scope.stateParams.section === 'about' )
+		if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
 		{			
 
 			// Clear indexContents

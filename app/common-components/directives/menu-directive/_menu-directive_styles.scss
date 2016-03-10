@@ -9,6 +9,11 @@ menu-directive
 
 		font-size: $mobile-menu-text;
 	}
+	@include respond-to( 'medium' )
+	{
+		width: auto;
+		margin-right: 0;
+	}
 
 	width: 300px;
 	margin-right: $page-margin;
@@ -52,9 +57,9 @@ menu-directive
 
 .menu-about-text
 {
-	width: 600px;
+	width: 100%;
 	height: 100%;
-	padding: 2rem 0;
+	padding: 2rem;
 }
 
 .mobile-about-text
@@ -75,7 +80,7 @@ menu-directive
 		height: 100vh;
 		top: 0;
 		left: 0;
-		padding: 1.5rem;
+		padding: $page-margin;
 		z-index: 50;
 		background-color: $white;
 
@@ -88,6 +93,14 @@ menu-directive
 	}
 	@include respond-to ( 'medium' )
 	{
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		padding: $page-margin;
+		z-index: 50;
+		background-color: $white;
+
 		&.hidden
 		{
 			opacity: 1;
@@ -111,6 +124,10 @@ menu-directive
 .white-menu
 {
 	@include respond-to( 'small' )
+	{
+		overflow-y: scroll;
+	}
+	@include respond-to( 'medium' )
 	{
 		overflow-y: scroll;
 	}
@@ -183,6 +200,7 @@ menu-directive
 
 .news-highlight
 {
+	flex-flow: column wrap;
 	flex-wrap: wrap;
 
 	color: $yellow;
@@ -343,6 +361,18 @@ menu-directive
 	{
 		align-self: flex-end;
 
+		display: flex;
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		top: $page-margin;
+		right: $page-margin;
+		z-index: 9999999;
+		background: url( 'images/trigger_black.svg' ) no-repeat center center;
+		background-color: $white;
+	}
+	@include respond-to( 'medium' )
+	{
 		display: flex;
 		position: absolute;
 		width: 40px;
