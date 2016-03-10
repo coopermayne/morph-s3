@@ -325,6 +325,7 @@
 
 .image-gallery-section
 {
+  -ms-overflow-style: none;
 	@include respond-to( 'small' )
 	{
 		&:before,
