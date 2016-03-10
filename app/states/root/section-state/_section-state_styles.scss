@@ -7,6 +7,12 @@
 
 .prev-and-next-wrapper
 {
+	@include respond-to( 'small' )
+	{
+		padding: 0;
+		padding-top: 1rem;
+	}
+
 	flex-flow: row;
 	justify-content: space-between;
 
@@ -38,6 +44,11 @@
 
 		&:last-child
 		{
+			@include respond-to( 'small' )
+			{
+				right: 0;
+			}
+
 			position: absolute;
 			right: $page-margin;
 
