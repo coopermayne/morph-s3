@@ -151,24 +151,24 @@
 
 				.image-gallery-wrapper.ng-baguette
 					.image-gallery-section-wrapper.open(
-						ng-repeat='(key, value) in activeItem.galleries'
+						ng-repeat='gallery in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
 						ng-mousemove='updateScroll( $event )'
 						ng-mouseleave='stopScroll(  )'
 						ng-toggle-class='contracted open'
 					)
 						h1
-							| {{ key }}
+							| {{ gallery.title }}
 
 						.image-gallery-section.gallery(
 							ng-click='$event.stopPropagation(  );'
 						)
 							a(
-								ng-repeat='image in value'
-								href='{{ image.name.url }}'
+								ng-repeat='image in gallery.images'
+								href='{{ image.name.name.url }}'
 							)
 								img(
-									ng-src='{{ image.name.thumb.url }}'
+									ng-src='{{ image.name.name.thumb.url }}'
 								)
 				//- Components
 				.project-description-wrapper.component.contracted(
