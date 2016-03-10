@@ -198,7 +198,7 @@
 	)
 
 .prev-and-next-wrapper( ng-if='stateParams.sortingType === "media"' )
-	.previous( ng-if='isPrev' ng-click='getPage( "prev" )' )
+	.previous( ng-show='isPrev' ng-click='getPage( "prev" )' )
 		| Previous page
-	.next( ng-if='isNext' ng-click='getPage( "next" )' )
+	.next( ng-show='isNext' ng-click='getPage( "next" )' )
 		| Next page
