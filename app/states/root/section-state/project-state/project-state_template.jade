@@ -121,7 +121,7 @@
 						ng-if='activeItem.bibliography_items.length'
 					)
 						| Bibliography
-					.project-detail-wrapper.bibliography-item.details-clickable(
+					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
 						ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.uid, m: null, s: null })'
 					)
