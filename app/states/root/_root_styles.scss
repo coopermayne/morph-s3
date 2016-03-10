@@ -27,4 +27,9 @@
 {
 	height: 100%;
 	background-color: $black;
+
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	{
+		background-color: transparent;
+	}
 }

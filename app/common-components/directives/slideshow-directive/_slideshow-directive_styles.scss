@@ -176,6 +176,11 @@
 		color: $yellow;
 		font-style: italic;
 		letter-spacing: 0px;
+
+		@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+		{
+			top: 0;
+		}
 	}
 
 	.mobile-video
