@@ -39,6 +39,10 @@
 		height: auto;
 		height: 40vh;
 	}
+	@include respond-to( 'medium' )
+	{
+		height: 45vh;
+	}
 
 	align-items: center;
 	align-content: center;

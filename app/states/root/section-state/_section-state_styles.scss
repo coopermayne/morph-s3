@@ -87,6 +87,10 @@
 	{
 		display: none;
 	}
+	@include respond-to( 'medium' )
+	{
+		display: none;
+	}
 
 	position: fixed;
 	top: 4.5rem;
@@ -114,6 +118,10 @@
 	{
 		justify-content: center;
 	}
+	@include respond-to( 'medium' )
+	{
+		justify-content: center;
+	}
 
 	flex-flow: row wrap;
 	align-self: flex-start;
@@ -134,6 +142,11 @@
 		width: 90vw;
 		height: 50vh;
 		margin-right: 0;
+	}
+	@include respond-to( 'medium' )
+	{
+		width: 310px;
+		height: 300px;
 	}
 
 	flex-flow: column;
@@ -369,6 +382,10 @@
 .location-index-wrapper
 {
 	@include respond-to( 'small' )
+	{
+		left: 0;
+	}
+	@include respond-to( 'medium' )
 	{
 		left: 0;
 	}
