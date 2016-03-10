@@ -147,8 +147,8 @@
 {
 	@include respond-to( 'small' )
 	{
-		width: 90vw;
-		height: 50vh;
+		width: 90vw !important;
+		height: 50vh !important;
 		margin-right: 0;
 	}
 	@include respond-to( 'medium' )
@@ -372,6 +372,8 @@
 {
 	flex-flow: row wrap;
 
+	margin-left: 10px;
+
 	a
 	{
 		flex-flow: row wrap;
@@ -379,8 +381,10 @@
 		&:before
 		{
 			content: '';
+			position: absolute;
 			width: 1rem;
 			height: 1rem;
+			left: -15px;
 			background: url( 'images/file.svg' ) no-repeat center center;
 			background-size: contain;
 		}
@@ -442,6 +446,7 @@ a[href^='https://maps.google.com/maps']
 
 .leaflet-popup
 {
+	cursor: pointer;
 	width: $location-globe-size !important;
 	height: $location-globe-size !important;
 	bottom: -100px !important;

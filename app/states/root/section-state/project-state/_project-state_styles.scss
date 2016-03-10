@@ -320,6 +320,32 @@
 
 		font-style: italic;
 		font-size: $body-text;
+
+		&:before
+		{
+			content: '';
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			bottom: -110px;
+			left: -35px;
+			z-index: 9999;
+			background: url('images/angle-left_black.svg');
+			background-size: contain;
+		}
+
+		&:after
+		{
+			content: '';
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			right: -35px;
+			bottom: -110px;
+			z-index: 9999;
+			background: url('images/angle-right_black.svg');
+			background-size: contain;
+		}
 	}
 }
 
@@ -346,32 +372,6 @@
 		cursor: pointer;
 		height: 150px;
 		margin-right: 1em;
-	}
-
-	&:before
-	{
-		content: '';
-		position: absolute;
-		width: 40px;
-		height: 40px;
-		bottom: 75px;
-		left: -35px;
-		z-index: 9999;
-		background: url('images/angle-left_black.svg');
-		background-size: contain;
-	}
-
-	&:after
-	{
-		content: '';
-		position: absolute;
-		width: 40px;
-		height: 40px;
-		right: -35px;
-		bottom: 75px;
-		z-index: 9999;
-		background: url('images/angle-right_black.svg');
-		background-size: contain;
 	}
 }
 
