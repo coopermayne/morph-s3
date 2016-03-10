@@ -123,7 +123,7 @@
 
 	flex: 1 0 0%;
 
-	padding-right: 2rem;
+	padding-right: 5rem;
 }
 
 .project-page-sidebar-section
@@ -153,6 +153,7 @@
 
 .project-overview
 {
+	margin-right: 60px;
 	padding-bottom: 2rem;
 
 	font-size: $subheader-text;
@@ -176,6 +177,20 @@
 .component .project-description-body
 {
 	margin-bottom: 2rem;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+	{
+		display: block;
+	}
+	img
+	{
+		float: left;
+		width: 200px;
+	}
 }
 
 .project-description-header
@@ -195,6 +210,7 @@
 	flex-flow: row;
 
 	display: block;
+	margin-right: 60px;
 
 	em
 	{
@@ -362,13 +378,13 @@
 
 	flex-flow: row nowrap;
 
+	overflow: -moz-scrollbars-none;
 	overflow-x: scroll;
 	position: absolute;
 	width: 100%;
 	top: 37px;
 
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
+	-ms-overflow-style: none;
 
 	img
 	{
@@ -443,6 +459,7 @@
 		{
 			overflow-y: hidden;
 			max-height: 97px;
+			margin-right: 0px;
 		}
 
 		&.component .project-description-body
@@ -465,6 +482,7 @@
 			overflow: hidden;
 			position: relative;
 			max-height: 150px;
+			margin-right: 0px;
 			margin-bottom: 2 * $page-margin;
 
 			&:after

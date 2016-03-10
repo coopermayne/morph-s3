@@ -500,7 +500,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 	}
 
-	var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
+	var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 	// Function for fetching non-project resources from API
 	$scope.getResource = function( sectionTitle )

@@ -53,7 +53,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				$http(
 				{
 					method: 'GET',
-					url: 'https://ancient-peak-41402.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
+					url: 'https://morphosisapi.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
 				} ).then( function( response )
 				{
 					$scope.activeItem = response.data;

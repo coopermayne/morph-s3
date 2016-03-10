@@ -20,7 +20,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	$http(
 	{
 		method: 'GET',
-		url: 'https://ancient-peak-41402.herokuapp.com/video_slides.json'
+		url: 'https://morphosisapi.herokuapp.com/video_slides.json'
 	} ).then( function( response )
 	{
 		$scope.homePageSlides = response.data;
