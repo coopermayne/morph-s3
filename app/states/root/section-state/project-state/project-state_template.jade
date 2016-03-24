@@ -8,7 +8,8 @@
 	throbber-directive
 
 	.project-page-header-image( 
-    ng-show="activeItem.primary_image.name.url"
+    	ng-show='activeItem.primary_image.name.url'
+    	ng-class='{ "people-header-image": stateParams.m === "person" }'
 		style='background-image:url("{{ activeItem.primary_image.name.url }}")'
 	)
 
