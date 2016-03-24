@@ -79,6 +79,11 @@
 	}
 }
 
+.people-header-image
+{
+	background-size: contain;
+}
+
 .project-page-content-wrapper
 {
 	@include respond-to( 'small' )

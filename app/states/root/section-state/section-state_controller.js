@@ -10,10 +10,25 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Default to tile index
 	$scope.altIndexSection = false;
 
-	$scope.expandProject = function( id )
-	{
-		$state.go( 'root.section-state.sorting-state', { e: id } );
-	}
+	// Set expanded alt index item on controller load
+	// if( $scope.stateParams.e )
+	// {
+	// 	$scope.showExpandedItem = $scope.stateParams.e;
+	// }
+
+	// $scope.expandProject = function( id )
+	// {
+	// 	if ( parseInt($scope.stateParams.e) !== id )
+	// 	{
+	// 		$scope.showExpandedItem = id;
+	// 	}
+	// 	else
+	// 	{
+	// 		$scope.showExpandedItem = null;
+	// 	}
+
+	// 	$state.go( $state.current.name, { e: id } );
+	// }
 
 	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
@@ -153,6 +168,19 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			default:
 			$state.go( 'root.section-state.sorting-state', { section: item.section, sortingType: item.sorting_type, e: item.searchable_id, s: null, m: null } );
 			break;
+		}
+	}
+
+	// Toggle 'e' parameter on alt index entry click
+	$scope.resolveAltIndexClick = function( id )
+	{
+		if ( $scope.stateParams.e !== id )
+		{
+			$state.go( $state.current.name, { e: id } );
+		}
+		else
+		{
+			$state.go( $state.current.name, { e: null } );
 		}
 	}
 

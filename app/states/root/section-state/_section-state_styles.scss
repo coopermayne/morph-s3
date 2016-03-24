@@ -215,6 +215,16 @@
 	}
 }
 
+.alt-index-description
+{
+	margin-top: 0.5rem;
+}
+
+.clickable-alt
+{
+	cursor: pointer;
+}
+
 .with-image
 {
 	@include respond-to( 'small' )
@@ -251,7 +261,6 @@
 
 	overflow: visible;
 	position: relative;
-	cursor: pointer;
 	min-height: 150px;
 	padding: $page-margin 0;
 	border-bottom: 1px solid lighten($black, 90%);
