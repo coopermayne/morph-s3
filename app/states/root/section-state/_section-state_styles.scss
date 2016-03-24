@@ -27,49 +27,58 @@
 	font-size: 0.7rem;
 	text-transform: uppercase;
 
-	*
+	.previous:before
 	{
-		flex-flow: row;
-		align-items: center;
+		content: '';
+		display: block;
+		width: 20px;
+		height: 20px;
+		left: -20px;
+		background: url('images/angle-left_black.svg');
+		background-position: center center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
 
-		cursor: pointer;
+	.next
+	{
+		@include respond-to( 'small' )
+		{
+			position: absolute;
+			right: 0;
+		}
 
-		&:first-child:before
+		&:after
 		{
 			content: '';
 			display: block;
 			width: 20px;
 			height: 20px;
-			left: -20px;
-			background: url('images/angle-left_black.svg');
+			right: -20px;
+			background: url('images/angle-right_black.svg');
 			background-position: center center;
 			background-size: cover;
 			background-repeat: no-repeat;
 		}
+	}
 
-		&:last-child
+	.page-number
+	{
+		margin-right: 5px;
+
+		&:hover,
+		&.current-page
 		{
-			@include respond-to( 'small' )
-			{
-				right: 0;
-			}
-
-			position: absolute;
-			right: $page-margin;
-
-			&:after
-			{
-				content: '';
-				display: block;
-				width: 20px;
-				height: 20px;
-				right: -20px;
-				background: url('images/angle-right_black.svg');
-				background-position: center center;
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
+			text-decoration: underline;
 		}
+	}
+
+	*
+	{
+		flex-flow: row nowrap;
+		align-items: center;
+
+		cursor: pointer;
 	}
 }
 

@@ -202,5 +202,12 @@
 .prev-and-next-wrapper( ng-if='stateParams.sortingType === "media"' )
 	.previous( ng-show='isPrev' ng-click='getPage( "prev" )' )
 		| Previous page
+	.pagination
+		.page-number(
+			ng-repeat='pageNum in pageArray'
+			ui-sref='root.section-state.sorting-state({ p: pageNum })'
+			ng-class='{ "current-page": stateParams.p == pageNum }'
+		)
+			{{ pageNum }}
 	.next( ng-show='isNext' ng-click='getPage( "next" )' )
 		| Next page
