@@ -554,7 +554,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	$scope.getMediaResource = function( params )
 	{
 		$scope.setAltIndex( params.sortingType );
-		$scope.throbberOn = true
+		$scope.throbberOn = true;
 
 		$http(
 		{
@@ -571,6 +571,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$scope.isPrev = !( response.data.currentPage == 0 );
 			$scope.isNext = response.data.totalPages > response.data.currentPage;
 			$scope.indexContents = response.data.results;
+			$scope.pageArray = [  ];
+			for ( var i = 0; i <= response.data.totalPages; i++ )
+			{
+				$scope.pageArray.push( i );
+			}
 			$scope.throbberOn = false;
 
 		} );

@@ -19,7 +19,7 @@
 	}
 
 	flex-flow: row;
-	justify-content: space-between;
+	justify-content: center;
 
 	width: 100%;
 	padding: $page-margin;
@@ -27,14 +27,12 @@
 	font-size: 0.7rem;
 	text-transform: uppercase;
 
-	*
+	.previous
 	{
-		flex-flow: row;
-		align-items: center;
+		position: absolute;
+		left: 0;
 
-		cursor: pointer;
-
-		&:first-child:before
+		&:before
 		{
 			content: '';
 			display: block;
@@ -46,30 +44,55 @@
 			background-size: cover;
 			background-repeat: no-repeat;
 		}
+	}
 
-		&:last-child
+	.next
+	{
+		@include respond-to( 'small' )
 		{
-			@include respond-to( 'small' )
-			{
-				right: 0;
-			}
-
 			position: absolute;
-			right: $page-margin;
-
-			&:after
-			{
-				content: '';
-				display: block;
-				width: 20px;
-				height: 20px;
-				right: -20px;
-				background: url('images/angle-right_black.svg');
-				background-position: center center;
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
+			right: 0;
 		}
+
+		position: absolute;
+		right: 0;
+
+		&:after
+		{
+			content: '';
+			display: block;
+			width: 20px;
+			height: 20px;
+			right: -20px;
+			background: url('images/angle-right_black.svg');
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	}
+
+	.pagination
+	{
+		margin-top: 3px;
+	}
+
+	.page-number
+	{
+		margin-right: 5px;
+
+		&:hover,
+		&.current-page
+		{
+			text-decoration: underline;
+		}
+	}
+
+	*
+	{
+		flex-flow: row nowrap;
+		align-items: center;
+
+		cursor: pointer;
 	}
 }
 

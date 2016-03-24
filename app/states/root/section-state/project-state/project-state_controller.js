@@ -36,6 +36,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 				q: fromParams.q, 
 				s: fromParams.s,
 				e: fromParams.e,
+				p: fromParams.p,
 				m: null
 			}
 			console.log( 'originalIndex:', $rootScope.originalIndex );
