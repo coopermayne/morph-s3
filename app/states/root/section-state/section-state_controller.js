@@ -572,7 +572,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$scope.isNext = response.data.totalPages > response.data.currentPage;
 			$scope.indexContents = response.data.results;
 			$scope.pageArray = [  ];
-			for ( var i = 1; i <= response.data.totalPages; i++ )
+			for ( var i = 0; i <= response.data.totalPages; i++ )
 			{
 				$scope.pageArray.push( i );
 			}
