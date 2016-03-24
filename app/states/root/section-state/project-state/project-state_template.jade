@@ -54,13 +54,17 @@
 					.project-detail-wrapper( ng-if='activeItem.design_sdate && activeItem.design_edate' )
 						.project-detail-label
 							| Design:
-						.project-detail-text
+						.project-detail-text(ng-if='(activeItem.design_sdate | date: "yyyy") != (activeItem.design_edate | date: "yyyy")')
 							| {{ activeItem.design_sdate | date: "yyyy" }} - {{ activeItem.design_edate | date: "yyyy" }}
+						.project-detail-text(ng-if='(activeItem.design_sdate | date: "yyyy") == (activeItem.design_edate | date: "yyyy")')
+							| {{ activeItem.design_sdate | date: "yyyy" }}
 					.project-detail-wrapper( ng-if='activeItem.constr_sdate || activeItem.constr_edate' )
 						.project-detail-label
 							| Construction:
-						.project-detail-text
+						.project-detail-text(ng-if='(activeItem.constr_sdate | date: "yyyy") != (activeItem.constr_edate | date: "yyyy")')
 							| {{ activeItem.constr_sdate | date: "yyyy" }} - {{ activeItem.constr_edate | date: "yyyy" }}
+						.project-detail-text(ng-if='(activeItem.constr_sdate | date: "yyyy") == (activeItem.constr_edate | date: "yyyy")')
+							| {{ activeItem.constr_sdate | date: "yyyy" }}
 					.project-detail-wrapper( ng-if='activeItem.types.length' )
 						.project-detail-label
 							| {{ activeItem.types.length > 1 ? "Types":"Type" }}:
