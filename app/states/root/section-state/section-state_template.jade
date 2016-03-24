@@ -40,7 +40,6 @@
 //- Alternate index
 .alt-index-project-wrapper(
 	ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )'
-	ng-class='{ "clickable-alt": stateParams.q === "publications" || stateParams.section === "search" }'
 )
 	throbber-directive
 
@@ -49,7 +48,9 @@
 		ng-repeat='item in indexContents'
 		id='{{ item.id }}'
 		ng-if='stateParams.sortingType === "media"'
-		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )')
+		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
+		ng-class='{ "clickable-alt": stateParams.section === "search" || item.types.indexOf( "Publications" ) != -1 }'
+	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
 		//- .alt-index-expand(
