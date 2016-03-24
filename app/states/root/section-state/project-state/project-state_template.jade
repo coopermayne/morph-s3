@@ -162,10 +162,12 @@
 						ng-repeat='gallery in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
 						ng-mousemove='updateScroll( $event )'
-						ng-mouseleave='stopScroll(  )'
+						ng-mouseleave='stopScroll( )'
 						ng-toggle-class='contracted open'
 					)
 						h1
+							.arrow-left(ng-mouseenter='scrollLeft($event)' ng-mouseleave='stopScroll()')
+							.arrow-right(ng-mouseover='scrollRight($event)' ng-mouseleave='stopScroll()')
 							| {{ gallery.title }}
 
 						.image-gallery-section.gallery(

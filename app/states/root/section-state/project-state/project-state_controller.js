@@ -106,6 +106,41 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	}
 
+  var scrollscroll;
+  var vel = 0;
+  var theDelay = 10;
+
+  $scope.stopScroll = function(){
+    $interval.cancel(scrollscroll)
+    vel = 0
+  }
+
+  $scope.scrollLeft = function(e){
+
+    var p = e.target.parentNode.parentNode;
+    var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+
+    scrollscroll = $interval(function(){
+      if(vel < 3 ){
+        vel = vel + 0.05
+      }
+      imageGallery.scrollLeft -= vel;
+    }, theDelay )
+  }
+
+  $scope.scrollRight = function(e){
+
+    var p = e.target.parentNode.parentNode;
+    var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+
+    scrollscroll = $interval(function(){
+      if(vel < 3 ){
+        vel = vel + 0.05
+      }
+      imageGallery.scrollLeft += vel;
+    }, theDelay )
+  }
+
 	// var isLeft;
 	// var velocity;
 
