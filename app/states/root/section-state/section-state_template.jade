@@ -38,7 +38,10 @@
 		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
 //- Alternate index
-.alt-index-project-wrapper( ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )' )
+.alt-index-project-wrapper(
+	ng-if='altIndexSection && ( stateParams.sortingType || stateParams.section == "news" || stateParams.section == "search" )'
+	ng-class='{ "clickable-alt": stateParams.q === "publications" || stateParams.section === "search" }'
+)
 	throbber-directive
 
 	//- Media section
@@ -49,10 +52,10 @@
 		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )')
 
 		//- 'Expand'/'Contract' buttons (+/-)
-		.alt-index-expand(
-			ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
-		)
-			| {{ stateParams.e == item.id ? "-":"+" }}
+		//- .alt-index-expand(
+		//- 	ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
+		//- )
+		//- 	| {{ stateParams.e == item.id ? "-":"+" }}
 
 		//- Project title and image
 		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e && stateParams.e == item.id }' )
@@ -71,7 +74,6 @@
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ng-if='stateParams.section !== "search"'
-					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 
 				//- Overview attribute
@@ -95,8 +97,8 @@
 							| PDF
 
 				//- Description attribute
-				.alt-project-expanded(
-					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 ) || stateParams.section === "news"'
+				.alt-project-expanded.alt-index-description(
+					ng-if='item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
 
@@ -105,14 +107,14 @@
 		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort : reverseVar'
 		id='{{ item.id }}'
 		ng-if='item[subSort] || stateParams.section === "search"'
-		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
+		ng-click='item.searchable_type ? resolveClick( item ) : ""'
 	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
-		.alt-index-expand(
-			ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
-		)
-			| {{ stateParams.e == item.id ? "-":"+" }}
+		//- .alt-index-expand(
+		//- 	ng-if='item.description.length > 0 && !item.searchable_type && stateParams.section !== "news"'
+		//- )
+		//- 	| {{ stateParams.e == item.id ? "-":"+" }}
 
 		//- Project title and image
 		.alt-project-title-and-image( ng-class='{ "expanded": stateParams.e && stateParams.e == item.id }' )
@@ -140,7 +142,6 @@
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
 					ng-if='stateParams.section !== "search"'
-					ui-sref='root.section-state.sorting-state({ e: item.id })'
 				)
 
 				//- Search section context labels
@@ -172,8 +173,8 @@
 							| PDF
 
 				//- Description attribute
-				.alt-project-expanded(
-					ng-if='stateParams.e && stateParams.e == item.id && ( item.description.length > 0 ) || stateParams.section === "news"'
+				.alt-project-expanded.alt-index-description(
+					ng-if='item.description.length > 0 && stateParams.section != "search"'
 					ng-bind-html='item.description | htmlParse'
 				)
 
