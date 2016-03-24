@@ -10,7 +10,14 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		if(it.address){
 			return it.address
 		} else {
-			return [it.city, it.state, it.country].join(", ")
+			var loc_comps = [it.city, it.state, it.country]
+			var res = []
+			angular.forEach(loc_comps, function(value){
+				if(value){
+					res.push(value)
+				}
+			})
+			return res.join(", ")
 		}
 	}
 
