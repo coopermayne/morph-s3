@@ -14,7 +14,6 @@
 
 	flex-flow: row;
 
-	min-width: 950px;
 	padding: $page-margin;
 
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
@@ -23,6 +22,40 @@
 	}
 }
 
+.desktop-min-width
+{
+	&.menu-and-index-wrapper-wrapper
+	{
+		overflow-x: hidden;
+	}
+
+	.menu-and-index-wrapper
+	{
+		min-width: 950px;
+	}
+
+	menu-directive
+	{
+		width: 300px !important;
+	}
+
+	.menu-directive-wrapper
+	{
+		width: 300px !important;
+		background-color: transparent !important;
+	}
+
+	.index-project-wrapper
+	{
+		justify-content: flex-start !important;
+	}
+
+	.index-project
+	{
+		width: 250px;
+		height: 280px;
+	}
+}
 
 .black-background
 {
