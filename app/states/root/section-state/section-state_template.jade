@@ -77,8 +77,8 @@
 					ng-if='stateParams.section !== "search"'
 				)
 
-				//- Overview attribute
-				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
+				//- Overview
+				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1'  ng-bind-html='item.overview | htmlParse' )
 
 				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
@@ -99,7 +99,7 @@
 
 				//- Description attribute
 				.alt-project-expanded.alt-index-description(
-					ng-if='item.description.length > 0'
+					ng-if='item.types.indexOf( "Publications" ) == 1 && item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
 
@@ -154,7 +154,7 @@
 				)
 
 				//- Overview attribute
-				.alt-project-expanded( ng-bind-html='item.overview | htmlParse' )
+				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1'  ng-bind-html='item.overview | htmlParse')
 
 				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
@@ -175,7 +175,7 @@
 
 				//- Description attribute
 				.alt-project-expanded.alt-index-description(
-					ng-if='item.description.length > 0 && stateParams.section != "search"'
+					ng-if='item.types.indexOf("Publications") == -1 && item.description.length > 0 && stateParams.section != "search"'
 					ng-bind-html='item.description | htmlParse'
 				)
 
