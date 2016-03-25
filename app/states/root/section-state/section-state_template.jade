@@ -28,7 +28,7 @@
 
 	//- Items without 'section' attribute (people)
 	.index-project(
-		ng-repeat='item in indexContents | orderBy: subSort: reverseVar'
+		ng-repeat='item in indexContents | sortingType: stateParams.sortingType:stateParams.q | orderBy: subSort: reverseVar'
 		ng-if='!item.section'
 		ui-sref='root.section-state.project-state( { projectId: item.id, m: "person" } )'
 

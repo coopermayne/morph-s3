@@ -99,7 +99,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				break;
 
 				case 'people':
-				$scope.subSort = 'name';
+				$scope.subSort = 'last_name';
 				$scope.reverseVar = false;
 
 				default:

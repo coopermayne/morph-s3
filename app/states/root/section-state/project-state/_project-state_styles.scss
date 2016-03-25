@@ -280,6 +280,16 @@
 		}
 
 		max-width: 100%;
+		a
+		{
+			max-width: 100%;
+
+			text-decoration: none;
+			&:hover
+			{
+				text-decoration: underline;
+			}
+		}
 	}
 }
 

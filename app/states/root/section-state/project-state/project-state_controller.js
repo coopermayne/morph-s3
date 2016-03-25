@@ -109,7 +109,7 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 
   var scrollscroll;
   var vel = 0;
-  var theDelay = 10;
+  var theDelay = 16;
 
   $scope.stopScroll = function(){
     $interval.cancel(scrollscroll)
