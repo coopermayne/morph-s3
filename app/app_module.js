@@ -37,8 +37,10 @@ morphopedia.config( function(  $urlRouterProvider, $locationProvider, $sceDelega
 } );
 
 
-morphopedia.run( [ '$rootScope', function( $rootScope )
+morphopedia.run( [ '$rootScope', '$location', '$window', function( $rootScope, $location, $window )
 {
+	$window.ga('create', 'UA-75621728-1', 'auto');
+
 	// For Mobile Angular UI compatibility
 	$rootScope.$on( '$stateChangeStart', function(  )
 	{
@@ -52,6 +54,8 @@ morphopedia.run( [ '$rootScope', function( $rootScope )
 
 		$rootScope.toState = toState;
 		$rootScope.toParams = toParams;
+
+		$window.ga('send', 'pageview', $location.path());
 	} );
 
 } ] );
