@@ -38,7 +38,7 @@ ul.menu-directive-wrapper.scrollable-content(
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news" }'
 )
 	.mobile-menu-close(
-		ng-if='showMobileMenuVar && ( state.current.name === "root.section-state.sorting-state" )'
+		ng-if='showMobileMenuVar && ( state.current.name === "root.section-state.sorting-state" ) && mobileAndTabletCheck(  )'
 		ng-click='toggleMobileMenu(  )'
 	)
 
