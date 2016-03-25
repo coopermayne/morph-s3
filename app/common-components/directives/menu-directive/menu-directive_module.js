@@ -8,7 +8,9 @@ var menuDirective = angular.module( 'menuDirective',
 
 	'ngEnter',
 
-	'ngFadeMenu'
+	'ngFadeMenu',
+
+	'duScroll'
 ] );
 
 menuDirective.directive( 'menuDirective', function()

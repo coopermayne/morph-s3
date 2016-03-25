@@ -2,7 +2,7 @@
 
 var sectionState = angular.module( 'sectionState' );
 
-sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter, leafletBoundsHelpers)
+sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter, leafletBoundsHelpers )
 {
 
 	$scope.indexContents = [  ];

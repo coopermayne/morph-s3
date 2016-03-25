@@ -57,9 +57,11 @@ menu-directive
 .menu-about-text
 {
 	overflow-y: scroll;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	padding: 2rem;
+	padding-right: 5rem;
 }
 
 .menu-about-nav
@@ -123,6 +125,17 @@ menu-directive
 	padding-top: $page-margin;
 
 	font-size: $subheader-text;
+}
+
+
+.about-text-header
+{
+	margin: $page-margin 0;
+
+	&:first-child
+	{
+		margin-top: 0;
+	}
 }
 
 .menu-directive-wrapper

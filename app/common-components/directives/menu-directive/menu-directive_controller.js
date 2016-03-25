@@ -29,12 +29,21 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		if( window.location.hash === '#' + string )
 		{
 			return true;
-			console.log( 'current hash:', string )
 		}
 		else
 		{
 			return false;
 		}
+	}
+
+	$scope.scrollToAboutSection = function( section )
+	{
+		// $location.hash( section );
+		anchorSmoothScrollService.scrollTo( section );
+		// var element = document.getElementById( section );
+		// var aboutWrapper = document.getElementsByClassName('menu-about-text' );
+		// var elScr = element.offsetTop;
+		console.log( elScr );
 	}
 
 	$scope.showSubSections = function( title, children )

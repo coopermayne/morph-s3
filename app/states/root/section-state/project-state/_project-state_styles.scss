@@ -345,33 +345,32 @@
 
 		font-style: italic;
 		font-size: $body-text;
-
-		&:before
-		{
-			content: '';
-			position: absolute;
-			width: 40px;
-			height: 40px;
-			bottom: -110px;
-			left: -35px;
-			z-index: 9999;
-			background: url('images/angle-left_black.svg');
-			background-size: contain;
-		}
-
-		&:after
-		{
-			content: '';
-			position: absolute;
-			width: 40px;
-			height: 40px;
-			right: -35px;
-			bottom: -110px;
-			z-index: 9999;
-			background: url('images/angle-right_black.svg');
-			background-size: contain;
-		}
 	}
+}
+
+.arrow-right
+{
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	right: -35px;
+	bottom: -110px;
+	z-index: 9999;
+	background: url('images/angle-right_black.svg');
+	background-size: contain;
+}
+.arrow-left
+{
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -110px;
+	left: -35px;
+	z-index: 9999;
+	background: url('images/angle-left_black.svg');
+	background-size: contain;
 }
 
 .image-gallery-section
