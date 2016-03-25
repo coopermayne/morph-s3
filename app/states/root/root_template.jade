@@ -1,12 +1,13 @@
-.menu-and-index-wrapper( ng-class='{ "desktop-min-width": !mobileAndTabletCheck(  ) }' )
+.menu-and-index-wrapper-wrapper( ng-class='{ "desktop-min-width": !mobileAndTabletCheck(  ) }' )
+	.menu-and-index-wrapper
 
-	slideshow-directive(
-		slides='homePageSlides'
-		frame-rate='6000'
-		vid='true'
-		ng-if='stateName == "root"'
-	)
+		slideshow-directive(
+			slides='homePageSlides'
+			frame-rate='6000'
+			vid='true'
+			ng-if='stateName == "root"'
+		)
 
-	menu-directive.scrollable
-		
-	.section-view( ui-view='section-view' )
+		menu-directive.scrollable
+			
+		.section-view( ui-view='section-view' )
