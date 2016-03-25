@@ -105,7 +105,7 @@ ul.menu-directive-wrapper.scrollable-content(
 								| {{ subSection.title }}
 
 	//- Search
-	li.menu-section.search( ng-if='stateParams.section' )
+	li.menu-section.search( ng-if='stateParams.section && menuItems' )
 		form(action="")
 			input(
 				type='text'

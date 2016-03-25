@@ -20,7 +20,7 @@
 		//- PROJECT PAGE
 		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" )' )
 
-			.project-page-sidebar
+			.project-page-sidebar(ng-if='activeItem')
 
 				//- Details
 				.project-page-sidebar-section
