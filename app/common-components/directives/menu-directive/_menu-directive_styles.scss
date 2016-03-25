@@ -43,7 +43,6 @@ menu-directive
 
 .menu-about-text-wrapper
 {
-	overflow-y: scroll;
 	position: fixed;
 	width: 55vw;
 	height: 100%;
@@ -57,9 +56,63 @@ menu-directive
 
 .menu-about-text
 {
+	overflow-y: scroll;
 	width: 100%;
 	height: 100%;
 	padding: 2rem;
+}
+
+.menu-about-nav
+{
+	flex-flow: row nowrap;
+
+	position: fixed;
+	bottom: $page-margin;
+	left: 0;
+
+	*
+	{
+		flex-flow: row nowrap;
+
+		color: white;
+		text-decoration: none;
+
+		&:hover:before,
+		&.active-about:before
+		{
+			content: '';
+			position: absolute;
+			width: calc( 100% - 13px );
+			height: 2px;
+			bottom: 0;
+			background-color: $white;
+		}
+
+		&:after
+		{
+			content: ',';
+			margin-right: 5px;
+		}
+
+		&:first-child
+		{
+			margin-left: $page-margin;
+		}
+
+		&:last-child
+		{
+			&:before
+			{
+				content: '';
+				width: calc(100% - 5px);
+			}
+
+			&:after
+			{
+				content: '';
+			}
+		}
+	}
 }
 
 .mobile-about-text

@@ -24,6 +24,19 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.mobile = match;
 	});
 
+	$scope.activeAbout = function( string )
+	{
+		if( window.location.hash === '#' + string )
+		{
+			return true;
+			console.log( 'current hash:', string )
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	$scope.showSubSections = function( title, children )
 	{
 		var returnVar;

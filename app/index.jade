@@ -2,6 +2,9 @@ doctype html
 html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === "root" && stateParams.section !== "news" }' )
 	head
 		base( href='/' )
+
+		title
+			| Morphosis
 		meta( name='viewport', content='width=device-width, height=device-height, initial-scale=1')
 		link( rel='icon', type='', href='images/favicon.ico' )
 		link( rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css")

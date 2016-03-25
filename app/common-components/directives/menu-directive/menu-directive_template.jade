@@ -14,6 +14,14 @@
 	ng-if='!mobile && stateParams.section === "about" && !stateParams.sortingType'
 	ng-class='{ "mobile-about-text": mobile }'
 )
+	.menu-about-nav
+		a(
+			ng-repeat='link in [ "contact", "about", "employment" ]'
+			class='{{ "about-" + link }}'
+			ng-class='{ "active-about": activeAbout( link ) }'
+			ng-href='{{ "#" + link }}'
+		)
+			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 	.menu-about-text(
 		ng-bind-html='menuItems.sections[0].content | htmlParse'
 	)
