@@ -49,7 +49,7 @@
 		id='{{ item.id }}'
 		ng-if='stateParams.sortingType === "media"'
 		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
-		ng-class='{ "clickable-alt": stateParams.section === "search" || item.types.indexOf( "Publications" ) != -1 }'
+		ng-class='{ "clickable-alt": ( stateParams.section === "search" ) || item.types.indexOf( "Publications" ) != -1 }'
 	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
@@ -109,6 +109,7 @@
 		id='{{ item.id }}'
 		ng-if='item[subSort] || stateParams.section === "search"'
 		ng-click='item.searchable_type ? resolveClick( item ) : ""'
+		ng-class='{ "clickable-alt": stateParams.section === "search" } '
 	)
 
 		//- 'Expand'/'Contract' buttons (+/-)
@@ -154,7 +155,7 @@
 				)
 
 				//- Overview attribute
-				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1'  ng-bind-html='item.overview | htmlParse')
+				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1 || ( stateParams.section === "news" )'  ng-bind-html='item.overview | htmlParse')
 
 				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
@@ -175,7 +176,7 @@
 
 				//- Description attribute
 				.alt-project-expanded.alt-index-description(
-					ng-if='item.types.indexOf("Publications") == -1 && item.description.length > 0 && stateParams.section != "search"'
+					ng-if='item.types.indexOf("Publications") == -1 && item.description.length > 0 && stateParams.section != "search" || ( stateParams.section === "news" )'
 					ng-bind-html='item.description | htmlParse'
 				)
 

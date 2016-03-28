@@ -217,7 +217,7 @@ menu-directive
 		&:focus,
 		&.has-text
 		{
-			border-bottom: 2px solid $white;
+			border-bottom: 3px solid $white;
 			background-position: center right;
 		}
 	}
@@ -490,7 +490,7 @@ menu-directive
 	{
 		cursor: auto;
 		padding-right: 1em;
-		border-bottom: 2px solid $black;
+		border-bottom: 3px solid $black;
 		background-position: right center;
 	}
 }
