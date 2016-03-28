@@ -17,9 +17,9 @@
 	//- Mobile header image
 	.project-page-header-image(
 		ng-if='mobile'
-    	ng-show='activeItem.primary_image.name.url'
+    	ng-show='activeItem.primary_image.name.mobile.url'
     	ng-class='{ "people-header-image": stateParams.m === "person" }'
-		style='background-image:url("{{ activeItem.primary_image.mobile.name.url }}")'
+		style='background-image:url("{{ activeItem.primary_image.name.mobile.url }}")'
 	)
 
 	.project-page-content-wrapper

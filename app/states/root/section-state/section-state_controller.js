@@ -81,10 +81,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				break;
 
 				case 'media':
-				$scope.subSort = null;
 				$scope.stateParams.sub = 'pub_date';
 				$scope.stateParams.p = null;
-				console.log( 'media switching to date' );
 				$state.go( $state.current.name, $scope.stateParams );
 				break;
 
@@ -590,6 +588,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			{
 				case 'media':
 				$scope.getMediaResource( $scope.stateParams );
+				$scope.subSort = $scope.stateParams.sub || "pub_date";
 				break;
 
 				case 'people':
@@ -665,6 +664,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 				case 'media':
 				$scope.getMediaResource( $scope.stateParams );
+				$scope.subSort = $scope.stateParams.sub || "pub_date";
 				break;
 			}
 		}

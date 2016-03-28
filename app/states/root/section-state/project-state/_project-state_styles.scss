@@ -383,6 +383,15 @@
 	background-size: contain;
 }
 
+.arrow-right,
+.arrow-left
+{
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+}
+
 .image-gallery-section
 {
 	@include respond-to( 'small' )
