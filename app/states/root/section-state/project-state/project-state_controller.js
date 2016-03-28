@@ -49,8 +49,9 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		$scope.mobile = match;
 	});
 
-	// Zipped-up Morphosis team (project credits)
+	// Zipped-up Morphosis team and consultants(project credits)
 	$scope.showMorphTeam = false;
+	$scope.showConsultants = false;
 
 	// 'People' or 'Project' layout?
 	switch( $scope.stateParams.section )
