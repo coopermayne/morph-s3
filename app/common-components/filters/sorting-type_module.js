@@ -34,6 +34,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 						}
 					} );
 					break;
+					
 				case 'people':
 					items.forEach( function( item ) {
 						if( item.last_name.charAt( 0 ).toLowerCase(  ) === input ) {
