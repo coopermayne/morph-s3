@@ -297,12 +297,13 @@ menu-directive
 
 
 	&:first-of-type .option-list,
-	&:first-of-type .ghost-elements
+	&:first-of-type .ghost-elements,
+	.people-option-list
 	{
 		flex-flow: row;
 	}
 
-	&:first-of-type .ghost-elements .ghost-element
+	&:first-of-type .ghost-elements .ghost-element,
 	{
 		display: none;
 
@@ -310,6 +311,11 @@ menu-directive
 		{
 			display: block;
 		}
+	}
+
+	.people-option-list .ghost-element
+	{
+		display: none !important;
 	}
 
 	&:last-of-type .sorting-option-title-wrapper .sorting-option-title:after

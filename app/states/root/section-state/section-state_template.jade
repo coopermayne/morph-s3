@@ -199,7 +199,9 @@
 		layers='layers'
 	)
 
-.prev-and-next-wrapper( ng-if='stateParams.sortingType === "media"' )
+.prev-and-next-wrapper(
+	ng-if='(stateParams.sortingType === "media") && indexContents.length'
+)
 	.previous( ng-show='isPrev' ng-click='getPage( "prev" )' )
 		| Previous page
 	.pagination

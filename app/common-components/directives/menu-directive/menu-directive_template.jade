@@ -83,6 +83,7 @@ ul.menu-directive-wrapper.scrollable-content(
 				.option-list-wrapper
 					ul.ghost-elements(
 						ng-if='stateParams.sortingType === sortingOption.title.toLowerCase(  )'
+						ng-class='{ "people-option-list": stateParams.sortingType === "people" }'
 					)
 						li.ghost-element(
 							ng-repeat='ghostElement in sortingOption.items'
@@ -96,6 +97,7 @@ ul.menu-directive-wrapper.scrollable-content(
 					ul.option-list(
 						ng-if='stateParams.sortingType == sortingOption.title.toLowerCase(  )'
 						ng-click='$event.stopPropagation(  )'
+						ng-class='{ "people-option-list": stateParams.sortingType === "people" }'
 					)
 						li.option(
 							ng-repeat='littleSortingOption in sortingOption.items'
