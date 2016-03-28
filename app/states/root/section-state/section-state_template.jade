@@ -208,7 +208,7 @@
 		.page-number(
 			ng-repeat='pageNum in pageArray'
 			ui-sref='root.section-state.sorting-state({ p: pageNum })'
-			ng-class='{ "current-page": stateParams.p == pageNum }'
+			ng-class='{ "current-page": stateParams.p == pageNum || ( !stateParams.p && pageNum === 0 ) }'
 		)
 			{{ pageNum + 1 }}
 	.next( ng-show='isNext' ng-click='getPage( "next" )' )

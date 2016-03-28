@@ -318,9 +318,14 @@ menu-directive
 		}
 	}
 
-	.people-option-list .ghost-element
+	.people-option-list
 	{
-		display: none !important;
+		left: -70px;
+
+		.ghost-element
+		{
+			display: none !important;
+		}
 	}
 
 	&:last-of-type .sorting-option-title-wrapper .sorting-option-title:after
