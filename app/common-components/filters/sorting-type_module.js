@@ -15,8 +15,22 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'a-z':
 					items.forEach( function( item ) {
-						if( item.title.charAt( 0 ).toLowerCase(  ) === input ) {
-							out.push( item );
+
+						var firstChar = item.title.charAt( 0 );
+
+						if ( input === 'num' )
+						{
+							if( parseInt( firstChar ) )
+							{
+								out.push( item );
+							}
+						}
+						else
+						{
+							if( firstChar.toLowerCase(  ) === input )
+							{
+								out.push( item );
+							}
 						}
 					} );
 					break;
