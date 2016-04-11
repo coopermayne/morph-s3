@@ -62,7 +62,7 @@
 	{
 		@include respond-to( 'small' )
 		{
-			object-fit: contain;
+			object-fit: cover;
 
 			&.project-image
 			{
@@ -81,7 +81,7 @@
 
 .people-header-image
 {
-	background-size: contain;
+	object-fit: contain !important;
 }
 
 .project-page-content-wrapper

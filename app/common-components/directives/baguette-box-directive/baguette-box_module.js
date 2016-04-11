@@ -18,7 +18,7 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 					animation: 'fadeIn',
 					captions: true
 				} );
-			}, 2000 );
+			}, 1000 );
 		}
 	};
 } );
