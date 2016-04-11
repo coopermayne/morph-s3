@@ -11,7 +11,8 @@
 }
 
 .slideshow-video,
-.slideshow-image
+.slideshow-image,
+.mobile-video
 {
 	display: none;
 	min-width: 100vw;
@@ -31,6 +32,8 @@
 	background-color: black;
 	background-position: center center;
 	background-size: cover;
+
+	animation: fadeIn 50ms ease;
 }
 
 .slide-project-title
