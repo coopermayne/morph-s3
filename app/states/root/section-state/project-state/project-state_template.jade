@@ -3,16 +3,23 @@
 )
 
 
-.project-page-wrapper.scrollable-content
+.project-page-wrapper.scrollable-content.ng-baguette
 
 	throbber-directive
-
-	.project-page-header-image( 
-		ng-if='!mobile'
-    	ng-show='activeItem.primary_image.name.url'
-    	ng-class='{ "people-header-image": stateParams.m === "person" }'
-		style='background-image:url("{{ activeItem.primary_image.name.url }}")'
-	)
+	
+	.project-page-header-image-gallery-wrapper
+		.project-page-header-image-wrapper.gallery( 
+			ng-if='!mobile'
+	    	ng-show='activeItem.primary_image.name.url'
+	    	ng-class='{ "people-header-image": stateParams.m === "person" }'
+		)
+			a.project-page-header-image(
+				href='{{ activeItem.primary_image.name.url }}'
+				data-caption='{{ image.title }}'
+			)
+				img.project-page-header-image(
+					src='{{ activeItem.primary_image.name.url }}'
+				)
 	
 	//- Mobile header image
 	.project-page-header-image(
@@ -173,7 +180,7 @@
 						| Description
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
-				.image-gallery-wrapper.ng-baguette
+				.image-gallery-wrapper
 					.image-gallery-section-wrapper.open(
 						ng-repeat='gallery in activeItem.galleries'
 						ng-mouseenter='startScroll( $event )'
