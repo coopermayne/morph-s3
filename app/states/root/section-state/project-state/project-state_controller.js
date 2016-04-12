@@ -21,6 +21,11 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	}
 
+	$scope.min = function(arr) {
+		return $filter('min')
+		($filter('map')(arr, 'year'));
+	}
+
 	$scope.pageLoaded = false;
 
 	$scope.stateParams = $state.params;
@@ -58,34 +63,34 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	{
 		case 'search':
 		case 'about':
-			if( $scope.stateParams.m === "person" )
+		if( $scope.stateParams.m === "person" )
+		{
+			$http(
 			{
-				$http(
-				{
-					method: 'GET',
-					url: 'https://morphosisapi.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
-				} ).then( function( response )
-				{
-					$scope.activeItem = response.data;
-				} );
-			}
-			else
+				method: 'GET',
+				url: 'https://morphosisapi.herokuapp.com/people/' + $scope.stateParams.projectId + '.json'
+			} ).then( function( response )
 			{
-				Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
-				{
+				$scope.activeItem = response.data;
+			} );
+		}
+		else
+		{
+			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
+			{
 
-					$scope.activeItem = response.result;
-				} );
-			}
+				$scope.activeItem = response.result;
+			} );
+		}
 		break;
 
 		default:
-			$scope.throbberOn = true;
-			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
-			{
-				$scope.activeItem = response.result;
-				$scope.throbberOn = false;
-			} );
+		$scope.throbberOn = true;
+		Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
+		{
+			$scope.activeItem = response.result;
+			$scope.throbberOn = false;
+		} );
 		break;
 	}
 
@@ -109,46 +114,46 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	}
 
-  var scrollscroll;
-  var vel = 0;
-  var theDelay = 16;
+	var scrollscroll;
+	var vel = 0;
+	var theDelay = 16;
 
-  $scope.stopScroll = function(){
-    $interval.cancel(scrollscroll)
-    vel = 0
-  }
+	$scope.stopScroll = function(){
+		$interval.cancel(scrollscroll)
+		vel = 0
+	}
 
-  $scope.scrollLeft = function(e){
+	$scope.scrollLeft = function(e){
 
-    var p = e.target.parentNode.parentNode;
-    var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+		var p = e.target.parentNode.parentNode;
+		var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
 
-    scrollscroll = $interval(function(){
-      if(vel < 3 ){
-        vel = vel + 0.05
-      }
-      imageGallery.scrollLeft -= vel;
-    }, theDelay )
-  }
+		scrollscroll = $interval(function(){
+			if(vel < 3 ){
+				vel = vel + 0.05
+			}
+			imageGallery.scrollLeft -= vel;
+		}, theDelay )
+	}
 
-  $scope.scrollRight = function(e){
+	$scope.scrollRight = function(e){
 
-    var p = e.target.parentNode.parentNode;
-    var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
+		var p = e.target.parentNode.parentNode;
+		var imageGallery = p.getElementsByClassName( 'image-gallery-section' )[ 0 ];
 
-    scrollscroll = $interval(function(){
-      if(vel < 3 ){
-        vel = vel + 0.05
-      }
-      imageGallery.scrollLeft += vel;
-    }, theDelay )
-  }
+		scrollscroll = $interval(function(){
+			if(vel < 3 ){
+				vel = vel + 0.05
+			}
+			imageGallery.scrollLeft += vel;
+		}, theDelay )
+	}
 
-  $scope.checkItemLength = function( string, maxChar )
-  {
-  	if ( string.length > maxChar ) { return true; }
-  	else { return false; }
-  }
+	$scope.checkItemLength = function( string, maxChar )
+	{
+		if ( string.length > maxChar ) { return true; }
+		else { return false; }
+	}
 
 
 } );

@@ -10,7 +10,9 @@ var projectState = angular.module( 'projectState',
 
 	'ngBaguette',
 	
-	'ngToggleClass'
+	'ngToggleClass',
+
+	'reverseFilter'
 ] );
 
 
