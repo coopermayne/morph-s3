@@ -197,6 +197,7 @@ menu-directive
 	@include respond-to( 'small' )
 	{
 		overflow-y: scroll;
+		height: 80vh;
 	}
 	@include respond-to( 'medium' )
 	{
