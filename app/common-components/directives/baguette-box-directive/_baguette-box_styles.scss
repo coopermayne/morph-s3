@@ -1,5 +1,11 @@
 #baguetteBox-overlay .full-image figcaption
 {
+	@include respond-to( 'small' )
+	{
+		right: 5px;
+		bottom: 0;
+	}
+
 	position: relative;
 	width: auto;
 	right: 0;
