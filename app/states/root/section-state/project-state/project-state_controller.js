@@ -144,5 +144,11 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
     }, theDelay )
   }
 
+  $scope.checkItemLength = function( string, maxChar )
+  {
+  	if ( string.length > maxChar ) { return true; }
+  	else { return false; }
+  }
+
 
 } );

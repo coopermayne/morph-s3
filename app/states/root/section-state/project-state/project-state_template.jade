@@ -171,16 +171,18 @@
 
 			.project-page-main-text
 
-				.project-overview.contracted(
+				.project-overview(
 					ng-if='activeItem.overview'
 					ng-bind-html='activeItem.overview | htmlParse'
 					ng-toggle-class='contracted open'
+					ng-class='{ contracted: checkItemLength( activeItem.overview, 92 ) }'
 				)
 					| {{ activeItem.overview }}
 
-				.project-description-wrapper.contracted(
+				.project-description-wrapper(
 					ng-toggle-class='contracted open'
 					ng-if='activeItem.description'
+					ng-class='{ contracted: checkItemLength( activeItem.description, 213 ) }'
 				)
 					.project-description-header
 						| Description
