@@ -102,6 +102,17 @@
 					ng-if='item.types.indexOf( "Publications" ) == 1 && item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
+				
+				//- Bibliography projects cited
+				.alt-project-metadata
+					.alt-project-awarded( ng-if='item.types.indexOf( "Bibliography" > 1 ) && item.projects.length' )
+						.alt-project-awarded-label.project-detail-label
+							| {{ item.projects.length > 1 ? "Projects":"Project" }} Cited:
+						.alt-project-awarded-project(
+							ng-repeat='project in item.projects'
+							ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
+						)
+							| {{ project.title }}
 
 	//- NOT media section
 	.alt-index-project(
