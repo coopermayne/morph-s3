@@ -163,7 +163,7 @@
 							ng-if='item.primary_image'
 							preload-bg-image='{{ item.primary_image.name.thumb.url }}'
 						)
-						| "{{ item.article_name }}."
+						| {{ item.article_name ? '"' + item.article_name + '"' : '' }}
 						| {{ item.author ? item.author : '' }}
 						| {{ item.publication ? item.publication + '.' : '' }}
 						| {{ item.publisher ? item.publisher : '' }}
