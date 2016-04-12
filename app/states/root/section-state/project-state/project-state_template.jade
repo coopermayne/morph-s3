@@ -261,8 +261,15 @@
 							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
 							ng-bind-html='role.person.name | htmlParse'
 						)
+					
+					.show-morph-team.details-clickable.contracted(
+						ng-click='showConsultants = !showConsultants'
+						ng-toggle-class='contracted open'
+					)
+						| Consultants
 					.project-detail-wrapper(
 						ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"'
+						ng-show='showConsultants'
 					)
 						.project-detail-label
 							| {{ key }}
