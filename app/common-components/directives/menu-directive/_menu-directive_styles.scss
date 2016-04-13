@@ -58,7 +58,8 @@ menu-directive
 	color: $white;
 	font-size: $subheader-text;
 
-	em
+	em,
+	p
 	{
 		display: inline;
 	}
