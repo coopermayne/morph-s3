@@ -49,7 +49,12 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 		}
 	});
 
-	$scope.mobile = screenSize.on( 'xs', function( match )
+	screenSize.rules = {
+		superSmall: '(max-width: 500px)',
+
+	};
+
+	$scope.mobile = screenSize.on( 'superSmall', function( match )
 	{
 		$scope.mobile = match;
 	});

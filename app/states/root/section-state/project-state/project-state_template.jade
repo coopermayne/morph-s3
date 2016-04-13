@@ -239,7 +239,7 @@
 
 			//- The remaining sidebar items for MOBILE (project credits + bibliography)
 			.project-page-second-sidebar(
-				ng-if='mobileAndTabletCheck(  ) && ( activeItem.people.length || activeItem.awards.length || activeItem.bibliography_items.length )'
+				ng-if='mobile && ( activeItem.people.length || activeItem.awards.length || activeItem.bibliography_items.length )'
 			)
 				.project-page-sidebar-section.project-credits.contracted(
 					ng-if='activeItem.people.length'

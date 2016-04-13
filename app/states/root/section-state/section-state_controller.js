@@ -151,7 +151,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				if ( $scope.stateParams.sub )
 				{
 					$scope.subSort = $scope.stateParams.sub;
-					console.log( $scope.subSort );
 				}
 				else
 				{

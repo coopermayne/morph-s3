@@ -157,6 +157,13 @@
 	@include respond-to( 'medium' )
 	{
 		justify-content: center;
+
+		@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+		{
+			justify-content: center;
+
+			max-width: 700px;
+		}
 	}
 
 	flex-flow: row wrap;
