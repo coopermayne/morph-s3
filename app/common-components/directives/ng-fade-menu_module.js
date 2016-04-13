@@ -43,7 +43,7 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, screenSize )
 						}, 3000 );
 					}
 				}
-			}		
+			}
 		}
 	}
 });

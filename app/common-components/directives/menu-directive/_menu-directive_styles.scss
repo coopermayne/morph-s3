@@ -39,6 +39,11 @@ menu-directive
 	right: $page-margin;
 	z-index: 9999;
 	background: url('images/trigger.svg') no-repeat center center;
+
+	&.hidden
+	{
+		opacity: 0;
+	}
 }
 
 .menu-about-text-wrapper
