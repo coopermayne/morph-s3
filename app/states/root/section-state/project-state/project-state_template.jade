@@ -73,8 +73,9 @@
 					.project-detail-wrapper( ng-if='activeItem.program' )
 						.project-detail-label
 							| Program:
-						.project-detail-text
-							| {{ activeItem.program }}
+						.project-detail-text(
+							ng-bind-html='activeItem.program | htmlParse'
+							)
 					.project-detail-wrapper( ng-if='activeItem.design_sdate && activeItem.design_edate' )
 						.project-detail-label
 							| Design:
@@ -109,15 +110,15 @@
 					)
 						| Morphosis Team
 					.project-detail-wrapper(
-						ng-repeat='(key, value) in activeItem.people | filter: { is_morphosis: true } | groupBy: "role_title"'
+						ng-repeat='position in activeItem.morph_team'
 						ng-show='showMorphTeam'
 					)
 						.project-detail-label
-							| {{ key }}
+							| {{ position.role_title }}
 						.project-detail-text.details-clickable(
-							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
-							ng-bind-html='role.person.name | htmlParse'
+							ng-repeat='person in position.people'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+							ng-bind-html='person.person.name | htmlParse'
 						)
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showConsultants = !showConsultants'
@@ -125,15 +126,15 @@
 					)
 						| Consultants
 					.project-detail-wrapper(
-						ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"'
+						ng-repeat='position in activeItem.contractors'
 						ng-show='showConsultants'
 					)
 						.project-detail-label
-							| {{ key }}
+							| {{ position.role_title }}
 						.project-detail-text.details-clickable(
-							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
-							ng-bind-html='role.person.name | htmlParse'
+							ng-repeat='person in position.people'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+							ng-bind-html='person.person.name | htmlParse'
 						)
 
 				//- Design recognition
