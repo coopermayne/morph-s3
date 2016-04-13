@@ -57,6 +57,11 @@ menu-directive
 
 	color: $white;
 	font-size: $subheader-text;
+
+	em
+	{
+		display: inline;
+	}
 }
 
 .menu-about-text
