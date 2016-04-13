@@ -129,6 +129,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$scope.reverseVar = false;
 			}
 		}
+
+		$scope.stateParams.sub = $scope.subSort;
 	}
 
 	// Wait for API response (and DOM to load) before scrolling to expanded item
@@ -143,10 +145,18 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		}
 		else
 		{
-			if( $scope.stateParams.sortingType !== 'media' )
+			if ( $scope.stateParams.sortingType !== 'media' )
 			{
 				// Sort items by date on indexContents load
-				$scope.switchSubSort( 'date' );
+				if ( $scope.stateParams.sub )
+				{
+					$scope.subSort = $scope.stateParams.sub;
+					console.log( $scope.subSort );
+				}
+				else
+				{
+					$scope.switchSubSort( 'date' );
+				}
 			}
 		}
 	} );
@@ -672,7 +682,14 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		if ( $scope.stateParams.sortingType !== 'media' )
 		{		
 			// Update subSort on section and sortingType change
-			$scope.switchSubSort( 'date' );
+			if ( $scope.stateParams.sub )
+			{
+				$scope.subSort = $scope.stateParams.sub;
+			}
+			else
+			{
+				$scope.switchSubSort( 'date' );
+			}
 		}
 	} );
 
