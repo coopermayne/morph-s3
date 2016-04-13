@@ -222,7 +222,6 @@
 					.project-description-header
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
-
 				.project-description-wrapper.component.contracted(
 					ng-toggle-class='contracted open'
 					ng-if='activeItem.documents.length > 0'
@@ -248,38 +247,38 @@
 						| Project Credits
 					
 					.show-morph-team.details-clickable.contracted(
-						ng-click='showMorphTeam = !showMorphTeam; $event.stopPropagation(  )'
+						ng-click='showMorphTeam = !showMorphTeam'
 						ng-toggle-class='contracted open'
 					)
 						| Morphosis Team
 					.project-detail-wrapper(
-						ng-repeat='(key, value) in activeItem.people | filter: { is_morphosis: true } | groupBy: "role_title"'
+						ng-repeat='position in activeItem.morph_team'
 						ng-show='showMorphTeam'
 					)
 						.project-detail-label
-							| {{ key }}
+							| {{ position.role_title }}
 						.project-detail-text.details-clickable(
-							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
-							ng-bind-html='role.person.name | htmlParse'
+							ng-repeat='person in position.people'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+							ng-bind-html='person.person.name | htmlParse'
 						)
-					
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showConsultants = !showConsultants'
 						ng-toggle-class='contracted open'
 					)
 						| Consultants
 					.project-detail-wrapper(
-						ng-repeat='( key, value ) in activeItem.people | filter: { is_morphosis: false } | groupBy: "role_title"'
+						ng-repeat='position in activeItem.contractors'
 						ng-show='showConsultants'
 					)
 						.project-detail-label
-							| {{ key }}
+							| {{ position.role_title }}
 						.project-detail-text.details-clickable(
-							ng-repeat='role in value'
-							ui-sref='root.section-state.project-state({ section: "about", projectId: role.person.id, m: "person" })'
-							ng-bind-html='role.person.name | htmlParse'
+							ng-repeat='person in position.people'
+							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+							ng-bind-html='person.person.name | htmlParse'
 						)
+
 
 				//- Design recognition
 				.project-page-sidebar-section.contracted(
@@ -326,8 +325,7 @@
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
 					| Education
 				.project-detail-wrapper( ng-repeat='education in activeItem.educations' )
-					{{ education.title }}
-
+					| {{ education.title }}
 				.project-page-sidebar-header( ng-if='activeItem.email' )
 					| Contact
 				.project-detail-wrapper
