@@ -28,6 +28,11 @@ menu-directive
 		width: 40px;
 		height: 40px;
 		z-index: 9999;
+
+		&.hidden
+		{
+			opacity: 1 !important;
+		}
 	}
 
 	position: fixed;
@@ -214,11 +219,23 @@ menu-directive
 	@include respond-to( 'small' )
 	{
 		overflow-y: scroll;
+		// Make sections 80vh for clickability of project titles
 		height: 80vh;
+
+		// Make 'About' section full height for info scrolling
+		&.mobile-about-section-wrapper
+		{
+			height: 100vh;
+		}
 	}
 	@include respond-to( 'medium' )
 	{
 		overflow-y: scroll;
+
+		&.mobile-about-section-wrapper
+		{
+			height: 100vh;
+		}
 	}
 
 	background-color: transparent;

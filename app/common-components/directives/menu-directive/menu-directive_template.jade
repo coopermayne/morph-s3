@@ -35,7 +35,7 @@
 
 ul.menu-directive-wrapper.scrollable-content(
 	ng-show='!mobileAndTabletCheck(  ) || showMobileMenuVar'
-	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news" }'
+	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news", "mobile-about-section-wrapper": showMobileMenuVar && stateParams.section === "about" }'
 	ng-fade-menu
 )
 	.mobile-menu-close(
