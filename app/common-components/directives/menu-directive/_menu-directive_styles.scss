@@ -170,7 +170,7 @@ menu-directive
 
 		&.hidden
 		{
-			opacity: 1;
+			opacity: 1 !important;
 		}
 	}
 	@include respond-to ( 'medium' )
@@ -185,7 +185,7 @@ menu-directive
 
 		&.hidden
 		{
-			opacity: 1;
+			opacity: 1 !important;
 		}
 	}
 
