@@ -58,8 +58,8 @@ menu-directive
 	color: $white;
 	font-size: $subheader-text;
 
-	em,
-	p
+	#about + p,
+	em
 	{
 		display: inline;
 	}
@@ -141,6 +141,12 @@ menu-directive
 	padding-top: $page-margin;
 
 	font-size: $subheader-text;
+
+	.about-text-header:nth-child(2),
+	em
+	{
+		display: inline;
+	}
 }
 
 
