@@ -208,7 +208,7 @@
 							a(
 								ng-repeat='image in gallery.images'
 								href='{{ image.name.name.url }}'
-								data-caption='{{ image.credit }}'
+								data-caption='{{ image.credit ? "©" + image.credit : "" }}'
 							)
 								img(
 									ng-src='{{ image.name.name.thumb.url }}'
