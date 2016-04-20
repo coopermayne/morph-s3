@@ -96,7 +96,11 @@
 					ng-if='item.types.indexOf( "Publications" ) == 1 && item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
-				
+
+				//- Publications metadata
+				.alt-project-expanded.alt-index-description(ng-if='item.types.indexOf("Publications") != -1')
+					| hello
+
 				//- Bibliography projects cited
 				.alt-project-metadata
 					.alt-project-awarded( ng-if='item.types.indexOf( "Bibliography" > 1 ) && item.projects.length' )

@@ -15,9 +15,10 @@
 			a.project-page-header-image(
 				href='{{ activeItem.primary_image.name.url }}'
 				data-caption='{{ image.title }}'
+				style='background:url("{{ activeItem.primary_image.name.url }}"); background-size: cover; background-position: center center; background-repeat: no-repeat;'
 			)
 				img.project-page-header-image(
-					ng-src='{{ activeItem.primary_image.name.url }}'
+					ng-src=''
 					ng-class='{ "people-header-image": stateParams.m === "person" }'
 				)
 	

@@ -59,7 +59,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 
-	img
+	&img
 	{
 		@include respond-to( 'small' )
 		{
@@ -77,6 +77,11 @@
 		width: 100vw;
 
 		object-fit: cover;
+
+		@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+		{
+			display: none;
+		}
 	}
 }
 
