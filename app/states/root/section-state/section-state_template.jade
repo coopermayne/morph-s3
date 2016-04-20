@@ -65,6 +65,10 @@
 			//- Title + expanded sections
 			.alt-title-and-expanded-wrapper( ng-class='{ "with-image": item.image.name.mobile.url || item.image }' )
 
+				//- Publication date
+				.project-detail-label( ng-if='item.types.indexOf("Publications") != -1' )
+					| {{ item.pub_date | date : 'mediumDate' }}
+
 				//- NOT search section (different ui-sref behavior)
 				.alt-project-title(
 					ng-bind-html='item.title || item.name | htmlParse'
@@ -96,10 +100,6 @@
 					ng-if='item.types.indexOf( "Publications" ) == 1 && item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
-
-				//- Publications metadata
-				.alt-project-expanded.alt-index-description(ng-if='item.types.indexOf("Publications") != -1')
-					| hello
 
 				//- Bibliography projects cited
 				.alt-project-metadata
