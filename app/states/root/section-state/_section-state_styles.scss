@@ -255,6 +255,7 @@
 .clickable-alt
 {
 	cursor: pointer;
+
 	.alt-project-title:hover
 	{
 		text-decoration: underline;
@@ -274,6 +275,11 @@
 .project-title
 {
 	cursor: pointer;
+
+	&:hover
+	{
+		text-decoration: underline;
+	}
 }
 
 .leaflet-container
