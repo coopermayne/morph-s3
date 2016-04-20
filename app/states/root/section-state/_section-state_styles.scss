@@ -255,6 +255,10 @@
 .clickable-alt
 {
 	cursor: pointer;
+	.alt-project-title:hover
+	{
+		text-decoration: underline;
+	}
 }
 
 .with-image

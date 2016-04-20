@@ -494,11 +494,6 @@ var placeMarkers = function(  )
 	} );
 }
 
-$timeout( function(  )
-{
-	placeMarkers(  )
-}, 2000 );
-
 //------------------------------------------------------------  end map
 
 console.log( 'SectionStateController active!' );
@@ -651,6 +646,14 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 	    //update map center
 	    if( $scope.stateParams.sortingType === "location" )
 	    {
+	    	$scope.$watchCollection('indexContents', function()
+	    	{
+	    		if ( $scope.indexContents.length )
+	    		{
+	    			console.log($scope.indexContents);
+	    			placeMarkers();
+	    		}
+	    	});
 	    	$scope.center = place_d[ $state.params.q ] ? angular.copy( place_d[$state.params.q ] ) : angular.copy( default_place );
 	    }
 
