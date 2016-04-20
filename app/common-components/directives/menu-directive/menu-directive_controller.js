@@ -66,18 +66,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		return returnVar;
 	}
 
-	// $scope.showSubSection = fuction(  )
-	// {
-	// 	stateParams.q === littleSortingOption.title.toLowerCase(  ) || stateParams.q === subSection.title.toLowerCase(  );
-
-	// $scope.toggleSubSection = function( section )
-	// {
-	// 	if ( section.children.length )
-	// 	{
-	// 		$scope.showSubSection = !$scope.showSubSection;
-	// 	}
-	// }
-
 	$scope.setMobileMenuVar = function(  )
 	{
 		switch( $scope.state.current.name )
@@ -103,11 +91,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		// Set showMobileMenuVar
 		$scope.setMobileMenuVar(  );
 
-		// Update mobileMenuVar
-		$scope.$on( '$stateChangeSuccess', function(  )
-		{
-			$scope.setMobileMenuVar(  );
-		} )
 	}
 
 

@@ -77,7 +77,7 @@ ul.menu-directive-wrapper.scrollable-content(
 				.sorting-option-title-wrapper(
 						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
 					)
-					.sorting-option-title( ng-click='toggleMobileMenu(  )' )
+					.sorting-option-title(ng-click='showMobileMenuVar = true')
 						| {{ sortingOption.title }}
 				
 				//- Categories (Letters, Residential, etc)
