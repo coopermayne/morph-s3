@@ -160,7 +160,7 @@
 					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
 						ng-class="{'details-clickable': item.link.length}"
-						ng-click='backgroundTab("http://info.architectural-review.com/")'
+						ng-click='backgroundTab(item.link)'
 					)
 						.bibliography-image(
 							ng-if='item.primary_image'
