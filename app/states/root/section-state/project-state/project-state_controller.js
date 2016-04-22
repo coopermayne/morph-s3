@@ -2,7 +2,7 @@
 
 var projectState = angular.module( 'projectState' );
 
-projectState.controller( 'ProjectStateController', function( $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
+projectState.controller( 'ProjectStateController', function( $window, $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
 {
 
 	//helper method
@@ -62,6 +62,14 @@ projectState.controller( 'ProjectStateController', function( $rootScope, $scope,
 	// Zipped-up Morphosis team and consultants(project credits)
 	$scope.showMorphTeam = false;
 	$scope.showConsultants = false;
+
+	//open background tab for linky things
+	$scope.backgroundTab = function(url){
+		if (url.length) 
+		{
+			$window.open(url, '_blank');
+		}
+	}
 
 	// 'People' or 'Project' layout?
 	switch( $scope.stateParams.section )
