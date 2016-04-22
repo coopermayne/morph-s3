@@ -99,7 +99,7 @@
 				//- Project Credits
 				.project-page-sidebar-section(
 					ng-toggle-class='contracted open'
-					ng-if='activeItem.people.length && !mobile'
+					ng-if='activeItem.morph_team.length && !mobile'
 				)
 					.project-page-sidebar-header
 						| Project Credits
@@ -159,6 +159,7 @@
 						| Bibliography
 					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
+						ng-click='backgroundLink(item.link)'
 					)
 						.bibliography-image(
 							ng-if='item.primary_image'
@@ -239,10 +240,10 @@
 
 			//- The remaining sidebar items for MOBILE (project credits + bibliography)
 			.project-page-second-sidebar(
-				ng-if='mobile && ( activeItem.people.length || activeItem.awards.length || activeItem.bibliography_items.length )'
+				ng-if='mobile && ( activeItem.contractors.length || activeItem.morph_team.length || activeItem.awards.length || activeItem.bibliography_items.length )'
 			)
 				.project-page-sidebar-section.project-credits.contracted(
-					ng-if='activeItem.people.length'
+					ng-if='activeItem.morph_team.length || activeItem.contractors.length'
 					ng-toggle-class='contracted open'
 				)
 					.project-page-sidebar-header
