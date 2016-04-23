@@ -528,7 +528,7 @@ $scope.setAltIndex = function( input )
 	}
 }
 
-var apiUrl = 'https://morphosisapi.herokuapp.com/';
+var apiUrl = 'https://ancient-peak-41402.herokuapp.com/';
 
 	// Function for fetching non-project resources from API
 	$scope.getResource = function( sectionTitle )
