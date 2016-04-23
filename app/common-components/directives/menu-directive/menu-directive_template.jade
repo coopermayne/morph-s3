@@ -19,6 +19,16 @@
 	.menu-about-text
 		p#about.about-text-header
 		p( ng-bind-html='menuItems.sections[0].about | htmlParse' )
+
+//media
+.menu-about-text-wrapper(
+	ng-if='!mobile && stateParams.section === "about" && stateParams.sortingType=="media" && !stateParams.q'
+	ng-class='{ "mobile-about-text": mobile }'
+)
+	.menu-about-text
+		p#about.about-text-header
+		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
+
 //contact
 .menu-about-text-wrapper(
 	ng-if='!mobile && stateParams.section === "about" && stateParams.sortingType=="contact"'
