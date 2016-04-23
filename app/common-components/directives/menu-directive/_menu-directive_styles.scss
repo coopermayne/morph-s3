@@ -60,8 +60,12 @@ menu-directive
 	right: 0;
 	z-index: 10;
 
-	color: $white;
+	color: $black;
 	font-size: $subheader-text;
+	&.make-it-white
+	{
+		color: $white;
+	}
 
 	#about + p,
 	em
@@ -81,7 +85,7 @@ menu-directive
 
 	a
 	{
-		color: white;
+		color: $black;
 	}
 }
 
@@ -97,7 +101,7 @@ menu-directive
 	{
 		flex-flow: row nowrap;
 
-		color: white;
+		color: $black;
 		text-decoration: none;
 
 		&:hover:before,
@@ -108,7 +112,7 @@ menu-directive
 			width: calc( 100% - 13px );
 			height: 2px;
 			bottom: 0;
-			background-color: $white;
+			background-color: $black;
 		}
 
 		&:after

@@ -10,27 +10,31 @@
 	ng-if='state.current.name == "root.section-state" && stateParams.section !== "news" && stateParams.section !== "search"'
 	ng-fade-menu
 )
-
-.menu-about-text-wrapper(
+//about
+.menu-about-text-wrapper.make-it-white(
 	ng-if='!mobile && stateParams.section === "about" && !stateParams.sortingType'
+	ng-class='{ "mobile-about-text": mobile }'
+)
+
+	.menu-about-text
+		p#about.about-text-header
+		p( ng-bind-html='menuItems.sections[0].about | htmlParse' )
+//contact
+.menu-about-text-wrapper(
+	ng-if='!mobile && stateParams.section === "about" && stateParams.sortingType=="contact"'
 	ng-class='{ "mobile-about-text": mobile }'
 )
 	.menu-about-nav
 		a(
-			ng-repeat='link in [ "contact", "about", "employment" ]'
+			ng-repeat='link in [ "contact", "employment" ]'
 			ng-class='{ "active-about": activeAbout( link ) }'
 			href='{{ "#" + link }}'
 		)
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
 	.menu-about-text
-		p#contact.about-text-header
-		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
-
 		p#about.about-text-header
-		p( ng-bind-html='menuItems.sections[0].about | htmlParse' )
-
-		p#employment.about-text-header
+		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
@@ -143,9 +147,7 @@ ul.menu-directive-wrapper.scrollable-content(
 		ng-if='mobile && stateParams.section === "about" && !stateParams.sortingType'
 		ng-class='{ "mobile-about-text": mobile }'
 	)
-		.about-text-header( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 		.about-text-header( ng-bind-html='menuItems.sections[0].about | htmlParse' )
-		.about-text-header( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 //- Section slideshows
 slideshow-directive(
