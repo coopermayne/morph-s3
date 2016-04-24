@@ -49,7 +49,7 @@
 		id='{{ item.id }}'
 		ng-if='stateParams.sortingType === "media"'
 		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
-		ng-class='{ "clickable-alt": ( stateParams.section === "search" ) || item.types.indexOf( "Publications" ) != -1 }'
+		ng-class='{ "clickable-alt": ( stateParams.section === "search" ) || item.types.indexOf( "Books" ) != -1 }'
 	)
 
 		//- Project title and image
@@ -66,7 +66,7 @@
 			.alt-title-and-expanded-wrapper( ng-class='{ "with-image": item.image.name.mobile.url || item.image }' )
 
 				//- Publication date
-				.project-detail-label( ng-if='item.types.indexOf("Publications") != -1' )
+				.project-detail-label( ng-if='item.types.indexOf("Books") != -1' )
 					| {{ item.pub_date | date : 'mediumDate' }}
 
 				//- NOT search section (different ui-sref behavior)
@@ -76,7 +76,7 @@
 				)
 
 				//- Overview
-				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1'  ng-bind-html='item.overview | htmlParse' )
+				.alt-project-expanded( ng-if='item.types.indexOf("Books") == -1'  ng-bind-html='item.overview | htmlParse' )
 
 				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
@@ -97,7 +97,7 @@
 
 				//- Description attribute
 				.alt-project-expanded.alt-index-description(
-					ng-if='item.types.indexOf( "Publications" ) == 1 && item.description.length > 0'
+					ng-if='item.types.indexOf( "Books" ) == 1 && item.description.length > 0'
 					ng-bind-html='item.description | htmlParse'
 				)
 
@@ -158,7 +158,7 @@
 				)
 
 				//- Overview attribute
-				.alt-project-expanded( ng-if='item.types.indexOf("Publications") == -1 || ( stateParams.section === "news" )'  ng-bind-html='item.overview | htmlParse')
+				.alt-project-expanded( ng-if='item.types.indexOf("Books") == -1 || ( stateParams.section === "news" )'  ng-bind-html='item.overview | htmlParse')
 
 				//- Bibliography citations + PDF
 				.alt-project-expanded( ng-if='item.types && item.types.indexOf( "Bibliography" ) != -1' )
@@ -179,7 +179,7 @@
 
 				//- Description attribute
 				.alt-project-expanded.alt-index-description(
-					ng-if='item.types.indexOf("Publications") == -1 && item.description.length > 0 && stateParams.section != "search" || ( stateParams.section === "news" )'
+					ng-if='item.types.indexOf("Books") == -1 && item.description.length > 0 && stateParams.section != "search" || ( stateParams.section === "news" )'
 					ng-bind-html='item.description | htmlParse'
 				)
 

@@ -553,32 +553,35 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 	$scope.getMediaResource = function( params )
 	{
-		$scope.setAltIndex( params.sortingType );
-		$scope.throbberOn = true;
-
-		$http(
-		{
-			method: 'GET',
-			url: apiUrl + 'media.json',
-			params:
+		if(params.q)
 			{
-				p: params.p,
-				q: params.q, 
-				sub: params.sub
-			}
-		} ).then( function( response )
-		{
-			$scope.isPrev = !( response.data.currentPage == 0 );
-			$scope.isNext = response.data.totalPages > response.data.currentPage;
-			$scope.indexContents = response.data.results;
-			$scope.pageArray = [  ];
-			for ( var i = 0; i <= response.data.totalPages; i++ )
-			{
-				$scope.pageArray.push( i );
-			}
-			$scope.throbberOn = false;
+				$scope.setAltIndex( params.sortingType );
+				$scope.throbberOn = true;
 
-		} );
+				$http(
+					{
+						method: 'GET',
+						url: apiUrl + 'media.json',
+						params:
+							{
+								p: params.p,
+								q: params.q, 
+								sub: params.sub
+							}
+					} ).then( function( response )
+					{
+						$scope.isPrev = !( response.data.currentPage == 0 );
+						$scope.isNext = response.data.totalPages > response.data.currentPage;
+						$scope.indexContents = response.data.results;
+						$scope.pageArray = [  ];
+						for ( var i = 0; i <= response.data.totalPages; i++ )
+						{
+							$scope.pageArray.push( i );
+						}
+						$scope.throbberOn = false;
+
+					} );
+			}
 	}
 
 	// Fetch index contents on controller load, based on section parameter

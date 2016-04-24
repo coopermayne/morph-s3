@@ -12,6 +12,11 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 			switch( type )
 			{
+        //case 'leadership':
+					//items.forEach( function( item ) {
+            //out.push( item)
+          //})
+          //break;
 
 				case 'a-z':
 					items.forEach( function( item ) {
@@ -35,14 +40,15 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					} );
 					break;
 					
-				case 'people':
-					items.forEach( function( item ) {
-						if( item.last_name.charAt( 0 ).toLowerCase(  ) === input ) {
-							out.push( item );
-						}
-					} );
-					break;
-
+        case 'people':
+          if( input == "leadership"){
+            items.forEach( function( item ) {
+              if( item.is_leadership ) {
+                out.push( item );
+              }
+            } );
+          }
+          break;
 
 				case 'type':
 				case 'media':
