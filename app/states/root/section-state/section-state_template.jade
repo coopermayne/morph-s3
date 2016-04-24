@@ -13,7 +13,7 @@
 	)
 		| Date
 
-.index-project-wrapper( ng-if='!altIndexSection' )
+.index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType !== "location"' )
 	throbber-directive
 
 	//- Items with 'section' attribute (projects)
