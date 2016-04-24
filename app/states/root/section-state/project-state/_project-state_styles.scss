@@ -83,6 +83,11 @@
 			display: none;
 		}
 	}
+
+	&.people-header-image
+	{
+		background-size: contain;
+	}
 }
 
 .people-header-image
