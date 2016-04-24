@@ -139,7 +139,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Wait for API response (and DOM to load) before scrolling to expanded item
 	$scope.$watchCollection( 'indexContents', function(  )
 	{
-		if( $scope.indexContents.length != 0 && $scope.stateParams.sortingType === "location" )
+		if( $scope.indexContents.length != 0 )
 		{
 			placeMarkers();
 		}
