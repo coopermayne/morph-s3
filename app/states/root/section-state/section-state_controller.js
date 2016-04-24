@@ -139,12 +139,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Wait for API response (and DOM to load) before scrolling to expanded item
 	$scope.$watchCollection( 'indexContents', function(  )
 	{
-		if( $scope.indexContents.length != 0 && $scope.stateParams.e )
+		if( $scope.indexContents.length != 0 && $scope.stateParams.sortingType === "location" )
 		{
-			$timeout( function(  )
-			{
-				$scope.scrollToExpanded(  );
-			}, 0 );
+			placeMarkers();
 		}
 		else
 		{
@@ -467,15 +464,15 @@ var placeMarkers = function(  )
 	switch( $scope.stateParams.section )
 	{
 		case 'architecture':
-		$scope.indexContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
+		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
 		break;
 
 		case 'urban':
-		$scope.indexContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'urban' } } );
+		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'urban' } } );
 		break;
 	}
 
-	angular.forEach( $scope.indexContents, function( item, key )
+	angular.forEach( $scope.mapContents, function( item, key )
 	{
 		if( item.lat )
 		{
@@ -648,20 +645,6 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 	{ 
 		// Update stateParams
 		$scope.stateParams = $state.params;
-
-	    //update map center
-	    if( $scope.stateParams.sortingType === "location" )
-	    {
-	    	$scope.$watchCollection('indexContents', function()
-	    	{
-	    		if ( $scope.indexContents.length )
-	    		{
-	    			console.log($scope.indexContents);
-	    			placeMarkers();
-	    		}
-	    	});
-	    	$scope.center = place_d[ $state.params.q ] ? angular.copy( place_d[$state.params.q ] ) : angular.copy( default_place );
-	    }
 
 	    if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
 	    {			
