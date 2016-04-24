@@ -10,4 +10,5 @@
 
 		menu-directive.scrollable
 			
-		.section-view( ui-view='section-view' )
+		.section-view( ui-view='section-view' ng-if='!altIndexSection && stateParams.sortingType && stateParams.sortingType !== "location" || ( stateParams.projectId )' )
+

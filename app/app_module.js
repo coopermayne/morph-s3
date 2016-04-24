@@ -58,6 +58,7 @@ morphopedia.run( [ '$rootScope', '$location', '$window', function( $rootScope, $
 		$window.ga('send', 'pageview', $location.path());
 	} );
 
+	// Device test
 	$rootScope.mobileAndTabletCheck = function(  )
 	{
 		var check = false;
