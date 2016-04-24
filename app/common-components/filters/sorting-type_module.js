@@ -42,7 +42,6 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					
         case 'people':
           if( input == "leadership"){
-            console.log("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
             items.forEach( function( item ) {
               if( item.is_leadership ) {
                 out.push( item );
