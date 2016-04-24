@@ -9,7 +9,6 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 		link: function ( $scope, $elm )
 		{
 			console.log( 'ngBaguette active!' );
-
 			$timeout( function(  )
 			{
 				baguetteBox.run( '.gallery',

@@ -7,6 +7,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	$scope.indexContents = [  ];
 
+	// Remove baguetteBox from page on back button click (from project page)
+	angular.element(document.querySelectorAll('#baguetteBox-overlay')).remove();
+
 	// Default to tile index
 	$scope.altIndexSection = false;
 
