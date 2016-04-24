@@ -51,16 +51,10 @@ sortingTypeFilter.filter( 'sortingType', function(  )
           break;
 
 				case 'type':
+
 				case 'media':
 					items.forEach( function( item ) {
-						var lowerCaseTypes = item.types.map(function( type )
-						{
-							return type.toLowerCase(  );
-						} );
-
-						if ( lowerCaseTypes.indexOf( input ) != -1 ) {
-							out.push( item );
-						}
+            out.push( item );
 					} );
 					break;
 

@@ -13,7 +13,7 @@
 	)
 		| Date
 
-.index-project-wrapper( ng-if='!altIndexSection' )
+.index-project-wrapper( ng-if='!altIndexSection && stateParams.sortingType !== "location"' )
 	throbber-directive
 
 	//- Items with 'section' attribute (projects)
@@ -102,7 +102,7 @@
 				)
 
 				//- Bibliography projects cited
-				.alt-project-metadata
+				.alt-project-metadata( ng-if='stateParams.q !== "awards"')
 					.alt-project-awarded( ng-if='item.types.indexOf( "Bibliography" > 1 ) && item.projects.length' )
 						.alt-project-awarded-label.project-detail-label
 							| {{ item.projects.length > 1 ? "Projects":"Project" }} Cited:
@@ -111,6 +111,17 @@
 							ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
 						)
 							| {{ project.title }}
+				//- Awards metadata
+				.alt-project-metadata( ng-if='stateParams.q == "awards"')
+					.alt-project-awarded( ng-if='stateParams.sortingType == "media" && item.projects.length && stateParams.q == "awards"' )
+						.alt-project-awarded-label.project-detail-label
+							| {{ item.projects.length > 1 ? "Projects Awarded":"Project Awarded" }}:
+						.alt-project-awarded-project(
+							ng-repeat='project in item.projects'
+							ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
+						)
+							| {{ project.title }}
+
 
 	//- NOT media section
 	.alt-index-project(
@@ -136,7 +147,7 @@
 
 				//- NOT search section (different ui-sref behavior)
 
-				//- News item date
+				//- News and award item date
 				.project-detail-label( ng-if='stateParams.section === "news" || stateParams.sortingType === "awards"' )
 					| {{ item.created_at | date : fullDate }}
 
@@ -182,17 +193,6 @@
 					ng-if='item.types.indexOf("Books") == -1 && item.description.length > 0 && stateParams.section != "search" || ( stateParams.section === "news" )'
 					ng-bind-html='item.description | htmlParse'
 				)
-
-		//- Awards metadata
-		.alt-project-metadata
-			.alt-project-awarded( ng-if='stateParams.sortingType == "awards" && item.projects.length' )
-				.alt-project-awarded-label.project-detail-label
-					| {{ item.projects.length > 1 ? "Projects Awarded":"Project Awarded" }}:
-				.alt-project-awarded-project(
-					ng-repeat='project in item.projects'
-					ui-sref='root.section-state.project-state({ section: "architecture",  projectId: project.id })'
-				)
-					| {{ project.title }}
 
 .location-index-wrapper( ng-if='stateParams.sortingType === "location"' )
 	leaflet(

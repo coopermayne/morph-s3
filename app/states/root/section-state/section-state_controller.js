@@ -79,9 +79,9 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 			switch( $scope.stateParams.sortingType )
 			{
-				case 'awards':
-				$scope.subSort = 'year';
-				break;
+				//case 'awards':
+				//$scope.subSort = 'year';
+				//break;
 
 				case 'media':
 				$scope.stateParams.sub = 'pub_date';
@@ -512,7 +512,7 @@ $scope.locIndex = false;
 
 $scope.setAltIndex = function( input )
 {
-	if ( 'media, awards, search, research, news'.indexOf( input ) != -1 )
+	if ( 'media, search, research, news'.indexOf( input ) != -1 )
 	{
 		$scope.altIndexSection = true;
 	}
@@ -605,9 +605,9 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 				$scope.getResource( 'people' );
 				break;
 
-				case 'awards':
-				$scope.getResource( 'awards' );
-				break;
+				//case 'awards':
+				//$scope.getResource( 'awards' );
+				//break;
 			}
 			break;
 
@@ -672,9 +672,9 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			// Update indexContents
 			switch ( $scope.stateParams.sortingType )
 			{
-				case 'awards':
-				$scope.getResource( 'awards' );
-				break;
+				//case 'awards':
+				//$scope.getResource( 'awards' );
+				//break;
 
 				case 'people':
 				$scope.getResource( 'people' );
