@@ -24,6 +24,21 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.mobile = match;
 	});
 
+	$scope.resolveMobileSortingClick = function( string )
+	{
+		switch( string )
+		{
+			case 'Location':
+			case 'News':
+			$scope.showMobileMenuVar = false;
+			break;
+
+			default:
+			$scope.showMobileMenuVar = true;
+			break;
+		}
+	}
+
 	$scope.activeAbout = function( string )
 	{
 		if( window.location.hash === '#' + string )
