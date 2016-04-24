@@ -8,8 +8,9 @@
 			preload='none'
 			data-video-id='{{ $index }}'
 		)
-			source( ng-src='{{ slide.mp4.name.url }}' )
-			source( ng-src='{{ slide.webm.name.url }}' )
+			source( ng-src='{{ slide.mp4.name.url }}' type='video/mp4')
+			source( ng-src='{{ slide.webm.name.url }}' type='video/webm')
+			poster( ng-src='{{ slide.image.name.url}}')
 
 		.mobile-video(
 			ng-if='mobile && state.current.name === "root"'
