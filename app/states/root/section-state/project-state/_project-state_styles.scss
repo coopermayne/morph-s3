@@ -352,6 +352,12 @@
 
 .image-gallery-wrapper
 {
+	@include respond-to('small')
+	{
+		margin-top: 2em;
+		margin-bottom: 1em;
+	}
+
 	margin: 2em 0;
 }
 
