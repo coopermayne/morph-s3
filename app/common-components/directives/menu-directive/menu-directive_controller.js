@@ -29,6 +29,8 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		switch( string )
 		{
 			case 'Location':
+			case 'People':
+			case 'Contact':
 			case 'News':
 			$scope.showMobileMenuVar = false;
 			break;

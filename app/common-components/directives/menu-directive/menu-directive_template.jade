@@ -31,10 +31,10 @@
 
 //contact
 .menu-about-text-wrapper(
-	ng-if='!mobile && stateParams.section === "about" && stateParams.sortingType=="contact"'
-	ng-class='{ "mobile-about-text": mobile }'
+	ng-if='stateParams.section === "about" && stateParams.sortingType=="contact"'
+	ng-class='{ "mobile-menu-contact-text": mobile }'
 )
-	.menu-about-nav
+	.menu-about-nav( ng-if='!mobile')
 		a(
 			ng-repeat='link in [ "contact", "employment" ]'
 			ng-class='{ "active-about": activeAbout( link ) }'
