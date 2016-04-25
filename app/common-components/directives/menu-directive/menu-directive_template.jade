@@ -140,7 +140,7 @@ ul.menu-directive-wrapper.scrollable-content(
 								ng-repeat='subSection in littleSortingOption.children'
 								ui-sref='root.section-state.sorting-state( { q: subSection.title.toLowerCase(  ) } )'
 								ng-mouseover='$event.stopPropagation(  )'
-								ng-click='$event.stopPropagation(  )'
+								ng-click='$event.stopPropagation(  ); toggleMobileMenu(  )'
 								ng-class='{"selected": stateParams.q && stateParams.q === (subSection.title.toLowerCase(  ) || subSection.toLowerCase(  )) }'
 							)
 								| {{ subSection.title }}

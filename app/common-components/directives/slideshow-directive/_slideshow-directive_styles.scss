@@ -3,11 +3,12 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	background-color: $black;
 }
 
 .slideshow-directive-slide
 {
-	background-color: transparent;
+	background-color: $black;
 }
 
 .slideshow-video,
@@ -21,6 +22,7 @@
 
 .slideshow-image
 {
+	background-color: $black;
 	background-position: center center;
 	background-size: cover;
 }
@@ -30,6 +32,7 @@
 	width: 100vw;
 	height: 100vh;
 	background-color: black;
+	background-color: $black;
 	background-position: center center;
 	background-size: cover;
 
