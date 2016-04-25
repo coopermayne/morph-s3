@@ -182,6 +182,21 @@ menu-directive
 
 .menu-directive-wrapper
 {
+	@include respond-to ( 'medium' )
+	{
+		width: 350px;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		padding: $page-margin;
+		z-index: 50;
+		// background-color: $white;
+
+		&.hidden
+		{
+			opacity: 1 !important;
+		}
+	}
 	@include respond-to ( 'small' )
 	{
 		width: 100vw;
@@ -193,21 +208,6 @@ menu-directive
 		background-color: $white;
 
 		font-size: scale( $header-text, 50% );
-
-		&.hidden
-		{
-			opacity: 1 !important;
-		}
-	}
-	@include respond-to ( 'medium' )
-	{
-		width: 350px;
-		height: 100vh;
-		top: 0;
-		left: 0;
-		padding: $page-margin;
-		z-index: 50;
-		// background-color: $white;
 
 		&.hidden
 		{
@@ -236,6 +236,7 @@ menu-directive
 		overflow-y: scroll;
 		// Make sections 80vh for clickability of project titles
 		height: 80vh;
+		background-color: transparent;
 
 		// Make 'About' section full height for info scrolling
 		&.mobile-about-section-wrapper
@@ -246,6 +247,7 @@ menu-directive
 	@include respond-to( 'medium' )
 	{
 		overflow-y: scroll;
+		width: 100vw;
 
 		&.mobile-about-section-wrapper
 		{
@@ -481,6 +483,15 @@ menu-directive
 // Mobile Styles
 .mobile-menu-bar
 {
+	@include respond-to('medium')
+	{
+		display: none;
+	}
+	@include respond-to('small')
+	{
+		display: flex;
+	}
+
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;

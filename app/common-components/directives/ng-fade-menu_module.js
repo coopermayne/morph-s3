@@ -29,7 +29,7 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope )
 
 				console.log('mobile/tablet?',$rootScope.mobileAndTabletCheck());
 
-				function resetFadeTimeout(  )
+				var resetFadeTimeout = function(  )
 				{
 					element.removeClass( 'hidden' );
 					$timeout.cancel( timeoutPromise );
