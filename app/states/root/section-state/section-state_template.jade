@@ -1,7 +1,7 @@
 //- Project Modal
 .project-modal.scrollable( ui-view='project-content' )
 
-.sub-sort-wrapper( ng-if='stateParams.sortingType && "awards, media, type".indexOf( stateParams.sortingType ) != -1 && indexContents.length' )
+.sub-sort-wrapper( ng-if='stateParams.sortingType && "media, type".indexOf( stateParams.sortingType || stateParams.q ) != -1 && indexContents.length' )
 	.sub-sort(
 		ng-click='switchSubSort( "title" )'
 		ng-class='subSort === "title"?"active-sort":""'

@@ -172,8 +172,10 @@ menu-directive
 {
 	margin: $page-margin 0;
 
-	&:first-child
+	&:first-child,
+	em
 	{
+		display: inline;
 		margin-top: 0;
 	}
 }
