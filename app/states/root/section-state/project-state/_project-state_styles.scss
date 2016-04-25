@@ -123,7 +123,12 @@
 	{
 		flex-flow: column wrap;
 
-		padding: 1rem 0;
+		padding: 0;
+
+		&.people-page
+		{
+			padding: 1rem 0;
+		}
 	}
 
 	flex-flow: row;

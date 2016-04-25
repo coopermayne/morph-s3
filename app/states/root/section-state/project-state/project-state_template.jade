@@ -324,7 +324,7 @@
 						| {{ item.pages ? item.pages + '.' : '' }}
 
 		//- PEOPLE PAGE
-		.project-page-text-wrapper( ng-if='stateParams.m == "person"' )
+		.project-page-text-wrapper( ng-if='stateParams.m == "person"' ng-class='{ "people-page": stateParams.m == "person" }' )
 
 			.project-page-sidebar
 				.project-page-sidebar-header( ng-if='activeItem.educations.length' )
