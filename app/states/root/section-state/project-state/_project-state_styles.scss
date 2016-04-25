@@ -138,15 +138,13 @@
 
 .project-page-sidebar
 {
-	@include respond-to( 'small' )
-	{
-		order: 1;
-		flex: auto;
-
-		margin-bottom: $page-margin;
-		padding-right: 0;
-	}
-
+	// @include respond-to( 'small' )
+	// {
+	// 	order: 1;
+	// 	flex: auto;
+	// 	margin-bottom: $page-margin;
+	// 	padding-right: 0;
+	// }
 	flex: 1 0 0%;
 
 	padding-right: 5rem;
@@ -164,14 +162,12 @@
 
 .project-page-main-text
 {
-	@include respond-to( 'small' )
-	{
-		order: 2;
-		flex: auto;
-
-		padding-right: 0;
-	}
-
+	// @include respond-to( 'small' )
+	// {
+	// 	order: 2;
+	// 	flex: auto;
+	// 	padding-right: 0;
+	// }
 	flex: 3 0 0%;
 
 	padding-right: 1rem;
@@ -622,9 +618,4 @@
 		top: -2px;
 		left: -15px;
 	}
-}
-
-.project-page-second-sidebar
-{
-	order: 3;
 }
