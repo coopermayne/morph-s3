@@ -8,8 +8,14 @@
 			preload='none'
 			data-video-id='{{ $index }}'
 		)
-			source( src='{{ slide.mp4.name.url }}' type='video/mp4')
-			source( src='{{ slide.webm.name.url }}' type='video/webm')
+			source(
+				src='{{ slide.mp4.name.url }}'
+				type='video/mp4'
+			)
+			source(
+				src='{{ slide.webm.name.url }}'
+				type='video/webm'
+			)
 			poster( src='{{ slide.image.name.url}}')
 
 		.mobile-video(

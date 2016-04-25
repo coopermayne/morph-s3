@@ -241,6 +241,7 @@
 	}
 	@include respond-to( 'small' )
 	{
+		width: 350px;
 		margin-top: 44px;
 		padding: 0;
 	}

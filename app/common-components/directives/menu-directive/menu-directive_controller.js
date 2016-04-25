@@ -19,6 +19,8 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.state = $state;
 
+	console.log($state)
+
 	$scope.mobile = screenSize.on( 'xs', function( match )
 	{
 		$scope.mobile = match;
