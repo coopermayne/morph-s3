@@ -74,6 +74,15 @@ menu-directive
 	}
 }
 
+.mobile-menu-contact-text
+{
+	width: 100%;
+	margin-top: 20px;
+	z-index: 0;
+
+	font-size: $body-text;
+}
+
 .menu-about-text
 {
 	overflow-y: scroll;
@@ -522,7 +531,7 @@ menu-directive
 		right: $page-margin;
 		z-index: 9999999;
 		background: url( 'images/trigger_black.svg' ) no-repeat center center;
-		background-color: $white;
+		background-color: transparent;
 	}
 
 	display: none;

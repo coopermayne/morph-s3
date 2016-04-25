@@ -319,6 +319,12 @@
 	display: none;
 }
 
+.leaflet-control-layers-toggle
+{
+	display: none;
+}
+
+
 .alt-index-project
 {
 	@include respond-to('medium')
