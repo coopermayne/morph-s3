@@ -9,6 +9,8 @@
 {
 	@include respond-to( 'small' )
 	{
+		justify-content: center;
+
 		padding: 1rem;
 	}
 
@@ -47,6 +49,7 @@
 
 	.index-project-wrapper
 	{
+		align-self: flex-start !important;
 		justify-content: flex-start !important;
 	}
 
