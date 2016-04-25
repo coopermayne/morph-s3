@@ -83,31 +83,30 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.setMobileMenuVar = function(  )
 	{
-		switch( $scope.state.current.name )
+		if ( $scope.mobile )
 		{
-			case 'root':
-			case 'root.section-state':
-			$scope.showMobileMenuVar = true;
-			break;
+			switch( $scope.state.current.name )
+			{
+				case 'root':
+				case 'root.section-state':
+				$scope.showMobileMenuVar = true;
+				break;
 
-			default:
-			$scope.showMobileMenuVar = false;
-			break;
+				default:
+				$scope.showMobileMenuVar = false;
+				break;
+			}
+
+			if( $scope.stateParams.section === "news" )
+			{
+				$scope.showMobileMenuVar = false;
+			}
 		}
 
-		if( $scope.stateParams.section === "news" )
-		{
-			$scope.showMobileMenuVar = false;
-		}
+		console.log( 'mobileMenuVar:', $scope.showMobileMenuVar );
 	}
 
-	if( $scope.mobile )
-	{
-		// Set showMobileMenuVar
-		$scope.setMobileMenuVar(  );
-
-	}
-
+	$scope.setMobileMenuVar(  );
 
 	$scope.toggleMobileMenu = function(  )
 	{
@@ -126,5 +125,15 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	}
 
 	console.log( 'MenuDirectiveController active!' );
+
+	$scope.$on( '$stateChangeSuccess', function( event )
+	{
+		// console.log( $rootScope.fromState, $rootScope.toState )
+		if ($rootScope.toState.name === 'root.section-state')
+		{
+			console.log( 'switching to', $rootScope.toState.name );
+			$scope.setMobileMenuVar(  );
+		}
+	} );
 
 } );

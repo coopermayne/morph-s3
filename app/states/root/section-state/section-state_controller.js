@@ -13,26 +13,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Default to tile index
 	$scope.altIndexSection = false;
 
-	// Set expanded alt index item on controller load
-	// if( $scope.stateParams.e )
-	// {
-	// 	$scope.showExpandedItem = $scope.stateParams.e;
-	// }
-
-	// $scope.expandProject = function( id )
-	// {
-	// 	if ( parseInt($scope.stateParams.e) !== id )
-	// 	{
-	// 		$scope.showExpandedItem = id;
-	// 	}
-	// 	else
-	// 	{
-	// 		$scope.showExpandedItem = null;
-	// 	}
-
-	// 	$state.go( $state.current.name, { e: id } );
-	// }
-
 	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
 	{	
