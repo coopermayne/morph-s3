@@ -54,7 +54,7 @@ ul.menu-directive-wrapper.scrollable-content(
 	ng-fade-menu
 )
 	.mobile-menu-close(
-		ng-if='state.current.name === "root.section-state.sorting-state"'
+		ng-if='( state.current.name === "root.section-state.sorting-state" ) || (stateParams.section === ( "news" || "search" ))'
 		ng-click='toggleMobileMenu(  )'
 	)
 
