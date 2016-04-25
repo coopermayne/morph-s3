@@ -87,6 +87,15 @@ menu-directive
 	{
 		color: $black;
 	}
+
+	a.anchor
+	{
+		height: 1rem;
+	}
+	a[name=employment]
+	{
+		height: 3rem;
+	}
 }
 
 .menu-about-nav
@@ -244,8 +253,6 @@ menu-directive
 		}
 	}
 
-	background-color: transparent;
-
 	color: $white;
 
 	.search input
@@ -268,6 +275,16 @@ menu-directive
 	{
 		background: $white;
 	}
+}
+
+.white-menu .section-title-inner
+{
+	background: rgba(0,0,0,0.3);
+}
+
+.white-menu .sorting-option-title
+{
+	background: rgba(0,0,0,0.3);
 }
 
 .menu-section
