@@ -150,10 +150,6 @@
 
 .index-project-wrapper
 {
-	@include respond-to( 'small' )
-	{
-		justify-content: center;
-	}
 	@include respond-to( 'medium' )
 	{
 		align-self: flex-end;
@@ -169,6 +165,11 @@
 
 			max-width: 700px !important;
 		}
+	}
+	@include respond-to( 'small' )
+	{
+		align-self: center;
+		justify-content: center;
 	}
 
 	flex-flow: row wrap;
@@ -468,11 +469,12 @@
 
 .location-index-wrapper
 {
-	@include respond-to( 'small' )
-	{
-		left: 0;
-	}
 	@include respond-to( 'medium' )
+	{
+		width: 450px;
+		right: 0;
+	}
+	@include respond-to( 'small' )
 	{
 		left: 0;
 	}
