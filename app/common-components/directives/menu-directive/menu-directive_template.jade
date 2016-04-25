@@ -43,8 +43,9 @@
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
 	.menu-about-text
-		p#about.about-text-header
+		a.anchor( name='contact')
 		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
+		a.anchor( name='employment')
 		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(

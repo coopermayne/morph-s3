@@ -87,6 +87,15 @@ menu-directive
 	{
 		color: $black;
 	}
+
+	a.anchor
+	{
+		height: 1rem;
+	}
+	a[name=employment]
+	{
+		height: 3rem;
+	}
 }
 
 .menu-about-nav
