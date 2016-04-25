@@ -175,6 +175,11 @@
 
 .project-overview
 {
+	@include respond-to('small')
+	{
+		margin-right: 0;
+	}
+
 	margin-right: 60px;
 	padding-bottom: 2rem;
 
@@ -294,6 +299,11 @@
 			{
 				margin-left: 0;
 			}
+
+			*
+			{
+				max-width: 100%;
+			}
 		}
 
 		max-width: 100%;
@@ -350,7 +360,7 @@
 {
 	@include respond-to('small')
 	{
-		margin-top: 2em;
+		margin-top: 0;
 		margin-bottom: 1em;
 	}
 
