@@ -44,12 +44,14 @@
 
 		.project-page-header-text( ng-bind-html='activeItem.title || activeItem.name | htmlParse' )
 		
-		//- PROJECT PAGE
-		.project-page-text-wrapper( ng-if='( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" )' )
+		//- DESKTOP PROJECT PAGE//////////////////////////////////
+		.project-page-text-wrapper(
+			ng-if='!mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
+		)
 
 			.project-page-sidebar(ng-if='activeItem')
 
-				//- Details
+				//- Details (DESKTOP)
 				.project-page-sidebar-section
 					.project-page-sidebar-header
 					.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
@@ -99,10 +101,10 @@
 						.project-detail-text( ng-repeat='type in activeItem.types' )
 							| {{ type }}
 				
-				//- Project Credits
+				//- Project Credits (DESKTOP)
 				.project-page-sidebar-section(
 					ng-toggle-class='contracted open'
-					ng-if='activeItem.morph_team.length && !mobile'
+					ng-if='activeItem.morph_team.length'
 				)
 					.project-page-sidebar-header
 						| Project Credits
@@ -140,9 +142,9 @@
 							ng-bind-html='person.person.name | htmlParse'
 						)
 
-				//- Design recognition
+				//- Design recognition (DESKTOP)
 				.project-page-sidebar-section(
-					ng-if='activeItem.awards.length && !mobile'
+					ng-if='activeItem.awards.length'
 				)
 					.project-page-sidebar-header
 						| Design Recognition
@@ -153,8 +155,8 @@
 						.project-detail-text.project-page-award( ng-repeat='award in value' )
 							| {{ award.title }}
 
-				//- Bibliography
-				.project-page-sidebar-section( ng-if='!mobile' )
+				//- Bibliography (DESKTOP)
+				.project-page-sidebar-section
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
@@ -177,16 +179,18 @@
 						| {{ item.pages ? item.pages + '.' : '' }}
 
 			.project-page-main-text
-
+				
+				//- Overview (DESKTOP)
 				.project-overview(
 					ng-if='activeItem.overview'
 					ng-bind-html='activeItem.overview | htmlParse'
 				)
 					| {{ activeItem.overview }}
-
+				
+				//- Description (DESKTOP)
 				.project-description-wrapper(
 					ng-toggle-class='contracted open'
-					ng-if='activeItem.description'
+					ng-if='activeItem.description && !mobile'
 					ng-class='{ contracted: checkItemLength( activeItem.description, 213 ) }'
 				)
 					.project-description-header
@@ -217,7 +221,7 @@
 								img(
 									ng-src='{{ image.name.name.thumb.url }}'
 								)
-				//- Components
+				//- Components (DESKTOP)
 				.project-description-wrapper.component.contracted(
 					ng-repeat='component in activeItem.components | orderBy: "rank"'
 					ng-toggle-class='contracted open'
@@ -240,7 +244,72 @@
 						)
 							| {{ document.name.url.split('/').reverse()[0] }}
 
-			//- The remaining sidebar items for MOBILE (project credits + bibliography)
+		//- MOBILE PROJECT PAGE//////////////////////////////////
+		
+		.project-page-text-wrapper(
+			ng-if='mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
+		)
+			.project-page-sidebar(ng-if='activeItem')
+
+				//- Details (MOBILE)
+				.project-page-sidebar-section
+					.project-page-sidebar-header
+					.project-detail-wrapper( ng-if='activeItem.city || activeItem.country' )
+						.project-detail-label
+							| Location: 
+						.project-detail-text
+							a(ng-href="http://maps.google.com/?q={{ printAddress(activeItem) }}" target="_blank")
+								| {{ printAddress(activeItem) }}
+					.project-detail-wrapper( ng-if='activeItem.client' )
+						.project-detail-label
+							| Client:
+						.project-detail-text
+							| {{ activeItem.client }}
+					.project-detail-wrapper( ng-if='activeItem.site_area' )
+						.project-detail-label
+							| Site Area: 
+						.project-detail-text
+							| {{ activeItem.site_area }} acres / {{ activeItem.site_area * 0.404686 | number:2 }} hectares
+					.project-detail-wrapper( ng-if='activeItem.size' )
+						.project-detail-label
+							| Size:
+						.project-detail-text
+							| {{ activeItem.size | number }}  ft² / {{ activeItem.size * 0.09290304 | number : 0 }} m²
+					.project-detail-wrapper( ng-if='activeItem.program' )
+						.project-detail-label
+							| Program:
+						.project-detail-text(
+							ng-bind-html='activeItem.program | htmlParse'
+							)
+					.project-detail-wrapper( ng-if='activeItem.design_sdate && activeItem.design_edate' )
+						.project-detail-label
+							| Design:
+						.project-detail-text(ng-if='(activeItem.design_sdate | date: "yyyy") != (activeItem.design_edate | date: "yyyy")')
+							| {{ activeItem.design_sdate | date: "yyyy" }} - {{ activeItem.design_edate | date: "yyyy" }}
+						.project-detail-text(ng-if='(activeItem.design_sdate | date: "yyyy") == (activeItem.design_edate | date: "yyyy")')
+							| {{ activeItem.design_sdate | date: "yyyy" }}
+					.project-detail-wrapper( ng-if='activeItem.constr_sdate || activeItem.constr_edate' )
+						.project-detail-label
+							| Construction:
+						.project-detail-text(ng-if='(activeItem.constr_sdate | date: "yyyy") != (activeItem.constr_edate | date: "yyyy")')
+							| {{ activeItem.constr_sdate | date: "yyyy" }} - {{ activeItem.constr_edate | date: "yyyy" }}
+						.project-detail-text(ng-if='(activeItem.constr_sdate | date: "yyyy") == (activeItem.constr_edate | date: "yyyy")')
+							| {{ activeItem.constr_sdate | date: "yyyy" }}
+					.project-detail-wrapper( ng-if='activeItem.types.length' )
+						.project-detail-label
+							| {{ activeItem.types.length > 1 ? "Types":"Type" }}:
+						.project-detail-text( ng-repeat='type in activeItem.types' )
+							| {{ type }}
+
+			.project-page-main-text
+				
+				//- Overview (DESKTOP)
+				.project-overview(
+					ng-if='activeItem.overview'
+					ng-bind-html='activeItem.overview | htmlParse'
+				)
+					| {{ activeItem.overview }}
+
 			.project-page-second-sidebar(
 				ng-if='mobile && ( activeItem.contractors.length || activeItem.morph_team.length || activeItem.awards.length || activeItem.bibliography_items.length )'
 			)
@@ -270,11 +339,13 @@
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showConsultants = !showConsultants'
 						ng-toggle-class='contracted open'
+						ng-if='activeItem.contractors.length'
 					)
 						| Consultants
 					.project-detail-wrapper(
 						ng-repeat='position in activeItem.contractors'
 						ng-show='showConsultants'
+						ng-if='activeItem.contractors.length'
 					)
 						.project-detail-label
 							| {{ position.role_title }}
@@ -284,8 +355,20 @@
 							ng-bind-html='person.person.name | htmlParse'
 						)
 
-
-				//- Design recognition
+			.project-page-main-text
+				//- Description (MOBILE)
+				.project-description-wrapper(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.description'
+					ng-class='{ contracted: checkItemLength( activeItem.description, 213 ) }'
+				)
+					.project-description-header
+						| Description
+					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
+			
+			//- Design recognition and Bibliography (MOBILE)
+			.project-page-sidebar
+				//- Design recognition (MOBILE)
 				.project-page-sidebar-section.contracted(
 					ng-if='activeItem.awards.length'
 					ng-toggle-class='open contracted'
@@ -295,33 +378,164 @@
 
 					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "-year"' )
 						.project-detail-label
-							| {{ key.slice( 1 ) }}
+							| {{ key.slice(1) }}
 						.project-detail-text.project-page-award( ng-repeat='award in value' )
 							| {{ award.title }}
 
-				//- Bibliography
-				.project-page-sidebar-section.contracted(
-					ng-toggle-class='open contracted'
-					ng-if='activeItem.bibliography_items.length'
-				)
+				//- Bibliography (MOBILE)
+				.project-page-sidebar-section.contracted(ng-toggle-class='open contracted')
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
 					)
 						| Bibliography
-					.project-detail-wrapper.bibliography-item.details-clickable(
+					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
-						//ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.uid, m: null, s: null })'
+						ng-class="{'details-clickable': item.link.length}"
+						ng-click='backgroundTab(item.link)'
 					)
 						.bibliography-image(
 							ng-if='item.primary_image'
 							preload-bg-image='{{ item.primary_image.name.thumb.url }}'
 						)
+						| {{ item.article_name ? '"' + item.article_name + '"' : '' }}
 						| {{ item.author ? item.author : '' }}
 						| {{ item.publication ? item.publication + '.' : '' }}
 						| {{ item.publisher ? item.publisher : '' }}
 						| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
 						| {{ item.pages ? item.pages + '.' : '' }}
+
+			.project-page-main-text
+				.image-gallery-wrapper
+					.image-gallery-section-wrapper.open(
+						ng-repeat='gallery in activeItem.galleries'
+						ng-mouseenter='startScroll( $event )'
+						ng-mousemove='updateScroll( $event )'
+						ng-mouseleave='stopScroll( )'
+						ng-toggle-class='contracted open'
+					)
+						h1
+							.arrow-left(ng-mouseenter='scrollLeft($event)' ng-mouseleave='stopScroll()')
+							.arrow-right(ng-mouseover='scrollRight($event)' ng-mouseleave='stopScroll()')
+							| {{ gallery.title }}
+
+						.image-gallery-section.gallery(
+							ng-click='$event.stopPropagation(  );'
+						)
+							a(
+								ng-repeat='image in gallery.images'
+								href='{{ image.name.name.url }}'
+								data-caption='{{ image.credit ? "©" + image.credit : "" }}'
+							)
+								img(
+									ng-src='{{ image.name.name.thumb.url }}'
+								)
+				//- Components (MOBILE)
+				.project-description-wrapper.component.contracted(
+					ng-repeat='component in activeItem.components | orderBy: "rank"'
+					ng-toggle-class='contracted open'
+				)
+					.project-description-header
+						| {{ component.title }}
+					.project-description-body( ng-bind-html='component.content | htmlParse' )
+				.project-description-wrapper.component.contracted(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.documents.length > 0'
+				)
+					| Documents
+					.pdf-attachment(
+						ng-repeat='document in activeItem.documents'
+						ng-if='item.documents.length != 0'
+					)
+						a(
+							href='{{ document.name.url }}'
+							target='new'
+						)
+							| {{ document.name.url.split('/').reverse()[0] }}
+
+			
+			//- The remaining sidebar items for MOBILE (project credits + bibliography)
+			//- .project-page-second-sidebar(
+			//- 	ng-if='mobile && ( activeItem.contractors.length || activeItem.morph_team.length || activeItem.awards.length || activeItem.bibliography_items.length )'
+			//- )
+			//- 	.project-page-sidebar-section.project-credits.contracted(
+			//- 		ng-if='activeItem.morph_team.length || activeItem.contractors.length'
+			//- 		ng-toggle-class='contracted open'
+			//- 	)
+			//- 		.project-page-sidebar-header
+			//- 			| Project Credits
+					
+			//- 		.show-morph-team.details-clickable.contracted(
+			//- 			ng-click='showMorphTeam = !showMorphTeam'
+			//- 			ng-toggle-class='contracted open'
+			//- 		)
+			//- 			| Morphosis Team
+			//- 		.project-detail-wrapper(
+			//- 			ng-repeat='position in activeItem.morph_team'
+			//- 			ng-show='showMorphTeam'
+			//- 		)
+			//- 			.project-detail-label
+			//- 				| {{ position.role_title }}
+			//- 			.project-detail-text.details-clickable(
+			//- 				ng-repeat='person in position.people'
+			//- 				ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+			//- 				ng-bind-html='person.person.name | htmlParse'
+			//- 			)
+			//- 		.show-morph-team.details-clickable.contracted(
+			//- 			ng-click='showConsultants = !showConsultants'
+			//- 			ng-toggle-class='contracted open'
+			//- 		)
+			//- 			| Consultants
+			//- 		.project-detail-wrapper(
+			//- 			ng-repeat='position in activeItem.contractors'
+			//- 			ng-show='showConsultants'
+			//- 		)
+			//- 			.project-detail-label
+			//- 				| {{ position.role_title }}
+			//- 			.project-detail-text.details-clickable(
+			//- 				ng-repeat='person in position.people'
+			//- 				ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
+			//- 				ng-bind-html='person.person.name | htmlParse'
+			//- 			)
+
+
+			//- 	//- Design recognition
+			//- 	.project-page-sidebar-section.contracted(
+			//- 		ng-if='activeItem.awards.length'
+			//- 		ng-toggle-class='open contracted'
+			//- 	)
+			//- 		.project-page-sidebar-header
+			//- 			| Design Recognition
+
+			//- 		.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "-year"' )
+			//- 			.project-detail-label
+			//- 				| {{ key.slice( 1 ) }}
+			//- 			.project-detail-text.project-page-award( ng-repeat='award in value' )
+			//- 				| {{ award.title }}
+
+			//- 	//- Bibliography
+			//- 	.project-page-sidebar-section.contracted(
+			//- 		ng-toggle-class='open contracted'
+			//- 		ng-if='activeItem.bibliography_items.length'
+			//- 	)
+
+			//- 		.project-page-sidebar-header(
+			//- 			ng-if='activeItem.bibliography_items.length'
+			//- 		)
+			//- 			| Bibliography
+			//- 		.project-detail-wrapper.bibliography-item.details-clickable(
+			//- 			ng-repeat='item in activeItem.bibliography_items'
+			//- 			//ui-sref='root.section-state.sorting-state({ section: "about", sortingType: "media", q: "bibliography", e: item.uid, m: null, s: null })'
+			//- 		)
+			//- 			.bibliography-image(
+			//- 				ng-if='item.primary_image'
+			//- 				preload-bg-image='{{ item.primary_image.name.thumb.url }}'
+			//- 			)
+			//- 			| {{ item.author ? item.author : '' }}
+			//- 			| {{ item.publication ? item.publication + '.' : '' }}
+			//- 			| {{ item.publisher ? item.publisher : '' }}
+			//- 			| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
+			//- 			| {{ item.pages ? item.pages + '.' : '' }}
 
 		//- PEOPLE PAGE
 		.project-page-text-wrapper( ng-if='stateParams.m == "person"' ng-class='{ "people-page": stateParams.m == "person" }' )
