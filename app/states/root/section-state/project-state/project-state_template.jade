@@ -108,8 +108,10 @@
 					.project-page-sidebar-header
 						| Project Credits
 					
+					//morph team
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showMorphTeam = !showMorphTeam'
+						ng-show='activeItem.morph_team.length'
 						ng-toggle-class='contracted open'
 					)
 						| Morphosis Team
@@ -124,8 +126,13 @@
 							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
 							ng-bind-html='person.person.name | htmlParse'
 						)
+
+
+
+					//consultants
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showConsultants = !showConsultants'
+						ng-show='activeItem.contractors.length'
 						ng-toggle-class='contracted open'
 					)
 						| Consultants
