@@ -201,13 +201,13 @@ menu-directive
 	}
 	@include respond-to ( 'medium' )
 	{
-		width: 100vw;
+		width: 350px;
 		height: 100vh;
 		top: 0;
 		left: 0;
 		padding: $page-margin;
 		z-index: 50;
-		background-color: $white;
+		// background-color: $white;
 
 		&.hidden
 		{
@@ -514,7 +514,7 @@ menu-directive
 	}
 	@include respond-to( 'medium' )
 	{
-		display: flex;
+		display: none;
 		position: absolute;
 		width: 40px;
 		height: 40px;

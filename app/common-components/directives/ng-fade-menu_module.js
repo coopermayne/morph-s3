@@ -2,46 +2,47 @@
 
 var fadeMenuDirective = angular.module('ngFadeMenu', [ ] );
 
-fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, screenSize ) 
+fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope ) 
 {
 	return {
 		restrict: 'A',
 		link: function( scope, element, attr )
 		{
-			// scope.mobile = screenSize.on( 'xs, sm', function( match ){
-			// 	scope.mobile =  match;
-			// });
-
-var timeoutPromise;
-			// resetFadeTimeout();
-			element.parent(  ).parent(  ).parent(  ).parent(  ).parent(  ).bind( 'mousemove', function( e )
+			if ( $rootScope.mobileAndTabletCheck() === false )
 			{
-				resetFadeTimeout(  );
-			} );
-
-			scope.$watch( 'stateName', function( newValue, oldValue )
-			{
-				resetFadeTimeout(  );
-			} );
-
-			scope.$watch( 'stateParams.section', function( newValue, oldValue )
-			{
-				resetFadeTimeout(  );
-			} );
-
-			function resetFadeTimeout(  )
-			{
-
-				element.removeClass( 'hidden' );
-				$timeout.cancel( timeoutPromise );
-				if ( scope.stateName === "root" || ( scope.stateName === "root.section-state" && scope.stateParams.section !== "news" && scope.stateParams.section !== "search" ) )
+				var timeoutPromise;
+				// resetFadeTimeout();
+				element.parent(  ).parent(  ).parent(  ).parent(  ).parent(  ).bind( 'mousemove', function( e )
 				{
-					timeoutPromise = $timeout( function ( e )
+					resetFadeTimeout(  );
+				} );
+
+				scope.$watch( 'stateName', function( newValue, oldValue )
+				{
+					resetFadeTimeout(  );
+				} );
+
+				scope.$watch( 'stateParams.section', function( newValue, oldValue )
+				{
+					resetFadeTimeout(  );
+				} );
+
+				console.log('mobile/tablet?',$rootScope.mobileAndTabletCheck());
+
+				function resetFadeTimeout(  )
+				{
+					element.removeClass( 'hidden' );
+					$timeout.cancel( timeoutPromise );
+					if ( scope.stateName === "root" || ( scope.stateName === "root.section-state" && scope.stateParams.section !== "news" && scope.stateParams.section !== "search" ) )
 					{
-						element.addClass( 'hidden' );
-					}, 3000 );
+						timeoutPromise = $timeout( function ( e )
+						{
+							element.addClass( 'hidden' );
+						}, 3000 );
+					}
 				}
 			}
+
 		}
 	}
 });

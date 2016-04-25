@@ -156,7 +156,10 @@
 	}
 	@include respond-to( 'medium' )
 	{
-		justify-content: center;
+		align-self: flex-end;
+		justify-content: flex-end;
+
+		width: 350px;
 	}
 	@include respond-to( 'medium-large' )
 	{
