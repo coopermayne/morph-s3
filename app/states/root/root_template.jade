@@ -1,14 +1,14 @@
 .menu-and-index-wrapper-wrapper( ng-class='{ "desktop-min-width": !mobileAndTabletCheck(  ) }' )
 	.menu-and-index-wrapper
 
-		slideshow-directive(
-			slides='homePageSlides'
-			frame-rate='6000'
-			vid='true'
-			ng-if='stateName == "root"'
-		)
 
 		menu-directive.scrollable
-			
+
 		.section-view( ui-view='section-view' ng-if='stateParams.sortingType || stateParams.projectId || stateParams.section === "news" || stateParams.section === "search"' )
 
+slideshow-directive(
+	slides='homePageSlides'
+	frame-rate='6000'
+	vid='true'
+	ng-if='stateName == "root" && homePageSlides'
+)

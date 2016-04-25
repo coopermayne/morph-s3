@@ -6,7 +6,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 {
 	// This is a controller.
 
-	// $scope.stateName = 'root';
+	$scope.stateName = 'root';
 
 	console.log('RootController active!');
 

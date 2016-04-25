@@ -72,7 +72,7 @@ ul.menu-directive-wrapper.scrollable-content(
 
 			//- News box
 			slideshow-directive.news-box(
-				ng-if='bigMenuItem.url === "news" && !stateParams.section'
+				ng-if='bigMenuItem.url === "news" && !stateParams.section && bigMenuItem.items'
 				slides='bigMenuItem.items'
 				thumb='true'
 				ng-click='toggleMobileMenu(  )'
@@ -166,6 +166,7 @@ ul.menu-directive-wrapper.scrollable-content(
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
 	ng-show='!stateParams.sortingType && stateParams.section === section.url'
+	ng-if='section.slides'
 	slides='section.slides'
 	frame-rate='2000'
 )

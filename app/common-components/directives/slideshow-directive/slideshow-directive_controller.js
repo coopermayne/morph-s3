@@ -17,14 +17,15 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$scope.mobile = match;
 	});
 
-	$scope.$watch( 'slides', function( apiResponse )
-	{
+	$scope.currentSlide = null;
 
+	$scope.$watch( 'slides', function( apiResponse )
+	{	
 		if ( apiResponse !== undefined )
 		{
-			$scope.currentSlide = $scope.slides[ 0 ];
+			$scope.currentSlide = $scope.slides[0];
 
-			// Video queue
+	 		// Start video queue
 			if ( $scope.vid && !$scope.mobile )
 			{
 				$timeout( function(  )
