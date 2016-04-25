@@ -9,6 +9,8 @@
 {
 	@include respond-to( 'small' )
 	{
+		justify-content: center;
+
 		padding: 1rem;
 	}
 
