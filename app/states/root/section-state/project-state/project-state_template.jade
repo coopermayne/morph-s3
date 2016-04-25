@@ -333,7 +333,7 @@
 					| {{ education.title }}
 				.project-page-sidebar-header( ng-if='activeItem.email' )
 					| Contact
-				.project-detail-wrapper
+				.project-detail-wrapper( ng-if='activeItem.email' )
 					a( href='mailto:{{ activeItem.email }}' )
 						| {{ activeItem.email }}
 				

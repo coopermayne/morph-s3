@@ -123,7 +123,7 @@
 	{
 		flex-flow: column wrap;
 
-		padding: 0;
+		padding: 1rem 0;
 	}
 
 	flex-flow: row;
@@ -319,21 +319,19 @@
 
 .project-detail-text
 {
-	@include respond-to( 'small' )
-	{
-		&:after
-		{
-			content: ',';
-			display: inline-block;
-			margin-right: 3px;
-		}
-
-		&:last-child:after
-		{
-			content: '';
-		}
-	}
-
+	// @include respond-to( 'small' )
+	// {
+	// 	&:after
+	// 	{
+	// 		content: ',';
+	// 		display: inline-block;
+	// 		margin-right: 3px;
+	// 	}
+	// 	&:last-child:after
+	// 	{
+	// 		content: '';
+	// 	}
+	// }
 	flex-flow: row nowrap;
 }
 
