@@ -178,7 +178,7 @@
 	@include respond-to('small')
 	{
 		margin-right: 0;
-		padding-bottom: 0;
+		padding-bottom: 1rem;
 	}
 
 	margin-right: 60px;
@@ -524,6 +524,7 @@
 			overflow-y: hidden;
 			max-height: 97px;
 			margin-right: 0px;
+			margin-bottom: 1rem;
 		}
 		.project-description-body.sustainability
 		{
