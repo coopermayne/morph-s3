@@ -335,6 +335,7 @@
 	}
 	@include respond-to ( 'small' )
 	{
+		width: 100vw;
 		min-height: 100px;
 	}
 

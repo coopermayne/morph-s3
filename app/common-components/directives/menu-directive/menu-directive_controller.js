@@ -40,17 +40,20 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
-		switch( string )
+		if ( $scope.mobile )
 		{
-			case 'Location':
-			case 'People':
-			case 'Contact':
-			case 'News':
-			$scope.showMobileMenuVar = false;
-			break;
+			switch( string )
+			{
+				case 'Location':
+				case 'People':
+				case 'Contact':
+				case 'News':
+				$scope.showMobileMenuVar = false;
+				break;
 
-			default:
-			$scope.showMobileMenuVar = true;
+				default:
+				$scope.showMobileMenuVar = true;
+			}
 		}
 	}
 
