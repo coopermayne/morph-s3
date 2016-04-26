@@ -1,5 +1,5 @@
 doctype html
-html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === "root" && stateParams.section !== "news" }' )
+html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === "root" && stateParams.section !== "news", "freeze-body-scroll": state.current.name === "root.section-state.project-state" }' )
 	head
 		base( href='/' )
 

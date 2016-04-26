@@ -5,6 +5,11 @@
 	height: 100%;
 }
 
+.freeze-body-scroll
+{
+	overflow: hidden;
+}
+
 .menu-and-index-wrapper
 {
 	@include respond-to( 'small' )
