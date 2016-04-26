@@ -185,7 +185,7 @@
 	}
 
 	margin-right: 60px;
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
 
 	font-size: $subheader-text;
 	& *
@@ -526,6 +526,13 @@
 		{
 			overflow-y: hidden;
 			max-height: 97px;
+			margin-right: 0px;
+			margin-bottom: 1rem;
+		}
+		.project-description-body.sustainability
+		{
+			overflow-y: hidden;
+			max-height: 0px;
 			margin-right: 0px;
 		}
 

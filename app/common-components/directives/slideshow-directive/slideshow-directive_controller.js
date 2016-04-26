@@ -17,10 +17,10 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$scope.mobile = match;
 	});
 
-	$scope.$watch( 'slides', function( apiResponse )
-	{	
-		if ( apiResponse !== undefined )
-		{
+	// $scope.$watch( 'slides', function( apiResponse )
+	// {	
+	// 	if ( apiResponse !== undefined )
+	// 	{
 	 		// Start video queue
 			if ( $scope.vid && !$scope.mobile )
 			{
@@ -33,6 +33,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 					if ( videoElements.length )
 					{
 						// Initialize first video
+						videoElements[ 0 ].load(  );
 						videoElements[ 0 ].play(  );
 						$scope.currentSlide = $scope.slides[0];
 
@@ -75,7 +76,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 							} );
 						}
 					}
-				}, 0);
+				}, 500);
 			}
 			else
 			// Image slideshow
@@ -95,8 +96,8 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 				}, $scope.frameRate || 2000 );
 			}
-		}
-	} );
+	// 	}
+	// } );
 
 	// Control buttons
 	$scope.setCurrentSlide = function( slide )

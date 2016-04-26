@@ -49,7 +49,7 @@
 		id='{{ item.id }}'
 		ng-if='stateParams.sortingType === "media"'
 		ng-click='item.searchable_type ? resolveClick( item ) : expandProject( item.id )'
-		ng-class='{ "clickable-alt": ( stateParams.section === "search" ) || item.types.indexOf( "Books" ) != -1 }'
+		ng-class='{ "clickable-alt": ( stateParams.section === "search" ) || item.types.indexOf( "Books" ) != -1, "awards": stateParams.q === "awards"}'
 	)
 
 		//- Project title and image
@@ -68,6 +68,10 @@
 				//- Publication date
 				.project-detail-label( ng-if='item.types.indexOf("Books") != -1' )
 					| {{ item.pub_date | date : 'mediumDate' }}
+
+				//- Award date
+				.project-detail-label( ng-if='stateParams.q == "awards"' )
+					| {{ item.year }}
 
 				//- NOT search section (different ui-sref behavior)
 				.alt-project-title(
@@ -214,6 +218,6 @@
 			ui-sref='root.section-state.sorting-state({ p: pageNum })'
 			ng-class='{ "current-page": stateParams.p == pageNum || ( !stateParams.p && pageNum === 0 ) }'
 		)
-			{{ pageNum + 1 }}
+			| {{ pageNum + 1 }}
 	.next( ng-show='isNext' ng-click='getPage( "next" )' )
 		| Next page
