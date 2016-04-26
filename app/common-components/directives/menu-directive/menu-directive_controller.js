@@ -19,12 +19,24 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.state = $state;
 
-	console.log($state)
+	if( !$scope.mobile )
+	{	
+		$scope.mobile = screenSize.on( 'xs', function( match )
+		{
+			$scope.mobile = match;
+		});
+	}
 
-	$scope.mobile = screenSize.on( 'xs', function( match )
+
+	$scope.$watch('mobile', function()
 	{
-		$scope.mobile = match;
-	});
+		console.log('mobile?',$scope.mobile)
+	})
+
+	$scope.$watch('showMobileMenuVar', function()
+	{
+		console.log('watching mobileMenuVar:',$scope.showMobileMenuVar)
+	})
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
@@ -39,7 +51,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 			default:
 			$scope.showMobileMenuVar = true;
-			break;
 		}
 	}
 
@@ -87,35 +98,33 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.setMobileMenuVar = function(  )
 	{
-		if ( $scope.mobile )
+		switch( $scope.state.current.name )
 		{
-			switch( $scope.state.current.name )
-			{
-				case 'root':
-				case 'root.section-state':
-				$scope.showMobileMenuVar = true;
-				break;
+			case 'root':
+			case 'root.section-state':
+			$scope.showMobileMenuVar = true;
+			break;
 
-				default:
-				$scope.showMobileMenuVar = false;
-				break;
-			}
-
-			if( $scope.stateParams.section === "news" )
-			{
-				$scope.showMobileMenuVar = false;
-			}
+			default:
+			$scope.showMobileMenuVar = false;
 		}
 
-		console.log( 'mobileMenuVar:', $scope.showMobileMenuVar );
+		console.log('set mobile menu var to', $scope.showMobileMenuVar)
 	}
 
 	$scope.setMobileMenuVar(  );
 
+	$scope.closeMobileMenu = function(  )
+	{
+		$scope.showMobileMenuVar = false;
+		$scope.$apply;
+		console.log('closed mobile menu',$scope.showMobileMenuVar)
+	};
+
 	$scope.toggleMobileMenu = function(  )
 	{
 		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
-	};
+	}
 
 	$scope.searchText = $stateParams.s;
 
@@ -130,14 +139,13 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	console.log( 'MenuDirectiveController active!' );
 
-	$scope.$on( '$stateChangeSuccess', function( event )
-	{
-		// console.log( $rootScope.fromState, $rootScope.toState )
-		if ($rootScope.toState.name === 'root.section-state')
-		{
-			console.log( 'switching to', $rootScope.toState.name );
-			$scope.setMobileMenuVar(  );
-		}
-	} );
+	// $scope.$on( '$stateChangeSuccess', function( event )
+	// {
+	// 	// if ($rootScope.toState.name === 'root.section-state')
+	// 	// {
+	// 	// 	console.log( 'switching to', $rootScope.toState.name );
+	// 	// }
+	// 	// $scope.setMobileMenuVar(  );
+	// } );
 
 } );

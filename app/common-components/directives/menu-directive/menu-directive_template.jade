@@ -49,20 +49,19 @@
 		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
-	ng-show='(!mobile || showMobileMenuVar) && !stateParams.projectId'
+	ng-if='!stateParams.projectId && ( showMobileMenuVar )'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news", "mobile-about-section-wrapper": showMobileMenuVar && stateParams.section === "about" }'
 	ng-fade-menu
 )
 	.mobile-menu-close(
 		ng-if='( state.current.name === "root.section-state.sorting-state" ) || (stateParams.section === ( "news" || "search" ))'
-		ng-click='toggleMobileMenu(  )'
+		ng-click='closeMobileMenu(  )'
 	)
 
 	//- Build each big menu item and subsections
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
 		ui-sref='root.section-state( { section: bigMenuItem.url, s: null, q: null, e: null, m: null, p: null, sub: null } )'
-		ng-click='resolveMobileSortingClick( bigMenuItem.title )'
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'
@@ -87,15 +86,13 @@ ul.menu-directive-wrapper.scrollable-content(
 			.sorting-option-wrapper(
 				ng-repeat='sortingOption in bigMenuItem.sorting'
 				ui-sref='root.section-state.sorting-state({ section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null, e: null, p: null, sub: null })'
-				ng-click=' $event.stopPropagation(  ) '
+				ng-click=' $event.stopPropagation(  ); resolveMobileSortingClick( sortingOption.title ) '
 			)
 
 				.sorting-option-title-wrapper(
 						ng-class='{"selected": stateParams.sortingType === sortingOption.title.toLowerCase()}'
 					)
-					.sorting-option-title(
-						ng-click='resolveMobileSortingClick( sortingOption.title )'
-					)
+					.sorting-option-title
 						| {{ sortingOption.title }}
 				
 				//- Categories (Letters, Residential, etc)
@@ -128,10 +125,10 @@ ul.menu-directive-wrapper.scrollable-content(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state.sorting-state( { q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  ), e: null, p: null, sub: null } )'
 							ng-mouseover='$event.stopPropagation(  )'
+							ng-click='$event.stopPropagation(  ); toggleMobileMenu(  )'
 						)
 							p(
 								ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
-								ng-click='toggleMobileMenu(  )'
 							)
 								| {{ littleSortingOption.title || littleSortingOption }}
 
