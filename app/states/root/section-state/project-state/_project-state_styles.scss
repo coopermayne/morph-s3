@@ -178,10 +178,11 @@
 	@include respond-to('small')
 	{
 		margin-right: 0;
+		padding-bottom: 0;
 	}
 
 	margin-right: 60px;
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
 
 	font-size: $subheader-text;
 	& *
@@ -522,6 +523,12 @@
 		{
 			overflow-y: hidden;
 			max-height: 97px;
+			margin-right: 0px;
+		}
+		.project-description-body.sustainability
+		{
+			overflow-y: hidden;
+			max-height: 0px;
 			margin-right: 0px;
 		}
 

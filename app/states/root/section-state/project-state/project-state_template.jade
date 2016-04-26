@@ -203,6 +203,15 @@
 						| Description
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
+				.project-description-wrapper(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.sustainability && !mobile'
+					ng-class='{ contracted: checkItemLength( activeItem.sustainability, 213 ) }'
+				)
+					.project-description-header
+						| Sustainability
+					.project-description-body( ng-bind-html='activeItem.sustainability | htmlParse' )
+
 				.image-gallery-wrapper
 					.image-gallery-section-wrapper.open(
 						ng-repeat='gallery in activeItem.galleries'
@@ -372,9 +381,19 @@
 					.project-description-header
 						| Description
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
-			
+
+			.project-page-main-text(style='order:5;')
+				//- Sustain (MOBILE)
+				.project-description-wrapper.contracted(
+					ng-toggle-class='contracted open'
+					ng-if='activeItem.sustainability'
+				)
+					.project-description-header
+						| Sustainability
+					.project-description-body.sustainability( ng-bind-html='activeItem.sustainability | htmlParse' )
+
 			//- Design recognition and Bibliography (MOBILE)
-			.project-page-sidebar(style='order:5;')
+			.project-page-sidebar(style='order:6;')
 				//- Design recognition (MOBILE)
 				.project-page-sidebar-section.contracted(
 					ng-if='activeItem.awards.length'
@@ -412,7 +431,7 @@
 						| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
 						| {{ item.pages ? item.pages + '.' : '' }}
 
-			.project-page-main-text(style='order:6;')
+			.project-page-main-text(style='order:7;')
 				.image-gallery-wrapper
 					.image-gallery-section-wrapper.open(
 						ng-repeat='gallery in activeItem.galleries'
