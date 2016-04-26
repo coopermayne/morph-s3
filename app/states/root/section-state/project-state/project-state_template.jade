@@ -255,7 +255,7 @@
 		.project-page-text-wrapper(
 			ng-if='mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
 		)
-			.project-page-sidebar(ng-if='activeItem')
+			.project-page-sidebar(ng-if='activeItem' style='order: 1;')
 
 				//- Details (MOBILE)
 				.project-page-sidebar-section
@@ -307,7 +307,7 @@
 						.project-detail-text( ng-repeat='type in activeItem.types' )
 							| {{ type }}
 
-			.project-page-main-text
+			.project-page-main-text(style='order: 2;')
 				
 				//- Overview (DESKTOP)
 				.project-overview(
@@ -318,6 +318,7 @@
 
 			.project-page-second-sidebar(
 				ng-if='mobile && ( activeItem.contractors.length || activeItem.morph_team.length || activeItem.awards.length || activeItem.bibliography_items.length )'
+				style='order: 3;'
 			)
 				.project-page-sidebar-section.project-credits.contracted(
 					ng-if='activeItem.morph_team.length || activeItem.contractors.length'
@@ -361,7 +362,7 @@
 							ng-bind-html='person.person.name | htmlParse'
 						)
 
-			.project-page-main-text
+			.project-page-main-text(style='order:4;')
 				//- Description (MOBILE)
 				.project-description-wrapper(
 					ng-toggle-class='contracted open'
@@ -373,7 +374,7 @@
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 			
 			//- Design recognition and Bibliography (MOBILE)
-			.project-page-sidebar
+			.project-page-sidebar(style='order:5;')
 				//- Design recognition (MOBILE)
 				.project-page-sidebar-section.contracted(
 					ng-if='activeItem.awards.length'
@@ -411,7 +412,7 @@
 						| {{ item.pub_date ? '(' + item.pub_date + ').' : '' }}
 						| {{ item.pages ? item.pages + '.' : '' }}
 
-			.project-page-main-text
+			.project-page-main-text(style='order:6;')
 				.image-gallery-wrapper
 					.image-gallery-section-wrapper.open(
 						ng-repeat='gallery in activeItem.galleries'
