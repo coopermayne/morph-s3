@@ -237,11 +237,16 @@
 	{
 		align-self: flex-end;
 
-		width: 400px;
+		// width: 400px;
+
+		&.ipad-alt-wrapper
+		{
+			width: 400px;
+		}
 	}
 	@include respond-to( 'small' )
 	{
-		width: 350px;
+		width: 350px !important;
 		margin-top: 44px;
 		padding: 0;
 	}
@@ -331,7 +336,9 @@
 	{
 		align-items: flex-start;
 		align-self: flex-start;
-		justify-content: flex-start;
+		justify-content: center;
+
+		width: 100%;
 	}
 	@include respond-to ( 'small' )
 	{

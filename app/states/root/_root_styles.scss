@@ -7,7 +7,10 @@
 
 .freeze-body-scroll
 {
-	overflow: hidden;
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	{
+		overflow: hidden;
+	}
 }
 
 .menu-and-index-wrapper
@@ -48,7 +51,7 @@
 
 	.menu-directive-wrapper
 	{
-		width: 350px !important;
+		width: 310px !important;
 		background-color: transparent !important;
 	}
 
