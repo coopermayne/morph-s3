@@ -142,13 +142,12 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	console.log( 'MenuDirectiveController active!' );
 
-	// $scope.$on( '$stateChangeSuccess', function( event )
-	// {
-	// 	// if ($rootScope.toState.name === 'root.section-state')
-	// 	// {
-	// 	// 	console.log( 'switching to', $rootScope.toState.name );
-	// 	// }
-	// 	// $scope.setMobileMenuVar(  );
-	// } );
+	$scope.$on( '$stateChangeSuccess', function( event )
+	{
+		if ($rootScope.fromState.name === 'root.section-state.project-state')
+		{
+			$scope.setMobileMenuVar(  );
+		}
+	} );
 
 } );
