@@ -120,8 +120,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.closeMobileMenu = function(  )
 	{
 		$scope.showMobileMenuVar = false;
-		$scope.$apply;
-		console.log('closed mobile menu',$scope.showMobileMenuVar)
+		$scope.$apply();
 	};
 
 	$scope.toggleMobileMenu = function(  )

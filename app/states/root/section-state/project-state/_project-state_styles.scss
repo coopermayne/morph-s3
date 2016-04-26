@@ -138,13 +138,11 @@
 
 .project-page-sidebar
 {
-	// @include respond-to( 'small' )
-	// {
-	// 	order: 1;
-	// 	flex: auto;
-	// 	margin-bottom: $page-margin;
-	// 	padding-right: 0;
-	// }
+	@include respond-to( 'small' )
+	{
+		flex: auto;
+	}
+
 	flex: 1 0 0%;
 
 	padding-right: 5rem;
@@ -162,12 +160,17 @@
 
 .project-page-main-text
 {
+	@include respond-to('small')
+	{
+		flex: auto;
+	}
 	// @include respond-to( 'small' )
 	// {
 	// 	order: 2;
 	// 	flex: auto;
 	// 	padding-right: 0;
 	// }
+
 	flex: 3 0 0%;
 
 	padding-right: 1rem;
@@ -178,6 +181,7 @@
 	@include respond-to('small')
 	{
 		margin-right: 0;
+		padding-bottom: 1rem;
 	}
 
 	margin-right: 60px;
