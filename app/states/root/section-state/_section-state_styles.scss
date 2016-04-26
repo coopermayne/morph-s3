@@ -361,7 +361,11 @@
 	}
 	.alt-project-title
 	{
-		margin-bottom: 0;
+		margin-bottom: 0.2;
+	}
+	&.alt-index-project
+	{
+		min-height: 115px;
 	}
 }
 
