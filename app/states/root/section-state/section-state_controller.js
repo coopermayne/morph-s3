@@ -178,25 +178,25 @@ var default_place = {
 	lng: 0
 }
 
-var place_d = {
-	asia: {
-		zoom: 4,
-		lat: 36,
-		lng: 131
-	}, 
-	europe: {
-		zoom: 4,
-		lat: 49,
-		lng: 16
-	}, 
-	america: {
-		zoom: 4,
-		lat: 29,
-		lng: -84
-	}
-}
+//var place_d = {
+	//asia: {
+		//zoom: 4,
+		//lat: 36,
+		//lng: 131
+	//}, 
+	//europe: {
+		//zoom: 4,
+		//lat: 49,
+		//lng: 16
+	//}, 
+	//america: {
+		//zoom: 4,
+		//lat: 29,
+		//lng: -84
+	//}
+//}
 
-$scope.center = place_d[$state.params.q] ? angular.copy(place_d[$state.params.q]) : angular.copy(default_place)
+$scope.center = $scope.center || angular.copy(default_place)
 
 $scope.defaults = {
 	minZoom: 2,
