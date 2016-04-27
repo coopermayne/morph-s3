@@ -390,7 +390,6 @@ menu-directive
 
 	.people-option-list
 	{
-		left: -105px;
 		margin-bottom: 1rem;
 
 		.ghost-element
@@ -561,4 +560,29 @@ menu-directive
 		border-bottom: 3px solid $black;
 		background-position: right center;
 	}
+}
+
+a.twitter-link
+{
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 99999;
+
+	.twitter-icon
+	{
+		opacity: 0.5;
+		width: 3rem;
+		height: 3rem;
+	}
+}
+
+.grr *
+{
+	display: inline;
 }

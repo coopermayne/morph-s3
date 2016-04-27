@@ -15,8 +15,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	Menu.get(  ).$promise.then( function( response )
 	{
 		$scope.menuItems = response;
-
-		$scope.homePageSlides = $scope.menuItems.landing.slides;
 	} );
 
 
@@ -62,7 +60,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'A-Z':
 				case 'Year':
 				case 'Type':
-				case 'Urban':
+				case 'Planning':
 				case 'Tangents':
 				case 'Research':
 				$scope.showMobileMenuVar = true;

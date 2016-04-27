@@ -17,10 +17,10 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$scope.mobile = match;
 	});
 
-	// $scope.$watch( 'slides', function( apiResponse )
-	// {	
-	// 	if ( apiResponse !== undefined )
-	// 	{
+   $scope.$watch( 'slides', function( apiResponse )
+   {	
+     if ( apiResponse !== undefined )
+     {
 	 		// Start video queue
 			if ( $scope.vid && !$scope.mobile )
 			{
@@ -76,7 +76,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 							} );
 						}
 					}
-				}, 500);
+				}, 0);
 			}
 			else
 			// Image slideshow
@@ -96,8 +96,8 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 				}, $scope.frameRate || 2000 );
 			}
-	// 	}
-	// } );
+     }
+   } );
 
 	// Control buttons
 	$scope.setCurrentSlide = function( slide )

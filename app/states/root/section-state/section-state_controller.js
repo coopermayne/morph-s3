@@ -447,8 +447,8 @@ var placeMarkers = function(  )
 		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
 		break;
 
-		case 'urban':
-		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'urban' } } );
+		case 'planning':
+		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'planning' } } );
 		break;
 	}
 
@@ -630,10 +630,18 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 	{ 
 
 		// Update stateParams
-		$timeout(function()
+		switch( $scope.stateParams.section )
 		{
+			case 'about':
 			$scope.stateParams = $state.params;
-		})
+			break;
+
+			default:
+			$timeout(function()
+			{
+				$scope.stateParams = $state.params;
+			});
+		}
 
 	    if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
 	    {			
