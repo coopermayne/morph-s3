@@ -46,7 +46,7 @@
 		
 		//- DESKTOP PROJECT PAGE//////////////////////////////////
 		.project-page-text-wrapper(
-			ng-if='!mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
+			ng-if='!mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "planning"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
 		)
 
 			.project-page-sidebar(ng-if='activeItem')
@@ -262,7 +262,7 @@
 		//- MOBILE PROJECT PAGE//////////////////////////////////
 		
 		.project-page-text-wrapper.mobile-project-page(
-			ng-if='mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "urban"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
+			ng-if='mobile && (( stateParams.section === "search" && stateParams.m == "project" ) || ["architecture", "research", "tangents", "research", "planning"].indexOf(stateParams.section) != -1 || ( stateParams.section === "about" && stateParams.m === "project" ))'
 		)
 			.project-page-sidebar(ng-if='activeItem' style='order: 1;')
 

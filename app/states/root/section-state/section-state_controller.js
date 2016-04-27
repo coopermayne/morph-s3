@@ -447,8 +447,8 @@ var placeMarkers = function(  )
 		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
 		break;
 
-		case 'urban':
-		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'urban' } } );
+		case 'planning':
+		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'planning' } } );
 		break;
 	}
 
