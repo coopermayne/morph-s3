@@ -31,10 +31,17 @@
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
-
+	//- Project title
+	p.slide-project-title(
+		ng-if='(currentSlide.project_title || currentSlide.title) && stateParams.section !== "news"'
+		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
+		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
+	)
+	
+	//- News title
 	p.slide-project-title(
 		ng-if='currentSlide.project_title || currentSlide.title'
-		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
+		ui-sref='root.section-state({ section: "news" })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
 
