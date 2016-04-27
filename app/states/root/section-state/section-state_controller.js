@@ -620,11 +620,20 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		break;
 	}
 
+	$scope.$watchCollection('$state', function()
+	{
+		console.log($state.params.sortingType)
+	})
+
 	// Fire API calls for separate 'about' section resources
-	$scope.$on( '$locationChangeSuccess', function( event )
+	$scope.$on( '$locationChangeSuccess', function( event, newState, oldState )
 	{ 
+
 		// Update stateParams
-		$scope.stateParams = $state.params;
+		$timeout(function()
+		{
+			$scope.stateParams = $state.params;
+		})
 
 	    if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
 	    {			
@@ -651,7 +660,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		}
 
 		if ( $scope.stateParams.sortingType !== 'media' )
-		{		
+		{	
 			// Update subSort on section and sortingType change
 			if ( $scope.stateParams.sub )
 			{

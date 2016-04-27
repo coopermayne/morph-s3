@@ -6,6 +6,11 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
+
+	$scope.$on('$locationChangeSuccess', function()
+	{
+		console.log('menu directive sortingtype:',$scope.stateParams.sortingType);
+	})
 	// Fetch Menu from API and set video slides
 	Menu.get(  ).$promise.then( function( response )
 	{
