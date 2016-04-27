@@ -45,7 +45,6 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 				sub: fromParams.sub,
 				m: null
 			}
-			console.log( 'originalIndex:', $rootScope.originalIndex );
 		}
 	});
 

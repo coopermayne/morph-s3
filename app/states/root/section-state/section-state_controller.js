@@ -104,7 +104,6 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$scope.stateParams.sub = 'title';
 				$scope.stateParams.p = null;
 				$state.go( $state.current.name, $scope.stateParams );
-				console.log( 'media switching to alphabetical' );
 			}
 			else
 			{			
@@ -619,11 +618,6 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		})
 		break;
 	}
-
-	$scope.$watchCollection('$state', function()
-	{
-		console.log($state.params.sortingType)
-	})
 
 	// Fire API calls for separate 'about' section resources
 	$scope.$on( '$locationChangeSuccess', function( event, newState, oldState )

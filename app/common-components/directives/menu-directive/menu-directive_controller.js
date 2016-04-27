@@ -6,11 +6,6 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
-
-	$scope.$on('$locationChangeSuccess', function()
-	{
-		console.log('menu directive sortingtype:',$scope.stateParams.sortingType);
-	})
 	// Fetch Menu from API and set video slides
 	Menu.get(  ).$promise.then( function( response )
 	{
@@ -29,17 +24,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			$scope.mobile = match;
 		});
 	}
-
-
-	$scope.$watch('mobile', function()
-	{
-		console.log('mobile?',$scope.mobile)
-	})
-
-	$scope.$watch('showMobileMenuVar', function()
-	{
-		console.log('watching mobileMenuVar:',$scope.showMobileMenuVar)
-	})
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
@@ -91,7 +75,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		// var element = document.getElementById( section );
 		// var aboutWrapper = document.getElementsByClassName('menu-about-text' );
 		// var elScr = element.offsetTop;
-		console.log( elScr );
 	}
 
 	$scope.showSubSections = function( title, children )
@@ -135,8 +118,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			default:
 			$scope.showMobileMenuVar = false;
 		}
-
-		console.log('set mobile menu var to', $scope.showMobileMenuVar)
 	}
 
 	$scope.setMobileMenuVar(  );
