@@ -78,7 +78,7 @@ ul.menu-directive-wrapper.scrollable-content(
 				thumb='true'
 				ng-click='toggleMobileMenu(  )'
 			)
-	
+
 		//- Sorting options (Alphabetical, Year, Type)
 		.sorting-options(
 			ng-if='stateParams.section == bigMenuItem.url'
@@ -161,6 +161,13 @@ ul.menu-directive-wrapper.scrollable-content(
 	)
 		.about-text-header( ng-bind-html='menuItems.sections[0].about | htmlParse' )
 
+	a(
+		ng-href='https://twitter.com/M0rphosis'
+		target='_blank'
+		ng-if='!stateParams.section'
+	)
+		img.twitter-icon(src="images/twitter_icon.png")
+
 //- Section slideshows
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
@@ -170,4 +177,3 @@ slideshow-directive(
 	frame-rate='2000'
 )
 
-.twitter-icon
