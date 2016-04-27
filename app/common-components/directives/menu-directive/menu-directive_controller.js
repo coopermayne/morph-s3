@@ -10,8 +10,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	Menu.get(  ).$promise.then( function( response )
 	{
 		$scope.menuItems = response;
-
-		$scope.homePageSlides = $scope.menuItems.landing.slides;
 	} );
 
 
