@@ -44,15 +44,27 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		{
 			switch( string )
 			{
-				case 'Location':
-				case 'People':
-				case 'Contact':
-				case 'News':
-				$scope.showMobileMenuVar = false;
+				// case 'Location':
+				// case 'People':
+				// case 'Contact':
+				// case 'News':
+				// case 'Now Institute':
+				// $scope.showMobileMenuVar = false;
+				// break;
+
+				case 'Morphosis':
+				case 'Architecture':
+				case 'A-Z':
+				case 'Year':
+				case 'Type':
+				case 'Urban':
+				case 'Tangents':
+				case 'Research':
+				$scope.showMobileMenuVar = true;
 				break;
 
 				default:
-				$scope.showMobileMenuVar = true;
+				$scope.showMobileMenuVar = false;
 			}
 		}
 	}
@@ -105,7 +117,16 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		{
 			case 'root':
 			case 'root.section-state':
-			$scope.showMobileMenuVar = true;
+			switch( $scope.stateParams.section )
+			{
+				case 'news':
+				case 'search':
+				$scope.showMobileMenuVar = false;
+				break;
+
+				default:
+				$scope.showMobileMenuVar = true;
+			}
 			break;
 
 			default:
