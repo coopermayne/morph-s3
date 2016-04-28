@@ -62,7 +62,7 @@ ul.menu-directive-wrapper.scrollable-content(
 	li.menu-section(
 		ng-repeat='bigMenuItem in menuItems.sections'
 		ui-sref='root.section-state( { section: bigMenuItem.url, s: null, q: null, e: null, m: null, p: null, sub: null } )'
-		ng-click='$event.stopPropagation(); resolveMobileSortingClick(bigMenuItem.title)'
+		ng-click='resolveMobileSortingClick( bigMenuItem.title ); $event.stopPropagation(  )'
 	)
 		.section-title(
 			ng-class='{ "selected": stateParams.section === bigMenuItem.url, "news-highlight": bigMenuItem.url === "news" && !stateParams.section }'

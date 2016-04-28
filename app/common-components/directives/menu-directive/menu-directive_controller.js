@@ -31,8 +31,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		});
 	}
 
-	$scope.showMobileMenuVar = false;
-
 	$scope.resolveMobileSortingClick = function( string )
 	{
 		if( $scope.mobile )
@@ -61,6 +59,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 				default:
 				$scope.showMobileMenuVar = false;
+				break;
 			}
 		}
 	}
@@ -108,19 +107,27 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.setMobileMenuVar = function(  )
 	{
-		switch( $scope.state.current.name )
+		switch( $state.current.name )
 		{
 			case 'root':
 			case 'root.section-state':
-			switch( $scope.stateParams.section )
+			switch( $state.params.section )
 			{
 				case 'news':
 				case 'search':
 				return false;
 				break;
 
-				default:
+				case 'about':
+				case 'architecture':
+				case 'planning':
+				case 'tangents':
+				case 'research':
 				return true;
+				break;
+
+				default:
+				return false;
 			}
 			break;
 
@@ -130,7 +137,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}
 	}
 
-	// $scope.setMobileMenuVar(  );
 
 	$scope.closeMobileMenu = function(  )
 	{
