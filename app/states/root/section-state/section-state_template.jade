@@ -213,7 +213,7 @@
 )
 	.previous( ng-show='isPrev' ng-click='getPage( "prev" )' )
 		| Previous page
-	.pagination
+	.pagination( ng-if="!mobile")
 		.page-number(
 			ng-repeat='pageNum in pageArray'
 			ui-sref='root.section-state.sorting-state({ p: pageNum })'
