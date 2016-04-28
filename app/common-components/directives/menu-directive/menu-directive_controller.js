@@ -6,6 +6,12 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
 {
 
+
+	screenSize.rules = {
+		superSmall: '(max-width: 500px)',
+
+	};
+
 	// Fetch Menu from API and set video slides
 	Menu.get(  ).$promise.then( function( response )
 	{
@@ -27,7 +33,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
-		if ( $scope.mobile )
+		if( $scope.mobile )
 		{
 			switch( string )
 			{
@@ -47,11 +53,13 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'Planning':
 				case 'Tangents':
 				case 'Research':
+				case 'Media':
 				$scope.showMobileMenuVar = true;
 				break;
 
 				default:
 				$scope.showMobileMenuVar = false;
+				break;
 			}
 		}
 	}
@@ -99,37 +107,45 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.setMobileMenuVar = function(  )
 	{
-		switch( $scope.state.current.name )
+		switch( $state.current.name )
 		{
 			case 'root':
 			case 'root.section-state':
-			switch( $scope.stateParams.section )
+			switch( $state.params.section )
 			{
 				case 'news':
 				case 'search':
-				$scope.showMobileMenuVar = false;
+				return false;
+				break;
+
+				case 'about':
+				case 'architecture':
+				case 'planning':
+				case 'tangents':
+				case 'research':
+				return true;
 				break;
 
 				default:
-				$scope.showMobileMenuVar = true;
+				return false;
 			}
 			break;
 
 			default:
-			$scope.showMobileMenuVar = false;
+			return false;
+			break;
 		}
 	}
 
-	$scope.setMobileMenuVar(  );
 
 	$scope.closeMobileMenu = function(  )
 	{
 		$scope.showMobileMenuVar = false;
 	};
 
-	$scope.toggleMobileMenu = function(  )
+	$scope.openMobileMenu = function(  )
 	{
-		$scope.showMobileMenuVar = !$scope.showMobileMenuVar;
+		$scope.showMobileMenuVar = true;
 	}
 
 	$scope.searchText = $stateParams.s;
@@ -147,7 +163,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.$on( '$stateChangeSuccess', function( event )
 	{
-		if ($rootScope.fromState.name === 'root.section-state.project-state')
+		if ($rootScope.fromState.name == 'root.section-state.project-state')
 		{
 			$scope.setMobileMenuVar(  );
 		}
