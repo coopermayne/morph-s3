@@ -103,7 +103,7 @@
 				//- Project Credits (DESKTOP)
 				.project-page-sidebar-section(
 					ng-toggle-class='contracted open'
-					ng-if='activeItem.morph_team.length'
+					ng-if='activeItem.morph_team.length || activeItem.contractors.length'
 				)
 					.project-page-sidebar-header( ng-show='activeItem.morph_team.length || activeItem.contractors.length')
 						| Project Credits
