@@ -37,10 +37,10 @@
 		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
-	
-	//- News title
+
+	////- News title
 	p.slide-project-title(
-		ng-if='currentSlide.project_title || currentSlide.title'
+		ng-if='( currentSlide.project_title || currentSlide.title ) && stateParams.section == "news"'
 		ui-sref='root.section-state({ section: "news" })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
