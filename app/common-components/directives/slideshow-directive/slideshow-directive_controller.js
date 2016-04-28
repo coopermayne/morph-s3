@@ -114,6 +114,6 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		return counter = -1;
 	});
 
-	console.log( 'SlideShowDirectiveController active!' );
+	//console.log( 'SlideShowDirectiveController active!' );
 
 } );
