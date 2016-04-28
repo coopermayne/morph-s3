@@ -47,6 +47,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'Planning':
 				case 'Tangents':
 				case 'Research':
+				case 'Media':
 				$scope.showMobileMenuVar = true;
 				break;
 
