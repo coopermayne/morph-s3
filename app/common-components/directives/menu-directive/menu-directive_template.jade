@@ -1,6 +1,6 @@
 .mobile-menu-bar.scrollable-header(
 	ng-if='( mobile && state.current.name === "root.section-state.sorting-state" ) || ( mobileAndTabletCheck(  ) && "search, news".indexOf( stateParams.section ) !== -1 )'
-	ng-click='toggleMobileMenu(  )'
+	ng-click='openMobileMenu(  )'
 )
 	.mobile-bar-item
 		| mO
@@ -46,15 +46,15 @@
 		a.anchor( name='contact')
 		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 		a.anchor( name='employment')
-		p.grr( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
+		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
-	ng-if='!stateParams.projectId && ( !mobile || showMobileMenuVar )'
+	ng-if='setMobileMenuVar() || showMobileMenuVar || !mobile'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news", "mobile-about-section-wrapper": showMobileMenuVar && stateParams.section === "about" }'
 	ng-fade-menu
 )
 	.mobile-menu-close(
-		ng-if='( state.current.name === "root.section-state.sorting-state" ) || (stateParams.section === ( "news" || "search" ))'
+		ng-if='( state.current.name === "root.section-state.sorting-state" ) || ( stateParams.section === ( "news" || "search" ))'
 		ng-click='closeMobileMenu(  )'
 	)
 
@@ -76,9 +76,9 @@ ul.menu-directive-wrapper.scrollable-content(
 				ng-if='bigMenuItem.url === "news" && !stateParams.section && bigMenuItem.items'
 				slides='bigMenuItem.items'
 				thumb='true'
-				ng-click='toggleMobileMenu(  )'
+				ng-click='closeMobileMenu(  )'
 			)
-
+	
 		//- Sorting options (Alphabetical, Year, Type)
 		.sorting-options(
 			ng-if='stateParams.section == bigMenuItem.url'
@@ -126,7 +126,7 @@ ul.menu-directive-wrapper.scrollable-content(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state.sorting-state( { q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  ), e: null, p: null, sub: null } )'
 							ng-mouseover='$event.stopPropagation(  )'
-							ng-click='$event.stopPropagation(  ); toggleMobileMenu(  )'
+							ng-click='$event.stopPropagation(  ); closeMobileMenu(  )'
 						)
 							p(
 								ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
@@ -139,7 +139,7 @@ ul.menu-directive-wrapper.scrollable-content(
 								ng-repeat='subSection in littleSortingOption.children'
 								ui-sref='root.section-state.sorting-state( { q: subSection.title.toLowerCase(  ) } )'
 								ng-mouseover='$event.stopPropagation(  )'
-								ng-click='$event.stopPropagation(  ); toggleMobileMenu(  )'
+								ng-click='$event.stopPropagation(  ); closeMobileMenu'
 								ng-class='{"selected": stateParams.q && stateParams.q === (subSection.title.toLowerCase(  ) || subSection.toLowerCase(  )) }'
 							)
 								| {{ subSection.title }}
@@ -152,7 +152,7 @@ ul.menu-directive-wrapper.scrollable-content(
 				ng-model='searchText'
 				ng-class='{ "has-text": searchText.length }'
 				ng-change='updateSearch( searchText )'
-				ng-enter='toggleMobileMenu( ); updateSearch( searchText )'
+				ng-enter='closeMobileMenu(  ); updateSearch( searchText )'
 			)
 	//- Mobile about text
 	.mobile-about-text-wrapper(
@@ -160,13 +160,6 @@ ul.menu-directive-wrapper.scrollable-content(
 		ng-class='{ "mobile-about-text": mobile }'
 	)
 		.about-text-header( ng-bind-html='menuItems.sections[0].about | htmlParse' )
-
-	a.twitter-link(
-		ng-href='https://twitter.com/M0rphosis'
-		target='_blank'
-		ng-if='!stateParams.section'
-	)
-		img.twitter-icon(src="images/twitter_icon.png")
 
 //- Section slideshows
 slideshow-directive(
@@ -176,4 +169,3 @@ slideshow-directive(
 	slides='section.slides'
 	frame-rate='2000'
 )
-
