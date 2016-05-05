@@ -49,7 +49,7 @@
 		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
-	ng-if='setMobileMenuVar() || showMobileMenuVar || !mobile'
+	ng-if='showMobileMenuVar || !mobile'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news", "mobile-about-section-wrapper": showMobileMenuVar && stateParams.section === "about" }'
 	ng-fade-menu
 )
