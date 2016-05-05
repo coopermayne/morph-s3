@@ -3,7 +3,7 @@
 var menuDirective = angular.module( 'menuDirective' );
 
 
-menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize )
+menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize, $timeout )
 {
 
 
@@ -18,6 +18,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.menuItems = response;
 	} );
 
+	// $scope.$watch('showMobileMenuVar', function()
+	// {
+	// 	console.log('state:', $scope.state showMobileMenuVar:',$scope.showMobileMenuVar, 'showmobilemenufunction:', $scope.setMobileMenuVar());
+	// })
+
 
 	$scope.stateParams = $stateParams;
 
@@ -25,7 +30,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	if( !$scope.mobile )
 	{	
-		$scope.mobile = screenSize.on( 'xs', function( match )
+		screenSize.on( 'superSmall', function( match )
 		{
 			$scope.mobile = match;
 		});
@@ -115,37 +120,39 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			{
 				case 'news':
 				case 'search':
+				$scope.showMobileMenuVar = false;
 				return false;
-				break;
-
-				case 'about':
-				case 'architecture':
-				case 'planning':
-				case 'tangents':
-				case 'research':
-				return true;
 				break;
 
 				default:
-				return false;
+				$scope.showMobileMenuVar = true;
+				return true;
+				break;
 			}
 			break;
 
-			default:
+			case 'root.section-state.project-state':
+			$scope.showMobileMenuVar = false;
+			return false;
+			break;
+
+			case 'root.section-state.sorting-state':
+			$scope.showMobileMenuVar = false;
 			return false;
 			break;
 		}
 	}
 
+	$scope.setMobileMenuVar();
 
 	$scope.closeMobileMenu = function(  )
 	{
-		$scope.showMobileMenuVar = false;
+		return $scope.showMobileMenuVar = false;
 	};
 
 	$scope.openMobileMenu = function(  )
 	{
-		$scope.showMobileMenuVar = true;
+		return $scope.showMobileMenuVar = true;
 	}
 
 	$scope.searchText = $stateParams.s;
@@ -161,12 +168,16 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	console.log( 'MenuDirectiveController active!' );
 
-	$scope.$on( '$stateChangeSuccess', function( event )
-	{
-		if ($rootScope.fromState.name == 'root.section-state.project-state')
-		{
-			$scope.setMobileMenuVar(  );
-		}
+	// $scope.$watch('showMobileMenuVar', function()
+	// {
+	// 	console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
+	// })
+
+$scope.$on( '$stateChangeSuccess', function( event )
+{
+		// $scope.showMobileMenuVar = null;
+		// console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
+		// $scope.showMobileMenuVar = $scope.setMobileMenuVar();
 	} );
 
 } );
