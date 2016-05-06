@@ -165,7 +165,7 @@ ul.menu-directive-wrapper.scrollable-content(
 //- Section slideshows
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-show='!stateParams.sortingType && stateParams.section === section.url'
+	ng-if='!stateParams.sortingType && stateParams.section === section.url'
 	ng-if='section.slides'
 	slides='section.slides'
 	frame-rate='2000'
