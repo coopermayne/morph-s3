@@ -6,35 +6,32 @@ var menuDirective = angular.module( 'menuDirective' );
 menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize, $timeout )
 {
 
-
-	screenSize.rules = {
-		superSmall: '(max-width: 500px)',
-
-	};
-
 	// Fetch Menu from API and set video slides
 	Menu.get(  ).$promise.then( function( response )
 	{
 		$scope.menuItems = response;
 	} );
 
-	// $scope.$watch('showMobileMenuVar', function()
-	// {
-	// 	console.log('state:', $scope.state showMobileMenuVar:',$scope.showMobileMenuVar, 'showmobilemenufunction:', $scope.setMobileMenuVar());
-	// })
-
-
 	$scope.stateParams = $stateParams;
 
 	$scope.state = $state;
 
-	if( !$scope.mobile )
-	{	
-		screenSize.on( 'superSmall', function( match )
-		{
-			$scope.mobile = match;
-		});
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+	if ( w < 500 )
+	{
+		$scope.mobile = true;
 	}
+
+	$scope.$watch('mobile', function()
+	{
+		console.log('mobile?', $scope.mobile);
+	})
+
+	$scope.$watch('showMobileMenuVar', function()
+	{
+		console.log('showMobileMenuVar:', $scope.showMobileMenuVar)
+	})
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
@@ -59,11 +56,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'Tangents':
 				case 'Research':
 				case 'Media':
-				$scope.showMobileMenuVar = true;
+				$rootScope.showMobileMenuVar = true;
 				break;
 
 				default:
-				$scope.showMobileMenuVar = false;
+				$rootScope.showMobileMenuVar = false;
 				break;
 			}
 		}
@@ -120,24 +117,24 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			{
 				case 'news':
 				case 'search':
-				$scope.showMobileMenuVar = false;
+				$rootScope.showMobileMenuVar = false;
 				return false;
 				break;
 
 				default:
-				$scope.showMobileMenuVar = true;
+				$rootScope.showMobileMenuVar = true;
 				return true;
 				break;
 			}
 			break;
 
 			case 'root.section-state.project-state':
-			$scope.showMobileMenuVar = false;
+			$rootScope.showMobileMenuVar = false;
 			return false;
 			break;
 
 			case 'root.section-state.sorting-state':
-			$scope.showMobileMenuVar = false;
+			$rootScope.showMobileMenuVar = false;
 			return false;
 			break;
 		}
@@ -147,12 +144,12 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.closeMobileMenu = function(  )
 	{
-		return $scope.showMobileMenuVar = false;
+		return $rootScope.showMobileMenuVar = false;
 	};
 
 	$scope.openMobileMenu = function(  )
 	{
-		return $scope.showMobileMenuVar = true;
+		return $rootScope.showMobileMenuVar = true;
 	}
 
 	$scope.searchText = $stateParams.s;
@@ -168,16 +165,22 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	console.log( 'MenuDirectiveController active!' );
 
-	// $scope.$watch('showMobileMenuVar', function()
-	// {
-	// 	console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
-	// })
+	$scope.$on( '$stateChangeSuccess', function( event )
+	{
+		// if ($rootScope.toState.name === 'root.section-state' || 'root')
+		// {
+		// 	$scope.setMobileMenuVar();
+		// }
 
-$scope.$on( '$stateChangeSuccess', function( event )
-{
-		// $scope.showMobileMenuVar = null;
-		// console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
-		// $scope.showMobileMenuVar = $scope.setMobileMenuVar();
+		if ($rootScope.fromState.name === 'root.section-state.project-state')
+		{
+			$scope.setMobileMenuVar();
+		}
+
+		if ($rootScope.toState.name === 'root.section-state.project-state')
+		{
+			$rootScope.showMobileMenuVar = false;
+		}
 	} );
 
 } );
