@@ -165,19 +165,16 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	console.log( 'MenuDirectiveController active!' );
 
-	// $scope.$watch('showMobileMenuVar', function()
-	// {
-	// 	console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
-	// })
-
-$scope.$on( '$stateChangeSuccess', function( event )
-{
-		// $scope.showMobileMenuVar = null;
-		// console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
-		// $scope.showMobileMenuVar = $scope.setMobileMenuVar();
+	$scope.$on( '$stateChangeSuccess', function( event )
+	{
 		if ($rootScope.fromState.name === 'root.section-state.project-state')
 		{
 			$scope.setMobileMenuVar();
+		}
+
+		if ($rootScope.toState.name === 'root.section-state.project-state')
+		{
+			$scope.showMobileMenuVar = false;
 		}
 	} );
 
