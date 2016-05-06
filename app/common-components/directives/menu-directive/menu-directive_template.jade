@@ -49,7 +49,7 @@
 		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
-	ng-if='showMobileMenuVar || !mobile'
+	ng-if='(showMobileMenuVar || !mobile) && state.current.name !== "root.section-state.project-state"'
 	ng-class='{ "white-menu": !stateParams.sortingType && stateParams.section != "search" && stateParams.section != "news", "mobile-about-section-wrapper": showMobileMenuVar && stateParams.section === "about" }'
 	ng-fade-menu
 )
@@ -165,7 +165,7 @@ ul.menu-directive-wrapper.scrollable-content(
 //- Section slideshows
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-show='!stateParams.sortingType && stateParams.section === section.url'
+	ng-if='!stateParams.sortingType && stateParams.section === section.url'
 	ng-if='section.slides'
 	slides='section.slides'
 	frame-rate='2000'

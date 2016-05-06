@@ -242,8 +242,6 @@
 	{
 		align-self: flex-end;
 
-		// width: 400px;
-
 		&.ipad-alt-wrapper
 		{
 			width: 400px;
@@ -251,6 +249,8 @@
 	}
 	@include respond-to( 'small' )
 	{
+		align-self: center;
+
 		width: 350px !important;
 		margin-top: 44px;
 		padding: 0;
