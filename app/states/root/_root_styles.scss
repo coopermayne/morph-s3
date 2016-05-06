@@ -13,6 +13,12 @@
 	}
 }
 
+.mobile-scroll-freeze
+{
+	overflow: hidden;
+	height: 100vh;
+}
+
 .menu-and-index-wrapper
 {
 	@include respond-to( 'small' )

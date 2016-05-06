@@ -10,6 +10,11 @@
 	flex: 3 0 0%;
 }
 
+.mobile-index-wrapper
+{
+	margin-top: 40px;
+}
+
 .prev-and-next-wrapper
 {
 	@include respond-to( 'small' )
