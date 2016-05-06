@@ -167,6 +167,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.$on( '$stateChangeSuccess', function( event )
 	{
+		// if ($rootScope.toState.name === 'root.section-state' || 'root')
+		// {
+		// 	$scope.setMobileMenuVar();
+		// }
+
 		if ($rootScope.fromState.name === 'root.section-state.project-state')
 		{
 			$scope.setMobileMenuVar();
@@ -174,7 +179,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 		if ($rootScope.toState.name === 'root.section-state.project-state')
 		{
-			$scope.showMobileMenuVar = false;
+			$rootScope.showMobileMenuVar = false;
 		}
 	} );
 
