@@ -175,6 +175,10 @@ $scope.$on( '$stateChangeSuccess', function( event )
 		// $scope.showMobileMenuVar = null;
 		// console.log('showMobileMenuVar:', $scope.showMobileMenuVar, 'setMobileMenuVar:', $scope.setMobileMenuVar());
 		// $scope.showMobileMenuVar = $scope.setMobileMenuVar();
+		if ($rootScope.fromState.name === 'root.section-state.project-state')
+		{
+			$scope.setMobileMenuVar();
+		}
 	} );
 
 } );
