@@ -16,10 +16,17 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	
 	$scope.activeTopNav = $state.current.activeTopNav;
 
-	$scope.mobile = screenSize.on( 'xs', function( match )
+	// $scope.mobile = screenSize.on( 'xs', function( match )
+	// {
+	// 	$scope.mobile = match;
+	// });
+
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+	if ( w < 500 )
 	{
-		$scope.mobile = match;
-	});
+		$scope.mobile = true;
+	}
 
 	// Get video slides
 	$http(

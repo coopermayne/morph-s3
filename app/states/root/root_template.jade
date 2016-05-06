@@ -1,4 +1,6 @@
-.menu-and-index-wrapper-wrapper( ng-class='{ "desktop-min-width": !mobileAndTabletCheck(  ) }' )
+.menu-and-index-wrapper-wrapper(
+	ng-class='{ "desktop-min-width": !mobileAndTabletCheck(  ), "mobile-scroll-freeze": mobile && showMobileMenuVar }'
+)
 	.menu-and-index-wrapper
 
 
