@@ -328,6 +328,7 @@
 					.project-page-sidebar-header
 						| Project Credits
 					
+					//morph team
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showMorphTeam = !showMorphTeam'
 						ng-toggle-class='contracted open'
@@ -344,16 +345,16 @@
 							ui-sref='root.section-state.project-state({ section: "about", projectId: person.person.id, m: "person" })'
 							ng-bind-html='person.person.name | htmlParse'
 						)
+
+					//consultants
 					.show-morph-team.details-clickable.contracted(
 						ng-click='showConsultants = !showConsultants'
 						ng-toggle-class='contracted open'
-						ng-if='activeItem.contractors.length'
 					)
 						| Consultants
 					.project-detail-wrapper(
 						ng-repeat='position in activeItem.contractors'
 						ng-show='showConsultants'
-						ng-if='activeItem.contractors.length'
 					)
 						.project-detail-label
 							| {{ position.role_title }}
