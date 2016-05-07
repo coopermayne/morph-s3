@@ -102,7 +102,6 @@
 				
 				//- Project Credits (DESKTOP)
 				.project-page-sidebar-section(
-					ng-toggle-class='contracted open'
 					ng-if='activeItem.morph_team.length || activeItem.contractors.length'
 				)
 					.project-page-sidebar-header( ng-show='activeItem.morph_team.length || activeItem.contractors.length')
@@ -149,8 +148,9 @@
 						)
 
 				//- Design recognition (DESKTOP)
-				.project-page-sidebar-section(
+				.project-page-sidebar-section.wm.contracted(
 					ng-if='activeItem.awards.length'
+					ng-toggle-class='open contracted'
 				)
 					.project-page-sidebar-header
 						| Design Recognition
@@ -162,8 +162,9 @@
 							| {{ award.title }}
 
 				//- Bibliography (DESKTOP)
-				.project-page-sidebar-section
-
+				.project-page-sidebar-section.wmone.contracted(
+					ng-toggle-class='open contracted'
+				)
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
 					)
@@ -195,9 +196,7 @@
 				
 				//- Description (DESKTOP)
 				.project-description-wrapper(
-					ng-toggle-class='contracted open'
 					ng-if='activeItem.description && !mobile'
-					ng-class='{ contracted: checkItemLength( activeItem.description, 213 ) }'
 				)
 					.project-description-header
 						| Description
@@ -206,19 +205,14 @@
 				.project-description-wrapper(
 					ng-toggle-class='contracted open'
 					ng-if='activeItem.sustainability && !mobile'
-					ng-class='{ contracted: checkItemLength( activeItem.sustainability, 213 ) }'
 				)
 					.project-description-header
 						| Sustainability
 					.project-description-body( ng-bind-html='activeItem.sustainability | htmlParse' )
 
 				.image-gallery-wrapper
-					.image-gallery-section-wrapper.open(
+					.image-gallery-section-wrapper(
 						ng-repeat='gallery in activeItem.galleries'
-						ng-mouseenter='startScroll( $event )'
-						ng-mousemove='updateScroll( $event )'
-						ng-mouseleave='stopScroll( )'
-						ng-toggle-class='contracted open'
 					)
 						h1
 							.arrow-left(ng-mouseenter='scrollLeft($event)' ng-mouseleave='stopScroll()')
@@ -237,15 +231,13 @@
 									ng-src='{{ image.name.name.thumb.url }}'
 								)
 				//- Components (DESKTOP)
-				.project-description-wrapper.component.contracted(
+				.project-description-wrapper.component(
 					ng-repeat='component in activeItem.components | orderBy: "rank"'
-					ng-toggle-class='contracted open'
 				)
 					.project-description-header
 						| {{ component.title }}
 					.project-description-body( ng-bind-html='component.content | htmlParse' )
-				.project-description-wrapper.component.contracted(
-					ng-toggle-class='contracted open'
+				.project-description-wrapper.component(
 					ng-if='activeItem.documents.length > 0'
 				)
 					| Documents
