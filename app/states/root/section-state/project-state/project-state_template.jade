@@ -330,6 +330,7 @@
 					
 					//morph team
 					.show-morph-team.details-clickable.contracted(
+            ng-show='activeItem.morph_team.length > 0'
 						ng-click='showMorphTeam = !showMorphTeam'
 						ng-toggle-class='contracted open'
 					)
@@ -348,6 +349,7 @@
 
 					//consultants
 					.show-morph-team.details-clickable.contracted(
+            ng-show='activeItem.contractors.length > 0'
 						ng-click='showConsultants = !showConsultants'
 						ng-toggle-class='contracted open'
 					)
