@@ -505,11 +505,11 @@
 						| Description
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
-				.project-description-header(ng-if='activeItem.roles.length > 0')
+				.project-description-header(ng-if='activeItem.roles_sorted.length > 0')
 					| Related Projects
 
-				.project-detail-wrapper( ng-repeat='(key, value) in activeItem.roles | groupBy: "title"' )
+				.project-detail-wrapper( ng-repeat='posRoles in activeItem.roles_sorted' )
 					.project-detail-label
-						| {{ key + ': '}}
-					.project-detail-text.details-clickable( ng-repeat='role in value' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.project.id, m: "project", s: null, e: null })')
-						| {{ role.project.title }}
+						| {{ posRoles.position_title + ': '}}
+					.project-detail-text.details-clickable( ng-repeat='role in posRoles.roles' ui-sref='root.section-state.project-state({ section: "architecture", projectId: role.id, m: "project", s: null, e: null })')
+						| {{ role.title }}
