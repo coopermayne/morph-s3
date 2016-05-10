@@ -155,9 +155,9 @@
 					.project-page-sidebar-header
 						| Design Recognition
 
-					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "-year"' )
+					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
 						.project-detail-label
-							| {{ key.slice(1) }}
+							| {{ key }}
 						.project-detail-text.project-page-award( ng-repeat='award in value' )
 							| {{ award.title }}
 
@@ -397,9 +397,9 @@
 					.project-page-sidebar-header
 						| Design Recognition
 
-					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "-year"' )
+					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
 						.project-detail-label
-							| {{ key.slice(1) }}
+							| {{ key }}
 						.project-detail-text.project-page-award( ng-repeat='award in value' )
 							| {{ award.title }}
 
