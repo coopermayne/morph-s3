@@ -105,6 +105,11 @@ menu-directive
 	{
 		height: 3rem;
 	}
+
+	hr
+	{
+		border: none;
+	}
 }
 
 .menu-about-nav
@@ -342,7 +347,7 @@ menu-directive
 
 .news-highlight
 {
-	flex-flow: column wrap;
+	/*flex-flow: column wrap;*/
 	flex-wrap: wrap;
 
 	color: $yellow;

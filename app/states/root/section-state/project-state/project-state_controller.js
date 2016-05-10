@@ -64,7 +64,7 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 
 	//open background tab for linky things
 	$scope.backgroundTab = function(url){
-		if (url.length) 
+		if (url && url.length) 
 		{
 			$window.open(url, '_blank');
 		}

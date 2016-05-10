@@ -75,7 +75,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'Tangents':
 				case 'Research':
 				case 'Media':
-				$rootScope.showMobileMenuVar = true;
 				break;
 
 				default:
