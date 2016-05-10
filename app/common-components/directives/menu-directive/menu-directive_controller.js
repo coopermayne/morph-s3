@@ -30,7 +30,26 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.$watch('showMobileMenuVar', function()
 	{
-		console.log('showMobileMenuVar:', $scope.showMobileMenuVar)
+		// Android keyboard-handling functions
+		$timeout(function()
+		{
+			var ua = navigator.userAgent.toLowerCase();
+			var isAndroid = ua.indexOf("android") > -1;
+			if(isAndroid && $scope.showMobileMenuVar && $state.current.name === 'root.section-state.sorting-state')
+			{
+				var search = document.getElementsByClassName('search');
+				console.log(search);
+				search[0].addEventListener('focus', function(e)
+				{
+					var container = document.getElementsByClassName('menu-directive-wrapper'),
+					scrollTo = document.querySelectorAll('.search form');
+
+					container.scrollTop = scrollTo.offset().top - container.offset().top + container.scrollTop()
+
+
+				}, true);
+			}
+		})
 	})
 
 	$scope.resolveMobileSortingClick = function( string )

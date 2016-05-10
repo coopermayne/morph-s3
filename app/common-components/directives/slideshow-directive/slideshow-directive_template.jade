@@ -1,4 +1,4 @@
-.slideshow-directive-slides-wrapper
+.slideshow-directive-slides-wrapper( mbl-directive )
 
 	.slideshow-directive-slide(ng-repeat='slide in slides')
 
@@ -16,19 +16,22 @@
 				src='{{ slide.webm.name.url }}'
 				type='video/webm'
 			)
-			poster( src='{{ slide.image.name.url}}')
+			poster( src='{{ slide.image.name.url }}')
 
 		.mobile-video(
-			ng-if='mobile && state.current.name === "root"'
-			preload-bg-image='{{ slide.gif.name.url }}'
+			ng-if='mobile && vid'
+			data-src='{{ slide.gif.name.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 			frame-rate='6000'
+			data-mbl
 		)
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
-			preload-bg-image='{{ thumb ? slide.image.name.mobile.url : slide.image.name.url }}'
+			ng-if='!vid'
+			data-src='{{ thumb ? slide.image.name.mobile.url : slide.image.name.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
+			data-mbl
 		)
 
 	//- Project title
