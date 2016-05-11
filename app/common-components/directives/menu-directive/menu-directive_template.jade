@@ -163,9 +163,19 @@ ul.menu-directive-wrapper.scrollable-content(
 		.about-text-header( ng-bind-html='menuItems.sections[0].about | htmlParse' )
 
 //- Section slideshows
+//- For mobile, only add to DOM when in current section
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-if='(!stateParams.sortingType && stateParams.section === section.url)'
+	ng-if='mobile && (!stateParams.sortingType && stateParams.section === section.url)'
+	slides='section.slides'
+	frame-rate='2000'
+)
+
+//- For desktop, load all at same time
+slideshow-directive(
+	ng-repeat='section in menuItems.sections'
+	ng-if='!mobile'
+	ng-show='!stateParams.sortingType && stateParams.section === section.url'
 	slides='section.slides'
 	frame-rate='2000'
 )

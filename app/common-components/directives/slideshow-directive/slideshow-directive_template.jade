@@ -1,4 +1,4 @@
-.slideshow-directive-slides-wrapper( mbl-directive )
+.slideshow-directive-slides-wrapper( mbl-directive ctrl-fn='startSlideShow()' )
 
 	.slideshow-directive-slide(ng-repeat='slide in slides')
 
@@ -28,12 +28,8 @@
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
-<<<<<<< HEAD
 			ng-if='!vid'
 			data-src='{{ thumb ? slide.image.name.mobile.url : slide.image.name.url }}'
-=======
-			preload-bg-image='{{ mobile ? slide.image.name.mobile.url : slide.image.name.url }}'
->>>>>>> 869e4389e5c070e7597a7ffe3a203192af554329
 			ng-class='{ "current-slide": currentSlide === slide }'
 			data-mbl
 		)
@@ -45,7 +41,7 @@
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
 
-	////- News title
+	//- ////- News title
 	p.slide-project-title(
 		ng-if='( currentSlide.project_title || currentSlide.title ) && news'
 		ui-sref='root.section-state({ section: "news" })'

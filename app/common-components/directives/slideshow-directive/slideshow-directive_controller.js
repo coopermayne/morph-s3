@@ -6,7 +6,8 @@ var slideshowDirective = angular.module( 'slideshowDirective' );
 slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootScope, $scope, $state, $stateParams, $interval, screenSize, $timeout, $element )
 {
 
-	var counter = 0;
+	console.log('SlideShowDirectiveController active!')
+	var counter = -1;
 
 	$scope.stateParams = $stateParams;
 	$scope.state = $state;
@@ -17,69 +18,71 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$scope.mobile = match;
 	});
 
-   $scope.$watch( 'slides', function( apiResponse )
-   {	
-     if ( apiResponse !== undefined )
-     {
-	 		// Start video queue
-			if ( $scope.vid && !$scope.mobile )
+	$scope.startSlideShow = function()
+	{
+		$scope.$watch( 'slides', function( apiResponse )
+		{	
+			if ( apiResponse !== undefined )
 			{
-				$timeout( function(  )
-				{
-					var videoElements = angular.element( $element )[ 0 ].getElementsByTagName( 'video' );
+		 		// Start video queue
+		 		if ( $scope.vid && !$scope.mobile )
+		 		{
+		 			$timeout( function(  )
+		 			{
+		 				var videoElements = angular.element( $element )[ 0 ].getElementsByTagName( 'video' );
 
-					console.log( videoElements );
+		 				console.log( videoElements );
 
-					if ( videoElements.length )
-					{
-						// Initialize first video
-						videoElements[ 0 ].load(  );
-						videoElements[ 0 ].play(  );
-						$scope.currentSlide = $scope.slides[0];
+		 				if ( videoElements.length )
+		 				{
+							// Initialize first video
+							videoElements[ 0 ].load(  );
+							videoElements[ 0 ].play(  );
+							$scope.currentSlide = $scope.slides[0];
 
-						for ( var i = 0; i < videoElements.length; i++ )
-						{
-							// Load next video when current video starts playing
-							angular.element( videoElements[ i ] ).bind( 'playing', function(  )
+							for ( var i = 0; i < videoElements.length; i++ )
 							{
-								var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
-
-								if( videoIndex + 1 < videoElements.length )
+								// Load next video when current video starts playing
+								angular.element( videoElements[ i ] ).bind( 'playing', function(  )
 								{
-									videoElements[ videoIndex + 1 ].load(  );
-								}
-								else
-								{
-									videoElements[ 0 ].load(  );
-								}
-								console.log( 'playing video: ', videoIndex, 'loading video: ', videoIndex + 1 );
-							} )
+									var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
 
-							// Switch to next video when current video finished playing
-							angular.element( videoElements[ i ] ).bind( 'ended', function(  )
-							{
-								var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
+									if( videoIndex + 1 < videoElements.length )
+									{
+										videoElements[ videoIndex + 1 ].load(  );
+									}
+									else
+									{
+										videoElements[ 0 ].load(  );
+									}
+									console.log( 'playing video: ', videoIndex, 'loading video: ', videoIndex + 1 );
+								} )
 
-								if ( videoIndex + 1 < videoElements.length )
-								{					
-									videoElements[ videoIndex + 1 ].play(  );
-									$scope.currentSlide = $scope.slides[ videoIndex + 1 ];
-									$scope.$apply(  );
-								}
-								else
+								// Switch to next video when current video finished playing
+								angular.element( videoElements[ i ] ).bind( 'ended', function(  )
 								{
-									videoElements[ 0 ].play(  );
-									$scope.currentSlide = $scope.slides[ 0 ];
-									$scope.$apply(  );
-								}
-								console.log( 'switching video' );
-							} );
+									var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
+
+									if ( videoIndex + 1 < videoElements.length )
+									{					
+										videoElements[ videoIndex + 1 ].play(  );
+										$scope.currentSlide = $scope.slides[ videoIndex + 1 ];
+										$scope.$apply(  );
+									}
+									else
+									{
+										videoElements[ 0 ].play(  );
+										$scope.currentSlide = $scope.slides[ 0 ];
+										$scope.$apply(  );
+									}
+									console.log( 'switching video' );
+								} );
+							}
 						}
-					}
-				}, 0);
+					}, 0);
 			}
 			else
-			// Image slideshow
+				// Image slideshow
 			{
 				$scope.playSlideShow = $interval( function(  )
 				{
@@ -96,8 +99,9 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 
 				}, $scope.frameRate || 2000 );
 			}
-     }
-   } );
+		}
+	} );
+	}
 
 	// Control buttons
 	$scope.setCurrentSlide = function( slide )
