@@ -12,7 +12,9 @@ var projectState = angular.module( 'projectState',
 	
 	'ngToggleClass',
 
-	'reverseFilter'
+	'reverseFilter',
+
+	'recGroupFilter'
 ] );
 
 

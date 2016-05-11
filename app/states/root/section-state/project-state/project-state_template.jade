@@ -155,10 +155,10 @@
 					.project-page-sidebar-header
 						| Design Recognition
 
-					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
+					.project-detail-wrapper( ng-repeat='group in activeItem.awards | groupBy: "year"  | toArray | recGroup' )
 						.project-detail-label
-							| {{ key }}
-						.project-detail-text.project-page-award( ng-repeat='award in value' )
+							| {{ group[0].year }}
+						.project-detail-text.project-page-award( ng-repeat='award in group' )
 							| {{ award.title }}
 
 				//- Bibliography (DESKTOP)
@@ -396,14 +396,17 @@
 					.project-page-sidebar-header
 						| Design Recognition
 
-					.project-detail-wrapper( ng-repeat='(key, value) in activeItem.awards | groupBy: "year"' )
+					.project-detail-wrapper( ng-repeat='group in activeItem.awards | groupBy: "year" | toArray | recGroup' )
 						.project-detail-label
-							| {{ key }}
-						.project-detail-text.project-page-award( ng-repeat='award in value' )
+							| {{ group[0].year }}
+						.project-detail-text.project-page-award( ng-repeat='award in group' )
 							| {{ award.title }}
 
 				//- Bibliography (MOBILE)
-				.project-page-sidebar-section.contracted(ng-toggle-class='open contracted')
+				.project-page-sidebar-section.contracted(
+					ng-toggle-class='open contracted'
+					ng-if='activeItem.bibliography_items.length'
+				)
 
 					.project-page-sidebar-header(
 						ng-if='activeItem.bibliography_items.length'
