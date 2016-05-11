@@ -31,26 +31,34 @@ mblDirective.directive( 'mblDirective', function( $timeout, $parse )
 				}
 
 				var images = elm[0].querySelectorAll('[data-mbl]')
-				var imageload = mbl(images,
-				{ 
-					sequential: sequentialVar,
-					mode: 'background'
-				});
 
-				imageload.start();
-
-				var counter = 0;
-
-				imageload.on('success', function()
+				if ( images.length )
 				{
-					counter++
+					var imageload = mbl(images,
+					{ 
+						sequential: sequentialVar,
+						mode: 'background'
+					});
 
-					if ( counter == 1 )
+					imageload.start();
+
+					var counter = 0;
+
+					imageload.on('success', function()
 					{
-						console.log('counter=', counter, '! invoking controller function from directive!');
-						scope.$apply(attrs.ctrlFn);
-					}
-				});
+						counter++
+
+						if ( counter == 1 )
+						{
+							console.log('counter=', counter, '! invoking controller function from directive!');
+							scope.$apply(attrs.ctrlFn);
+						}
+					});
+				}
+				else
+				{
+					scope.$apply(attrs.ctrlFn);
+				}
 			})
 		}
 	};
