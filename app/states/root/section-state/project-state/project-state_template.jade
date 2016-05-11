@@ -164,10 +164,9 @@
 				//- Bibliography (DESKTOP)
 				.project-page-sidebar-section.wmone.contracted(
 					ng-toggle-class='open contracted'
+					ng-if='activeItem.bibliography_items.length'
 				)
-					.project-page-sidebar-header(
-						ng-if='activeItem.bibliography_items.length'
-					)
+					.project-page-sidebar-header( ng-if='activeItem.bibliography_items.length')
 						| Bibliography
 					.project-detail-wrapper.bibliography-item(
 						ng-repeat='item in activeItem.bibliography_items'
