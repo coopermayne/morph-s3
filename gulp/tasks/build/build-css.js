@@ -28,19 +28,19 @@ gulp.task( 'build-css', function(  )
 
 		// Select all bower styles.
 
-		gulp.src( mainBowerFiles( {
-			paths:
-			{
-				bowerDirectory: path.to.bower.source,
-				bowerrc: path.to.bower.config,
-				bowerJson: path.to.bower.manifest
-			}
+		// gulp.src( mainBowerFiles( {
+		// 	paths:
+		// 	{
+		// 		bowerDirectory: path.to.bower.source,
+		// 		bowerrc: path.to.bower.config,
+		// 		bowerJson: path.to.bower.manifest
+		// 	}
 
-		} ),
-		{
-			base: path.to.bower.source
-		} )
-		.pipe( filter( '**/*.css' ) ),
+		// } ),
+		// {
+		// 	base: path.to.bower.source
+		// } )
+		// .pipe( filter( '**/*.css' ) ),
 
 
 
