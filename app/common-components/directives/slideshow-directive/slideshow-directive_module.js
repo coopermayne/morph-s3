@@ -1,9 +1,7 @@
 'use strict';
 
 var slideshowDirective = angular.module( 'slideshowDirective',
-	[ 
-		'mblDirective'
- 	] );
+	[ ] );
 
 slideshowDirective.directive( 'slideshowDirective', function(  )
 {

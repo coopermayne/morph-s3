@@ -18,8 +18,6 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$scope.mobile = match;
 	});
 
-	$scope.startSlideShow = function()
-	{
 		$scope.$watch( 'slides', function( apiResponse )
 		{	
 			if ( apiResponse !== undefined )
@@ -101,7 +99,6 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 			}
 		}
 	} );
-	}
 
 	// Control buttons
 	$scope.setCurrentSlide = function( slide )
@@ -118,6 +115,5 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		return counter = -1;
 	});
 
-	//console.log( 'SlideShowDirectiveController active!' );
 
 } );
