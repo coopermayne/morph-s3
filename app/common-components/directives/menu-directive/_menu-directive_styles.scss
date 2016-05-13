@@ -356,6 +356,11 @@ menu-directive
 
 	color: $yellow;
 
+	.section-title-inner
+	{
+		display: inline-block;
+	}
+
 	&:hover,
 	&.selected
 	{
