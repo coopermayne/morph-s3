@@ -54,7 +54,10 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.scrollSortToTop = function(  )
 	{
-		return window.scrollTo(0, 0);
+		$timeout( function(  )
+		{
+			return window.scrollTo( 0, 0 )
+		}, 100 );
 	}
 
 	$scope.resolveMobileSortingClick = function( string )
