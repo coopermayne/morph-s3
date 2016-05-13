@@ -23,11 +23,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$scope.mobile = true;
 	}
 
-	$scope.$watch('mobile', function()
-	{
-		console.log('mobile?', $scope.mobile);
-	})
-
 	$scope.$watch('showMobileMenuVar', function()
 	{
 		// Android keyboard-handling functions
@@ -38,7 +33,6 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			if(isAndroid && $scope.showMobileMenuVar && $state.current.name === 'root.section-state.sorting-state')
 			{
 				var search = document.getElementsByClassName('search');
-				console.log(search);
 				search[0].addEventListener('focus', function(e)
 				{
 					var container = document.getElementsByClassName('menu-directive-wrapper'),
@@ -189,7 +183,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}
 	}
 
-	console.log( 'MenuDirectiveController active!' );
+	// console.log( 'MenuDirectiveController active!' );
 
 	$scope.$on( '$stateChangeSuccess', function( event )
 	{
