@@ -347,8 +347,9 @@ menu-directive
 
 .news-highlight
 {
-	/*flex-flow: column wrap;*/
-	flex-wrap: wrap;
+	flex: none;
+
+	display: inline;
 
 	color: $yellow;
 
