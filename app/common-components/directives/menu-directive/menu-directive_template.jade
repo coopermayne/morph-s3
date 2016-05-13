@@ -88,7 +88,7 @@ ul.menu-directive-wrapper.scrollable-content(
 			.sorting-option-wrapper(
 				ng-repeat='sortingOption in bigMenuItem.sorting'
 				ui-sref='root.section-state.sorting-state({ section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null, e: null, p: null, sub: null })'
-				ng-click=' $event.stopPropagation(  ); resolveMobileSortingClick( sortingOption.title ) '
+				ng-click=' $event.stopPropagation(  ); resolveMobileSortingClick( sortingOption.title ); scrollSortToTop(  );'
 			)
 
 				.sorting-option-title-wrapper(
