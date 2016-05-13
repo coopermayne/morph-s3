@@ -513,6 +513,7 @@ menu-directive
 	@include respond-to('small')
 	{
 		display: flex;
+		max-width: 70%;
 	}
 
 	flex-flow: row;
