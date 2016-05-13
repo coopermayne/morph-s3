@@ -50,7 +50,12 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				}, true);
 			}
 		})
-	})
+	});
+
+	$scope.scrollSortToTop = function(  )
+	{
+		return window.scrollTo(0, 0);
+	}
 
 	$scope.resolveMobileSortingClick = function( string )
 	{

@@ -127,7 +127,7 @@ ul.menu-directive-wrapper.scrollable-content(
 							ng-repeat='littleSortingOption in sortingOption.items'
 							ui-sref='root.section-state.sorting-state( { q: littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  ), e: null, p: null, sub: null } )'
 							ng-mouseover='$event.stopPropagation(  )'
-							ng-click='$event.stopPropagation(  ); closeMobileMenu(  )'
+							ng-click='$event.stopPropagation(  ); closeMobileMenu(  ); scrollSortToTop(  )'
 						)
 							p(
 								ng-class='{"selected": stateParams.q && stateParams.q === (littleSortingOption.title.toLowerCase(  ) || littleSortingOption.toLowerCase(  )) }'
