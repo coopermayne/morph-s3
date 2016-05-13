@@ -92,11 +92,6 @@ menu-directive
 	padding: 2rem;
 	padding-right: 5rem;
 
-	a
-	{
-		color: $black;
-	}
-
 	a.anchor
 	{
 		height: 1rem;
@@ -109,6 +104,14 @@ menu-directive
 	hr
 	{
 		border: none;
+	}
+}
+
+#contactcontact
+{
+	p *
+	{
+		display: inline;
 	}
 }
 

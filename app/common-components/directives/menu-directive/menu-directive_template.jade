@@ -42,7 +42,7 @@
 		)
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
-	.menu-about-text
+	.menu-about-text(id='contactcontact')
 		a.anchor( name='contact')
 		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 		a.anchor( name='employment')
