@@ -623,7 +623,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 	$scope.$on( '$locationChangeSuccess', function( event, newState, oldState )
 	{ 
 
-		// Update stateParams
+		// Update stateParams to fix 'back' button index bug
 		switch( $scope.stateParams.section )
 		{
 			case 'about':
@@ -677,10 +677,10 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 	$scope.$on( '$stateChangeSuccess', function( event )
 	{
-		if ( $scope.previousState.name === 'root.section-state.project-state' && !$scope.toParams.projectId && $rootScope.originalIndex )
-		{
-			$state.transitionTo( 'root.section-state.sorting-state', $rootScope.originalIndex, { reload: true, inherit: false, notify: true } );
-		}
+		// if ( $scope.previousState.name === 'root.section-state.project-state' && !$scope.toParams.projectId && $rootScope.originalIndex )
+		// {
+		// 	$state.transitionTo( 'root.section-state.sorting-state', $rootScope.originalIndex, { reload: true, inherit: false, notify: true } );
+		// }
 	} );
 
 } );

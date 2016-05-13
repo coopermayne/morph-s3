@@ -115,10 +115,11 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 		var originalIndex = $rootScope.originalIndex;
 		if ( originalIndex )
 		{
-			$state.transitionTo( 'root.section-state.sorting-state', originalIndex, { reload: true, inherit: false, notify: true } );
+			// $state.transitionTo( 'root.section-state.sorting-state', originalIndex, { reload: true, inherit: false, notify: true } );
 
-			// Clear originalIndex
-			$rootScope.originalIndex = null;
+			// // Clear originalIndex
+			// $rootScope.originalIndex = null;
+			 window.history.back()
 		}
 		else
 		{
