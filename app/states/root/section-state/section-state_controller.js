@@ -631,9 +631,13 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			break;
 
 			default:
+			$scope.stateParams = $state.params;
+			
 			$timeout(function()
 			{
 				$scope.stateParams = $state.params;
+				$scope.switchSubSort('date');
+
 			});
 		}
 
