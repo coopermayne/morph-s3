@@ -350,10 +350,16 @@ menu-directive
 
 .news-highlight
 {
-	/*flex-flow: column wrap;*/
-	flex-wrap: wrap;
+	flex: none;
+
+	display: inline;
 
 	color: $yellow;
+
+	.section-title-inner
+	{
+		display: inline-block;
+	}
 
 	&:hover,
 	&.selected
@@ -507,6 +513,7 @@ menu-directive
 	@include respond-to('small')
 	{
 		display: flex;
+		max-width: 70%;
 	}
 
 	flex-flow: row;

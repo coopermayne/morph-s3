@@ -27,7 +27,7 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope )
 					resetFadeTimeout(  );
 				} );
 
-				console.log('mobile/tablet?',$rootScope.mobileAndTabletCheck());
+				// console.log('mobile/tablet?',$rootScope.mobileAndTabletCheck());
 
 				var resetFadeTimeout = function(  )
 				{
