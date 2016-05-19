@@ -16,8 +16,6 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	
 	$scope.activeTopNav = $state.current.activeTopNav;
 
-	$scope.pageTitle = 'hey';
-
 	// $scope.mobile = screenSize.on( 'xs', function( match )
 	// {
 	// 	$scope.mobile = match;
