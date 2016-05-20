@@ -8,15 +8,15 @@ ngBaguetteBox.directive( 'ngBaguette', function( $timeout )
 		restrict: 'AC',
 		link: function ( $scope, $elm )
 		{
-			$timeout( function(  )
-			{
-				baguetteBox.run( '.gallery',
-				{
-					noScrollBars: true,
-					animation: 'fadeIn',
-					captions: true
-				} );
-			}, 1000 );
+			//$timeout( function(  )
+			//{
+				//baguetteBox.run( '.gallery',
+				//{
+					//noScrollBars: true,
+					//animation: 'fadeIn',
+					//captions: true
+				//} );
+			//}, 1000 );
 		}
 	};
 } );

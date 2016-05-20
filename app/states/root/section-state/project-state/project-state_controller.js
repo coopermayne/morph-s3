@@ -102,6 +102,15 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 		{
 			$scope.activeItem = response.result;
 			$scope.throbberOn = false;
+      $timeout(function(){
+        console.log('run bb');
+        baguetteBox.run( '.gallery',
+        {
+          noScrollBars: true,
+          animation: 'fadeIn',
+          captions: true
+        } );
+      }, 0)
 		} );
 		break;
 	}
