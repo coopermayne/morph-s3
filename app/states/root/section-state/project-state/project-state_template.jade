@@ -501,7 +501,7 @@
 						| Bio
 					.project-description-body( ng-bind-html='activeItem.description | htmlParse' )
 
-				.project-description-header(ng-if='activeItem.roles_sorted.length > 0')
+				.project-description-header.people(ng-if='activeItem.roles_sorted.length > 0')
 					| Related Projects
 
 				.project-detail-wrapper( ng-repeat='posRoles in activeItem.roles_sorted' )

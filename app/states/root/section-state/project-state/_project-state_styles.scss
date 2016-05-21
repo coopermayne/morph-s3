@@ -241,6 +241,12 @@
 	font-style: italic;
 }
 
+.project-description-header.people {
+
+	padding-top: 1rem;
+
+}
+
 .project-description-body
 {
 	@include respond-to( 'small' )
