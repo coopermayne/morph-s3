@@ -5,6 +5,18 @@ var projectState = angular.module( 'projectState' );
 projectState.controller( 'ProjectStateController', function( $window, $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
 {
 
+	$scope.makeCreditLink = function(image){
+		if(image.credit) {
+			if(image.crediturl) {
+				return "<a class='creditlink' href='"+ image.crediturl +"' target='_blank'>"+image.credit+"</a>"
+			} else {
+				return image.credit
+			}
+		} else {
+			return ""
+		}
+	}
+
 	//helper method
 	$scope.printAddress = function(it){
 		if(it.address){

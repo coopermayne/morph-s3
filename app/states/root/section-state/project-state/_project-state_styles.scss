@@ -241,10 +241,9 @@
 	font-style: italic;
 }
 
-.project-description-header.people {
-
+.project-description-header.people
+{
 	padding-top: 1rem;
-
 }
 
 .project-description-body
@@ -412,6 +411,11 @@
 		font-style: italic;
 		font-size: $body-text;
 	}
+}
+
+figcaption *
+{
+	color: rgba(255, 255, 255, 0.5);
 }
 
 .arrow-right
