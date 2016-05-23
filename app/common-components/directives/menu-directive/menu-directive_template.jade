@@ -155,6 +155,7 @@ ul.menu-directive-wrapper.scrollable-content(
 				ng-change='updateSearch( searchText )'
 				ng-enter='closeMobileMenu(  ); updateSearch( searchText )'
 			)
+			.search-button-click( ng-click='updateSearch( searchText ); closeMobileMenu(  );' )
 	//- Mobile about text
 	.mobile-about-text-wrapper(
 		ng-if='mobile && stateParams.section === "about" && !stateParams.sortingType'
