@@ -5,6 +5,18 @@ var projectState = angular.module( 'projectState' );
 projectState.controller( 'ProjectStateController', function( $window, $rootScope, $scope, $state, $stateParams, Project, $interval, $http, screenSize, $timeout )
 {
 
+	$scope.makeCreditLink = function(image){
+		if(image.credit) {
+			if(image.crediturl) {
+				return "<a class='creditlink' href='"+ image.crediturl +"' target='_blank'>"+image.credit+"</a>"
+			} else {
+				return image.credit
+			}
+		} else {
+			return ""
+		}
+	}
+
 	//helper method
 	$scope.printAddress = function(it){
 		if(it.address){
@@ -102,6 +114,15 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 		{
 			$scope.activeItem = response.result;
 			$scope.throbberOn = false;
+      $timeout(function(){
+        console.log('run bb');
+        baguetteBox.run( '.gallery',
+        {
+          noScrollBars: true,
+          animation: 'fadeIn',
+          captions: true
+        } );
+      }, 0)
 		} );
 		break;
 	}
