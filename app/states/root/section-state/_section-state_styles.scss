@@ -116,6 +116,14 @@
 
 .sub-sort-wrapper
 {
+	@include respond-to( 'medium' )
+	{
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 5;
+
+		transform: none;
+	}
 	@include respond-to( 'small' )
 	{
 		align-items: center;
@@ -128,14 +136,6 @@
 		background-color: white;
 		// top: 0.5rem;
 		// z-index: 5;
-
-		transform: none;
-	}
-	@include respond-to( 'medium' )
-	{
-		top: 0.5rem;
-		right: 0.5rem;
-		z-index: 5;
 
 		transform: none;
 	}

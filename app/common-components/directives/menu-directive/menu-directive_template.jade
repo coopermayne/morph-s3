@@ -1,6 +1,7 @@
 .mobile-menu-bar.scrollable-header(
 	ng-if='( mobile && state.current.name === "root.section-state.sorting-state" ) || ( mobileAndTabletCheck(  ) && "search, news".indexOf( stateParams.section ) !== -1 )'
 	ng-click='openMobileMenu(  )'
+	ng-class="{ 'shorten-mobile-menu': stateParams.sortingType === 'type' }"
 )
 	.mobile-bar-item
 		| mO

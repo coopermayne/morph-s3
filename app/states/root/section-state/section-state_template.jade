@@ -1,7 +1,7 @@
 //- Project Modal
 .project-modal.scrollable( ui-view='project-content' )
 
-.sub-sort-wrapper( ng-if='stateParams.sortingType && ( "bibliography, books".indexOf( stateParams.q ) != -1 ||  stateParams.sortingType=="type" ) && indexContents.length' )
+.sub-sort-wrapper( ng-if='stateParams.sortingType && ( stateParams.q == "bibliography" || stateParams.q == "books" ||  stateParams.sortingType == "type" ) && indexContents.length > 0' )
 	.sub-sort(
 		ng-click='switchSubSort( "title" )'
 		ng-class='subSort === "title"?"active-sort":""'
