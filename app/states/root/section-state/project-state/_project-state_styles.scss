@@ -254,8 +254,9 @@
 {
 	@include respond-to( 'small' )
 	{
+		margin-right: 0px;
+
 		column-count: auto;
-    margin-right: 0px;
 	}
 
 	flex-flow: row;

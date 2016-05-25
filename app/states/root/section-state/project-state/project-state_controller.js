@@ -102,8 +102,16 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 		{
 			Project.get( { id: $scope.stateParams.projectId } ).$promise.then( function( response )
 			{
-
 				$scope.activeItem = response.result;
+        $timeout(function(){
+          console.log('run bb');
+          baguetteBox.run( '.gallery',
+          {
+            noScrollBars: true,
+            animation: 'fadeIn',
+            captions: true
+          } );
+        }, 0)
 			} );
 		}
 		break;
