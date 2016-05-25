@@ -23,21 +23,20 @@
 			)
 	
 	//- Mobile header image
-	.project-page-header-image-gallery-wrapper
-		.project-page-header-image-wrapper.gallery( 
-			ng-if='mobile'
-	    	ng-show='activeItem.primary_image.name'
+	.project-page-header-image-wrapper( 
+		ng-if='mobile'
+			ng-show='activeItem.primary_image.name'
+	)
+		.project-page-header-image(
+			href='{{ activeItem.primary_image.name.mobile.url }}'
+			data-caption='{{ image.title }}'
+			style='background-image:url("{{ activeItem.primary_image.name.url }}");'
+			ng-class='{ "people-header-image": stateParams.m === "person" }'
 		)
-			a.project-page-header-image(
-				href='{{ activeItem.primary_image.name.mobile.url }}'
-				data-caption='{{ image.title }}'
-				style='background-image:url("{{ activeItem.primary_image.name.url }}");'
+			img.project-page-header-image(
+				ng-src=''
 				ng-class='{ "people-header-image": stateParams.m === "person" }'
 			)
-				img.project-page-header-image(
-					ng-src=''
-					ng-class='{ "people-header-image": stateParams.m === "person" }'
-				)
 
 	.project-page-content-wrapper
 
