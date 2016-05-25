@@ -19,7 +19,7 @@
 
 	.menu-about-text
 		p#about.about-text-header
-		p( ng-bind-html='menuItems.sections[0].about | htmlParse' )
+		p.html-inline-fix( ng-bind-html='menuItems.sections[0].about | htmlParse' )
 
 //media
 .menu-about-text-wrapper(
@@ -28,7 +28,7 @@
 )
 	.menu-about-text
 		p#about.about-text-header
-		p( ng-bind-html='menuItems.sections[0].media | htmlParse' )
+		p.html-inline-fix( ng-bind-html='menuItems.sections[0].media | htmlParse' )
 
 //contact
 .menu-about-text-wrapper(
@@ -43,11 +43,11 @@
 		)
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
-	.menu-about-text(id='contactcontact')
+	.menu-about-text.html-inline-fix
 		a.anchor( name='contact')
-		p( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
+		p.html-inline-fix( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 		a.anchor( name='employment')
-		p( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
+		p.html-inline-fix( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
 
 ul.menu-directive-wrapper.scrollable-content(
 	ng-if='(showMobileMenuVar || !mobile) && state.current.name !== "root.section-state.project-state"'

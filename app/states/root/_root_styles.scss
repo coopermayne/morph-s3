@@ -1,3 +1,13 @@
+.html-inline-fix p
+{
+	display: block;
+
+	*:not(p):not(hr)
+	{
+		display: inline;
+	}
+}
+
 .root-view
 {
 	flex-flow: column;

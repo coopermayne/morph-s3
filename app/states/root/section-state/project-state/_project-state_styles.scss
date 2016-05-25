@@ -194,10 +194,14 @@
 		padding: 1.5rem 0 !important;
 	}
 
+	flex: initial;
+
+	display: block;
 	margin-right: 60px;
 	padding-bottom: 1rem;
 
 	font-size: $subheader-text;
+
 	& *
 	{
 		display: inline;
@@ -325,12 +329,17 @@
 			}
 		}
 
+		display: block;
 		max-width: 100%;
-		a
+
+		// HTML inline fix
+		*:not(p):not(hr)
 		{
+			display: inline;
 			max-width: 100%;
 
 			text-decoration: none;
+
 			&:hover
 			{
 				text-decoration: underline;
