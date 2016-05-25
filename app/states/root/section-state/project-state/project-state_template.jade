@@ -12,7 +12,6 @@
     	ng-show='activeItem.primary_image.name.url'
 	)
 		.project-page-header-image(
-			href='{{ activeItem.primary_image.name.url }}'
 			data-caption='{{ image.title }}'
 			style='background-image:url("{{ activeItem.primary_image.name.url }}");'
 			ng-class='{ "people-header-image": stateParams.m === "person" }'
@@ -28,7 +27,6 @@
 			ng-show='activeItem.primary_image.name'
 	)
 		.project-page-header-image(
-			href='{{ activeItem.primary_image.name.mobile.url }}'
 			data-caption='{{ image.title }}'
 			style='background-image:url("{{ activeItem.primary_image.name.url }}");'
 			ng-class='{ "people-header-image": stateParams.m === "person" }'
