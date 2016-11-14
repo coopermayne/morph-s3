@@ -171,6 +171,14 @@ a.twitter-link(
 )
 	img.twitter-icon(src="images/twitter_icon.png")
 
+a.instagram-link(
+	ng-href='https://www.instagram.com/morphosisarchitects/'
+	target='_blank'
+	ng-if='!stateParams.section'
+)
+	img.instagram-icon(src="images/instagram_icon.png")
+
+
 //- Section slideshows
 //- For mobile, only add to DOM when in current section
 slideshow-directive(

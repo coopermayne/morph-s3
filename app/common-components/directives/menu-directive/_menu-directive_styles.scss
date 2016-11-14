@@ -599,6 +599,26 @@ a.twitter-link
 	}
 }
 
+a.instagram-link
+{
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	z-index: 99999;
+
+	.instagram-icon
+	{
+		opacity: 0.5;
+		width: 3rem;
+		height: 3rem;
+	}
+}
+
 .grr *
 {
 	display: inline;
