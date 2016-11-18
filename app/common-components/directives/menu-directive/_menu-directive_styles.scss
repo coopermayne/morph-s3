@@ -619,6 +619,26 @@ a.instagram-link
 	}
 }
 
+a.facebook-link
+{
+	@include respond-to( 'small' )
+	{
+		display: none;
+	}
+
+	position: fixed;
+	top: 110px;
+	right: 27px;
+	z-index: 99999;
+
+	.facebook-icon
+	{
+		opacity: 0.5;
+		width: 2.2rem;
+		height: 2.2rem;
+	}
+}
+
 .grr *
 {
 	display: inline;

@@ -178,6 +178,12 @@ a.instagram-link(
 )
 	img.instagram-icon(src="images/instagram_icon.png")
 
+a.facebook-link(
+	ng-href='http://www.facebook.com/MorphosisArchitectsOfficial'
+	target='_blank'
+	ng-if='!stateParams.section'
+)
+	img.facebook-icon(src="images/facebook_icon.png")
 
 //- Section slideshows
 //- For mobile, only add to DOM when in current section
