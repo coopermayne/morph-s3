@@ -3,7 +3,7 @@
 var menuDirective = angular.module( 'menuDirective' );
 
 
-menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize, $timeout )
+menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scope, $state, $stateParams, Menu, screenSize, $timeout, $http)
 {
 
 	// Fetch Menu from API and set video slides
@@ -52,6 +52,30 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		{
 			return window.scrollTo( 0, 0 )
 		}, 100 );
+	}
+
+	$scope.emailFormValue = ""
+	$scope.showForm = true
+
+	$scope.changeEmail = function(input){
+		$scope.emailFormValue = input
+	}
+
+	$scope.processForm = function(){
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/press_list',
+			params : {email: $scope.emailFormValue}
+		}).success(function(data){
+			$scope.emailFormValue = ""
+			if(data.success){
+				console.log("good");
+				//clear fields
+				$scope.emailFormValue = ""
+			} else {
+				console.log("bad");
+			}
+		})
 	}
 
 	$scope.resolveMobileSortingClick = function( string )

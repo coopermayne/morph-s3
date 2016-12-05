@@ -110,6 +110,58 @@ menu-directive
 	{
 		border: none;
 	}
+	form
+	{
+		input
+		{
+			padding: 10px;
+			outline: none;
+			border: none;
+			border-bottom: solid 2px $black;
+			border-radius: none;
+			box-shadow: none;
+
+			font-size: 1.6rem;
+
+			transition: border 0.3s;
+
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			-webkit-border-radius: none;
+			-moz-border-radius: none;
+			-ms-border-radius: none;
+			-o-border-radius: none;
+		}
+		input:focus
+		{
+			outline: none;
+			border-bottom: solid 2px $black;
+		}
+		button
+		{
+			padding: 10px;
+			outline: none;
+			border: none;
+			border: solid 2px $black;
+			border-radius: none;
+			background: $white;
+			box-shadow: none;
+
+			color: $black;
+			font-size: 1.6rem;
+
+
+			&:active
+			{
+				background: $black;
+
+				color: $white;
+			}
+		}
+	}
 }
 
 .menu-about-nav
