@@ -64,7 +64,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.processForm = function(){
 		$http({
 			method: 'GET',
-			url: 'http://localhost:3000/press_list',
+			url: 'http://morphosisapi.herokuapp.com/press_list',
 			params : {email: $scope.emailFormValue}
 		}).success(function(data){
 			$scope.emailFormValue = ""
