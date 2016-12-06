@@ -238,5 +238,11 @@
 			ng-class='{ "current-page": stateParams.p == pageNum || ( !stateParams.p && pageNum === 0 ) }'
 		)
 			| {{ pageNum + 1 }}
-	.next( ng-show='isNext' ng-click='getPage( "next" )' )
+	.next(
+		ng-if='!stateParams.p'
+		ng-show='isNext'
+		ui-sref='root.section-state.sorting-state({ p: 1 })'
+	)
+		| Next page
+	.next( ng-if='stateParams.p' ng-show='isNext' ng-click='getPage( "next" )' )
 		| Next page
