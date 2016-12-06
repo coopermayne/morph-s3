@@ -27,6 +27,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		if ( !$scope.stateParams.p )
 		{
 			$scope.stateParams.p = 0;
+			console.log($scope.stateParams)
 		}
 
 		switch( dir )
@@ -118,7 +119,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 	// Wait for API response (and DOM to load) before scrolling to expanded item
 	$scope.$watchCollection( 'indexContents', function(  )
 	{
-		if( $scope.indexContents.length != 0 )
+		if( $scope.indexContents && $scope.indexContents.length != 0 )
 		{
 			placeMarkers();
 		}
@@ -529,6 +530,32 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			}, 500 )
 		} );
 	}
+	$scope.getNewsResource = function( params )
+	{
+				$scope.throbberOn = true;
+
+				$http(
+					{
+						method: 'GET',
+						url: 'http://localhost:3000/' + 'news.json',
+						params:
+							{
+								p: params.p,
+							}
+					} ).then( function( response )
+					{
+						$scope.isPrev = !( response.data.currentPage == 0 );
+						$scope.isNext = response.data.totalPages > response.data.currentPage;
+						$scope.indexContents = response.data.results;
+						$scope.pageArray = [  ];
+						for ( var i = 0; i <= response.data.totalPages; i++ )
+						{
+							$scope.pageArray.push( i );
+						}
+						$scope.throbberOn = false;
+
+					} );
+	}
 
 	$scope.getMediaResource = function( params )
 	{
@@ -589,7 +616,8 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 		// News
 		case 'news':
-		$scope.getResource( 'news' );
+		$scope.altIndexSection = true;
+		$scope.getNewsResource( $scope.stateParams );
 		break;
 
 		// Search
@@ -627,6 +655,10 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		switch( $scope.stateParams.section )
 		{
 			case 'about':
+			$scope.stateParams = $state.params;
+			break;
+
+			case 'news':
 			$scope.stateParams = $state.params;
 			break;
 
@@ -676,6 +708,12 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			{
 				$scope.switchSubSort( 'date' );
 			}
+		}
+
+		if ( $scope.stateParams.section == 'news' )
+		{
+			$scope.indexContents = [  ];
+			$scope.getNewsResource( $scope.stateParams );
 		}
 	} );
 
