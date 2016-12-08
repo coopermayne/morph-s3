@@ -68,6 +68,10 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
   }
 
   $scope.formSubmitted = false
+  $scope.hideForm = true
+  $timeout( function(  ){
+    $scope.hideForm = false
+  }, 500)
   $scope.formErrors = 0
 
 	$scope.processForm = function(email, firstName, lastName, affiliation){
