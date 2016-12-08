@@ -44,22 +44,47 @@
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
 	.menu-about-text.html-inline-fix
+
+		a(href='#form') join mailing list
+
 		a.anchor( name='contact')
 		p.html-inline-fix( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 
-		form( id='emailForm' ng-submit='processForm()')
-			p For press mailing list: 
-			p(ng-show='!showForm') You have been added to our mailing list.
-			p(ng-show='showForm')
-				input(
-					ng-model='emailFormValue'
-					ng-change='changeEmail(emailFormValue)'
-					placeholder='your@email.here'
-				)
-				button( type='submit' ng-click='showForm=!showForm') submit
 
 		a.anchor( name='employment')
 		p.html-inline-fix( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
+
+		a.anchor( name='form')
+		p.success( ng-show='formSubmitted') You have been added to our mailing list!
+		form( ng-hide='formSubmitted' id='emailForm' ng-submit='processForm(email, firstName, lastName, affiliation)')
+			p Join our mailing list:
+			p
+				input(
+					ng-class='{red: emailError}'
+					ng-model='email'
+					placeholder='your@email.here'
+				)
+				br
+				input(
+					ng-class='{red: firstNameError}'
+					ng-model='firstName'
+					placeholder='First'
+				)
+				br
+				input(
+					ng-class='{red: lastNameError}'
+					ng-model='lastName'
+					placeholder='Last'
+				)
+				br
+				input(
+					ng-class='{red: affiliationError}'
+					ng-model='affiliation'
+					placeholder='affiliation'
+				)
+				br
+				button( type='submit' ) submit
+				span.errors(ng-show='formErrors > 0') {{formErrors}} problems
 
 ul.menu-directive-wrapper.scrollable-content(
 	ng-if='(showMobileMenuVar || !mobile) && state.current.name !== "root.section-state.project-state"'
