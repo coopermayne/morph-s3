@@ -69,9 +69,11 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
   $scope.formSubmitted = false
   $scope.hideForm = true
+
   $timeout( function(  ){
     $scope.hideForm = false
-  }, 500)
+  }, 1500)
+
   $scope.formErrors = 0
 
 	$scope.processForm = function(email, firstName, lastName, affiliation){
@@ -88,7 +90,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
       $http({
         method: 'GET',
         //url: 'http://morphosisapi.herokuapp.com/press_list',
-        url: 'http://localhost:3000/press_list',
+        url: 'http://morphosisapi.herokuapp.com/press_list',
         params : {
           email: $scope.email,
           first: $scope.firstName,

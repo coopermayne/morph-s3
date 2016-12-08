@@ -78,11 +78,11 @@
 				input(
 					ng-class='{red: affiliationError}'
 					ng-model='affiliation'
-					placeholder='affiliation'
+					placeholder='Affiliation'
 				)
 				br
 				button( type='submit' ) submit
-				span.errors(ng-show='formErrors > 0') {{formErrors}} problems
+				span.errors(ng-show='formErrors > 0') {{formErrors}} problem{{formErrors > 1 ? 's' : ''}}
 		p.pusher
 
 ul.menu-directive-wrapper.scrollable-content(
