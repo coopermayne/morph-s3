@@ -8,35 +8,35 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 	$scope.makeCreditLink = function(image){
 		if(image.credit) {
 			if(image.crediturl) {
-				return "<a class='creditlink' href='"+ image.crediturl +"' target='_blank'>"+image.credit+"</a>"
+				return '<a class="creditlink" href="' + image.crediturl + '" target="_blank">' + image.credit + '</a>';
 			} else {
-				return image.credit
+				return image.credit;
 			}
 		} else {
-			return ""
+			return '';
 		}
-	}
+	};
 
 	//helper method
 	$scope.printAddress = function(it){
 		if(it.address){
-			return it.address
+			return it.address;
 		} else {
-			var loc_comps = [it.city, it.state, it.country]
-			var res = []
+			var loc_comps = [it.city, it.state, it.country];
+			var res = [];
 			angular.forEach(loc_comps, function(value){
 				if(value){
-					res.push(value)
+					res.push(value);
 				}
-			})
-			return res.join(", ")
+			});
+			return res.join(', ');
 		}
-	}
+	};
 
-	$scope.min = function(arr) {
+	$scope.min = function(arr){
 		return $filter('min')
 		($filter('map')(arr, 'year'));
-	}
+	};
 
 	$scope.pageLoaded = false;
 
@@ -46,22 +46,22 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 	$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 	{
 		if ( fromState.name === 'root.section-state.sorting-state' || fromParams.section === 'search' )
-		{ 
+		{
 			$rootScope.originalIndex = {
 				section: fromParams.section,
 				sortingType: fromParams.sortingType,
-				q: fromParams.q, 
+				q: fromParams.q,
 				s: fromParams.s,
 				e: fromParams.e,
 				p: fromParams.p,
 				sub: fromParams.sub,
 				m: null
-			}
+			};
 		}
 	});
 
 	screenSize.rules = {
-		superSmall: '(max-width: 500px)',
+		superSmall: '(max-width: 500px)'
 
 	};
 
@@ -76,18 +76,18 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 
 	//open background tab for linky things
 	$scope.backgroundTab = function(url){
-		if (url && url.length) 
+		if (url && url.length)
 		{
 			$window.open(url, '_blank');
 		}
-	}
+	};
 
 	// 'People' or 'Project' layout?
 	switch( $scope.stateParams.section )
 	{
 		case 'search':
 		case 'about':
-		if( $scope.stateParams.m === "person" )
+		if( $scope.stateParams.m === 'person' )
 		{
 			$http(
 			{
@@ -111,7 +111,7 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
             animation: 'fadeIn',
             captions: true
           } );
-        }, 0)
+        }, 0);
 			} );
 		}
 		break;
@@ -130,7 +130,7 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
           animation: 'fadeIn',
           captions: true
         } );
-      }, 0)
+      }, 0);
 		} );
 		break;
 	}
@@ -148,22 +148,22 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 
 			// // Clear originalIndex
 			// $rootScope.originalIndex = null;
-			 window.history.back()
+			window.history.back();
 		}
 		else
 		{
 			$state.go( '^' );
 		}
-	}
+	};
 
 	var scrollscroll;
 	var vel = 0;
 	var theDelay = 16;
 
 	$scope.stopScroll = function(){
-		$interval.cancel(scrollscroll)
-		vel = 0
-	}
+		$interval.cancel(scrollscroll);
+		vel = 0;
+	};
 
 	$scope.scrollLeft = function(e){
 
@@ -172,11 +172,11 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 
 		scrollscroll = $interval(function(){
 			if(vel < 3 ){
-				vel = vel + 0.05
+				vel = vel + 0.05;
 			}
 			imageGallery.scrollLeft -= vel;
-		}, theDelay )
-	}
+		}, theDelay );
+	};
 
 	$scope.scrollRight = function(e){
 
@@ -185,17 +185,17 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 
 		scrollscroll = $interval(function(){
 			if(vel < 3 ){
-				vel = vel + 0.05
+				vel = vel + 0.05;
 			}
 			imageGallery.scrollLeft += vel;
-		}, theDelay )
-	}
+		}, theDelay );
+	};
 
 	$scope.checkItemLength = function( string, maxChar )
 	{
 		if ( string.length > maxChar ) { return true; }
 		else { return false; }
-	}
+	};
 
 
 } );

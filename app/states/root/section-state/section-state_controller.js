@@ -5,6 +5,46 @@ var sectionState = angular.module( 'sectionState' );
 sectionState.controller( 'SectionStateController', function( $rootScope, $scope, $state, $stateParams, Project, $http, $location, $anchorScroll, $timeout, $filter, leafletBoundsHelpers )
 {
 
+	var iconSettings = {
+		iconUrl: 'images/circle.svg',
+		iconAnchor: [9, 10]
+	};
+
+	var placeMarkers = function(  )
+	{
+		switch( $scope.stateParams.section )
+		{
+			case 'architecture':
+			$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
+			break;
+
+			case 'planning':
+			$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'planning' } } );
+			break;
+		}
+
+		angular.forEach( $scope.mapContents, function( item, key )
+		{
+			if( item.lat )
+			{
+				$scope.markers.push(
+				{
+					layer: 'london',
+					icon: iconSettings,
+					lat: parseFloat( item.lat ),
+					lng: parseFloat( item.lon ),
+					getMessageScope: function(  )
+					{
+						return $scope;
+					},
+					focus: false,
+					message: '<div ui-sref="root.section-state.project-state( { projectId: ' + item.id + ' } )"><img class="map-image" src="' + item.image.name.mobile.url + '"></img><div class="project-title">' + item.title + '</div></div>',
+					compileMessage: true
+				} );
+			}
+		} );
+	};
+
 	$scope.indexContents = [  ];
 
 	// Remove baguetteBox from page on back button click (from project page)
@@ -15,12 +55,12 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
-	{	
+	{
 		var el = document.getElementById( $scope.stateParams.e );
 		var elScr = el.getBoundingClientRect().top;
 		document.body.scrollTop = elScr;
 
-	}
+	};
 
 	$scope.getPage = function( dir )
 	{
@@ -49,11 +89,11 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$state.go( $state.current.name, $scope.stateParams );
 			break;
 		}
-	}
+	};
 
 	$scope.switchSubSort = function( sort )
 	{
-		if ( sort == 'date' )
+		if ( sort === 'date' )
 		{
 			$scope.reverseVar = true;
 
@@ -85,13 +125,13 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$scope.reverseVar = false;
 
 				default:
-				if( $scope.stateParams.section == "news" )
+				if( $scope.stateParams.section === 'news' )
 				{
-					$scope.subSort = "created_at";
+					$scope.subSort = 'created_at';
 				}
-				else if ( $scope.stateParams.section == "search" )
+				else if ( $scope.stateParams.section === 'search' )
 				{
-					$scope.subSort = "rank";
+					$scope.subSort = 'rank';
 					$scope.reverseVar = false;
 				}
 			}
@@ -106,19 +146,19 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$state.go( $state.current.name, $scope.stateParams );
 			}
 			else
-			{			
+			{
 				$scope.subSort = sort;
 				$scope.reverseVar = false;
 			}
 		}
 
 		$scope.stateParams.sub = $scope.subSort;
-	}
+	};
 
 	// Wait for API response (and DOM to load) before scrolling to expanded item
 	$scope.$watchCollection( 'indexContents', function(  )
 	{
-		if( $scope.indexContents.length != 0 )
+		if( $scope.indexContents.length !== 0 )
 		{
 			placeMarkers();
 		}
@@ -153,7 +193,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$state.go( 'root.section-state.sorting-state', { section: item.section, sortingType: item.sorting_type, e: item.searchable_id, s: null, m: null } );
 			break;
 		}
-	}
+	};
 
 	// Toggle 'e' parameter on alt index entry click
 	$scope.resolveAltIndexClick = function( id )
@@ -166,7 +206,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 		{
 			$state.go( $state.current.name, { e: null } );
 		}
-	}
+	};
 
 
 //BEGIN MAP------------------------------------------------------
@@ -176,19 +216,19 @@ var default_place = {
 	zoom: 2,
 	lat: 0,
 	lng: 0
-}
+};
 
 //var place_d = {
 	//asia: {
 		//zoom: 4,
 		//lat: 36,
 		//lng: 131
-	//}, 
+	//},
 	//europe: {
 		//zoom: 4,
 		//lat: 49,
 		//lng: 16
-	//}, 
+	//},
 	//america: {
 		//zoom: 4,
 		//lat: 29,
@@ -196,217 +236,212 @@ var default_place = {
 	//}
 //}
 
-$scope.center = $scope.center || angular.copy(default_place)
+$scope.center = $scope.center || angular.copy(default_place);
 
 $scope.defaults = {
-	minZoom: 2,
-}
+	minZoom: 2
+};
 
 var mapStyles =
 [
 {
-	"featureType": "all",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'all',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}, {
-		"lightness": "-100"
+		'lightness': '-100'
 	}]
 }, {
-	"featureType": "all",
-	"elementType": "labels.text.fill",
-	"stylers": [{
-		"saturation": 36
+	'featureType': 'all',
+	'elementType': 'labels.text.fill',
+	'stylers': [{
+		'saturation': 36
 	}, {
-		"color": "#000000"
+		'color': '#000000'
 	}, {
-		"lightness": 40
+		'lightness': 40
 	}]
 }, {
-	"featureType": "all",
-	"elementType": "labels.text.stroke",
-	"stylers": [{
-		"visibility": "on"
+	'featureType': 'all',
+	'elementType': 'labels.text.stroke',
+	'stylers': [{
+		'visibility': 'on'
 	}, {
-		"color": "#000000"
+		'color': '#000000'
 	}, {
-		"lightness": 16
+		'lightness': 16
 	}]
 }, {
-	"featureType": "all",
-	"elementType": "labels.icon",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'all',
+	'elementType': 'labels.icon',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative",
-	"elementType": "geometry.fill",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'administrative',
+	'elementType': 'geometry.fill',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 20
+		'lightness': 20
 	}]
 }, {
-	"featureType": "administrative",
-	"elementType": "geometry.stroke",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'administrative',
+	'elementType': 'geometry.stroke',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 17
+		'lightness': 17
 	}, {
-		"weight": 1.2
+		'weight': 1.2
 	}, {
-		"visibility": "off"
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "simplified"
+	'featureType': 'administrative',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'simplified'
 	}, {
-		"color": "#ffffff"
+		'color': '#ffffff'
 	}]
 }, {
-	"featureType": "administrative.country",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'administrative.country',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative.province",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'administrative.province',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative.locality",
-	"elementType": "geometry.stroke",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'administrative.locality',
+	'elementType': 'geometry.stroke',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative.locality",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "simplified"
+	'featureType': 'administrative.locality',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'simplified'
 	}, {
-		"weight": "1.83"
+		'weight': '1.83'
 	}]
 }, {
-	"featureType": "administrative.locality",
-	"elementType": "labels.icon",
-	"stylers": [{
-		"visibility": "simplified"
+	'featureType': 'administrative.locality',
+	'elementType': 'labels.icon',
+	'stylers': [{
+		'visibility': 'simplified'
 	}]
 }, {
-	"featureType": "administrative.neighborhood",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'administrative.neighborhood',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "administrative.land_parcel",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'administrative.land_parcel',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "landscape",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'landscape',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": "-100"
+		'lightness': '-100'
 	}]
 }, {
-	"featureType": "poi",
-	"elementType": "all",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'poi',
+	'elementType': 'all',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "poi",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'poi',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 21
+		'lightness': 21
 	}]
 }, {
-	"featureType": "road",
-	"elementType": "geometry",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'road',
+	'elementType': 'geometry',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "road",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'road',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
 }, {
-	"featureType": "road.highway",
-	"elementType": "geometry.fill",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'road.highway',
+	'elementType': 'geometry.fill',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 17
+		'lightness': 17
 	}]
 }, {
-	"featureType": "road.highway",
-	"elementType": "geometry.stroke",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'road.highway',
+	'elementType': 'geometry.stroke',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 29
+		'lightness': 29
 	}, {
-		"weight": 0.2
+		'weight': 0.2
 	}]
 }, {
-	"featureType": "road.arterial",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'road.arterial',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 18
+		'lightness': 18
 	}]
 }, {
-	"featureType": "road.local",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'road.local',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 16
+		'lightness': 16
 	}]
 }, {
-	"featureType": "transit",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#000000"
+	'featureType': 'transit',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#000000'
 	}, {
-		"lightness": 19
+		'lightness': 19
 	}]
 }, {
-	"featureType": "road",
-	"elementType": "labels",
-	"stylers": [{
-		"visibility": "off"
+	'featureType': 'road',
+	'elementType': 'labels',
+	'stylers': [{
+		'visibility': 'off'
 	}]
-},{
-	"featureType": "water",
-	"elementType": "geometry",
-	"stylers": [{
-		"color": "#ffffff"
+}, {
+	'featureType': 'water',
+	'elementType': 'geometry',
+	'stylers': [{
+		'color': '#ffffff'
 	}, {
-		"lightness": 17
+		'lightness': 17
 	}]
 }
-]
-
-var iconSettings = {
-	iconUrl: 'images/circle.svg',
-	iconAnchor:   [9, 10],
-}
+];
 
 $scope.maxBounds = leafletBoundsHelpers.createBoundsFromArray([[-540, -145], [540, 260]]);
 
@@ -417,7 +452,7 @@ $scope.layers = {
 			layerType: 'ROADMAP',
 			type: 'google',
 			layerOptions: {
-				mapOptions:{
+				mapOptions: {
 					backgroundColor: '#ffffff',
 					styles: mapStyles
 				}
@@ -427,51 +462,18 @@ $scope.layers = {
 	overlays: {
 		london: {
 			layerOptions: {
-				showCoverageOnHover: false,
+				showCoverageOnHover: false
 			},
-			name: "adf",
-			type: "markercluster",
+			name: 'adf',
+			type: 'markercluster',
 			visible: true
 		}
 	}
-}
+};
 
 $scope.markers = [  ];
 
-var placeMarkers = function(  )
-{
-	switch( $scope.stateParams.section )
-	{
-		case 'architecture':
-		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'architecture' } } );
-		break;
 
-		case 'planning':
-		$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'planning' } } );
-		break;
-	}
-
-	angular.forEach( $scope.mapContents, function( item, key )
-	{
-		if( item.lat )
-		{
-			$scope.markers.push(
-			{
-				layer: 'london',
-				icon: iconSettings,
-				lat: parseFloat( item.lat ),
-				lng:parseFloat( item.lon ),
-				getMessageScope: function(  )
-				{ 
-					return $scope;
-				},
-				focus: false,
-				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><img class='map-image' src='"+item.image.name.mobile.url+"'></img><div class='project-title'>"+item.title+"</div></div>",
-				compileMessage: true
-			} );
-		}
-	} );
-}
 
 //------------------------------------------------------------  end map
 
@@ -488,7 +490,7 @@ $scope.locIndex = false;
 
 $scope.setAltIndex = function( input )
 {
-	if ( 'media, search, research, news'.indexOf( input ) != -1 )
+	if ( 'media, search, research, news'.indexOf( input ) !== -1 )
 	{
 		$scope.altIndexSection = true;
 	}
@@ -505,7 +507,7 @@ $scope.setAltIndex = function( input )
 	{
 		$scope.locIndex = false;
 	}
-}
+};
 
 var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
@@ -526,9 +528,9 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			$timeout( function(  )
 			{
 				$scope.throbberOn = false;
-			}, 500 )
+			}, 500 );
 		} );
-	}
+	};
 
 	$scope.getMediaResource = function( params )
 	{
@@ -544,12 +546,12 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 						params:
 							{
 								p: params.p,
-								q: params.q, 
+								q: params.q,
 								sub: params.sub
 							}
 					} ).then( function( response )
 					{
-						$scope.isPrev = !( response.data.currentPage == 0 );
+						$scope.isPrev = !( response.data.currentPage === 0 );
 						$scope.isNext = response.data.totalPages > response.data.currentPage;
 						$scope.indexContents = response.data.results;
 						$scope.pageArray = [  ];
@@ -561,7 +563,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 					} );
 			}
-	}
+	};
 
 	// Fetch index contents on controller load, based on section parameter
 	switch( $scope.stateParams.section )
@@ -574,7 +576,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			{
 				case 'media':
 				$scope.getMediaResource( $scope.stateParams );
-				$scope.subSort = $scope.stateParams.sub || "pub_date";
+				$scope.subSort = $scope.stateParams.sub || 'pub_date';
 				break;
 
 				case 'people':
@@ -596,7 +598,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		case 'search':
 		$scope.altIndexSection = true;
 		$scope.throbberOn = true;
-		$http( 
+		$http(
 		{
 			method: 'GET',
 			url: apiUrl + 'search.json',
@@ -615,13 +617,13 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		$scope.indexContents.$promise.then( function( results )
 		{
 			$scope.throbberOn = false;
-		})
+		});
 		break;
 	}
 
 	// Fire API calls for separate 'about' section resources
 	$scope.$on( '$locationChangeSuccess', function( event, newState, oldState )
-	{ 
+	{
 
 		// Update stateParams to fix 'back' button index bug
 		switch( $scope.stateParams.section )
@@ -632,7 +634,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 			default:
 			$scope.stateParams = $state.params;
-			
+
 			$timeout(function()
 			{
 				$scope.stateParams = $state.params;
@@ -641,8 +643,8 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 			});
 		}
 
-	    if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
-	    {			
+			if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
+			{
 
 			// Clear indexContents
 			$scope.indexContents = [  ];
@@ -660,13 +662,13 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 
 				case 'media':
 				$scope.getMediaResource( $scope.stateParams );
-				$scope.subSort = $scope.stateParams.sub || "pub_date";
+				$scope.subSort = $scope.stateParams.sub || 'pub_date';
 				break;
 			}
 		}
 
 		if ( $scope.stateParams.sortingType !== 'media' )
-		{	
+		{
 			// Update subSort on section and sortingType change
 			if ( $scope.stateParams.sub )
 			{

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var mblDirective = angular.module( 'mblDirective', [  ] );
 
@@ -27,15 +27,15 @@ mblDirective.directive( 'mblDirective', function( $timeout, $parse )
 				}
 				else
 				{
-					sequentialVar = false
+					sequentialVar = false;
 				}
 
-				var images = elm[0].querySelectorAll('[data-mbl]')
+				var images = elm[0].querySelectorAll('[data-mbl]');
 
 				if ( images.length )
 				{
 					var imageload = mbl(images,
-					{ 
+					{
 						sequential: sequentialVar,
 						mode: 'background'
 					});
@@ -46,9 +46,9 @@ mblDirective.directive( 'mblDirective', function( $timeout, $parse )
 
 					imageload.on('success', function()
 					{
-						counter++
+						counter++;
 
-						if ( counter == 1 )
+						if ( counter === 1 )
 						{
 							console.log('counter=', counter, '! invoking controller function from directive!');
 							scope.$apply(attrs.ctrlFn);
@@ -59,7 +59,7 @@ mblDirective.directive( 'mblDirective', function( $timeout, $parse )
 				{
 					scope.$apply(attrs.ctrlFn);
 				}
-			})
+			});
 		}
 	};
 } );

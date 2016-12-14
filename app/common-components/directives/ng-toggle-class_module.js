@@ -14,5 +14,6 @@ ngToggleClassDirective.directive( 'ngToggleClass', function( $timeout )
 				element.toggleClass( attr.ngToggleClass );
 			} );
 		}
-	}
+	};
 } );
+

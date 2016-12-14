@@ -13,9 +13,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	$scope.state = $state;
 
 	$scope.stateParams = $stateParams;
-	
 	$scope.activeTopNav = $state.current.activeTopNav;
-
 	// $scope.mobile = screenSize.on( 'xs', function( match )
 	// {
 	// 	$scope.mobile = match;

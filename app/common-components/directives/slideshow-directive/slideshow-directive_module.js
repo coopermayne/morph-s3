@@ -10,7 +10,7 @@ slideshowDirective.directive( 'slideshowDirective', function(  )
 		restrict: 'E',
 		controller: 'SlideshowDirectiveController',
 		scope:
-		{ 
+		{
 			slides: '=',
 			frameRate: '=',
 			thumb: '=',
@@ -18,6 +18,5 @@ slideshowDirective.directive( 'slideshowDirective', function(  )
 			news: '='
 		},
 		templateUrl: 'common-components/directives/slideshow-directive/slideshow-directive_template.html'
-		
 	};
 } );

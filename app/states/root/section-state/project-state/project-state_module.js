@@ -9,7 +9,7 @@ var projectState = angular.module( 'projectState',
 	'throbberDirective',
 
 	'ngBaguette',
-	
+
 	'ngToggleClass',
 
 	'reverseFilter',

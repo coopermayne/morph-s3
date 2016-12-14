@@ -39,9 +39,9 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 						}
 					} );
 					break;
-					
+
         case 'people':
-          if( input == "leadership"){
+          if( input === 'leadership'){
             items.forEach( function( item ) {
               if( item.is_leadership ) {
                 out.push( item );
@@ -52,10 +52,10 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'type':
           items.forEach( function( item){
-            if( item.types.map(function(item){return item.toLowerCase()}).indexOf(input) !== -1){
-              out.push ( item )
+            if( item.types.map(function(item){return item.toLowerCase(); }).indexOf(input) !== -1){
+              out.push( item );
             }
-          })
+          });
 
           break;
 

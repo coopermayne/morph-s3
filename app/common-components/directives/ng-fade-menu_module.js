@@ -2,7 +2,7 @@
 
 var fadeMenuDirective = angular.module('ngFadeMenu', [ ] );
 
-fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope ) 
+fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope )
 {
 	return {
 		restrict: 'A',
@@ -11,7 +11,20 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope )
 			if ( $rootScope.mobileAndTabletCheck() === false )
 			{
 				var timeoutPromise;
-				// resetFadeTimeout();
+
+				var resetFadeTimeout = function(  )
+				{
+					element.removeClass( 'hidden' );
+					$timeout.cancel( timeoutPromise );
+					if ( scope.stateName === 'root' || ( scope.stateName === 'root.section-state' && scope.stateParams.section !== 'news' && scope.stateParams.section !== 'search' ) )
+					{
+						timeoutPromise = $timeout( function ( e )
+						{
+							element.addClass( 'hidden' );
+						}, 3000 );
+					}
+				};
+
 				element.parent(  ).parent(  ).parent(  ).parent(  ).parent(  ).bind( 'mousemove', function( e )
 				{
 					resetFadeTimeout(  );
@@ -27,22 +40,8 @@ fadeMenuDirective.directive( 'ngFadeMenu', function( $timeout, $rootScope )
 					resetFadeTimeout(  );
 				} );
 
-				// console.log('mobile/tablet?',$rootScope.mobileAndTabletCheck());
-
-				var resetFadeTimeout = function(  )
-				{
-					element.removeClass( 'hidden' );
-					$timeout.cancel( timeoutPromise );
-					if ( scope.stateName === "root" || ( scope.stateName === "root.section-state" && scope.stateParams.section !== "news" && scope.stateParams.section !== "search" ) )
-					{
-						timeoutPromise = $timeout( function ( e )
-						{
-							element.addClass( 'hidden' );
-						}, 3000 );
-					}
-				}
 			}
 
 		}
-	}
+	};
 });

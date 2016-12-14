@@ -6,7 +6,7 @@ var slideshowDirective = angular.module( 'slideshowDirective' );
 slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootScope, $scope, $state, $stateParams, $interval, screenSize, $timeout, $element )
 {
 
-	console.log('SlideShowDirectiveController active!')
+	console.log('SlideShowDirectiveController active!');
 	var counter = -1;
 
 	$scope.stateParams = $stateParams;
@@ -19,20 +19,18 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	});
 
 		$scope.$watch( 'slides', function( apiResponse )
-		{	
+		{
 			if ( apiResponse !== undefined )
 			{
-		 		// Start video queue
-		 		if ( $scope.vid && !$scope.mobile )
-		 		{
-		 			$timeout( function(  )
-		 			{
-		 				var videoElements = angular.element( $element )[ 0 ].getElementsByTagName( 'video' );
-
-		 				console.log( videoElements );
-
-		 				if ( videoElements.length )
-		 				{
+				// Start video queue
+				if ( $scope.vid && !$scope.mobile )
+				{
+					$timeout( function(  )
+					{
+						var videoElements = angular.element( $element )[ 0 ].getElementsByTagName( 'video' );
+						console.log( videoElements );
+						if ( videoElements.length )
+						{
 							// Initialize first video
 							videoElements[ 0 ].load(  );
 							videoElements[ 0 ].play(  );
@@ -54,7 +52,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 										videoElements[ 0 ].load(  );
 									}
 									console.log( 'playing video: ', videoIndex, 'loading video: ', videoIndex + 1 );
-								} )
+								} );
 
 								// Switch to next video when current video finished playing
 								angular.element( videoElements[ i ] ).bind( 'ended', function(  )
@@ -62,7 +60,7 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 									var videoIndex = parseInt( angular.element( this ).attr( 'data-video-id' ) );
 
 									if ( videoIndex + 1 < videoElements.length )
-									{					
+									{
 										videoElements[ videoIndex + 1 ].play(  );
 										$scope.currentSlide = $scope.slides[ videoIndex + 1 ];
 										$scope.$apply(  );
@@ -106,12 +104,12 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 		$interval.cancel( $scope.playSlideShow );
 
 		$scope.currentSlide = slide;
-	}
+	};
 
 
 	// Reset counter on state change
 	$rootScope.$on( '$stateChangeStart', function( event, unfoundState, fromState, fromParams )
-	{ 
+	{
 		return counter = -1;
 	});
 

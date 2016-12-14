@@ -29,7 +29,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		$timeout(function()
 		{
 			var ua = navigator.userAgent.toLowerCase();
-			var isAndroid = ua.indexOf("android") > -1;
+			var isAndroid = ua.indexOf('android') > -1;
 			if(isAndroid && $scope.showMobileMenuVar && $state.current.name === 'root.section-state.sorting-state')
 			{
 				var search = document.getElementsByClassName('search');
@@ -38,60 +38,60 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 					var container = document.getElementsByClassName('menu-directive-wrapper'),
 					scrollTo = document.querySelectorAll('.search form');
 
-					container.scrollTop = scrollTo.offset().top - container.offset().top + container.scrollTop()
+					container.scrollTop = scrollTo.offset().top - container.offset().top + container.scrollTop();
 
 
 				}, true);
 			}
-		})
+		});
 	});
 
 	$scope.scrollSortToTop = function(  )
 	{
 		$timeout( function(  )
 		{
-			return window.scrollTo( 0, 0 )
+			return window.scrollTo( 0, 0 );
 		}, 100 );
-	}
+	};
 
   var formValid = function(){
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     //send error info back to view
-    $scope.emailError = !re.test($scope.email)
-    $scope.firstNameError = !($scope.firstName && $scope.firstName.length > 0)
-    $scope.lastNameError =  !($scope.lastName && $scope.lastName.length > 0)
-    $scope.affiliationError = !($scope.affiliation && $scope.affiliation.length > 0)
+    $scope.emailError = !re.test($scope.email);
+    $scope.firstNameError = !($scope.firstName && $scope.firstName.length > 0);
+    $scope.lastNameError =  !($scope.lastName && $scope.lastName.length > 0);
+    $scope.affiliationError = !($scope.affiliation && $scope.affiliation.length > 0);
 
-    $scope.formErrors = [$scope.emailError, $scope.firstNameError, $scope.lastNameError, $scope.affiliationError].filter(function(v){return v === true}).length
+    $scope.formErrors = [$scope.emailError, $scope.firstNameError, $scope.lastNameError, $scope.affiliationError].filter(function(v){return v === true; }).length;
 
-    return !( $scope.emailError || $scope.firstNameError || $scope.lastNameError || $scope.affiliationError )
-  }
+    return !( $scope.emailError || $scope.firstNameError || $scope.lastNameError || $scope.affiliationError );
+  };
 
-  $scope.formSubmitted = false
-  $scope.hideForm = true
+  $scope.formSubmitted = false;
+  $scope.hideForm = true;
 
   $timeout( function(  ){
-    $scope.hideForm = false
-  }, 1500)
+    $scope.hideForm = false;
+  }, 1500);
 
-  $scope.formErrors = 0
+  $scope.formErrors = 0;
 
 	$scope.processForm = function(email, firstName, lastName, affiliation){
     //bring in scope from view
-    $scope.email = email
-    $scope.firstName = firstName
-    $scope.lastName = lastName
-    $scope.affiliation = affiliation
+    $scope.email = email;
+    $scope.firstName = firstName;
+    $scope.lastName = lastName;
+    $scope.affiliation = affiliation;
 
     if(formValid()){
       //if valid -- submit form clear fields and notify user
-      $scope.formSubmitted = true
+      $scope.formSubmitted = true;
 
       $http({
         method: 'GET',
         //url: 'http://morphosisapi.herokuapp.com/press_list',
         url: 'http://morphosisapi.herokuapp.com/press_list',
-        params : {
+        params: {
           email: $scope.email,
           first: $scope.firstName,
           last: $scope.lastName,
@@ -99,9 +99,9 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
         }
       }).success(function(data){
 
-      })
+      });
     }
-	}
+	};
 
 	$scope.resolveMobileSortingClick = function( string )
 	{
@@ -133,7 +133,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				break;
 			}
 		}
-	}
+	};
 
 	$scope.activeAbout = function( string )
 	{
@@ -145,7 +145,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		{
 			return false;
 		}
-	}
+	};
 
 	$scope.scrollToAboutSection = function( section )
 	{
@@ -154,7 +154,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		// var element = document.getElementById( section );
 		// var aboutWrapper = document.getElementsByClassName('menu-about-text' );
 		// var elScr = element.offsetTop;
-	}
+	};
 
 	$scope.showSubSections = function( title, children )
 	{
@@ -174,7 +174,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		} );
 
 		return returnVar;
-	}
+	};
 
 	$scope.setMobileMenuVar = function(  )
 	{
@@ -207,7 +207,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 			return false;
 			break;
 		}
-	}
+	};
 
 	$scope.setMobileMenuVar();
 
@@ -219,7 +219,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	$scope.openMobileMenu = function(  )
 	{
 		return $rootScope.showMobileMenuVar = true;
-	}
+	};
 
 	$scope.searchText = $stateParams.s;
 
@@ -228,9 +228,9 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	{
 		if( text.length > 2 )
 		{
-			$state.go( 'root.section-state', { section: "search", s: text } );
+			$state.go( 'root.section-state', { section: 'search', s: text } );
 		}
-	}
+	};
 
 	// console.log( 'MenuDirectiveController active!' );
 
