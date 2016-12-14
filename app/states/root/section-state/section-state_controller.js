@@ -21,6 +21,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			case 'planning':
 			$scope.mapContents = $filter( 'filter' )( $scope.indexContents, { section: { title: 'planning' } } );
 			break;
+
+			default:
 		}
 
 		angular.forEach( $scope.mapContents, function( item, key )
@@ -88,6 +90,8 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 			$scope.stateParams.p++;
 			$state.go( $state.current.name, $scope.stateParams );
 			break;
+
+			default:
 		}
 	};
 
@@ -123,6 +127,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				case 'people':
 				$scope.subSort = 'last_name';
 				$scope.reverseVar = false;
+				break;
 
 				default:
 				if( $scope.stateParams.section === 'news' )
@@ -586,6 +591,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 				//case 'awards':
 				//$scope.getResource( 'awards' );
 				//break;
+				default:
 			}
 			break;
 
@@ -664,6 +670,8 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 				$scope.getMediaResource( $scope.stateParams );
 				$scope.subSort = $scope.stateParams.sub || 'pub_date';
 				break;
+
+				default:
 			}
 		}
 

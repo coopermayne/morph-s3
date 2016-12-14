@@ -33,10 +33,9 @@ projectState.controller( 'ProjectStateController', function( $window, $rootScope
 		}
 	};
 
-	$scope.min = function(arr){
-		return $filter('min')
-		($filter('map')(arr, 'year'));
-	};
+	//$scope.min = function(arr){
+		//return $filter('min');
+	//};
 
 	$scope.pageLoaded = false;
 

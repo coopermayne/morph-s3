@@ -52,7 +52,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 
 				case 'type':
           items.forEach( function( item){
-            if( item.types.map(function(item){return item.toLowerCase(); }).indexOf(input) !== -1){
+            if( item.types.map(function(ii){return ii.toLowerCase(); }).indexOf(input) !== -1){
               out.push( item );
             }
           });

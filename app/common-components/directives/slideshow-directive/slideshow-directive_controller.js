@@ -91,7 +91,8 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 						counter = 0;
 					}
 
-					return $scope.currentSlide = $scope.slides[ counter ];
+					$scope.currentSlide = $scope.slides[ counter ];
+					return;
 
 				}, $scope.frameRate || 2000 );
 			}
@@ -110,7 +111,8 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 	// Reset counter on state change
 	$rootScope.$on( '$stateChangeStart', function( event, unfoundState, fromState, fromParams )
 	{
-		return counter = -1;
+		counter = -1;
+		return;
 	});
 
 

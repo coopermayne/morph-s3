@@ -188,24 +188,22 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 				case 'search':
 				$rootScope.showMobileMenuVar = false;
 				return false;
-				break;
 
 				default:
 				$rootScope.showMobileMenuVar = true;
 				return true;
-				break;
 			}
 			break;
 
 			case 'root.section-state.project-state':
 			$rootScope.showMobileMenuVar = false;
 			return false;
-			break;
 
 			case 'root.section-state.sorting-state':
 			$rootScope.showMobileMenuVar = false;
 			return false;
-			break;
+
+			default:
 		}
 	};
 
@@ -213,12 +211,14 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
 	$scope.closeMobileMenu = function(  )
 	{
-		return $rootScope.showMobileMenuVar = false;
+		$rootScope.showMobileMenuVar = false;
+		return true;
 	};
 
 	$scope.openMobileMenu = function(  )
 	{
-		return $rootScope.showMobileMenuVar = true;
+		$rootScope.showMobileMenuVar = true;
+		return true;
 	};
 
 	$scope.searchText = $stateParams.s;
