@@ -1,6 +1,10 @@
 doctype html
+
 html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === ( "root" || "root.section-state" ) && stateParams.section !== "news" && stateParams.section !== "search", "freeze-body-scroll": state.current.name === "root.section-state.project-state" }' )
 	head
+		script( type='text/javascript').
+			if (screen.width <= 800) { window.location = "http://m.morphosis.com.s3-website-us-east-1.amazonaws.com"; }
+
 		base( href='/' )
 
 		title
