@@ -3,7 +3,7 @@ doctype html
 html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "black-background": state.current.name === ( "root" || "root.section-state" ) && stateParams.section !== "news" && stateParams.section !== "search", "freeze-body-scroll": state.current.name === "root.section-state.project-state" }' )
 	head
 		script( type='text/javascript').
-			if (screen.width <= 800) { window.location = "http://m.morphosis.com.s3-website-us-east-1.amazonaws.com"; }
+			if (screen.width > 800) { window.location = "http://test.morphosis.com.s3-website-us-east-1.amazonaws.com"; }
 
 		base( href='/' )
 
@@ -11,9 +11,6 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 			| Morphopedia {{ stateParams.section ?  '- ' +  stateParams.section.charAt( 0 ).toUpperCase() + stateParams.section.slice( 1 ) : '' }}
 		meta( name='viewport', content='width=device-width, height=device-height, initial-scale=1')
 		link( rel='icon', type='', href='images/favicon.ico' )
-		link( rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css")
-		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css")
-		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css")
 
 		//- BaguetteBox CSS
 		link( rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.7.0/baguetteBox.min.css' )
@@ -46,11 +43,6 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 	body
 
 		//- You could put other ui-views here, like a modal.
-
-		script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js")
-		script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js")
-		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js')
-		script( src='/images/Google.js')
 
 		.root-view( ui-view='root' )
 
