@@ -34,10 +34,10 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 
 		//- You could put other ui-views here, like a modal.
 
-		script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js")
-		script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js")
-		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js')
-		script( src='/images/Google.js')
+		script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js" async)
+		script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js" async)
+		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js' async)
+		script( src='/images/Google.js' async)
 
 		.root-view( ui-view='root' )
 
