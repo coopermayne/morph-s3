@@ -12,6 +12,7 @@ slideshowDirective.directive( 'slideshowDirective', function(  )
 		scope:
 		{ 
 			slides: '=',
+			section: '=',
 			frameRate: '=',
 			thumb: '=',
 			vid: '=',

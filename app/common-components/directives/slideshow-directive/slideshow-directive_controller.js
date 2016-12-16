@@ -93,7 +93,10 @@ slideshowDirective.controller( 'SlideshowDirectiveController', function( $rootSc
 						counter = 0;
 					}
 
-					return $scope.currentSlide = $scope.slides[ counter ];
+					$scope.currentSlide = $scope.slides[ counter ];
+					$scope.nextSlide = $scope.slides[ counter + 1 ];
+					console.log($scope.currentSlide, $scope.nextSlide);
+					return
 
 				}, $scope.frameRate || 2000 );
 			}
