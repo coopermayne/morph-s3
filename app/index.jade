@@ -9,7 +9,7 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 		link( rel='icon', type='', href='images/favicon.ico' )
 
 		//- Image loading
-		script(src='https://cdn.rawgit.com/jongacnik/mbl/master/dist/mbl.bundled.js')
+		//script(src='https://cdn.rawgit.com/jongacnik/mbl/master/dist/mbl.bundled.js')
 
 		//google analytics
 		script( type='text/javascript').
@@ -34,10 +34,10 @@ html(lang='en' ng-app='morphopedia' ng-controller='RootController' ng-class='{ "
 
 		//- You could put other ui-views here, like a modal.
 
-		script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js" async)
-		script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js" async)
-		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js' async)
-		script( src='/images/Google.js' async)
+		//script( src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js" defer)
+		//script( src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js" defer)
+		//script( src='/images/Google.js' defer)
+		script( src='http://maps.googleapis.com/maps/api/js?v=3.13&key=&sensor=false&extension=.js' defer)
 
 		.root-view( ui-view='root' )
 
