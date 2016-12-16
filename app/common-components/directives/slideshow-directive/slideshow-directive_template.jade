@@ -27,8 +27,14 @@
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
-			ng-if='!vid'
+			ng-if='!vid && !news'
 			preload-bg-image='{{ mobile ? slide.image.name.mobile.url : slide.image.name.url }}'
+			ng-class='{ "current-slide": currentSlide === slide }'
+		)
+
+		.slideshow-image(
+			ng-if='news'
+			preload-bg-image='{{ slide.image.name.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
