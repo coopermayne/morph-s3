@@ -41,3 +41,20 @@ gulp.task( 'build', function(  )
 		'connect'
 	);
 } );
+
+gulp.task( 'publish', function(  )
+{
+	runSequence(
+		'clean',
+		[
+			'build-images',
+			'build-scripts',
+			'build-css',
+			'build-fonts'
+		],
+		'jade',
+		'build-inject',
+		'build-html',
+		'launch'
+	);
+} );
