@@ -117,12 +117,13 @@ ul.menu-directive-wrapper.scrollable-content(
 				ng-click='closeMobileMenu(  )'
 			)
 	
-		//- Sorting options (Alphabetical, Year, Type)
+		//- Sorting options (Alphabetical, Year, Type, Location)
 		.sorting-options(
 			ng-if='stateParams.section == bigMenuItem.url'
 		)
 
 			.sorting-option-wrapper(
+				ng-if='sortingOption.title !== "Location"'
 				ng-repeat='sortingOption in bigMenuItem.sorting'
 				ui-sref='root.section-state.sorting-state({ section: bigMenuItem.url, sortingType: sortingOption.title.toLowerCase(), q: null, e: null, p: null, sub: null })'
 				ng-click=' $event.stopPropagation(  ); resolveMobileSortingClick( sortingOption.title ); scrollSortToTop(  );'

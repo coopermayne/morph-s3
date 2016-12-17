@@ -202,15 +202,6 @@
 					ng-bind-html='item.description | htmlParse'
 				)
 
-.location-index-wrapper( ng-if='stateParams.sortingType === "location"' )
-	leaflet(
-		lf-center='center'
-		markers='markers'
-		maxBounds='maxBounds' 
-		defaults='defaults'
-		layers='layers'
-	)
-
 .prev-and-next-wrapper(
 	ng-if='(stateParams.sortingType === "media") && indexContents.length'
 )

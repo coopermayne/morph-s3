@@ -8,8 +8,6 @@ var morphopedia = angular.module( 'morphopedia',
 
 	'angular-preload-image',
 
-	'leaflet-directive',
-
 	'angular.filter',
 
 	'root',
