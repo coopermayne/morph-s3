@@ -33,14 +33,14 @@
 		)
 
 		.slideshow-image(
-			ng-if='news'
+			ng-if='news && !mobile'
 			preload-bg-image='{{ slide.image.name.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
 	//- Project title
 	p.slide-project-title(
-		ng-if='(currentSlide.project_title || currentSlide.title) && !news'
+		ng-if='!mobile && (currentSlide.project_title || currentSlide.title) && !news'
 		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)
