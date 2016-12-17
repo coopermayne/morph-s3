@@ -58,3 +58,20 @@ gulp.task( 'publish', function(  )
 		'launch'
 	);
 } );
+
+gulp.task( 'publish-mobile', function(  )
+{
+	runSequence(
+		'clean',
+		[
+			'build-images',
+			'build-scripts',
+			'build-css',
+			'build-fonts'
+		],
+		'jade',
+		'build-inject',
+		'build-html',
+		'launch-mobile'
+	);
+} );
