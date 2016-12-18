@@ -7,6 +7,44 @@ var templateCache = require('gulp-angular-templatecache');
 
 requireDir( './gulp/tasks', { recurse: true } );
 
+gulp.task('templatecache', function () {
+  return gulp.src([ 'build-destination/**/*.html', '!build-destination/index.html' ])
+    .pipe(templateCache())
+    .pipe(gulp.dest('app/templates'));
+});
+
+gulp.task( 'build', function(  )
+{
+	runSequence(
+		'clean',
+		[
+			'build-scripts',
+			'build-images',
+			'build-css',
+			'build-fonts'
+		],
+		'jade',
+		'build-inject',
+		'build-html'
+	);
+} );
+
+gulp.task( 'buildc', function(  )
+{
+	runSequence(
+		'build',
+		'connect'
+	);
+} );
+
+gulp.task( 'publish', function(  )
+{
+	runSequence(
+		'build',
+		'launch'
+	);
+} );
+
 gulp.task( 'default', function(  )
 {
 	runSequence(
@@ -25,43 +63,3 @@ gulp.task( 'default', function(  )
 	);
 } );
 
-
-gulp.task('tmpc', function () {
-  return gulp.src([ 'build-destination/**/*.html', '!build-destination/index.html' ])
-    .pipe(templateCache())
-    .pipe(gulp.dest('app/tmps'));
-});
-
-gulp.task( 'build', function(  )
-{
-	runSequence(
-		'clean',
-		[
-			'build-images',
-			'build-scripts',
-			'build-css',
-			'build-fonts'
-		],
-		'jade',
-		'build-inject',
-		'build-html',
-		'connect'
-	);
-} );
-
-gulp.task( 'publish', function(  )
-{
-	runSequence(
-		'clean',
-		[
-			'build-images',
-			'build-scripts',
-			'build-css',
-			'build-fonts'
-		],
-		'jade',
-		'build-inject',
-		'build-html',
-		'launch'
-	);
-} );

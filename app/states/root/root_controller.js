@@ -32,7 +32,7 @@ root.controller( 'RootController', function( $rootScope, $scope, $state, $stateP
 	$http(
 	{
 		method: 'GET',
-		url: 'https://morphosisapi.herokuapp.com/video_slides.json'
+		url: 'video_slides.json'
 	} ).then( function( response )
 	{
 		$scope.homePageSlides = response.data;
