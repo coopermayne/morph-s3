@@ -29,7 +29,7 @@ gulp.task( 'default', function(  )
 gulp.task('tmpc', function () {
   return gulp.src([ 'build-destination/**/*.html', '!build-destination/index.html' ])
     .pipe(templateCache())
-    .pipe(gulp.dest('build-destination/tmps'));
+    .pipe(gulp.dest('app/tmps'));
 });
 
 gulp.task( 'build', function(  )

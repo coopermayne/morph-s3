@@ -1,5 +1,7 @@
 'use strict';
 
+angular.module( 'templates' , []);
+
 var morphopedia = angular.module( 'morphopedia',
 [
 	'ngResource',
@@ -14,7 +16,9 @@ var morphopedia = angular.module( 'morphopedia',
 
 	'root',
 
-	'mobile-angular-ui'
+	'mobile-angular-ui',
+
+	'templates'
 
 ] );
 
