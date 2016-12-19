@@ -35,11 +35,11 @@ gulp.task( 'inject', function( )
 	var bowerSource    = gulp.src( [ path.to.bower.scripts ], { read: false } );
 	var bowerCssSource = gulp.src( [ path.to.bower.css ], { read: false } );
 
-	var mainCssSource  = gulp.src( [ path.to.main.css.source ], { read: false } );
+	var cssSource  = gulp.src( [ path.to.destination + '/vendor/css/*.css', path.to.destination + '/app_styles.css'  ], { read: false } );
 
 	return target
 		.pipe( inject( bowerCssSource, bowerInjectOptions ) )
-		.pipe( inject( mainCssSource, injectOptions ) )
+		.pipe( inject( cssSource, injectOptions ) )
 		.pipe( inject( bowerSource, bowerInjectOptions ) )
 		.pipe( inject( sortedAppJs, injectOptions ) )
 		.on( 'error', error.handler )

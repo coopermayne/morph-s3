@@ -26,35 +26,15 @@ gulp.task( 'build-css', function(  )
 {
 	return streamqueue( { objectMode: true },
 
-		// Select all bower styles.
-
-		// gulp.src( mainBowerFiles( {
-		// 	paths:
-		// 	{
-		// 		bowerDirectory: path.to.bower.source,
-		// 		bowerrc: path.to.bower.config,
-		// 		bowerJson: path.to.bower.manifest
-		// 	}
-
-		// } ),
-		// {
-		// 	base: path.to.bower.source
-		// } )
-		// .pipe( filter( '**/*.css' ) ),
-
-
 		// select all css files
 		gulp.src( path.to.css.source ),
 
-		// Select all source styles.
-
+		// Select all sass styles.
 		gulp.src( path.to.sass.main )
 		.pipe( sass(  ) )
 		.on( 'error', error.handler )
 		.pipe( prefix( 'last 2 versions', { cascade: true } ) )
 		.on( 'error', error.handler ) )
-
-
 
 	// Then concatenate and minify.
 
