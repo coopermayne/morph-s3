@@ -54,28 +54,53 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 		}, 100 );
 	}
 
-	$scope.emailFormValue = ""
-	$scope.showForm = true
+  var formValid = function(){
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //send error info back to view
+    $scope.emailError = !re.test($scope.email)
+    $scope.firstNameError = !($scope.firstName && $scope.firstName.length > 0)
+    $scope.lastNameError =  !($scope.lastName && $scope.lastName.length > 0)
+    $scope.affiliationError = !($scope.affiliation && $scope.affiliation.length > 0)
 
-	$scope.changeEmail = function(input){
-		$scope.emailFormValue = input
-	}
+    $scope.formErrors = [$scope.emailError, $scope.firstNameError, $scope.lastNameError, $scope.affiliationError].filter(function(v){return v === true}).length
 
-	$scope.processForm = function(){
-		$http({
-			method: 'GET',
-			url: 'http://morphosisapi.herokuapp.com/press_list',
-			params : {email: $scope.emailFormValue}
-		}).success(function(data){
-			$scope.emailFormValue = ""
-			if(data.success){
-				console.log("good");
-				//clear fields
-				$scope.emailFormValue = ""
-			} else {
-				console.log("bad");
-			}
-		})
+    return !( $scope.emailError || $scope.firstNameError || $scope.lastNameError || $scope.affiliationError )
+  }
+
+  $scope.formSubmitted = false
+  $scope.hideForm = true
+
+  $timeout( function(  ){
+    $scope.hideForm = false
+  }, 1500)
+
+  $scope.formErrors = 0
+
+	$scope.processForm = function(email, firstName, lastName, affiliation){
+    //bring in scope from view
+    $scope.email = email
+    $scope.firstName = firstName
+    $scope.lastName = lastName
+    $scope.affiliation = affiliation
+
+    if(formValid()){
+      //if valid -- submit form clear fields and notify user
+      $scope.formSubmitted = true
+
+      $http({
+        method: 'GET',
+        //url: 'http://morphosisapi.herokuapp.com/press_list',
+        url: 'http://morphosisapi.herokuapp.com/press_list',
+        params : {
+          email: $scope.email,
+          first: $scope.firstName,
+          last: $scope.lastName,
+          affiliation: $scope.affiliation
+        }
+      }).success(function(data){
+
+      })
+    }
 	}
 
 	$scope.resolveMobileSortingClick = function( string )

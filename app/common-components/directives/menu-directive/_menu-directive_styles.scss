@@ -110,8 +110,31 @@ menu-directive
 	{
 		border: none;
 	}
+
+	.success
+	{
+		padding: 10px;
+		outline: none;
+		border: none;
+		border: solid 2px $black;
+		border-radius: none;
+		background: $white;
+		box-shadow: none;
+	}
+	.pusher
+	{
+		height: 200px;
+	}
+
 	form
 	{
+		margin-top: 10px;
+
+		.red
+		{
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
 		input
 		{
 			padding: 10px;
@@ -140,8 +163,13 @@ menu-directive
 			outline: none;
 			border-bottom: solid 2px $black;
 		}
+		.errors
+		{
+			margin-left: 15px;
+		}
 		button
 		{
+			margin-top: 20px;
 			padding: 10px;
 			outline: none;
 			border: none;

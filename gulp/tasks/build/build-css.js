@@ -43,6 +43,8 @@ gulp.task( 'build-css', function(  )
 		// .pipe( filter( '**/*.css' ) ),
 
 
+		// select all css files
+		gulp.src( path.to.css.source ),
 
 		// Select all source styles.
 

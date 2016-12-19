@@ -44,22 +44,46 @@
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
 
 	.menu-about-text.html-inline-fix
+
 		a.anchor( name='contact')
 		p.html-inline-fix( ng-bind-html='menuItems.sections[0].contact | htmlParse' )
 
-		form( id='emailForm' ng-submit='processForm()')
-			p For press mailing list: 
-			p(ng-show='!showForm') You have been added to our mailing list.
-			p(ng-show='showForm')
-				input(
-					ng-model='emailFormValue'
-					ng-change='changeEmail(emailFormValue)'
-					placeholder='your@email.here'
-				)
-				button( type='submit' ng-click='showForm=!showForm') submit
 
 		a.anchor( name='employment')
 		p.html-inline-fix( ng-bind-html='menuItems.sections[0].employment | htmlParse' )
+
+		a.anchor( name='form')
+		p.success( ng-show='formSubmitted && !hideForm') You have been added to our mailing list!
+		form( ng-hide='formSubmitted || hideForm' id='emailForm' ng-submit='processForm(email, firstName, lastName, affiliation)')
+			p Join our mailing list:
+			p
+				input(
+					ng-class='{red: emailError}'
+					ng-model='email'
+					placeholder='your@email.here'
+				)
+				br
+				input(
+					ng-class='{red: firstNameError}'
+					ng-model='firstName'
+					placeholder='First Name'
+				)
+				br
+				input(
+					ng-class='{red: lastNameError}'
+					ng-model='lastName'
+					placeholder='Last Name'
+				)
+				br
+				input(
+					ng-class='{red: affiliationError}'
+					ng-model='affiliation'
+					placeholder='Affiliation'
+				)
+				br
+				button( type='submit' ) submit
+				span.errors(ng-show='formErrors > 0') {{formErrors}} problem{{formErrors > 1 ? 's' : ''}}
+		p.pusher
 
 ul.menu-directive-wrapper.scrollable-content(
 	ng-if='(showMobileMenuVar || !mobile) && state.current.name !== "root.section-state.project-state"'
@@ -197,20 +221,11 @@ a.facebook-link(
 )
 	img.facebook-icon(src="images/facebook_icon.png")
 
-//- Section slideshows
-//- For mobile, only add to DOM when in current section
-slideshow-directive(
-	ng-repeat='section in menuItems.sections'
-	ng-if='mobile && (!stateParams.sortingType && stateParams.section === section.url)'
-	slides='section.slides'
-	frame-rate='2000'
-)
-
 //- For desktop, load all at same time
 slideshow-directive(
 	ng-repeat='section in menuItems.sections'
-	ng-if='!mobile'
+	section='section.url'
 	ng-show='!stateParams.sortingType && stateParams.section === section.url'
-	slides='section.slides'
+  slides='section.slides'
 	frame-rate='2000'
 )

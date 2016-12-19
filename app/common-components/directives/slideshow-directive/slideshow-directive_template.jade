@@ -27,14 +27,20 @@
 
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
-			ng-if='!vid'
+			ng-if='!vid && !news && ( (( currentSlide === slide || nextSlide === slide  )&& stateParams.section === section) || slide === slides[0] )'
 			preload-bg-image='{{ mobile ? slide.image.name.mobile.url : slide.image.name.url }}'
+			ng-class='{ "current-slide": currentSlide === slide }'
+		)
+
+		.slideshow-image(
+			ng-if='news && !mobile'
+			preload-bg-image='{{ slide.image.name.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
 	//- Project title
 	p.slide-project-title(
-		ng-if='(currentSlide.project_title || currentSlide.title) && !news'
+		ng-if='!mobile && (currentSlide.project_title || currentSlide.title) && !news'
 		ui-sref='root.section-state.project-state({ section: stateParams.section, sortingType: "a-z", projectId: currentSlide.project_id || currentSlide.id })'
 		ng-bind-html='currentSlide.project_title || currentSlide.title | htmlParse'
 	)

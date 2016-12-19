@@ -31,6 +31,11 @@ module.exports =
 			source: root + '/app/**/*.jade',
 			destination: destination
 		},
+		css:
+		{
+			source: root + '/app/**/*.css',
+			destination: destination
+		},
 		scripts:
 		{
 			source:
