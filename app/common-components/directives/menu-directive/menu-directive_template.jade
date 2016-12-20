@@ -54,7 +54,7 @@
 
 		a.anchor( name='form')
 		p.success( ng-show='formSubmitted && !hideForm') You have been added to our mailing list!
-		form( ng-hide='formSubmitted || hideForm' id='emailForm' ng-submit='processForm(email, firstName, lastName, affiliation)')
+		form( ng-hide='mobile || formSubmitted || hideForm' id='emailForm' ng-submit='processForm(email, firstName, lastName, affiliation)')
 			p Join our mailing list:
 			p
 				input(
