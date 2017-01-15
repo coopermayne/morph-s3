@@ -13,6 +13,7 @@ var csscomb  = require( 'gulp-csscomb' );
 var path     = require( '../../paths.js' );
 var error    = require( '../../error-handler.js' );
 
+var streamqueue = require('streamqueue');
 
 
 
@@ -34,12 +35,17 @@ gulp.task( 'scss-lint', [ 'csscomb' ], function(  )
 
 gulp.task( 'sass', [ 'scss-lint' ], function(  )
 {
-	return gulp.src( path.to.sass.main )
+		// select all vendor/css files
+		gulp.src( path.to.css.source )
+		.pipe( gulp.dest( path.to.sass.destination ) )
+
+		return gulp.src( path.to.sass.main )
 		.pipe( sass(  ) )
 		.on( 'error', error.handler )
 		.pipe( prefix( 'last 2 versions', { cascade: true } ) )
 		.on( 'error', error.handler )
+
 		.pipe( gulp.dest( path.to.sass.destination ) )
-		.pipe( connect.reload(  ) );
+		.pipe( connect.reload(  ) )
 } );
 

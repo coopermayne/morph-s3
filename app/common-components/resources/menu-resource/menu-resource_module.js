@@ -3,8 +3,8 @@
 
 var menuResource = angular.module( 'menuResource', [] );
 
-menuResource.factory( 'Menu', function( $resource )
+menuResource.factory( 'Menu', function( $resource, $rootScope )
 {
-	return $resource( 'https://morphosisapi.herokuapp.com/menu' );
+	return $resource( $rootScope.apiUrl + 'menu' );
 
 } );

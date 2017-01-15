@@ -3,8 +3,8 @@
 
 var projectResource = angular.module( 'projectResource' );
 
-projectResource.factory( 'Project', function( $resource )
+projectResource.factory( 'Project', function( $resource, $rootScope )
 {
-	return $resource( 'https://morphosisapi.herokuapp.com/projects/:id.json' );
+	return $resource( $rootScope.apiUrl + 'projects/:id.json' );
 
 } );

@@ -508,8 +508,6 @@ $scope.setAltIndex = function( input )
 	}
 }
 
-var apiUrl = 'https://morphosisapi.herokuapp.com/';
-
 	// Function for fetching non-project resources from API
 	$scope.getResource = function( sectionTitle )
 	{
@@ -520,7 +518,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		$http(
 		{
 			method: 'GET',
-			url: apiUrl + sectionTitle + '.json'
+			url: $rootScope.apiUrl + sectionTitle + '.json'
 		} ).then( function( response )
 		{
 			$scope.indexContents = response.data;
@@ -567,7 +565,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 				$http(
 					{
 						method: 'GET',
-						url: apiUrl + 'media.json',
+						url: $rootScope.apiUrl + 'media.json',
 						params:
 							{
 								p: params.p,
@@ -627,7 +625,7 @@ var apiUrl = 'https://morphosisapi.herokuapp.com/';
 		$http( 
 		{
 			method: 'GET',
-			url: apiUrl + 'search.json',
+			url: $rootScope.apiUrl + 'search.json',
 			params: { q: $scope.stateParams.s }
 		} ).then( function( response )
 		{
