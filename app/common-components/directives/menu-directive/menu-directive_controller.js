@@ -89,8 +89,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 
       $http({
         method: 'GET',
-        //url: 'http://morphosisapi.herokuapp.com/press_list',
-        url: 'http://morphosisapi.herokuapp.com/press_list',
+        url: $rootScope.apiUrl + 'press_list',
         params : {
           email: $scope.email,
           first: $scope.firstName,
