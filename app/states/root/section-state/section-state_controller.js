@@ -535,7 +535,7 @@ $scope.setAltIndex = function( input )
 				$http(
 					{
 						method: 'GET',
-						url: 'http://localhost:3000/' + 'news.json',
+						url: $rootScope.apiUrl + 'news.json',
 						params:
 							{
 								p: params.p,
