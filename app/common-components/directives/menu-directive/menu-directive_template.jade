@@ -42,6 +42,12 @@
 			href='{{ "#" + link }}'
 		)
 			| {{ link.charAt(0).toUpperCase() + link.slice(1) }}
+		a(
+			ng-repeat='link in ["form"]'
+			ng-class='{ "active-about": activeAbout( link ) }'
+			href='{{ "#" + link }}'
+		)
+			| Newsletter
 
 	.menu-about-text.html-inline-fix
 
@@ -55,7 +61,7 @@
 		a.anchor( name='form')
 		p.success( ng-show='formSubmitted && !hideForm') You have been added to our mailing list!
 		form( ng-hide='mobile || formSubmitted || hideForm' id='emailForm' ng-submit='processForm(email, firstName, lastName, affiliation)')
-			p Join our mailing list:
+			p Join our press mailing list:
 			p
 				input(
 					ng-class='{red: emailError}'
