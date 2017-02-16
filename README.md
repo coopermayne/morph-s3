@@ -1,5 +1,12 @@
 # angular-sprout
 
+## Notes
+###versions that are tried and tested
+- node v5.11.0
+- gulp 3.9.1
+- ruby ruby 2.2.3p173
+
+----
 
 **This repo is no longer updated in a timely manner. While I will update it from time to time, my efforts have moved here: [app-sprout](http://app-sprout.com).**
 * * *
