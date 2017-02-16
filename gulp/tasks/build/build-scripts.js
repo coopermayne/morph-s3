@@ -20,7 +20,7 @@ var path            = require( '../../paths.js' );
 
 // Build process.
 
-gulp.task( 'build-scripts', [ 'eslint' ], function(  )
+gulp.task( 'build-scripts', function(  )
 {
 	return streamqueue( { objectMode: true },
 
