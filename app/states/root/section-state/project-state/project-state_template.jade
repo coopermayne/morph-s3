@@ -60,6 +60,11 @@
 							| Client:
 						.project-detail-text
 							| {{ activeItem.client }}
+					.project-detail-wrapper( ng-if='activeItem.height' )
+						.project-detail-label
+							| Building Height: 
+						.project-detail-text
+							| {{ activeItem.height }} feet / {{ activeItem.height * 0.3048 | number:0 }} meters
 					.project-detail-wrapper( ng-if='activeItem.site_area' )
 						.project-detail-label
 							| Site Area: 
