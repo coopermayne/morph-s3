@@ -19,7 +19,7 @@
 			poster( src='{{ slide.image.name.url }}')
 
 		.mobile-video(
-			ng-if='mobile && vid'
+			ng-if='mobile && vid && ( (( currentSlide === slide || nextSlide === slide  )&& stateParams.section === section) || slide === slides[0] )'
 			preload-bg-image='{{ slide.image.name.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 			frame-rate='3000'
