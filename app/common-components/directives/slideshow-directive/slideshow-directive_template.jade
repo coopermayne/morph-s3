@@ -20,9 +20,9 @@
 
 		.mobile-video(
 			ng-if='mobile && vid'
-			preload-bg-image='{{ slide.gif.name.url }}'
+			preload-bg-image='{{ slide.image.name.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
-			frame-rate='6000'
+			frame-rate='3000'
 		)
 
 		.slideshow-image(
