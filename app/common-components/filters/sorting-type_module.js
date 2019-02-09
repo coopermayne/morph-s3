@@ -47,6 +47,12 @@ sortingTypeFilter.filter( 'sortingType', function(  )
                 out.push( item );
               }
             } );
+          } else {
+            items.forEach( function( item ) {
+              if( item.is_associate ) {
+                out.push( item );
+              }
+            } );
           }
           break;
 
