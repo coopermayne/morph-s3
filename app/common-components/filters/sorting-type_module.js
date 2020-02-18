@@ -41,7 +41,7 @@ sortingTypeFilter.filter( 'sortingType', function(  )
 					break;
 					
         case 'people':
-          if( input == "leadership"){
+          if( input == "partners"){
             items.forEach( function( item ) {
               if( item.is_leadership ) {
                 out.push( item );

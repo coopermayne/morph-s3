@@ -1,0 +1,25 @@
+[debug] [2020-02-18T03:17:17.987Z] ----------------------------------------------------------------------
+[debug] [2020-02-18T03:17:17.990Z] Command:       /usr/local/Cellar/node@6/6.14.3/bin/node /usr/local/bin/firebase serve
+[debug] [2020-02-18T03:17:17.990Z] CLI Version:   6.1.2
+[debug] [2020-02-18T03:17:17.990Z] Platform:      darwin
+[debug] [2020-02-18T03:17:17.990Z] Node Version:  v6.14.3
+[debug] [2020-02-18T03:17:17.991Z] Time:          Mon Feb 17 2020 19:17:17 GMT-0800 (PST)
+[debug] [2020-02-18T03:17:17.991Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-02-18T03:17:18.005Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-18T03:17:18.005Z] > authorizing via signed-in user
+[debug] [2020-02-18T03:17:18.005Z] [iam] checking project morphosis-website for permissions ["firebase.projects.get"]
+[debug] [2020-02-18T03:17:18.008Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/morphosis-website:testIamPermissions  
+
+[debug] [2020-02-18T03:17:18.377Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-18T03:17:18.379Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/morphosis-website  
+ 
+[debug] [2020-02-18T03:17:18.721Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/coopermayne/Desktop/Morphosis_backup/Code/database/morph_frontend'...
+[info] 
+[debug] [2020-02-18T03:17:18.725Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/397352386301/clients/_:getWebAppConfig  
+ 
+[debug] [2020-02-18T03:17:19.025Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build-destination
+[info] ✔  hosting: Local server: http://localhost:5000
