@@ -659,7 +659,7 @@ menu-directive
 	}
 }
 
-a.twitter-link
+a.instagram-link
 {
 	@include respond-to( 'small' )
 	{
@@ -671,51 +671,11 @@ a.twitter-link
 	right: 20px;
 	z-index: 99999;
 
-	.twitter-icon
-	{
-		opacity: 0.5;
-		width: 3rem;
-		height: 3rem;
-	}
-}
-
-a.instagram-link
-{
-	@include respond-to( 'small' )
-	{
-		display: none;
-	}
-
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	z-index: 99999;
-
 	.instagram-icon
 	{
 		opacity: 0.5;
 		width: 3rem;
 		height: 3rem;
-	}
-}
-
-a.facebook-link
-{
-	@include respond-to( 'small' )
-	{
-		display: none;
-	}
-
-	position: fixed;
-	top: 110px;
-	right: 27px;
-	z-index: 99999;
-
-	.facebook-icon
-	{
-		opacity: 0.5;
-		width: 2.2rem;
-		height: 2.2rem;
 	}
 }
 
