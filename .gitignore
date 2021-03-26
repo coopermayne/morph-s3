@@ -8,3 +8,5 @@ coverage/
 build-destination/
 
 **/.DS_Store
+
+firebase-debug.log

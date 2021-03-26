@@ -69,6 +69,7 @@
     "streamqueue": "^0.1.3"
   },
   "dependencies": {
+    "bower": "^1.8.12",
     "gulp-csscomb": "^3.0.6"
   }
 }
