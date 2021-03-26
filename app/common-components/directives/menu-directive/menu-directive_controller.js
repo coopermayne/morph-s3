@@ -9,6 +9,7 @@ menuDirective.controller( 'MenuDirectiveController', function( $rootScope, $scop
 	// Fetch Menu from API and set video slides
 	Menu.get(  ).$promise.then( function( response )
 	{
+		response.sections[2].sorting[1].items.unshift("2020-2029")
 		$scope.menuItems = response;
 	} );
 
