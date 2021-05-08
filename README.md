@@ -17,19 +17,18 @@ What defining tools and libraries make up this project's architecture?
 ## Prerequisites
 1. [NodeJS](http://nodejs.org/)
 	- `brew install node`
-	- use version 6.17.1
+	- use version **6.17.1**
 1. [Bower](http://bower.io/)
-	- `npm install --global bower`
+  - `npm install --global bower`
 1. [Gulp](http://gulp.com/)
 	- `npm install --global gulp`
-1.	[scss-lint](https://github.com/causes/scss-lint)
-	- `gem install scss-lint`
 
 ## Start Up
 
 1. `npm install`
 2. `bower install`
-2. `gulp`
+   1. if asked to choose **angular version choose 1.5.5**
+3. `gulp`
 
 
 # File Structure
