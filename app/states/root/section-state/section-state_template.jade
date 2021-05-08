@@ -25,7 +25,7 @@
 		ng-if='item.section && item[ subSort ]'
 		ui-sref='root.section-state.project-state( { projectId: item.id } )'
 	)
-		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
+		.project-image( preload-bg-image='{{ item.image.mobile.url }}' )
 
 		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
@@ -36,7 +36,7 @@
 		ui-sref='root.section-state.project-state( { projectId: item.id, m: "person" } )'
 
 	)
-		.project-image( preload-bg-image='{{ item.image.name.mobile.url }}' )
+		.project-image( preload-bg-image='{{ item.image.mobile.url }}' )
 
 		.project-title( ng-bind-html='item.title || item.name | htmlParse' )
 
@@ -62,8 +62,8 @@
 			//- Image
 			img.alt-project-image(
 				preload-image
-				ng-if='item.image.name.mobile.url || item.image'
-				ng-src='{{ item.image.name.mobile.url || item.image }}'
+				ng-if='item.image.mobile.url || item.image'
+				ng-src='{{ item.image.mobile.url || item.image }}'
 			)
 
 			//- Title + expanded sections

@@ -224,11 +224,11 @@
 						)
 							a(
 								ng-repeat='image in gallery.images'
-								href='{{ image.name.name.url }}'
+								href='{{ image.name.url }}'
 								data-caption='{{ makeCreditLink(image) }}'
 							)
 								img(
-									ng-src='{{ image.name.name.thumb.url }}'
+									ng-src='{{ image.name.thumb.url }}'
 								)
 				//- Components (DESKTOP)
 				.project-description-wrapper.component(
@@ -448,11 +448,11 @@
 						)
 							a(
 								ng-repeat='image in gallery.images'
-								href='{{ image.name.name.url }}'
+								href='{{ image.name.url }}'
 								data-caption='{{ image.credit ? "©" + image.credit : "" }}'
 							)
 								img(
-									ng-src='{{ image.name.name.thumb.url }}'
+									ng-src='{{ image.name.thumb.url }}'
 								)
 				//- Components (MOBILE)
 				.project-description-wrapper.component.contracted(

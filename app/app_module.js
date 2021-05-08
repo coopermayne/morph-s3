@@ -41,7 +41,7 @@ morphopedia.run( [ '$rootScope', '$location', '$window', function( $rootScope, $
 {
 	$window.ga('create', 'UA-75621728-1', 'auto');
 
-  $rootScope.apiUrl = "https://morphosisapi.herokuapp.com/";
+  $rootScope.apiUrl = "https://morphapi.herokuapp.com/";
   //$rootScope.apiUrl = "https://morphosisapi-dev.herokuapp.com/";
 
 	// For Mobile Angular UI compatibility
@@ -70,4 +70,3 @@ morphopedia.run( [ '$rootScope', '$location', '$window', function( $rootScope, $
 	}
 
 } ] );
-

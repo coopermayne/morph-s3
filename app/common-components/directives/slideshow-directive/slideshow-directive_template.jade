@@ -10,18 +10,18 @@
       muted=''
 		)
 			source(
-				src='{{ slide.mp4.name.url }}'
+				src='{{ slide.mp4.url }}'
 				type='video/mp4'
 			)
 			source(
-				src='{{ slide.webm.name.url }}'
+				src='{{ slide.webm.url }}'
 				type='video/webm'
 			)
-			poster( src='{{ slide.image.name.url }}')
+			poster( src='{{ slide.image.url }}')
 
 		.mobile-video(
 			ng-if='mobile && vid && ( (( currentSlide === slide || nextSlide === slide  )&& stateParams.section === section) || slide === slides[0] )'
-			preload-bg-image='{{ slide.image.name.mobile.url }}'
+			preload-bg-image='{{ slide.image.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 			frame-rate='3000'
 		)
@@ -29,13 +29,13 @@
 		.slideshow-image(
 			ng-show='!slide.mp4 && !slide.webm'
 			ng-if='!vid && !news && ( (( currentSlide === slide || nextSlide === slide  )&& stateParams.section === section) || slide === slides[0] )'
-			preload-bg-image='{{ mobile ? slide.image.name.mobile.url : slide.image.name.url }}'
+			preload-bg-image='{{ mobile ? slide.image.mobile.url : slide.image.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
 		.slideshow-image(
 			ng-if='news && !mobile'
-			preload-bg-image='{{ slide.image.name.mobile.url }}'
+			preload-bg-image='{{ slide.image.mobile.url }}'
 			ng-class='{ "current-slide": currentSlide === slide }'
 		)
 
