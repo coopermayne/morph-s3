@@ -15,7 +15,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 
 	// Function for scrolling to expanded item
 	$scope.scrollToExpanded = function(  )
-	{	
+	{
 		var el = document.getElementById( $scope.stateParams.e );
 		var elScr = el.getBoundingClientRect().top;
 		document.body.scrollTop = elScr;
@@ -107,7 +107,7 @@ sectionState.controller( 'SectionStateController', function( $rootScope, $scope,
 				$state.go( $state.current.name, $scope.stateParams );
 			}
 			else
-			{			
+			{
 				$scope.subSort = sort;
 				$scope.reverseVar = false;
 			}
@@ -184,12 +184,12 @@ var default_place = {
 		//zoom: 4,
 		//lat: 36,
 		//lng: 131
-	//}, 
+	//},
 	//europe: {
 		//zoom: 4,
 		//lat: 49,
 		//lng: 16
-	//}, 
+	//},
 	//america: {
 		//zoom: 4,
 		//lat: 29,
@@ -463,11 +463,11 @@ var placeMarkers = function(  )
 				lat: parseFloat( item.lat ),
 				lng:parseFloat( item.lon ),
 				getMessageScope: function(  )
-				{ 
+				{
 					return $scope;
 				},
 				focus: false,
-				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><img class='map-image' src='"+item.image.name.mobile.url+"'></img><div class='project-title'>"+item.title+"</div></div>",
+				message: "<div ui-sref='root.section-state.project-state( { projectId: "+ item.id +" } )'><img class='map-image' src='"+item.image.mobile.url+"'></img><div class='project-title'>"+item.title+"</div></div>",
 				compileMessage: true
 			} );
 		}
@@ -569,7 +569,7 @@ $scope.setAltIndex = function( input )
 						params:
 							{
 								p: params.p,
-								q: params.q, 
+								q: params.q,
 								sub: params.sub
 							}
 					} ).then( function( response )
@@ -622,7 +622,7 @@ $scope.setAltIndex = function( input )
 		case 'search':
 		$scope.altIndexSection = true;
 		$scope.throbberOn = true;
-		$http( 
+		$http(
 		{
 			method: 'GET',
 			url: $rootScope.apiUrl + 'search.json',
@@ -647,7 +647,7 @@ $scope.setAltIndex = function( input )
 
 	// Fire API calls for separate 'about' section resources
 	$scope.$on( '$locationChangeSuccess', function( event, newState, oldState )
-	{ 
+	{
 
 		// Update stateParams to fix 'back' button index bug
 		switch( $scope.stateParams.section )
@@ -662,7 +662,7 @@ $scope.setAltIndex = function( input )
 
 			default:
 			$scope.stateParams = $state.params;
-			
+
 			$timeout(function()
 			{
 				$scope.stateParams = $state.params;
@@ -672,7 +672,7 @@ $scope.setAltIndex = function( input )
 		}
 
 	    if ( $scope.stateParams.section === 'about' && !$scope.stateParams.e )
-	    {			
+	    {
 
 			// Clear indexContents
 			$scope.indexContents = [  ];
@@ -696,7 +696,7 @@ $scope.setAltIndex = function( input )
 		}
 
 		if ( $scope.stateParams.sortingType !== 'media' )
-		{	
+		{
 			// Update subSort on section and sortingType change
 			if ( $scope.stateParams.sub )
 			{
